@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Author: plusperson@gmail.com -->
+<mapper namespace="org.goal.rgas.mission.MissionMapper">
+    <resultMap id="missionResultMap" type="org.goal.rgas.mission.Mission">
+        <result column="NO" property="no" />
+        <result column="MEMBER_NO" property="memberNo" />
+        <result column="TITLE" property="title" />
+        <result column="NOTE" property="note" />
+        <result column="ENTRY_FEE" property="entryFee" />
+        <result column="START_DATE" property="startDate" />
+        <result column="END_DATE" property="endDate" />
+        <result column="CERTIFIED_START_TIME" property="certifiedStartTime" />
+        <result column="CERTIFIED_END_TIME" property="certifiedEndTime" />
+        <result column="CATEGORY_NO" property="categoryNo" />
+        <result column="LOGICAL" property="logical" />
+        <result column="PHYSICAL" property="physical" />
+        <result column="STATUS" property="status" />
+    </resultMap>
+
+    <sql id="whereSql">
+        <where>
+            <if test="no != null and no != ''">
+                AND NO = #{no}
+            </if>
+            <if test="memberNo != null and memberNo != ''">
+                AND MEMBER_NO = #{memberNo}
+            </if>
+            <if test="title != null and title != ''">
+                AND TITLE = #{title}
+            </if>
+            <if test="note != null and note != ''">
+                AND NOTE = #{note}
+            </if>
+            <if test="entryFee != null and entryFee != ''">
+                AND ENTRY_FEE = #{entryFee}
+            </if>
+            <if test="startDate != null and startDate != ''">
+                AND START_DATE = #{startDate}
+            </if>
+            <if test="endDate != null and endDate != ''">
+                AND END_DATE = #{endDate}
+            </if>
+            <if test="certifiedStartTime != null and certifiedStartTime != ''">
+                AND CERTIFIED_START_TIME = #{certifiedStartTime}
+            </if>
+            <if test="certifiedEndTime != null and certifiedEndTime != ''">
+                AND CERTIFIED_END_TIME = #{certifiedEndTime}
+            </if>
+            <if test="categoryNo != null and categoryNo != ''">
+                AND CATEGORY_NO = #{categoryNo}
+            </if>
+            <if test="logical != null and logical != ''">
+                AND LOGICAL = #{logical}
+            </if>
+            <if test="physical != null and physical != ''">
+                AND PHYSICAL = #{physical}
+            </if>
+            <if test="status != null and status != ''">
+                AND STATUS = #{status}
+            </if>
+        </where>
+    </sql>
+
+    <select id="count" parameterType="org.goal.rgas.mission.Mission" resultType="int">
+        SELECT COUNT(*)
+        FROM mission
+        <include refid="whereSql" />
+    </select>
+
+    <select id="list" parameterType="org.goal.rgas.mission.Mission" resultMap="missionResultMap">
+        SELECT *
+        FROM (
+            SELECT
+                NO,
+                MEMBER_NO,
+                TITLE,
+                NOTE,
+                ENTRY_FEE,
+                START_DATE,
+                END_DATE,
+                CERTIFIED_START_TIME,
+                CERTIFIED_END_TIME,
+                CATEGORY_NO,
+                LOGICAL,
+                PHYSICAL,
+                STATUS
+            FROM mission
+            <include refid="whereSql" />
+        ) TB
+        <where>
+            <if test="itemStart > -1">
+                RN BETWEEN (#{itemStart} + 1)
+                       AND (#{itemStart} + #{itemSizePerPage})
+            </if>
+        </where>
+    </select>
+
+    <select id="select" parameterType="org.goal.rgas.mission.Mission" resultMap="missionResultMap">
+        SELECT
+            NO,
+            MEMBER_NO,
+            TITLE,
+            NOTE,
+            ENTRY_FEE,
+            START_DATE,
+            END_DATE,
+            CERTIFIED_START_TIME,
+            CERTIFIED_END_TIME,
+            CATEGORY_NO,
+            LOGICAL,
+            PHYSICAL,
+            STATUS
+        FROM mission
+        <include refid="whereSql" />
+    </select>
+
+    <insert id="insert" parameterType="org.goal.rgas.mission.Mission">
+        INSERT INTO mission (
+            NO,
+            MEMBER_NO,
+            TITLE,
+            NOTE,
+            ENTRY_FEE,
+            START_DATE,
+            END_DATE,
+            CERTIFIED_START_TIME,
+            CERTIFIED_END_TIME,
+            CATEGORY_NO,
+            LOGICAL,
+            PHYSICAL,
+            STATUS
+        ) VALUES (
+            #{no},
+            #{memberNo},
+            #{title},
+            #{note},
+            #{entryFee},
+            #{startDate},
+            #{endDate},
+            #{certifiedStartTime},
+            #{certifiedEndTime},
+            #{categoryNo},
+            #{logical},
+            #{physical},
+            #{status}
+        )
+    </insert>
+
+    <update id="update" parameterType="org.goal.rgas.mission.Mission">
+        UPDATE mission
+        <set>
+            <if test="no != ''">
+                NO = #{no},
+            </if>
+            <if test="memberNo != ''">
+                MEMBER_NO = #{memberNo},
+            </if>
+            <if test="title != ''">
+                TITLE = #{title},
+            </if>
+            <if test="note != ''">
+                NOTE = #{note},
+            </if>
+            <if test="entryFee != ''">
+                ENTRY_FEE = #{entryFee},
+            </if>
+            <if test="startDate != ''">
+                START_DATE = #{startDate},
+            </if>
+            <if test="endDate != ''">
+                END_DATE = #{endDate},
+            </if>
+            <if test="certifiedStartTime != ''">
+                CERTIFIED_START_TIME = #{certifiedStartTime},
+            </if>
+            <if test="certifiedEndTime != ''">
+                CERTIFIED_END_TIME = #{certifiedEndTime},
+            </if>
+            <if test="categoryNo != ''">
+                CATEGORY_NO = #{categoryNo},
+            </if>
+            <if test="logical != ''">
+                LOGICAL = #{logical},
+            </if>
+            <if test="physical != ''">
+                PHYSICAL = #{physical},
+            </if>
+            <if test="status != ''">
+                STATUS = #{status},
+            </if>
+        </set>
+    </update>
+
+    <delete id="delete" parameterType="org.goal.rgas.mission.Mission">
+        DELETE FROM mission
+        <include refid="whereSql" />
+    </delete>
+</mapper>

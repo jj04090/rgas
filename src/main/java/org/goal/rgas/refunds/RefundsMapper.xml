@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Author: plusperson@gmail.com -->
+<mapper namespace="org.goal.rgas.refunds.RefundsMapper">
+    <resultMap id="refundsResultMap" type="org.goal.rgas.refunds.Refunds">
+        <result column="NO" property="no" />
+        <result column="PAYMENT_NO" property="paymentNo" />
+        <result column="AMOUNT" property="amount" />
+        <result column="REFUNDS_DATE" property="refundsDate" />
+    </resultMap>
+
+    <sql id="whereSql">
+        <where>
+            <if test="no != null and no != ''">
+                AND NO = #{no}
+            </if>
+            <if test="paymentNo != null and paymentNo != ''">
+                AND PAYMENT_NO = #{paymentNo}
+            </if>
+            <if test="amount != null and amount != ''">
+                AND AMOUNT = #{amount}
+            </if>
+            <if test="refundsDate != null and refundsDate != ''">
+                AND REFUNDS_DATE = #{refundsDate}
+            </if>
+        </where>
+    </sql>
+
+    <select id="count" parameterType="org.goal.rgas.refunds.Refunds" resultType="int">
+        SELECT COUNT(*)
+        FROM refunds
+        <include refid="whereSql" />
+    </select>
+
+    <select id="list" parameterType="org.goal.rgas.refunds.Refunds" resultMap="refundsResultMap">
+        SELECT *
+        FROM (
+            SELECT
+                NO,
+                PAYMENT_NO,
+                AMOUNT,
+                REFUNDS_DATE
+            FROM refunds
+            <include refid="whereSql" />
+        ) TB
+        <where>
+            <if test="itemStart > -1">
+                RN BETWEEN (#{itemStart} + 1)
+                       AND (#{itemStart} + #{itemSizePerPage})
+            </if>
+        </where>
+    </select>
+
+    <select id="select" parameterType="org.goal.rgas.refunds.Refunds" resultMap="refundsResultMap">
+        SELECT
+            NO,
+            PAYMENT_NO,
+            AMOUNT,
+            REFUNDS_DATE
+        FROM refunds
+        <include refid="whereSql" />
+    </select>
+
+    <insert id="insert" parameterType="org.goal.rgas.refunds.Refunds">
+        INSERT INTO refunds (
+            NO,
+            PAYMENT_NO,
+            AMOUNT,
+            REFUNDS_DATE
+        ) VALUES (
+            #{no},
+            #{paymentNo},
+            #{amount},
+            #{refundsDate}
+        )
+    </insert>
+
+    <update id="update" parameterType="org.goal.rgas.refunds.Refunds">
+        UPDATE refunds
+        <set>
+            <if test="no != ''">
+                NO = #{no},
+            </if>
+            <if test="paymentNo != ''">
+                PAYMENT_NO = #{paymentNo},
+            </if>
+            <if test="amount != ''">
+                AMOUNT = #{amount},
+            </if>
+            <if test="refundsDate != ''">
+                REFUNDS_DATE = #{refundsDate},
+            </if>
+        </set>
+    </update>
+
+    <delete id="delete" parameterType="org.goal.rgas.refunds.Refunds">
+        DELETE FROM refunds
+        <include refid="whereSql" />
+    </delete>
+</mapper>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Author: plusperson@gmail.com -->
+<mapper namespace="org.goal.rgas.charity.CharityMapper">
+    <resultMap id="charityResultMap" type="org.goal.rgas.charity.Charity">
+        <result column="NO" property="no" />
+        <result column="NAME" property="name" />
+        <result column="BANK" property="bank" />
+        <result column="ACCOUNT" property="account" />
+    </resultMap>
+
+    <sql id="whereSql">
+        <where>
+            <if test="no != null and no != ''">
+                AND NO = #{no}
+            </if>
+            <if test="name != null and name != ''">
+                AND NAME = #{name}
+            </if>
+            <if test="bank != null and bank != ''">
+                AND BANK = #{bank}
+            </if>
+            <if test="account != null and account != ''">
+                AND ACCOUNT = #{account}
+            </if>
+        </where>
+    </sql>
+
+    <select id="count" parameterType="org.goal.rgas.charity.Charity" resultType="int">
+        SELECT COUNT(*)
+        FROM charity
+        <include refid="whereSql" />
+    </select>
+
+    <select id="list" parameterType="org.goal.rgas.charity.Charity" resultMap="charityResultMap">
+        SELECT *
+        FROM (
+            SELECT
+                NO,
+                NAME,
+                BANK,
+                ACCOUNT
+            FROM charity
+            <include refid="whereSql" />
+        ) TB
+        <where>
+            <if test="itemStart > -1">
+                RN BETWEEN (#{itemStart} + 1)
+                       AND (#{itemStart} + #{itemSizePerPage})
+            </if>
+        </where>
+    </select>
+
+    <select id="select" parameterType="org.goal.rgas.charity.Charity" resultMap="charityResultMap">
+        SELECT
+            NO,
+            NAME,
+            BANK,
+            ACCOUNT
+        FROM charity
+        <include refid="whereSql" />
+    </select>
+
+    <insert id="insert" parameterType="org.goal.rgas.charity.Charity">
+        INSERT INTO charity (
+            NO,
+            NAME,
+            BANK,
+            ACCOUNT
+        ) VALUES (
+            #{no},
+            #{name},
+            #{bank},
+            #{account}
+        )
+    </insert>
+
+    <update id="update" parameterType="org.goal.rgas.charity.Charity">
+        UPDATE charity
+        <set>
+            <if test="no != ''">
+                NO = #{no},
+            </if>
+            <if test="name != ''">
+                NAME = #{name},
+            </if>
+            <if test="bank != ''">
+                BANK = #{bank},
+            </if>
+            <if test="account != ''">
+                ACCOUNT = #{account},
+            </if>
+        </set>
+    </update>
+
+    <delete id="delete" parameterType="org.goal.rgas.charity.Charity">
+        DELETE FROM charity
+        <include refid="whereSql" />
+    </delete>
+</mapper>

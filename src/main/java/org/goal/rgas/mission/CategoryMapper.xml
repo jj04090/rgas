@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
@@ -78,4 +79,86 @@
         DELETE FROM category
         <include refid="whereSql" />
     </delete>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Author: plusperson@gmail.com -->
+<mapper namespace="org.goal.rgas.mission.CategoryMapper">
+    <resultMap id="categoryResultMap" type="org.goal.rgas.mission.Category">
+        <result column="NO" property="no" />
+        <result column="TITLE" property="title" />
+    </resultMap>
+
+    <sql id="whereSql">
+        <where>
+            <if test="no != null and no != ''">
+                AND NO = #{no}
+            </if>
+            <if test="title != null and title != ''">
+                AND TITLE = #{title}
+            </if>
+        </where>
+    </sql>
+
+    <select id="count" parameterType="org.goal.rgas.mission.Category" resultType="int">
+        SELECT COUNT(*)
+        FROM category
+        <include refid="whereSql" />
+    </select>
+
+    <select id="list" parameterType="org.goal.rgas.mission.Category" resultMap="categoryResultMap">
+        SELECT *
+        FROM (
+            SELECT
+                NO,
+                TITLE
+            FROM category
+            <include refid="whereSql" />
+        ) TB
+        <where>
+            <if test="itemStart > -1">
+                RN BETWEEN (#{itemStart} + 1)
+                       AND (#{itemStart} + #{itemSizePerPage})
+            </if>
+        </where>
+    </select>
+
+    <select id="select" parameterType="org.goal.rgas.mission.Category" resultMap="categoryResultMap">
+        SELECT
+            NO,
+            TITLE
+        FROM category
+        <include refid="whereSql" />
+    </select>
+
+    <insert id="insert" parameterType="org.goal.rgas.mission.Category">
+        INSERT INTO category (
+            NO,
+            TITLE
+        ) VALUES (
+            #{no},
+            #{title}
+        )
+    </insert>
+
+    <update id="update" parameterType="org.goal.rgas.mission.Category">
+        UPDATE category
+        <set>
+            <if test="no != ''">
+                NO = #{no},
+            </if>
+            <if test="title != ''">
+                TITLE = #{title},
+            </if>
+        </set>
+    </update>
+
+    <delete id="delete" parameterType="org.goal.rgas.mission.Category">
+        DELETE FROM category
+        <include refid="whereSql" />
+    </delete>
+>>>>>>> refs/remotes/origin/suhyung
 </mapper>

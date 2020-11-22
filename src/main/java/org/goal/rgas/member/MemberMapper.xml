@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
@@ -166,4 +167,174 @@
         DELETE FROM member
         <include refid="whereSql" />
     </delete>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Author: plusperson@gmail.com -->
+<mapper namespace="org.goal.rgas.member.MemberMapper">
+    <resultMap id="memberResultMap" type="org.goal.rgas.member.Member">
+        <result column="NO" property="no" />
+        <result column="EMAIL" property="email" />
+        <result column="PASSWORD" property="password" />
+        <result column="NAME" property="name" />
+        <result column="NICKNAME" property="nickname" />
+        <result column="BANK" property="bank" />
+        <result column="ACCOUNT" property="account" />
+        <result column="GRADE" property="grade" />
+        <result column="AUTH" property="auth" />
+        <result column="STATUS" property="status" />
+    </resultMap>
+
+    <sql id="whereSql">
+        <where>
+            <if test="no != null and no != ''">
+                AND NO = #{no}
+            </if>
+            <if test="email != null and email != ''">
+                AND EMAIL = #{email}
+            </if>
+            <if test="password != null and password != ''">
+                AND PASSWORD = #{password}
+            </if>
+            <if test="name != null and name != ''">
+                AND NAME = #{name}
+            </if>
+            <if test="nickname != null and nickname != ''">
+                AND NICKNAME = #{nickname}
+            </if>
+            <if test="bank != null and bank != ''">
+                AND BANK = #{bank}
+            </if>
+            <if test="account != null and account != ''">
+                AND ACCOUNT = #{account}
+            </if>
+            <if test="grade != null and grade != ''">
+                AND GRADE = #{grade}
+            </if>
+            <if test="auth != null and auth != ''">
+                AND AUTH = #{auth}
+            </if>
+            <if test="status != null and status != ''">
+                AND STATUS = #{status}
+            </if>
+        </where>
+    </sql>
+
+    <select id="count" parameterType="org.goal.rgas.member.Member" resultType="int">
+        SELECT COUNT(*)
+        FROM member
+        <include refid="whereSql" />
+    </select>
+
+    <select id="list" parameterType="org.goal.rgas.member.Member" resultMap="memberResultMap">
+        SELECT *
+        FROM (
+            SELECT
+                NO,
+                EMAIL,
+                PASSWORD,
+                NAME,
+                NICKNAME,
+                BANK,
+                ACCOUNT,
+                GRADE,
+                AUTH,
+                STATUS
+            FROM member
+            <include refid="whereSql" />
+        ) TB
+        <where>
+            <if test="itemStart > -1">
+                RN BETWEEN (#{itemStart} + 1)
+                       AND (#{itemStart} + #{itemSizePerPage})
+            </if>
+        </where>
+    </select>
+
+    <select id="select" parameterType="org.goal.rgas.member.Member" resultMap="memberResultMap">
+        SELECT
+            NO,
+            EMAIL,
+            PASSWORD,
+            NAME,
+            NICKNAME,
+            BANK,
+            ACCOUNT,
+            GRADE,
+            AUTH,
+            STATUS
+        FROM member
+        <include refid="whereSql" />
+    </select>
+
+    <insert id="insert" parameterType="org.goal.rgas.member.Member">
+        INSERT INTO member (
+            NO,
+            EMAIL,
+            PASSWORD,
+            NAME,
+            NICKNAME,
+            BANK,
+            ACCOUNT,
+            GRADE,
+            AUTH,
+            STATUS
+        ) VALUES (
+            #{no},
+            #{email},
+            #{password},
+            #{name},
+            #{nickname},
+            #{bank},
+            #{account},
+            #{grade},
+            #{auth},
+            #{status}
+        )
+    </insert>
+
+    <update id="update" parameterType="org.goal.rgas.member.Member">
+        UPDATE member
+        <set>
+            <if test="no != ''">
+                NO = #{no},
+            </if>
+            <if test="email != ''">
+                EMAIL = #{email},
+            </if>
+            <if test="password != ''">
+                PASSWORD = #{password},
+            </if>
+            <if test="name != ''">
+                NAME = #{name},
+            </if>
+            <if test="nickname != ''">
+                NICKNAME = #{nickname},
+            </if>
+            <if test="bank != ''">
+                BANK = #{bank},
+            </if>
+            <if test="account != ''">
+                ACCOUNT = #{account},
+            </if>
+            <if test="grade != ''">
+                GRADE = #{grade},
+            </if>
+            <if test="auth != ''">
+                AUTH = #{auth},
+            </if>
+            <if test="status != ''">
+                STATUS = #{status},
+            </if>
+        </set>
+    </update>
+
+    <delete id="delete" parameterType="org.goal.rgas.member.Member">
+        DELETE FROM member
+        <include refid="whereSql" />
+    </delete>
+>>>>>>> refs/remotes/origin/suhyung
 </mapper>

@@ -2,21 +2,30 @@ package org.goal.rgas.mission;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.stereotype.Component;
 
 /**
  * @author plusperson@gmail.com
 */
+@Component
 public class Mission implements Serializable {
     private int no;
     private int memberNo;
     private String title;
     private String note;
     private int entryFee;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
-    private LocalTime certifiedStartTime;
-    private LocalTime certifiedEndTime;
+    @DateTimeFormat(pattern = "hh:mm:ss")
+    private String certifiedStartTime;
+    @DateTimeFormat(pattern = "hh:mm:ss")
+    private String certifiedEndTime;
     private int categoryNo;
     private String logical;
     private String physical;
@@ -28,7 +37,7 @@ public class Mission implements Serializable {
     public Mission() {
     }
 
-    public Mission(int no, int memberNo, String title, String note, int entryFee, LocalDate startDate, LocalDate endDate, LocalTime certifiedStartTime, LocalTime certifiedEndTime, int categoryNo, String logical, String physical, char status, int itemStart, int itemSizePerPage) {
+	public Mission(int no, int memberNo, String title, String note, int entryFee, LocalDate startDate, LocalDate endDate, String certifiedStartTime, String certifiedEndTime, int categoryNo, String logical, String physical, char status, int itemStart, int itemSizePerPage) {
         this.no = no;
         this.memberNo = memberNo;
         this.title = title;
@@ -103,19 +112,19 @@ public class Mission implements Serializable {
         return this.endDate;
     }
 
-    public void setCertifiedStartTime(LocalTime certifiedStartTime) {
+    public void setCertifiedStartTime(String certifiedStartTime) {
         this.certifiedStartTime = certifiedStartTime;
     }
 
-    public LocalTime getCertifiedStartTime() {
+    public String getCertifiedStartTime() {
         return this.certifiedStartTime;
     }
 
-    public void setCertifiedEndTime(LocalTime certifiedEndTime) {
+    public void setCertifiedEndTime(String certifiedEndTime) {
         this.certifiedEndTime = certifiedEndTime;
     }
 
-    public LocalTime getCertifiedEndTime() {
+    public String getCertifiedEndTime() {
         return this.certifiedEndTime;
     }
 
@@ -165,5 +174,13 @@ public class Mission implements Serializable {
 
     public int getItemSizePerPage() {
         return this.itemSizePerPage;
+    }
+    
+    @Override
+    public String toString() {
+    	return "Mission [no=" + no + ", memberNo=" + memberNo + ", title=" + title + ", note=" + note + ", entryFee="
+    			+ entryFee + ", startDate=" + startDate + ", endDate=" + endDate + ", certifiedStartTime="
+    			+ certifiedStartTime + ", certifiedEndTime=" + certifiedEndTime + ", categoryNo=" + categoryNo
+    			+ ", logical=" + logical + ", physical=" + physical + ", status=" + status + "]";
     }
 }

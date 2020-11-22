@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
@@ -122,4 +123,130 @@
         DELETE FROM report
         <include refid="whereSql" />
     </delete>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Author: plusperson@gmail.com -->
+<mapper namespace="org.goal.rgas.report.ReportMapper">
+    <resultMap id="reportResultMap" type="org.goal.rgas.report.Report">
+        <result column="NO" property="no" />
+        <result column="MEMBER_NO" property="memberNo" />
+        <result column="PERFORM_NO" property="performNo" />
+        <result column="NOTE" property="note" />
+        <result column="REPORT_DATE" property="reportDate" />
+        <result column="STATUS" property="status" />
+    </resultMap>
+
+    <sql id="whereSql">
+        <where>
+            <if test="no != null and no != ''">
+                AND NO = #{no}
+            </if>
+            <if test="memberNo != null and memberNo != ''">
+                AND MEMBER_NO = #{memberNo}
+            </if>
+            <if test="performNo != null and performNo != ''">
+                AND PERFORM_NO = #{performNo}
+            </if>
+            <if test="note != null and note != ''">
+                AND NOTE = #{note}
+            </if>
+            <if test="reportDate != null and reportDate != ''">
+                AND REPORT_DATE = #{reportDate}
+            </if>
+            <if test="status != null and status != ''">
+                AND STATUS = #{status}
+            </if>
+        </where>
+    </sql>
+
+    <select id="count" parameterType="org.goal.rgas.report.Report" resultType="int">
+        SELECT COUNT(*)
+        FROM report
+        <include refid="whereSql" />
+    </select>
+
+    <select id="list" parameterType="org.goal.rgas.report.Report" resultMap="reportResultMap">
+        SELECT *
+        FROM (
+            SELECT
+                NO,
+                MEMBER_NO,
+                PERFORM_NO,
+                NOTE,
+                REPORT_DATE,
+                STATUS
+            FROM report
+            <include refid="whereSql" />
+        ) TB
+        <where>
+            <if test="itemStart > -1">
+                RN BETWEEN (#{itemStart} + 1)
+                       AND (#{itemStart} + #{itemSizePerPage})
+            </if>
+        </where>
+    </select>
+
+    <select id="select" parameterType="org.goal.rgas.report.Report" resultMap="reportResultMap">
+        SELECT
+            NO,
+            MEMBER_NO,
+            PERFORM_NO,
+            NOTE,
+            REPORT_DATE,
+            STATUS
+        FROM report
+        <include refid="whereSql" />
+    </select>
+
+    <insert id="insert" parameterType="org.goal.rgas.report.Report">
+        INSERT INTO report (
+            NO,
+            MEMBER_NO,
+            PERFORM_NO,
+            NOTE,
+            REPORT_DATE,
+            STATUS
+        ) VALUES (
+            #{no},
+            #{memberNo},
+            #{performNo},
+            #{note},
+            #{reportDate},
+            #{status}
+        )
+    </insert>
+
+    <update id="update" parameterType="org.goal.rgas.report.Report">
+        UPDATE report
+        <set>
+            <if test="no != ''">
+                NO = #{no},
+            </if>
+            <if test="memberNo != ''">
+                MEMBER_NO = #{memberNo},
+            </if>
+            <if test="performNo != ''">
+                PERFORM_NO = #{performNo},
+            </if>
+            <if test="note != ''">
+                NOTE = #{note},
+            </if>
+            <if test="reportDate != ''">
+                REPORT_DATE = #{reportDate},
+            </if>
+            <if test="status != ''">
+                STATUS = #{status},
+            </if>
+        </set>
+    </update>
+
+    <delete id="delete" parameterType="org.goal.rgas.report.Report">
+        DELETE FROM report
+        <include refid="whereSql" />
+    </delete>
+>>>>>>> refs/remotes/origin/suhyung
 </mapper>

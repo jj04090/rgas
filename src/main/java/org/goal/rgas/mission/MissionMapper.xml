@@ -120,7 +120,7 @@
 
     <insert id="insert" parameterType="org.goal.rgas.mission.Mission">
         INSERT INTO mission (
-            NO,
+          <!--   NO, -->
             MEMBER_NO,
             TITLE,
             NOTE,
@@ -134,7 +134,7 @@
             PHYSICAL,
             STATUS
         ) VALUES (
-            #{no},
+            <!-- #{no}, -->
             #{memberNo},
             #{title},
             #{note},

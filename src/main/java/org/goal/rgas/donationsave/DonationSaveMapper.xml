@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Author: plusperson@gmail.com -->
+<mapper namespace="org.goal.rgas.donationsave.DonationSaveMapper">
+    <resultMap id="donationSaveResultMap" type="org.goal.rgas.donationsave.DonationSave">
+        <result column="NO" property="no" />
+        <result column="PAYMENT_NO" property="paymentNo" />
+        <result column="AMOUNT" property="amount" />
+        <result column="SAVE_DATE" property="saveDate" />
+        <result column="STATUS" property="status" />
+    </resultMap>
+
+    <sql id="whereSql">
+        <where>
+            <if test="no != null and no != ''">
+                AND NO = #{no}
+            </if>
+            <if test="paymentNo != null and paymentNo != ''">
+                AND PAYMENT_NO = #{paymentNo}
+            </if>
+            <if test="amount != null and amount != ''">
+                AND AMOUNT = #{amount}
+            </if>
+            <if test="saveDate != null and saveDate != ''">
+                AND SAVE_DATE = #{saveDate}
+            </if>
+            <if test="status != null and status != ''">
+                AND STATUS = #{status}
+            </if>
+        </where>
+    </sql>
+
+    <select id="count" parameterType="org.goal.rgas.donationsave.DonationSave" resultType="int">
+        SELECT COUNT(*)
+        FROM donation_save
+        <include refid="whereSql" />
+    </select>
+
+    <select id="list" parameterType="org.goal.rgas.donationsave.DonationSave" resultMap="donationSaveResultMap">
+        SELECT *
+        FROM (
+            SELECT
+                NO,
+                PAYMENT_NO,
+                AMOUNT,
+                SAVE_DATE,
+                STATUS
+            FROM donation_save
+            <include refid="whereSql" />
+        ) TB
+        <where>
+            <if test="itemStart > -1">
+                RN BETWEEN (#{itemStart} + 1)
+                       AND (#{itemStart} + #{itemSizePerPage})
+            </if>
+        </where>
+    </select>
+
+    <select id="select" parameterType="org.goal.rgas.donationsave.DonationSave" resultMap="donationSaveResultMap">
+        SELECT
+            NO,
+            PAYMENT_NO,
+            AMOUNT,
+            SAVE_DATE,
+            STATUS
+        FROM donation_save
+        <include refid="whereSql" />
+    </select>
+
+    <insert id="insert" parameterType="org.goal.rgas.donationsave.DonationSave">
+        INSERT INTO donation_save (
+            NO,
+            PAYMENT_NO,
+            AMOUNT,
+            SAVE_DATE,
+            STATUS
+        ) VALUES (
+            #{no},
+            #{paymentNo},
+            #{amount},
+            #{saveDate},
+            #{status}
+        )
+    </insert>
+
+    <update id="update" parameterType="org.goal.rgas.donationsave.DonationSave">
+        UPDATE donation_save
+        <set>
+            <if test="no != ''">
+                NO = #{no},
+            </if>
+            <if test="paymentNo != ''">
+                PAYMENT_NO = #{paymentNo},
+            </if>
+            <if test="amount != ''">
+                AMOUNT = #{amount},
+            </if>
+            <if test="saveDate != ''">
+                SAVE_DATE = #{saveDate},
+            </if>
+            <if test="status != ''">
+                STATUS = #{status},
+            </if>
+        </set>
+    </update>
+
+    <delete id="delete" parameterType="org.goal.rgas.donationsave.DonationSave">
+        DELETE FROM donation_save
+        <include refid="whereSql" />
+    </delete>
+</mapper>

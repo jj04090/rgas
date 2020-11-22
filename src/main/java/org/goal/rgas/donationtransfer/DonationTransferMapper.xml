@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Author: plusperson@gmail.com -->
+<mapper namespace="org.goal.rgas.donationtransfer.DonationTransferMapper">
+    <resultMap id="donationTransferResultMap" type="org.goal.rgas.donationtransfer.DonationTransfer">
+        <result column="NO" property="no" />
+        <result column="CHARITY_NO" property="charityNo" />
+        <result column="AMOUNT" property="amount" />
+        <result column="TRANSFER_DATE" property="transferDate" />
+    </resultMap>
+
+    <sql id="whereSql">
+        <where>
+            <if test="no != null and no != ''">
+                AND NO = #{no}
+            </if>
+            <if test="charityNo != null and charityNo != ''">
+                AND CHARITY_NO = #{charityNo}
+            </if>
+            <if test="amount != null and amount != ''">
+                AND AMOUNT = #{amount}
+            </if>
+            <if test="transferDate != null and transferDate != ''">
+                AND TRANSFER_DATE = #{transferDate}
+            </if>
+        </where>
+    </sql>
+
+    <select id="count" parameterType="org.goal.rgas.donationtransfer.DonationTransfer" resultType="int">
+        SELECT COUNT(*)
+        FROM donation_transfer
+        <include refid="whereSql" />
+    </select>
+
+    <select id="list" parameterType="org.goal.rgas.donationtransfer.DonationTransfer" resultMap="donationTransferResultMap">
+        SELECT *
+        FROM (
+            SELECT
+                NO,
+                CHARITY_NO,
+                AMOUNT,
+                TRANSFER_DATE
+            FROM donation_transfer
+            <include refid="whereSql" />
+        ) TB
+        <where>
+            <if test="itemStart > -1">
+                RN BETWEEN (#{itemStart} + 1)
+                       AND (#{itemStart} + #{itemSizePerPage})
+            </if>
+        </where>
+    </select>
+
+    <select id="select" parameterType="org.goal.rgas.donationtransfer.DonationTransfer" resultMap="donationTransferResultMap">
+        SELECT
+            NO,
+            CHARITY_NO,
+            AMOUNT,
+            TRANSFER_DATE
+        FROM donation_transfer
+        <include refid="whereSql" />
+    </select>
+
+    <insert id="insert" parameterType="org.goal.rgas.donationtransfer.DonationTransfer">
+        INSERT INTO donation_transfer (
+            NO,
+            CHARITY_NO,
+            AMOUNT,
+            TRANSFER_DATE
+        ) VALUES (
+            #{no},
+            #{charityNo},
+            #{amount},
+            #{transferDate}
+        )
+    </insert>
+
+    <update id="update" parameterType="org.goal.rgas.donationtransfer.DonationTransfer">
+        UPDATE donation_transfer
+        <set>
+            <if test="no != ''">
+                NO = #{no},
+            </if>
+            <if test="charityNo != ''">
+                CHARITY_NO = #{charityNo},
+            </if>
+            <if test="amount != ''">
+                AMOUNT = #{amount},
+            </if>
+            <if test="transferDate != ''">
+                TRANSFER_DATE = #{transferDate},
+            </if>
+        </set>
+    </update>
+
+    <delete id="delete" parameterType="org.goal.rgas.donationtransfer.DonationTransfer">
+        DELETE FROM donation_transfer
+        <include refid="whereSql" />
+    </delete>
+</mapper>

@@ -91,12 +91,12 @@
             FROM mission
             <include refid="whereSql" />
         ) TB
-        <where>
+        <!-- <where>
             <if test="itemStart > -1">
                 RN BETWEEN (#{itemStart} + 1)
                        AND (#{itemStart} + #{itemSizePerPage})
             </if>
-        </where>
+        </where> -->
     </select>
 
     <select id="select" parameterType="org.goal.rgas.mission.Mission" resultMap="missionResultMap">

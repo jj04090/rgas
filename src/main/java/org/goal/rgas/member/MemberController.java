@@ -1,5 +1,7 @@
 package org.goal.rgas.member;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,13 +41,23 @@ public class MemberController {
 		
 		return mv;
 	}
-	
+
 	@GetMapping
 	public ModelAndView memberList(Member member) {
-		ModelAndView mv = new ModelAndView("/member/list");
-		
+		ModelAndView mv = null;
+		List<Member> memberList = null;
+		// 권한이 관리자인지 확인한다.
 		try {
-			memberService.memberList(member);
+			if ("A".equals(httpSession.getAttribute("auth"))) {
+				mv = new ModelAndView("/member/list");
+				
+				memberList = memberService.memberList(new Member());
+				mv.addObject("list", memberList);
+				
+				System.out.println(memberList);
+			} else {
+				mv = new ModelAndView(new RedirectView("/mission"));
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

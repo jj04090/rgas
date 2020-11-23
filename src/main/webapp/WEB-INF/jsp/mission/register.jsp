@@ -76,5 +76,4 @@
 		</div>
 	</form>
 </body>
->>>>>>> refs/remotes/origin/suhyung
 </html>

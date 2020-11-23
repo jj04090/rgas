@@ -1,5 +1,11 @@
 package org.goal.rgas.mission;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
+import org.goal.rgas.member.Member;
+import org.goal.rgas.member.MemberServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +23,11 @@ import org.springframework.web.servlet.view.RedirectView;
 public class MissionController {
 	@Autowired
 	private MissionServiceImpl missionService;
+	@Autowired
+	private MemberServiceImpl memberService;
+	
+	@Autowired
+	private HttpSession httpSession;
 	
 	@GetMapping("/form")
 	public ModelAndView missionRegisterForm() {
@@ -24,6 +35,7 @@ public class MissionController {
 		
 		return mv;
 	}
+	
 	@PostMapping
 	public ModelAndView missionRegister(@RequestParam("img") MultipartFile file, Mission mission) { 
 		ModelAndView mv = new ModelAndView(new RedirectView("/mission"));
@@ -38,15 +50,45 @@ public class MissionController {
 	
 	@GetMapping
 	public ModelAndView missionList(Mission mission) {
-		ModelAndView mv = new ModelAndView();
+		List<Mission> missionList = null;
+		
+		//세션의 이메일로 member객체 가져오기
+		String email = (String)httpSession.getAttribute("email");
+		Member memberValue = new Member();
+		memberValue.setEmail(email);
+		
+		int memberNo = 0;
+		
+		try {
+			memberNo = memberService.memberInquiry(memberValue).getNo();
+			Mission missionValue = new Mission();
+			missionValue.setMemberNo(memberNo);
+			
+			//미션 목록 조회
+			missionList = missionService.missionList(missionValue);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		ModelAndView mv = new ModelAndView("/mission/list");
+		
+		mv.addObject("list", missionList);
 		
 		return mv;
 	}
 	
 	@GetMapping("/{no}")
 	public ModelAndView missionInquiry(Mission mission) {
+		ModelAndView mv = new ModelAndView("/mission/inquiry");
 		
-		return null;
+		try {
+			Mission missionValue = missionService.missionInquiry(mission);
+			mv.addObject("mission", missionValue);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return mv;
 	}
 	
 	@PutMapping
@@ -55,9 +97,16 @@ public class MissionController {
 		return null;
 	}
 	
-	@DeleteMapping
+	@DeleteMapping("/{no}")
 	public ModelAndView missionDelete(Mission mission) {
+		ModelAndView mv = new ModelAndView(new RedirectView("/mission"));
 		
-		return null;
+		try {
+			missionService.missionDelete(mission);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return mv;
 	}
 }

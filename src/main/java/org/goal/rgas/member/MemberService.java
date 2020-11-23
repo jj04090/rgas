@@ -7,5 +7,5 @@ public interface MemberService {
 	public List<Member> memberList(Member member) throws Exception;
 	public Member memberInquiry(Member member) throws Exception;
 	public void memberModify(Member member) throws Exception;
-	public void memberGradeRenewal(Member member) throws Exception;
+	public void memberGradeRenewal(String email) throws Exception;
 }

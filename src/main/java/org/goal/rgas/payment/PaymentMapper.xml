@@ -56,12 +56,12 @@
             FROM payment
             <include refid="whereSql" />
         ) TB
-        <where>
+        <!-- <where>
             <if test="itemStart > -1">
                 RN BETWEEN (#{itemStart} + 1)
                        AND (#{itemStart} + #{itemSizePerPage})
             </if>
-        </where>
+        </where> -->
     </select>
 
     <select id="select" parameterType="org.goal.rgas.payment.Payment" resultMap="paymentResultMap">
@@ -78,14 +78,14 @@
 
     <insert id="insert" parameterType="org.goal.rgas.payment.Payment">
         INSERT INTO payment (
-            NO,
+            <!-- NO, -->
             PAYMENT_CODE,
             MEMBER_NO,
             MISSION_NO,
             PAYMENT_DATE,
             DEPOSIT
         ) VALUES (
-            #{no},
+            <!-- #{no}, -->
             #{paymentCode},
             #{memberNo},
             #{missionNo},

@@ -46,12 +46,12 @@
             FROM donation_transfer
             <include refid="whereSql" />
         ) TB
-        <where>
+       <!--  <where>
             <if test="itemStart > -1">
                 RN BETWEEN (#{itemStart} + 1)
                        AND (#{itemStart} + #{itemSizePerPage})
             </if>
-        </where>
+        </where> -->
     </select>
 
     <select id="select" parameterType="org.goal.rgas.donation.DonationTransfer" resultMap="donationTransferResultMap">
@@ -66,12 +66,12 @@
 
     <insert id="insert" parameterType="org.goal.rgas.donation.DonationTransfer">
         INSERT INTO donation_transfer (
-            NO,
+            <!-- NO, -->
             CHARITY_NO,
             AMOUNT,
             TRANSFER_DATE
         ) VALUES (
-            #{no},
+           <!--  #{no}, -->
             #{charityNo},
             #{amount},
             #{transferDate}

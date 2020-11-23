@@ -46,12 +46,12 @@
             FROM refunds
             <include refid="whereSql" />
         ) TB
-        <where>
+        <!-- <where>
             <if test="itemStart > -1">
                 RN BETWEEN (#{itemStart} + 1)
                        AND (#{itemStart} + #{itemSizePerPage})
             </if>
-        </where>
+        </where> -->
     </select>
 
     <select id="select" parameterType="org.goal.rgas.refunds.Refunds" resultMap="refundsResultMap">
@@ -66,12 +66,12 @@
 
     <insert id="insert" parameterType="org.goal.rgas.refunds.Refunds">
         INSERT INTO refunds (
-            NO,
+            <!-- NO, -->
             PAYMENT_NO,
             AMOUNT,
             REFUNDS_DATE
         ) VALUES (
-            #{no},
+            <!-- #{no}, -->
             #{paymentNo},
             #{amount},
             #{refundsDate}

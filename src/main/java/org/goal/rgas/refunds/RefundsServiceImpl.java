@@ -1,8 +1,13 @@
 package org.goal.rgas.refunds;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
+import org.goal.rgas.member.Member;
+import org.goal.rgas.member.MemberServiceImpl;
 import org.goal.rgas.mission.Mission;
 import org.goal.rgas.payment.Payment;
 import org.goal.rgas.payment.PaymentMapper;
@@ -25,6 +30,12 @@ public class RefundsServiceImpl implements RefundsService {
 	
 	@Autowired
 	public PerformMapper performMapper;
+	
+	@Autowired
+	public HttpSession httpSession;
+	
+	@Autowired
+	public MemberServiceImpl memberServiceImpl;
 
 	@Override
 	public boolean refundsProcess(Mission mission) throws Exception {
@@ -45,7 +56,16 @@ public class RefundsServiceImpl implements RefundsService {
 					.cancelPayment(new CancelData(payment.getPaymentCode(), false, new BigDecimal(payment.getDeposit() * 0.07 * failCount)));
 
 			if (200 == iamportResponse.getCode()) {
-				paymentMapper.delete(payment);
+				Refunds refunds = new Refunds();
+				refunds.setAmount(iamportResponse.getResponse().getCancelAmount().intValue());
+				refunds.setPaymentNo(paymentValue.getNo());
+				refunds.setRefundsDate(LocalDate.now());
+				
+				refundsMapper.insert(refunds);
+				String email = (String)httpSession.getAttribute("email");
+				//회원 등급갱신
+				//memberServiceImpl.memberGradeRenewal(email);
+				
 				return true;
 			} else {
 				// 결제 실패 시

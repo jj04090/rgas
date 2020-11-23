@@ -25,7 +25,7 @@
                 AND AMOUNT = #{amount}
             </if>
             <if test="saveDate != null and saveDate != ''">
-                AND SAVE_DATE = #{saveDate}
+           		 SAVE_DATE = #{saveDate}
             </if>
             <if test="status != null and status != ''">
                 AND STATUS = #{status}
@@ -40,23 +40,18 @@
     </select>
 
     <select id="list" parameterType="org.goal.rgas.donation.DonationSave" resultMap="donationSaveResultMap">
-        SELECT *
-        FROM (
-            SELECT
-                NO,
-                PAYMENT_NO,
-                AMOUNT,
-                SAVE_DATE,
-                STATUS
+       <!--  SELECT *
+        FROM ( -->
+            SELECT *
             FROM donation_save
             <include refid="whereSql" />
-        ) TB
+        <!-- ) TB
         <where>
             <if test="itemStart > -1">
                 RN BETWEEN (#{itemStart} + 1)
                        AND (#{itemStart} + #{itemSizePerPage})
             </if>
-        </where>
+        </where> -->
     </select>
 
     <select id="select" parameterType="org.goal.rgas.donation.DonationSave" resultMap="donationSaveResultMap">
@@ -64,7 +59,7 @@
             NO,
             PAYMENT_NO,
             AMOUNT,
-            SAVE_DATE,
+           <!--  SAVE_DATE, -->
             STATUS
         FROM donation_save
         <include refid="whereSql" />
@@ -72,13 +67,13 @@
 
     <insert id="insert" parameterType="org.goal.rgas.donation.DonationSave">
         INSERT INTO donation_save (
-            NO,
+            <!-- NO, -->
             PAYMENT_NO,
             AMOUNT,
             SAVE_DATE,
             STATUS
         ) VALUES (
-            #{no},
+            <!-- #{no}, -->
             #{paymentNo},
             #{amount},
             #{saveDate},

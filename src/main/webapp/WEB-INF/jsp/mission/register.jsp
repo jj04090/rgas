@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-
+<meta charset="UTF-8">
 </head>
 <body>
 	<form action="/mission" method="post" enctype="multipart/form-data">

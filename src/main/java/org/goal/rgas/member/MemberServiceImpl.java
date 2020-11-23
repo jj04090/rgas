@@ -37,13 +37,8 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public List<Member> memberList(Member member) throws Exception {
-		List<Member> list = null;
-		//권한이 관리자인지 확인한다.
-		
-		if ("A".equals(httpSession.getAttribute("auth"))) {
-			//회원정보 목록을 조회한다.
-			list = memberMapper.list(member);
-		}
+		//회원 목록을 조회한다.
+		List<Member> list = memberMapper.list(member);
 		
 		return list;
 	}
@@ -67,7 +62,11 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public void memberGradeRenewal(Member member) throws Exception {
+	public void memberGradeRenewal(String email) throws Exception {
+		Member memberValue = new Member();
+		memberValue.setEmail(email);
+		Member member = memberMapper.select(memberValue);
+		
 		int count = missionService.totalSuccessCount(member);
 		char grade;
 

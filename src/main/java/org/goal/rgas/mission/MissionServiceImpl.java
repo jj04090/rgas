@@ -32,37 +32,37 @@ public class MissionServiceImpl implements MissionService{
 	@Override
 	public void missionRegister(MultipartFile file, Mission mission) throws Exception {
 		try {
+			//물리명, 논리명 생성
 			String path = "C:\\Users\\suhyu\\rgasPhoto";
 			String logical = file.getOriginalFilename();
 			String physical = UUID.randomUUID().toString().substring(0,8) + "_" +  logical;
 			
+			//경로에 사진파일 저장
 			String filePath = path + "//" + physical;
 			file.transferTo(new File(filePath));
 			
+			//mission객체에 물리명, 논리명, 상태값부여
 			mission.setLogical(logical);
 			mission.setPhysical(physical);
 			mission.setStatus('N');
 			
+			//session으로부터 회원이메일(memberEmail) 가져오기
 			String email = (String)httpSession.getAttribute("email");
 			Member memberValue = new Member();
 			memberValue.setEmail(email);
 			
+			//회원 번호 가져오기
 			int memberNo = memberMapper.select(memberValue).getNo();
 			mission.setMemberNo(memberNo);
 			
 			System.out.println(mission);
 			
+			//미션 등록
 			missionMapper.insert(mission);
-			/*
-			 * Authentication user = SecurityContextHolder.getContext().getAuthentication();
-			 * String sellerID = user.getName(); dto.setUserID(sellerID);
-			 * dto.setSellImgUrl(filePath); salesInfoService.Save(dto);
-			 */
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		//사진업로드
-		//미션 등록
 	}
 
 	@Override

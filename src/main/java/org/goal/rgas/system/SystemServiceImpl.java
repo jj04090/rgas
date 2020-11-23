@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 public class SystemServiceImpl implements SystemService{
 	@Autowired
 	private MemberMapper memberMapper;
-	
 	@Autowired 
 	private HttpSession httpSession;
 	

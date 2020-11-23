@@ -18,7 +18,7 @@ public class ReportServiceImpl implements ReportService{
 	public void reportRegister(Report report) throws Exception {
 		reportMapper.insert(report);
 	}
-
+	
 	@Override
 	public List<Report> reportList(Report report) throws Exception {
 		if ("A".equals(httpSession.getAttribute("auth"))) {

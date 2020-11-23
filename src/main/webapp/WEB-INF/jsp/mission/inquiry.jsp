@@ -8,6 +8,9 @@
 </head>
 <body>
 	<form action="/mission" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="_method" value="PUT" />
+		<input type="hidden" name="no" id="no" value="${mission.no}" />
+		<input type="hidden" name="memberNo" id="memberNo" value="${mission.memberNo}" />
 		<div>
 			<label>제목</label>
 			<div>
@@ -73,15 +76,15 @@
 			</div>
 		</div>
 		<div>
-			<label></label>
-			<div>
-				<form method="post" action="/mission/${mission.no}">
-					<input type="hidden" name="_method" value="DELETE" />
-					<input type="submit" value="삭제"/>
-				</form>
-				<input value="수정" type="submit">
-			</div>
+			<input value="수정" type="submit">
 		</div>
 	</form>
+	<div>
+		<form method="post" action="/mission">
+			<input type="hidden" name="_method" value="DELETE" />
+			<input type="hidden" name="no" id="no" value="${mission.no}" />
+			<input type="submit" value="삭제"/>
+		</form>
+	</div>
 </body>
 </html>

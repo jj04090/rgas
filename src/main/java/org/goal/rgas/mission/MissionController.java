@@ -64,7 +64,8 @@ public class MissionController {
 			Mission missionValue = new Mission();
 			missionValue.setMemberNo(memberNo);
 			
-			//미션 목록 조회
+			/*미션 목록 조회*/
+			
 			missionList = missionService.missionList(missionValue);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -93,16 +94,25 @@ public class MissionController {
 	
 	@PutMapping
 	public ModelAndView missionModify(Mission mission) {
+		ModelAndView mv = new ModelAndView(new RedirectView("/mission"));
+		try {
+			missionService.missionModify(mission);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
-		return null;
+		return mv;
 	}
 	
-	@DeleteMapping("/{no}")
+	@DeleteMapping
 	public ModelAndView missionDelete(Mission mission) {
 		ModelAndView mv = new ModelAndView(new RedirectView("/mission"));
 		
+		Mission missionValue = new Mission();
+		missionValue.setNo(mission.getNo());
+		
 		try {
-			missionService.missionDelete(mission);
+			missionService.missionDelete(missionValue);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

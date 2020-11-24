@@ -18,7 +18,7 @@ public class MemberServiceImpl implements MemberService{
 	private MemberMapper memberMapper;
 	@Autowired
 	private MissionServiceImpl missionService;
-	
+	 
 	@Override
 	public void memberRegister(Member member) throws Exception {
 		String email = member.getEmail();

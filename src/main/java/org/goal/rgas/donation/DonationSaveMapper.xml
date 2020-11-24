@@ -24,8 +24,8 @@
             <if test="amount != null and amount != ''">
                 AND AMOUNT = #{amount}
             </if>
-            <if test="saveDate != null and saveDate != ''">
-           		 SAVE_DATE = #{saveDate}
+            <if test="saveDate != null">
+           		 SAVE_DATE <![CDATA[ < ]]> #{saveDate}
             </if>
             <if test="status != null and status != ''">
                 AND STATUS = #{status}
@@ -84,22 +84,15 @@
     <update id="update" parameterType="org.goal.rgas.donation.DonationSave">
         UPDATE donation_save
         <set>
-            <if test="no != ''">
-                NO = #{no},
-            </if>
-            <if test="paymentNo != ''">
-                PAYMENT_NO = #{paymentNo},
-            </if>
-            <if test="amount != ''">
-                AMOUNT = #{amount},
-            </if>
-            <if test="saveDate != ''">
-                SAVE_DATE = #{saveDate},
-            </if>
             <if test="status != ''">
                 STATUS = #{status},
             </if>
         </set>
+        <where>
+        	<if test="saveDate != null">
+                AND SAVE_DATE <![CDATA[ < ]]>  #{saveDate}          
+            </if>
+        </where>
     </update>
 
     <delete id="delete" parameterType="org.goal.rgas.donation.DonationSave">

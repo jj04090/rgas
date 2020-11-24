@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.goal.rgas.member.Member;
 import org.goal.rgas.member.MemberMapper;
 import org.goal.rgas.mission.Mission;
+import org.goal.rgas.mission.MissionMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,18 +24,20 @@ public class PaymentServiceImpl implements PaymentService {
 
 	@Autowired
 	public MemberMapper memberMapper;
+	
+	@Autowired
+	public MissionMapper missionMapper;
 
 	@Autowired
 	public HttpSession httpSession;
 
 	//결제 창 띄워주기
 	@Override
-	public IamportRequest paymentProcess(Mission mission) throws Exception {
+	public IamportRequest paymentProcess(Mission mission, String merchantUid) throws Exception {
 		IamportRequest iamportRequest = new IamportRequest();
-		if (mission != null) {
+		if (mission != null && merchantUid != null) {
 			//결제 정보
-			UUID uuid = UUID.randomUUID();
-			iamportRequest.setMerchantUid(uuid.toString());
+			iamportRequest.setMerchantUid("rgas_" + merchantUid);
 			iamportRequest.setPaymentName(mission.getTitle());
 			iamportRequest.setAmount(mission.getEntryFee());
 
@@ -43,7 +46,7 @@ public class PaymentServiceImpl implements PaymentService {
 			Member member = new Member();
 			member.setEmail(email);
 			member = memberMapper.select(member);
-			
+						
 			iamportRequest.setBuyerName(member.getName());
 			iamportRequest.setBuyerEmail(member.getEmail());
 			return iamportRequest;
@@ -53,8 +56,16 @@ public class PaymentServiceImpl implements PaymentService {
 
 	//결제 내역 등록
 	@Override
-	public void paymentRegister(Payment payment) throws Exception {
-		if (payment != null) {
+	public void paymentRegister(Mission mission, String merchantUid) throws Exception {
+		if (mission != null && merchantUid != null) {
+			Mission missionValue = missionMapper.select(mission);
+			
+			Payment payment = new Payment();
+			payment.setPaymentCode("rgas_"+merchantUid);
+			payment.setDeposit(missionValue.getEntryFee());
+			payment.setPaymentDate(LocalDate.now());
+			payment.setMemberNo(missionValue.getMemberNo());
+			payment.setMissionNo(missionValue.getNo());
 			paymentMapper.insert(payment);
 		}
 	}
@@ -76,7 +87,6 @@ public class PaymentServiceImpl implements PaymentService {
 	//결제 취소 (전액 환불)
 	@Override
 	public void paymentCancel(Payment payment) throws Exception {
-		
 		Payment paymentValue = paymentMapper.select(payment);
 		
 		if(paymentValue != null) {

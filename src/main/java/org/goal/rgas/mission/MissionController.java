@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.goal.rgas.member.Member;
 import org.goal.rgas.member.MemberServiceImpl;
+import org.goal.rgas.payment.PaymentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,8 +24,12 @@ import org.springframework.web.servlet.view.RedirectView;
 public class MissionController {
 	@Autowired
 	private MissionServiceImpl missionService;
+	
 	@Autowired
 	private MemberServiceImpl memberService;
+	
+	@Autowired
+	private PaymentServiceImpl paymentServiceImpl; 
 	
 	@Autowired
 	private HttpSession httpSession;
@@ -37,10 +42,11 @@ public class MissionController {
 	}
 	
 	@PostMapping
-	public ModelAndView missionRegister(@RequestParam("img") MultipartFile file, Mission mission) { 
+	public ModelAndView missionRegister(@RequestParam("img") MultipartFile file, Mission mission, @RequestParam("merchantUid") String merchantUid) { 
 		ModelAndView mv = new ModelAndView(new RedirectView("/mission"));
 		try {
 			missionService.missionRegister(file, mission);
+			paymentServiceImpl.paymentRegister(mission, merchantUid);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

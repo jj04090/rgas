@@ -8,16 +8,20 @@ public class IamportRequest implements Serializable {
 	private int amount;
 	private String buyerEmail;
 	private String buyerName;
+	private int missionNo;
 
 	public IamportRequest() {
 	}
 
-	public IamportRequest(String merchantUid, String paymentName, int amount, String buyerEmail, String buyerName) {
+	public IamportRequest(String merchantUid, String paymentName, int amount, String buyerEmail, String buyerName,
+			int missionNo) {
+		super();
 		this.merchantUid = merchantUid;
 		this.paymentName = paymentName;
 		this.amount = amount;
 		this.buyerEmail = buyerEmail;
 		this.buyerName = buyerName;
+		this.missionNo = missionNo;
 	}
 
 	public String getMerchantUid() {
@@ -58,5 +62,13 @@ public class IamportRequest implements Serializable {
 
 	public void setBuyerName(String buyerName) {
 		this.buyerName = buyerName;
+	}
+
+	public int getMissionNo() {
+		return missionNo;
+	}
+
+	public void setMissionNo(int missionNo) {
+		this.missionNo = missionNo;
 	}
 }

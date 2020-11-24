@@ -2,10 +2,13 @@ package org.goal.rgas.donation;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.UUID;
+
+import javax.servlet.http.HttpSession;
 
 import org.goal.rgas.charity.Charity;
 import org.goal.rgas.charity.CharityMapper;
+import org.goal.rgas.member.Member;
+import org.goal.rgas.member.MemberMapper;
 import org.goal.rgas.payment.IamportRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,38 +16,38 @@ import org.springframework.stereotype.Service;
 @Service
 public class DonationServiceImpl implements DonationService {
 	@Autowired
-	public DonationTransferMapper donationTransferMapper;
+	private DonationTransferMapper donationTransferMapper;
 
 	@Autowired
-	public DonationSaveMapper donationSaveMapper;
+	private DonationSaveMapper donationSaveMapper;
 	
 	@Autowired
-	public CharityMapper charityMapper;
+	private MemberMapper memberMapper;
+
+	@Autowired
+	private CharityMapper charityMapper;
+	
+	@Autowired
+	private HttpSession httpSession;
 
 	//기부금 이체 창 띄우기
 	@Override
-	public IamportRequest donationTransferProcess(Charity charity) throws Exception {
+	public IamportRequest donationTransferProcess(Charity charity, String merchantUid) throws Exception {
 		IamportRequest iamportRequest = new IamportRequest();
-		int totalAmount = 0;
-
 		if (charity != null) {
 			Charity charityValue = charityMapper.select(charity);
-			UUID uuid = UUID.randomUUID();
-			iamportRequest.setMerchantUid(uuid.toString());
-			//찾기
-			iamportRequest.setBuyerName("환급형 목표달성 시스템");
-			iamportRequest.setBuyerEmail("jjjj04090@gmail.com");
+			iamportRequest.setMerchantUid("rgas_" + merchantUid);
+			
+			//화원 찾기
+			Member member = new Member();
+			member.setEmail((String) httpSession.getAttribute("email"));
+			member = memberMapper.select(member);
+			
+			iamportRequest.setBuyerName(member.getName());
+			iamportRequest.setBuyerEmail(member.getEmail());
 			iamportRequest.setPaymentName(charityValue.getName());
-			//시간
-			List<DonationSave> donationSaveList = donationSaveMapper.list(new DonationSave());
-
-			//총 기부금 더하기
-			for (int i = 0; i < donationSaveList.size(); i++) {
-				if (donationSaveList.get(i).getSaveDate().isBefore(LocalDate.now()) && donationSaveList.get(i).getStatus() == 'N') {
-					totalAmount += donationSaveList.get(i).getAmount();
-				}
-			}
-			iamportRequest.setAmount(totalAmount);
+			
+			iamportRequest.setAmount(totalDonationSave());
 			return iamportRequest;
 		}
 		return null;
@@ -54,6 +57,7 @@ public class DonationServiceImpl implements DonationService {
 	@Override
 	public void donationTransferRegister(DonationTransfer donationTransfer) throws Exception {
 		if (donationTransfer != null) {
+			donationTransfer.setTransferDate(LocalDate.now());
 			donationTransferMapper.insert(donationTransfer);
 		}
 	}
@@ -75,8 +79,26 @@ public class DonationServiceImpl implements DonationService {
 	//기부금 적립 내역 수정
 	@Override
 	public void donationSaveModify(DonationSave donationSave) throws Exception {
+		
 		if (donationSave != null) {
+			donationSave.setSaveDate(LocalDate.now());
+			donationSave.setStatus('Y');
 			donationSaveMapper.update(donationSave);
 		}
+	}
+	
+	//총 기부금 찾기
+	public int totalDonationSave() throws Exception {
+		int totalAmount = 0;
+		DonationSave donationSave = new DonationSave();
+		donationSave.setSaveDate(LocalDate.now());
+		List<DonationSave> donationSaveList = donationSaveMapper.list(donationSave);
+
+		for (int i = 0; i < donationSaveList.size(); i++) {
+			if (donationSaveList.get(i).getStatus() == 'N') {
+				totalAmount += donationSaveList.get(i).getAmount();
+			}
+		}
+		return totalAmount;
 	}
 }

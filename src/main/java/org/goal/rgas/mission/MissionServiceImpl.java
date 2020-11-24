@@ -32,14 +32,17 @@ public class MissionServiceImpl implements MissionService{
 	@Override
 	public Mission missionRegister(MultipartFile file, Mission mission) throws Exception {
 		try {
+			String path = System.getProperty("user.home") + File.separator + "rgasPhoto";
+			//사진을 저장할 폴더 생성
+			File newfile = new File(path);
+			newfile.mkdir();
 			//물리명, 논리명 생성
-			String path = System.getProperty("user.home")+"\\rgasPhoto";
 			String logical = file.getOriginalFilename();
 			String physical = UUID.randomUUID().toString().substring(0,8) + "_" +  logical;
 			
 			//경로에 사진파일 저장
-			//String filePath = path + "//" + physical;
-			//file.transferTo(new File(filePath));
+			String filePath = path + File.separator + physical;
+			file.transferTo(new File(filePath));
 			
 			//mission객체에 물리명, 논리명, 상태값부여
 			mission.setLogical(logical);

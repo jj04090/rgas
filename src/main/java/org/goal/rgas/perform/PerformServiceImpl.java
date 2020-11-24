@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
+import org.goal.rgas.member.Member;
 import org.goal.rgas.member.MemberMapper;
 import org.goal.rgas.mission.Mission;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,27 +25,29 @@ public class PerformServiceImpl implements PerformService{
 	@Override
 	public void performRegister(MultipartFile file, Perform perform) {
 		try {
+			String path = System.getProperty("user.home") + File.separator + "rgasPhoto";
+			//사진을 저장할 폴더 생성
+			File newfile = new File(path);
+			newfile.mkdir();
 			//물리명, 논리명 생성
-			String path = "C:\\Users\\suhyu\\rgasPhoto";
 			String logical = file.getOriginalFilename();
 			String physical = UUID.randomUUID().toString().substring(0,8) + "_" +  logical;
 			
 			//경로에 사진파일 저장
-			String filePath = path + "//" + physical;
+			String filePath = path + File.separator + physical;
 			file.transferTo(new File(filePath));
 			
-			//perform객체에 물리명, 논리명, 상태값부여
+			//mission객체에 물리명, 논리명, 상태값부여
 			perform.setLogical(logical);
 			perform.setPhysical(physical);
-			perform.setStatus('N');
+			perform.setStatus('Y');
 			
-			//수행내역 등록
+			//미션 등록
 			performMapper.insert(perform);
-			
-		} catch(Exception e) {
+			System.out.println("perform객체 : " + perform);
+		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 	}
 
 	@Override

@@ -87,7 +87,7 @@
         ) VALUES (
             <!-- #{no}, -->
             #{paymentNo},
-            SYSDATE,
+            NOW(),
             #{logical},
             #{physical},
             #{status}

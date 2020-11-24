@@ -39,7 +39,7 @@
             <td>${mission.entryFee}</td>
             <td>${mission.startDate}</td>
             <td><tf:formatDateTime value="${mission.endDate}" pattern="yyyy-MM-dd"/></td>
-            <td><img src="/mission/loadImage?photo=${mission.physical}&no=${mission.no}"/></td>
+            <td><img src="/mission/photo/${mission.no}"/></td>
             <td>
             	<form method="get" action="/perform">
 					<input type="hidden" name="no" id="no" value="${mission.no}" />
@@ -47,15 +47,11 @@
 				</form>
 			</td>
             <td>
-            	<c:if test="${today < mission.endDate}">
+            	<c:if test="${today <= mission.endDate}">
 	            	<form method="get" action="/perform/form/${mission.no}">
 						<input type="hidden" name="no" id="no" value="${mission.no}" />
 						<input type="submit" value="수행내역 등록"/>
 					</form>
-            	</c:if>
-            	<c:if test="${today >= mission.endDate}">
-					<input type="hidden" name="no" id="no" value="${mission.no}" />
-					<input type="button" value="환급" id="refunds"/>
             	</c:if>
 			</td>
         </tr>

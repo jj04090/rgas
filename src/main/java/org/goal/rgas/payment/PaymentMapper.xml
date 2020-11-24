@@ -28,7 +28,7 @@
             <if test="missionNo != null and missionNo != ''">
                 AND MISSION_NO = #{missionNo}
             </if>
-            <if test="paymentDate != null and paymentDate != ''">
+            <if test="paymentDate != null">
                 AND PAYMENT_DATE = #{paymentDate}
             </if>
             <if test="deposit != null and deposit != ''">

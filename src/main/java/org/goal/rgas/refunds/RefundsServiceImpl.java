@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.goal.rgas.member.MemberServiceImpl;
 import org.goal.rgas.mission.Mission;
+import org.goal.rgas.mission.MissionMapper;
 import org.goal.rgas.payment.Payment;
 import org.goal.rgas.payment.PaymentMapper;
 import org.goal.rgas.perform.Perform;
@@ -24,6 +25,9 @@ import com.siot.IamportRestHttpClientJava.response.IamportResponse;
 public class RefundsServiceImpl implements RefundsService {
 	@Autowired
 	public RefundsMapper refundsMapper;
+	
+	@Autowired
+	public MissionMapper missionMapper;
 
 	@Autowired
 	public PaymentMapper paymentMapper;
@@ -39,13 +43,18 @@ public class RefundsServiceImpl implements RefundsService {
 
 	@Override
 	public boolean refundsProcess(Mission mission) throws Exception {
+		//미션 정보 조회
+		mission = missionMapper.select(mission);
+		System.out.println(mission.getNo());
 		//결제 내역 조회
 		Payment payment = new Payment();
 		payment.setMissionNo(mission.getNo());
-		Payment paymentValue = paymentMapper.select(payment);
+		payment = paymentMapper.select(payment);
+		System.out.println(payment.getPaymentCode());
 		
 		//총 미션 수행 기간 계산
 		Period period = Period.between(mission.getStartDate(), mission.getEndDate());
+		
 		int term = period.getDays() + 1;
 		
 		//미션 성공 횟수 계산
@@ -56,16 +65,17 @@ public class RefundsServiceImpl implements RefundsService {
 		
 		int failCount = term - SuccessCount;
 		
-		if (paymentValue != null) {
+		if (payment != null) {
 			IamportClient iamportClient = new IamportClient("1722439638143134",
 					"tV7DKdiRXz5pX53kU9Ohg7Lb17DIiSUMN2pxfIpdhuCezFzuPnL5vwgwEUfXMaJzc97sRwF91ioBXX5N");
 			IamportResponse<com.siot.IamportRestHttpClientJava.response.Payment> iamportResponse = iamportClient
 					.cancelPayment(new CancelData(payment.getPaymentCode(), false, new BigDecimal(payment.getDeposit() - (payment.getDeposit() * 0.07 * failCount))));
-
+			System.out.println("실행");
 			if (200 == iamportResponse.getCode()) {
+				System.out.println("성공");
 				Refunds refunds = new Refunds();
 				refunds.setAmount(iamportResponse.getResponse().getCancelAmount().intValue());
-				refunds.setPaymentNo(paymentValue.getNo());
+				refunds.setPaymentNo(payment.getNo());
 				refunds.setRefundsDate(LocalDate.now());
 				
 				refundsMapper.insert(refunds);
@@ -75,12 +85,13 @@ public class RefundsServiceImpl implements RefundsService {
 				
 				return true;
 			} else {
+				
+				System.out.println("실패"+iamportResponse.getMessage()+"##"+iamportResponse.getCode()+"##"+iamportResponse.getResponse());
 				// 결제 실패 시
 				return false;
 			}
 		}
 		return false;
-
 	}
 
 	@Override

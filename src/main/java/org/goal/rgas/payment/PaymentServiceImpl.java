@@ -37,7 +37,7 @@ public class PaymentServiceImpl implements PaymentService {
 		IamportRequest iamportRequest = new IamportRequest();
 		if (mission != null && merchantUid != null) {
 			//결제 정보
-			iamportRequest.setMerchantUid("rgas_" + merchantUid);
+			iamportRequest.setMerchantUid("rgas" + merchantUid);
 			iamportRequest.setPaymentName(mission.getTitle());
 			iamportRequest.setAmount(mission.getEntryFee());
 
@@ -59,9 +59,8 @@ public class PaymentServiceImpl implements PaymentService {
 	public void paymentRegister(Mission mission, String merchantUid) throws Exception {
 		if (mission != null && merchantUid != null) {
 			Mission missionValue = missionMapper.select(mission);
-			
 			Payment payment = new Payment();
-			payment.setPaymentCode("rgas_"+merchantUid);
+			payment.setPaymentCode("rgas"+merchantUid);
 			payment.setDeposit(missionValue.getEntryFee());
 			payment.setPaymentDate(LocalDate.now());
 			payment.setMemberNo(missionValue.getMemberNo());

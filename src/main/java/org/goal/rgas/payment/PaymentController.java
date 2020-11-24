@@ -34,16 +34,6 @@ public class PaymentController {
 		}
 		return iamportRequest;
 	}
-		
-	/*
-	 * @PostMapping public ModelAndView paymentRegister(@RequestBody IamportRequest
-	 * iamportRequest) { ModelAndView mv = new
-	 * ModelAndView("/mission/"+iamportRequest.getMissionNo()); try {
-	 * 
-	 * paymentServiceImpl.paymentRegister(iamportRequest); } catch (Exception e) {
-	 * //에러페이지 //실패 시 어디로 화면이동해야할지 논의 mv가 위처럼 반환되는게 맞는가? e.printStackTrace(); }
-	 * return mv; }
-	 */
 	
 	@DeleteMapping
 	public ModelAndView paymentCancel(Payment payment) {

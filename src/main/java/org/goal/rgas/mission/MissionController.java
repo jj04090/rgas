@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import org.goal.rgas.member.Member;
 import org.goal.rgas.member.MemberServiceImpl;
+import org.goal.rgas.payment.Payment;
 import org.goal.rgas.payment.PaymentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -43,7 +44,6 @@ public class MissionController {
 	@GetMapping("/form")
 	public ModelAndView missionRegisterForm() {
 		ModelAndView mv = new ModelAndView("/mission/register");
-		
 		return mv;
 	}
 	
@@ -56,7 +56,6 @@ public class MissionController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		return mv; 
 	 }
 	
@@ -79,9 +78,7 @@ public class MissionController {
 			missionValue.setMemberNo(memberNo);
 			
 			/*미션 목록 조회*/
-			
 			missionList = missionService.missionList(missionValue);
-			
 			memberList = memberService.memberList(new Member());
 			
 			mv.addObject("list", missionList);
@@ -91,7 +88,6 @@ public class MissionController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		return mv;
 	}
 	
@@ -105,7 +101,6 @@ public class MissionController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		return mv;
 	}
 	
@@ -117,7 +112,6 @@ public class MissionController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		return mv;
 	}
 	
@@ -129,11 +123,13 @@ public class MissionController {
 		missionValue.setNo(mission.getNo());
 		
 		try {
+			Payment payment = new Payment();
+			payment.setMissionNo(mission.getNo());
+			paymentServiceImpl.paymentCancel(payment);
 			missionService.missionDelete(missionValue);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		return mv;
 	}
 	
@@ -156,7 +152,6 @@ public class MissionController {
 	    while((length=f.read(buffer)) != -1){
 	    	bout.write(buffer,0,length);
 	    }
-	    
 	    return null;
 	}
 }

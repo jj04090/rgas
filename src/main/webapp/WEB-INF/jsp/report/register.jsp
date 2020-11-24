@@ -4,10 +4,35 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>신고 등록</title>
 </head>
 <body>
-
+	<form action="/report" method="post" enctype="multipart/form-data">
+		<div>
+			<label>수행내역번호</label>
+			<div>
+				<input type="text" id="performNo" name="performNo" value="${performNo}">
+			</div>
+		</div>
+		<div>
+			<label>신고자 이메일</label>
+			<div>
+				<input type="text" id="memberNo" name="memberNo" value="${memberNo}">
+			</div>
+		</div>
+		<div>
+			<label>내용</label>
+			<div>
+				<textarea id="note" name="note"
+					style="resize: none; height: 200px"></textarea>
+			</div>
+		</div>
+		<div>
+			<label></label>
+			<div>
+				<input value="등록" type="submit">
+			</div>
+		</div>
+	</form>
 </body>
->>>>>>> refs/remotes/origin/suhyung
 </html>

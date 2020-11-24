@@ -14,10 +14,8 @@ import org.springframework.stereotype.Service;
 public class MemberServiceImpl implements MemberService{
 	@Autowired 
 	private HttpSession httpSession;
-	
 	@Autowired
 	private MemberMapper memberMapper;
-	
 	@Autowired
 	private MissionServiceImpl missionService;
 	
@@ -53,12 +51,20 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public void memberModify(Member member) throws Exception {
-		// 회원정보를 조회한다.
-		if (memberMapper.select(member).getNo() != 0) {
-			if (overlapCheck(member)) {
-				memberMapper.update(member);
-			}
+		if ("A".equals((String)(httpSession.getAttribute("auth")))) {
+			member.setStatus('S');
+			memberMapper.update(member);
+		} else {
+			member.setStatus('D');
+			memberMapper.update(member);
 		}
+		
+		// 회원정보를 조회한다.
+//		if (memberMapper.select(member).getNo() != 0) {
+//			if (overlapCheck(member)) {
+//				memberMapper.update(member);
+//			}
+//		}
 	}
 
 	@Override

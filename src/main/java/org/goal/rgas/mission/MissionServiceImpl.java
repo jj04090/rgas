@@ -55,8 +55,6 @@ public class MissionServiceImpl implements MissionService{
 			int memberNo = memberMapper.select(memberValue).getNo();
 			mission.setMemberNo(memberNo);
 			
-			System.out.println(mission);
-			
 			//미션 등록
 			missionMapper.insert(mission);
 			

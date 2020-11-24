@@ -18,7 +18,8 @@ public class SystemServiceImpl implements SystemService{
 	public boolean login(Member member) throws Exception {
 		if (memberMapper.select(member) != null
 				&& memberMapper.select(member).getNo() != 0
-				&& memberMapper.select(member).getAuth() == 'C') {
+				&& memberMapper.select(member).getAuth() == 'C'
+				&& memberMapper.select(member).getStatus() == 'A') {
 			
 			httpSession.setAttribute("auth", "C");
 			httpSession.setAttribute("email", member.getEmail());
@@ -26,7 +27,8 @@ public class SystemServiceImpl implements SystemService{
 			return true;
 		} else if (memberMapper.select(member) != null
 				&& memberMapper.select(member).getNo() != 0
-				&& memberMapper.select(member).getAuth() == 'A') {
+				&& memberMapper.select(member).getAuth() == 'A'
+				&& memberMapper.select(member).getStatus() == 'A') {
 			
 			httpSession.setAttribute("auth", "A");
 			httpSession.setAttribute("email", member.getEmail());

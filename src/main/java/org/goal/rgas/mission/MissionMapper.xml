@@ -168,12 +168,12 @@
             <if test="entryFee != ''">
                 ENTRY_FEE = #{entryFee},
             </if>
-           <!--  <if test="startDate != ''">
+            <if test="startDate != ''">
                 START_DATE = #{startDate},
             </if>
             <if test="endDate != ''">
                 END_DATE = #{endDate},
-            </if> -->
+            </if>
             <if test="certifiedStartTime != ''">
                 CERTIFIED_START_TIME = #{certifiedStartTime},
             </if>

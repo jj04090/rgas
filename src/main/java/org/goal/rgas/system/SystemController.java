@@ -1,5 +1,7 @@
 package org.goal.rgas.system;
 
+import javax.servlet.http.HttpSession;
+
 import org.goal.rgas.member.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +14,8 @@ import org.springframework.web.servlet.view.RedirectView;
 public class SystemController {
 	@Autowired
 	private SystemServiceImpl systemService;
+	@Autowired
+	private HttpSession httpSession;
 	
 	@GetMapping("/login")
 	public ModelAndView loginForm() {
@@ -26,9 +30,13 @@ public class SystemController {
 		boolean isLogin = systemService.login(member);
 		
 		if(isLogin) {
-			mv = new ModelAndView(new RedirectView("/mission"));
+			if ("A".equals(httpSession.getAttribute("auth"))) {
+				mv = new ModelAndView(new RedirectView("/member"));
+			} else {
+				mv = new ModelAndView(new RedirectView("/mission"));
+			}
 		} else {
-			mv = new ModelAndView("/system/login");
+			mv = new ModelAndView("/system/loginForm");
 		}
 		
 		return mv;

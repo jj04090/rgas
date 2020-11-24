@@ -38,16 +38,16 @@
             <if test="entryFee != null and entryFee != ''">
                 AND ENTRY_FEE = #{entryFee}
             </if>
-            <if test="startDate != null and startDate != ''">
+            <if test="startDate != null">
                 AND START_DATE = #{startDate}
             </if>
-            <if test="endDate != null and endDate != ''">
+            <if test="endDate != null">
                 AND END_DATE = #{endDate}
             </if>
-            <if test="certifiedStartTime != null and certifiedStartTime != ''">
+            <if test="certifiedStartTime != null">
                 AND CERTIFIED_START_TIME = #{certifiedStartTime}
             </if>
-            <if test="certifiedEndTime != null and certifiedEndTime != ''">
+            <if test="certifiedEndTime != null">
                 AND CERTIFIED_END_TIME = #{certifiedEndTime}
             </if>
             <if test="categoryNo != null and categoryNo != ''">

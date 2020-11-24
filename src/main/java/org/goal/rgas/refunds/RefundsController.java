@@ -16,15 +16,16 @@ public class RefundsController {
 	public RefundsServiceImpl refundsServiceImpl;
 	
 	@PostMapping
-	public ModelAndView refundsProcess(Mission mission) {
+	public boolean refundsProcess(@RequestBody Mission mission) {
 		System.out.println(mission.getNo());
-		ModelAndView mv = new ModelAndView(new RedirectView("mission"));
+		//ModelAndView mv = new ModelAndView(new RedirectView("mission"));
+		boolean flag = false;
 		try {
-			refundsServiceImpl.refundsProcess(mission);
+			flag = refundsServiceImpl.refundsProcess(mission);
 		} catch (Exception e) {
 			//에러페이지
 			e.printStackTrace();
 		}
-		return mv;
+		return flag;
 	}
 }

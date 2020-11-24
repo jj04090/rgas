@@ -71,7 +71,7 @@ public class RefundsServiceImpl implements RefundsService {
 			IamportResponse<com.siot.IamportRestHttpClientJava.response.Payment> iamportResponse = iamportClient
 					.cancelPayment(new CancelData(payment.getPaymentCode(), false, new BigDecimal(payment.getDeposit() - (payment.getDeposit() * 0.07 * failCount))));
 			System.out.println("실행");
-			if (200 == iamportResponse.getCode()) {
+			if (0 == iamportResponse.getCode()) {
 				System.out.println("성공");
 				Refunds refunds = new Refunds();
 				refunds.setAmount(iamportResponse.getResponse().getCancelAmount().intValue());

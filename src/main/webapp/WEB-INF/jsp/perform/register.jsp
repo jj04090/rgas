@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,10 +11,7 @@
 	<form action="/perform" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="paymentNo" id="paymentNo" value="${paymentNo}" />
 		<div>
-			<label>미션 제목</label>
-			<div>
-				<input type="text" id="title" name="title" value="${mission.title}">
-			</div>
+			<label>미션 제목 : </label>	${mission.title}
 		</div>
 		<div>
 			<label>인증사진 업로드</label>

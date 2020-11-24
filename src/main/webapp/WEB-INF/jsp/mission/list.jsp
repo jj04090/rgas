@@ -39,7 +39,7 @@
             <td>${mission.entryFee}</td>
             <td>${mission.startDate}</td>
             <td><tf:formatDateTime value="${mission.endDate}" pattern="yyyy-MM-dd"/></td>
-            <td><img src="/mission/loadImage?photo=${mission.physical}&no=${mission.no}"/></td>
+            <td><img src="/mission/photo/${mission.no}"/></td>
             <td>
             	<form method="get" action="/perform">
 					<input type="hidden" name="no" id="no" value="${mission.no}" />
@@ -47,46 +47,15 @@
 				</form>
 			</td>
             <td>
-            	<c:if test="${today < mission.endDate}">
+            	<c:if test="${today <= mission.endDate}">
 	            	<form method="get" action="/perform/form/${mission.no}">
 						<input type="hidden" name="no" id="no" value="${mission.no}" />
 						<input type="submit" value="수행내역 등록"/>
 					</form>
             	</c:if>
-            	<c:if test="${today >= mission.endDate}">
-            		<form method="post" action="/refunds">
-            			<input type="hidden" name="no" id="no" value="${mission.no}" />
-	        			<input type="submit" value="환급" id="refunds" />
-	        		</form>
-            	</c:if>
 			</td>
         </tr>
         </c:forEach>
     </table>
-   <!--  <script>
-		//document.getElementById("refunds").addEventListener('click', ajax_call);
-		function ajax_call() {
-			var xhr = new XMLHttpRequest();
-			xhr.onreadystatechange = function() {
-				if (xhr.readyState === xhr.DONE) {
-					if (xhr.status === 200 || xhr.status === 201) {
-						var msg = xhr.responseText;
-						if(msg == true) {
-							alert("성공");
-						} else {
-							alert("실패");
-						}
-					}
-				}
-			}
-			var mission = {
-				no : document.getElementById("no").value
-				
-			};
-			xhr.open("POST", "http://localhost:8080/refunds", true);
-			xhr.setRequestHeader('Content-Type', 'application/json');
-			xhr.send(JSON.stringify(mission));
-		};
-	</script> -->
 </body>
 </html>

@@ -18,11 +18,11 @@
             <th>수행 날짜</th>
             <th>이미지</th>
         </tr>
-        <c:forEach var="perform" items="${list}">
+        <c:forEach var="perform" items="${performList}">
         <tr>
             <td>${mission.title}</td>
             <td>${perform.registerDate}</td>
-            <td><img src="C:\workspace\rgas\src\main\resources\img\3a33b6ff_미션 목록 조회.jpg"></td>
+            <td><img src="/perform/photo/${perform.no}"/></td>
         </tr>
         </c:forEach>
     </table>

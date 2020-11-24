@@ -2,9 +2,8 @@ package org.goal.rgas.mission;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.util.HashMap;
+import java.nio.file.Files;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +16,7 @@ import org.goal.rgas.payment.PaymentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -133,25 +133,24 @@ public class MissionController {
 		return mv;
 	}
 	
-	@GetMapping("/loadimage")
-	public String displayPhoto(@RequestParam(value="photo") String photo, Mission mission, HttpServletResponse response)throws Exception{
-		String path = "C:\\Users\\suhyu\\rgasPhoto";
-		 
-		//DB에 저장된 파일 정보를 불러오기
-		String physical = missionService.missionInquiry(mission).getPhysical();
-		
-		response.setContentType("image/jpg");
-	    ServletOutputStream bout = response.getOutputStream();
-	    //파일의 경로
-	    String imgpath = path + File.separator + physical;
-	    System.out.println(imgpath);
-	    FileInputStream f = new FileInputStream(imgpath);
-	   
-	    int length;
-	    byte[] buffer = new byte[10];
-	    while((length=f.read(buffer)) != -1){
-	    	bout.write(buffer,0,length);
-	    }
-	    return null;
+	@GetMapping("/photo/{no}")
+	public void catView(Mission mission, HttpServletResponse response) {
+		try {
+			String path = System.getProperty("user.home") + File.separator + "rgasPhoto";
+			String physical = missionService.missionInquiry(mission).getPhysical();
+			String imgpath = path + File.separator + physical;
+			System.out.println(imgpath);
+
+			File file = new File(imgpath);
+
+			if (file != null) {
+				byte[] byteToFile = Files.readAllBytes(file.toPath());
+
+				response.setContentType("image/jpg");
+				response.getOutputStream().write(byteToFile);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

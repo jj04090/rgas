@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib  prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,22 +13,22 @@
 <body>
 	<input type="hidden" name="no" id="no" value="${report.no}" />
 	<div>
-		<label>해당 수행내역</label>
+		<label>수행내역</label>
 		<div>
-			<a href=/perform/${perform.perFormNo}>${report.performNo}</a>
+			<a href=/perform/${perform.perFormNo}>확인하러 가기</a>
 		</div>
 	</div>
 	<div>
-		<label>신고자 번호</label>
-		<div>
-			<input type="text" id="memberNo" name="memberNo" value="${report.memberNo}">
-		</div>
+		<label>신고자 이메일<label>
+			<c:forEach var="member" items="${memberList}">
+        		<c:if test="${report.memberNo eq member.no}">
+        			${member.email}
+        		</c:if>
+        	</c:forEach>
 	</div>
 	<div>
 		<label>신고 일자</label>
-		<div>
-			<input type="text" id="reportDate" name="reportDate" value="${report.reportDate}">
-		</div>
+			${report.reportDate}
 	</div>
 	<div>
 		<label>내용</label>
@@ -35,10 +37,13 @@
 		</div>
 	</div>
 	<div>
-		<label>처리 상태</label>
-		<div>
-			<input type="text" id="reportDate" name="reportDate" value="${report.reportDate}">
-		</div>
+		<label>처리 상태 : </label>
+			<c:if test="${report.status == 'P'}">
+				처리
+			</c:if>
+			<c:if test="${report.status == 'W'}">
+				대기
+			</c:if>
 	</div>
 	<div>
 		<form method="post" action="/report">

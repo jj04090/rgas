@@ -11,13 +11,13 @@
 		<div>
 			<label>수행내역번호</label>
 			<div>
-				<input type="text" id="performNo" name="performNo" value="${performNo}">
+				${performNo}
 			</div>
 		</div>
 		<div>
 			<label>신고자 이메일</label>
 			<div>
-				<input type="text" id="memberNo" name="memberNo" value="${memberNo}">
+				${memberNo}
 			</div>
 		</div>
 		<div>

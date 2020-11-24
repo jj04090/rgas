@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.goal.rgas.member.Member;
 import org.goal.rgas.member.MemberServiceImpl;
-import org.goal.rgas.mission.Mission;
+import org.goal.rgas.perform.PerformServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +26,8 @@ public class ReportController {
 	private MemberServiceImpl memberService;
 	@Autowired
 	private HttpSession httpSession;
+	@Autowired
+	private PerformServiceImpl performService;
 	
 	@GetMapping("/form/{no}")
 	public ModelAndView reportRegisterForm(int no) {
@@ -65,13 +67,17 @@ public class ReportController {
 	public ModelAndView reportList(Report report) {
 		ModelAndView mv = null;
 		List<Report> reportList = null;
+		List<Member> memberList = null;
 		
 		if ("A".equals(httpSession.getAttribute("auth"))) {
 			try {
 				mv = new ModelAndView("/report/list");
 				reportList = reportService.reportList(report);
 				
+				memberList = memberService.memberList(new Member());
+				
 				mv.addObject("list", reportList);
+				mv.addObject("memberList", memberList);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -86,11 +92,15 @@ public class ReportController {
 	public ModelAndView reportInquiry(Report report) {
 		ModelAndView mv = null;
 		Report reportValue = null;
+		List<Member> memberList = null;
 		
 		if ("A".equals(httpSession.getAttribute("auth"))) {
 			mv = new ModelAndView("/report/inquiry");
 			try {
 				reportValue = reportService.reportInquiry(report);
+				memberList = memberService.memberList(new Member());
+				
+				mv.addObject("memberList", memberList);
 				mv.addObject("report", reportValue);
 			} catch (Exception e) {
 				e.printStackTrace();

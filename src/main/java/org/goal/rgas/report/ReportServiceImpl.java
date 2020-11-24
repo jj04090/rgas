@@ -8,53 +8,43 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ReportServiceImpl implements ReportService{
+public class ReportServiceImpl implements ReportService {
 	@Autowired
 	private ReportMapper reportMapper;
 	@Autowired
 	private HttpSession httpSession;
-	
+
 	@Override
 	public void reportRegister(Report report) throws Exception {
 		reportMapper.insert(report);
 	}
-	
+
 	@Override
 	public List<Report> reportList(Report report) throws Exception {
-		if ("A".equals(httpSession.getAttribute("auth"))) {
-			List<Report> list = reportMapper.list(report);
-			
-			return list;
-		}
-		
-		return null;
+		List<Report> list = null;
+
+		list = reportMapper.list(report);
+
+		return list;
 	}
 
 	@Override
 	public Report reportInquiry(Report report) throws Exception {
-		if (httpSession.getAttribute("auth").equals("admin")) {
-			Report reportValue = reportMapper.select(report);
-			
-			return reportValue;
-		}
-		
-		return null;
+		Report reportValue = reportMapper.select(report);
+
+		return reportValue;
 	}
 
 	@Override
 	public void reportModify(Report report) throws Exception {
-		if (httpSession.getAttribute("auth").equals("admin")) {
-			Report reportValue = reportMapper.select(report);
-			reportValue.setStatus('Y');
-			
-			reportMapper.update(reportValue);
-		}
+		Report reportValue = reportMapper.select(report);
+		reportValue.setStatus('Y');
+
+		reportMapper.update(reportValue);
 	}
 
 	@Override
 	public void reportDelete(Report report) throws Exception {
-		if (httpSession.getAttribute("auth").equals("admin")) {
-			reportMapper.delete(report);
-		}
+		reportMapper.delete(report);
 	}
 }

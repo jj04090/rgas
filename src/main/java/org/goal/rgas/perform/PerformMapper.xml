@@ -56,12 +56,12 @@
             FROM perform
             <include refid="whereSql" />
         ) TB
-        <where>
+        <!-- <where>
             <if test="itemStart > -1">
                 RN BETWEEN (#{itemStart} + 1)
                        AND (#{itemStart} + #{itemSizePerPage})
             </if>
-        </where>
+        </where> -->
     </select>
 
     <select id="select" parameterType="org.goal.rgas.perform.Perform" resultMap="performResultMap">
@@ -78,16 +78,16 @@
 
     <insert id="insert" parameterType="org.goal.rgas.perform.Perform">
         INSERT INTO perform (
-            NO,
+            <!-- NO, -->
             PAYMENT_NO,
             REGISTER_DATE,
             LOGICAL,
             PHYSICAL,
             STATUS
         ) VALUES (
-            #{no},
+            <!-- #{no}, -->
             #{paymentNo},
-            #{registerDate},
+            SYSDATE,
             #{logical},
             #{physical},
             #{status}

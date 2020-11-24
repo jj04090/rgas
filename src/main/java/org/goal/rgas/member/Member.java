@@ -134,4 +134,13 @@ public class Member implements Serializable {
     public int getItemSizePerPage() {
         return this.itemSizePerPage;
     }
+
+	@Override
+	public String toString() {
+		return "Member [no=" + no + ", email=" + email + ", password=" + password + ", name=" + name + ", nickname="
+				+ nickname + ", bank=" + bank + ", account=" + account + ", grade=" + grade + ", auth=" + auth
+				+ ", status=" + status + "]";
+	}
+    
+    
 }

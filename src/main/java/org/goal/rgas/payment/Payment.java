@@ -100,4 +100,11 @@ public class Payment implements Serializable {
 		this.itemSizePerPage = itemSizePerPage;
 	}
 
+	@Override
+	public String toString() {
+		return "Payment [no=" + no + ", paymentCode=" + paymentCode + ", memberNo=" + memberNo + ", missionNo="
+				+ missionNo + ", paymentDate=" + paymentDate + ", deposit=" + deposit + "]";
+	}
+	
+	
 }

@@ -28,7 +28,19 @@
             <td>${mission.memberNo}</td>
             <td>${mission.entryFee}</td>
             <td>${mission.startDate}</td>
-            <td><img src="C:\workspace\rgas\src\main\resources\img\3a33b6ff_미션 목록 조회.jpg"></td>
+            <td><img src="/mission/loadImage?photo=${mission.physical}&no=${mission.no}"/></td>
+            <td>
+            	<form method="get" action="/perform">
+					<input type="hidden" name="no" id="no" value="${mission.no}" />
+					<input type="submit" value="수행내역 조회"/>
+				</form>
+			</td>
+            <td>
+            	<form method="get" action="/perform/form/${mission.no}">
+					<input type="hidden" name="no" id="no" value="${mission.no}" />
+					<input type="submit" value="수행내역 등록"/>
+				</form>
+			</td>
         </tr>
         </c:forEach>
     </table>

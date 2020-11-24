@@ -1,7 +1,13 @@
 package org.goal.rgas.mission;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.goal.rgas.member.Member;
@@ -124,5 +130,29 @@ public class MissionController {
 		}
 		
 		return mv;
+	}
+	
+	@GetMapping("/loadimage")
+	public String displayPhoto(@RequestParam(value="photo") String photo, Mission mission, HttpServletResponse response)throws Exception{
+		String path = "C:\\Users\\suhyu\\rgasPhoto";
+		 
+		//DB에 저장된 파일 정보를 불러오기
+		Map<String, String> map = new HashMap<String, String>();
+	    map.put("photo", photo);
+		String physical = missionService.missionInquiry(mission).getPhysical();
+		
+		response.setContentType("image/jpg");
+	    ServletOutputStream bout = response.getOutputStream();
+	    //파일의 경로
+	    String imgpath = path + File.separator + physical;
+	    FileInputStream f = new FileInputStream(imgpath);
+	   
+	    int length;
+	    byte[] buffer = new byte[10];
+	    while((length=f.read(buffer)) != -1){
+	    	bout.write(buffer,0,length);
+	    }
+	    
+	    return null;
 	}
 }

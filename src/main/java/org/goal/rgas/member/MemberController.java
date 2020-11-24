@@ -54,7 +54,6 @@ public class MemberController {
 				memberList = memberService.memberList(new Member());
 				mv.addObject("list", memberList);
 				
-				System.out.println(memberList);
 			} else {
 				mv = new ModelAndView(new RedirectView("/mission"));
 			}
@@ -67,8 +66,17 @@ public class MemberController {
 	
 	@GetMapping("/{no}")
 	public ModelAndView memberInquiry(Member member) {
+		ModelAndView mv = new ModelAndView("/member/inquiry");
+		Member memberValue = null;
 		
-		return null;
+		try {
+			memberValue = memberService.memberInquiry(member);
+			mv.addObject("member", memberValue);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return mv;
 	}
 	
 	@GetMapping("/{no}/form")
@@ -79,8 +87,14 @@ public class MemberController {
 
 	@PutMapping
 	public ModelAndView memberModify(Member member) {
+		ModelAndView mv = new ModelAndView(new RedirectView("/member"));
+		try {
+			memberService.memberModify(member);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
-		return null;
+		return mv;
 	}
 	
 }

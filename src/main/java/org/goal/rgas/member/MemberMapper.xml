@@ -132,7 +132,7 @@
             <if test="no != ''">
                 NO = #{no},
             </if>
-            <if test="email != ''">
+            <!-- <if test="email != ''">
                 EMAIL = #{email},
             </if>
             <if test="password != ''">
@@ -155,11 +155,14 @@
             </if>
             <if test="auth != ''">
                 AUTH = #{auth},
-            </if>
+            </if> -->
             <if test="status != ''">
                 STATUS = #{status},
             </if>
         </set>
+        <where>
+        	NO = #{no}
+        </where>
     </update>
 
     <delete id="delete" parameterType="org.goal.rgas.member.Member">

@@ -95,4 +95,11 @@ public class Report implements Serializable {
     public int getItemSizePerPage() {
         return this.itemSizePerPage;
     }
+
+	@Override
+	public String toString() {
+		return "Report [no=" + no + ", memberNo=" + memberNo + ", performNo=" + performNo + ", note=" + note
+				+ ", reportDate=" + reportDate + ", status=" + status + "]";
+	}
+    
 }

@@ -20,6 +20,7 @@
             <th>이름</th>
             <th>닉네임</th>
             <th>등급</th>
+            <th>상태</th>
         </tr>
         <c:forEach var="member" items="${list}">
         <tr>
@@ -42,6 +43,20 @@
             	<c:if test="${member.grade == 'P'}">
             		프로
             	</c:if>
+            </td>
+            <td>
+            	<c:if test="${member.status == 'A'}">
+            		활성
+            	</c:if>
+            	<c:if test="${member.status == 'S'}">
+            		정지
+            	</c:if>
+            	<c:if test="${member.status == 'D'}">
+            		탈퇴
+            	</c:if>
+            </td>
+            <td>
+            	<button onclick="location.href='/member/${member.no}'">조회</button>
             </td>
         </tr>
         </c:forEach>

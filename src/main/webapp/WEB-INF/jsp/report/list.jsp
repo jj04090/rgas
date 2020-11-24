@@ -20,10 +20,18 @@
         </tr>
         <c:forEach var="report" items="${list}">
         <tr>
-        	<td><a href=/report/${report.no}>${report.memberNo}</a></td>
+        	<td>
+        		<a href=/report/${report.no}>
+        			<c:forEach var="member" items="${memberList}">
+            			<c:if test="${report.memberNo eq member.no}">
+            				${member.email}
+            			</c:if>
+            		</c:forEach>
+        		</a>
+        	</td>
             <td>${report.reportDate}</td>
             <td>
-            	<c:if test="${report.status == 'N'}">
+            	<c:if test="${report.status == 'W'}">
             		대기
             	</c:if>
             	<c:if test="${report.status == 'P'}">

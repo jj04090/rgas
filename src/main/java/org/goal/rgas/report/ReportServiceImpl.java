@@ -38,7 +38,7 @@ public class ReportServiceImpl implements ReportService {
 	@Override
 	public void reportModify(Report report) throws Exception {
 		Report reportValue = reportMapper.select(report);
-		reportValue.setStatus('Y');
+		reportValue.setStatus('P');
 
 		reportMapper.update(reportValue);
 	}

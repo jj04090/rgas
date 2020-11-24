@@ -90,7 +90,7 @@
             #{performNo},
             #{note},
             SYSDATE,
-            'N'
+            'W'
         )
     </insert>
 

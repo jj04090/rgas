@@ -63,11 +63,13 @@ public class MissionController {
 	@GetMapping
 	public ModelAndView missionList(Mission mission) {
 		List<Mission> missionList = null;
-		
+		List<Member> memberList = null;
 		//세션의 이메일로 member객체 가져오기
 		String email = (String)httpSession.getAttribute("email");
 		Member memberValue = new Member();
 		memberValue.setEmail(email);
+		
+		ModelAndView mv = new ModelAndView("/mission/list");
 		
 		int memberNo = 0;
 		
@@ -79,13 +81,16 @@ public class MissionController {
 			/*미션 목록 조회*/
 			
 			missionList = missionService.missionList(missionValue);
+			
+			memberList = memberService.memberList(new Member());
+			
+			mv.addObject("list", missionList);
+			mv.addObject("memberList", memberList);
+			
+			System.out.println(memberList.get(1).getName());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		ModelAndView mv = new ModelAndView("/mission/list");
-		
-		mv.addObject("list", missionList);
 		
 		return mv;
 	}
@@ -137,14 +142,13 @@ public class MissionController {
 		String path = "C:\\Users\\suhyu\\rgasPhoto";
 		 
 		//DB에 저장된 파일 정보를 불러오기
-		Map<String, String> map = new HashMap<String, String>();
-	    map.put("photo", photo);
 		String physical = missionService.missionInquiry(mission).getPhysical();
 		
 		response.setContentType("image/jpg");
 	    ServletOutputStream bout = response.getOutputStream();
 	    //파일의 경로
 	    String imgpath = path + File.separator + physical;
+	    System.out.println(imgpath);
 	    FileInputStream f = new FileInputStream(imgpath);
 	   
 	    int length;

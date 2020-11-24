@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Author: plusperson@gmail.com -->
+<mapper namespace="org.goal.rgas.payment.PaymentMapper">
+    <resultMap id="paymentResultMap" type="org.goal.rgas.payment.Payment">
+        <result column="NO" property="no" />
+        <result column="PAYMENT_CODE" property="paymentCode" />
+        <result column="MEMBER_NO" property="memberNo" />
+        <result column="MISSION_NO" property="missionNo" />
+        <result column="PAYMENT_DATE" property="paymentDate" />
+        <result column="DEPOSIT" property="deposit" />
+    </resultMap>
+
+    <sql id="whereSql">
+        <where>
+            <if test="no != null and no != ''">
+                AND NO = #{no}
+            </if>
+            <if test="paymentCode != null and paymentCode != ''">
+                AND PAYMENT_CODE = #{paymentCode}
+            </if>
+            <if test="memberNo != null and memberNo != ''">
+                AND MEMBER_NO = #{memberNo}
+            </if>
+            <if test="missionNo != null and missionNo != ''">
+                AND MISSION_NO = #{missionNo}
+            </if>
+            <if test="paymentDate != null and paymentDate != ''">
+                AND PAYMENT_DATE = #{paymentDate}
+            </if>
+            <if test="deposit != null and deposit != ''">
+                AND DEPOSIT = #{deposit}
+            </if>
+        </where>
+    </sql>
+
+    <select id="count" parameterType="org.goal.rgas.payment.Payment" resultType="int">
+        SELECT COUNT(*)
+        FROM payment
+        <include refid="whereSql" />
+    </select>
+
+    <select id="list" parameterType="org.goal.rgas.payment.Payment" resultMap="paymentResultMap">
+        SELECT *
+        FROM (
+            SELECT
+                NO,
+                PAYMENT_CODE,
+                MEMBER_NO,
+                MISSION_NO,
+                PAYMENT_DATE,
+                DEPOSIT
+            FROM payment
+            <include refid="whereSql" />
+        ) TB
+        <where>
+            <if test="itemStart > -1">
+                RN BETWEEN (#{itemStart} + 1)
+                       AND (#{itemStart} + #{itemSizePerPage})
+            </if>
+        </where>
+    </select>
+
+    <select id="select" parameterType="org.goal.rgas.payment.Payment" resultMap="paymentResultMap">
+        SELECT
+            NO,
+            PAYMENT_CODE,
+            MEMBER_NO,
+            MISSION_NO,
+            PAYMENT_DATE,
+            DEPOSIT
+        FROM payment
+        <include refid="whereSql" />
+    </select>
+
+    <insert id="insert" parameterType="org.goal.rgas.payment.Payment">
+        INSERT INTO payment (
+            NO,
+            PAYMENT_CODE,
+            MEMBER_NO,
+            MISSION_NO,
+            PAYMENT_DATE,
+            DEPOSIT
+        ) VALUES (
+            #{no},
+            #{paymentCode},
+            #{memberNo},
+            #{missionNo},
+            #{paymentDate},
+            #{deposit}
+        )
+    </insert>
+
+    <update id="update" parameterType="org.goal.rgas.payment.Payment">
+        UPDATE payment
+        <set>
+            <if test="no != ''">
+                NO = #{no},
+            </if>
+            <if test="paymentCode != ''">
+                PAYMENT_CODE = #{paymentCode},
+            </if>
+            <if test="memberNo != ''">
+                MEMBER_NO = #{memberNo},
+            </if>
+            <if test="missionNo != ''">
+                MISSION_NO = #{missionNo},
+            </if>
+            <if test="paymentDate != ''">
+                PAYMENT_DATE = #{paymentDate},
+            </if>
+            <if test="deposit != ''">
+                DEPOSIT = #{deposit},
+            </if>
+        </set>
+    </update>
+
+    <delete id="delete" parameterType="org.goal.rgas.payment.Payment">
+        DELETE FROM payment
+        <include refid="whereSql" />
+    </delete>
+</mapper>

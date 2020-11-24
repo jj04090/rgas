@@ -2,11 +2,11 @@ package org.goal.rgas.refunds;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import org.goal.rgas.member.Member;
 import org.goal.rgas.member.MemberServiceImpl;
 import org.goal.rgas.mission.Mission;
 import org.goal.rgas.payment.Payment;
@@ -44,16 +44,23 @@ public class RefundsServiceImpl implements RefundsService {
 		payment.setMissionNo(mission.getNo());
 		Payment paymentValue = paymentMapper.select(payment);
 		
-		//실패 횟수 계산
+		//총 미션 수행 기간 계산
+		Period period = Period.between(mission.getStartDate(), mission.getEndDate());
+		int term = period.getDays() + 1;
+		
+		//미션 성공 횟수 계산
 		Perform perform = new Perform();
 		perform.setPaymentNo(payment.getNo());
-		int failCount = performMapper.count(perform);
+		perform.setStatus('Y');
+		int SuccessCount = performMapper.count(perform);
+		
+		int failCount = term - SuccessCount;
 		
 		if (paymentValue != null) {
 			IamportClient iamportClient = new IamportClient("1722439638143134",
 					"tV7DKdiRXz5pX53kU9Ohg7Lb17DIiSUMN2pxfIpdhuCezFzuPnL5vwgwEUfXMaJzc97sRwF91ioBXX5N");
 			IamportResponse<com.siot.IamportRestHttpClientJava.response.Payment> iamportResponse = iamportClient
-					.cancelPayment(new CancelData(payment.getPaymentCode(), false, new BigDecimal(payment.getDeposit() * 0.07 * failCount)));
+					.cancelPayment(new CancelData(payment.getPaymentCode(), false, new BigDecimal(payment.getDeposit() - (payment.getDeposit() * 0.07 * failCount))));
 
 			if (200 == iamportResponse.getCode()) {
 				Refunds refunds = new Refunds();
@@ -64,7 +71,7 @@ public class RefundsServiceImpl implements RefundsService {
 				refundsMapper.insert(refunds);
 				String email = (String)httpSession.getAttribute("email");
 				//회원 등급갱신
-				//memberServiceImpl.memberGradeRenewal(email);
+				memberServiceImpl.memberGradeRenewal(email);
 				
 				return true;
 			} else {

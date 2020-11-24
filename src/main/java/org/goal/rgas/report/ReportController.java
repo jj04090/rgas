@@ -72,7 +72,6 @@ public class ReportController {
 				reportList = reportService.reportList(report);
 				
 				mv.addObject("list", reportList);
-				System.out.println(reportList);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

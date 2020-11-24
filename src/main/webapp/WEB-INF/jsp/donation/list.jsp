@@ -21,7 +21,7 @@
 	</form>
 		<input type="button" id="payment" value="기부금 이체" />
 	<h4>기부이체 내역</h4>
-	<table border="1">
+	<table border="2">
 		<tr>
 			<td>이체일자</td>
 			<td>기부단체</td>
@@ -30,7 +30,11 @@
 		<c:forEach items="${donationList}" var="row">
 			<tr>
 				<td>${row.transferDate}</td>
-				<td>${row.charityNo}</td>
+					<c:forEach items="${charityList}" var="charityrow">
+						<c:if test="${row.charityNo eq charityrow.no}">
+							<td>${charityrow.name}</td>
+						</c:if>
+					</c:forEach>
 				<td>${row.amount}</td>
 			</tr>
 		</c:forEach>

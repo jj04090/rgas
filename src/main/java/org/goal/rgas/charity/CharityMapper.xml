@@ -81,9 +81,7 @@
     <update id="update" parameterType="org.goal.rgas.charity.Charity">
         UPDATE charity
         <set>
-            <if test="no != ''">
-                NO = #{no},
-            </if>
+            
             <if test="name != ''">
                 NAME = #{name},
             </if>
@@ -94,6 +92,11 @@
                 ACCOUNT = #{account},
             </if>
         </set>
+        <where>
+        	<if test="no != ''">
+                AND NO = #{no}
+            </if>
+        </where>
     </update>
 
     <delete id="delete" parameterType="org.goal.rgas.charity.Charity">

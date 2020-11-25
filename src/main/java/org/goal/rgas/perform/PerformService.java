@@ -10,4 +10,5 @@ public interface PerformService {
 	public Perform performInquiry(Perform perform) throws Exception;
 	public void performModify(Perform perform) throws Exception;
 	public void performDelete(Perform perform) throws Exception;
+	public void performEdit(MultipartFile file, Perform perform);
 }

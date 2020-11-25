@@ -17,7 +17,7 @@
 		<input type="hidden" name="memberNo" id="memberNo" value="${mission.memberNo}" />
 		<jsp:useBean id="now" class="java.util.Date" />
 		<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
-		<tf:formatDateTime value="${mission.startDate}" pattern="yyyy-MM-dd"/>
+		<div id="id" style="display:none"><tf:formatDateTime value="${mission.startDate}" pattern="yyyy-MM-dd"/></div>
 		<div>
 			<label>제목</label>
 			<c:if test="${today < mission.startDate}">
@@ -174,7 +174,7 @@
 			</div>
 		</div>
 	</c:if>
-	<c:if test="${today >= mission.endDate}">
+	<c:if test="${today > mission.endDate}">
 		<input type="hidden" name="no" id="no" value="${mission.no}" />
 		<input type="button" value="환급" id="refunds" onclick="ajax_call()"/>
     </c:if>

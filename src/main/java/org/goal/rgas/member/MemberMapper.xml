@@ -59,7 +59,8 @@
         <include refid="whereSql" />
     </select>
 
-    <select id="list" parameterType="org.goal.rgas.member.Member" resultMap="memberResultMap">
+    <select id="list" parameterType="org.goal.rgas.member.Member" 
+    		resultMap="memberResultMap">
         SELECT *
         FROM (
             SELECT
@@ -74,7 +75,12 @@
                 AUTH,
                 STATUS
             FROM member
-            <include refid="whereSql" />
+            <if test="name != null and name != ''">
+           		<where>
+           			AND NAME LIKE ('%' || #{name} || '%')
+           		</where>
+            </if>
+           <!--  <include refid="whereSql" /> -->
         ) TB
         <!-- <where>
             <if test="itemStart > -1">
@@ -83,7 +89,30 @@
             </if>
         </where> -->
     </select>
-
+	
+	<select id="selectAll" parameterType="org.goal.rgas.member.Member"
+			resultType="org.goal.rgas.member.Member">
+		
+		SELECT
+			 	NO,
+             	EMAIL,
+            	PASSWORD,
+             	NAME,
+             	NICKNAME,
+             	BANK,
+            	ACCOUNT,
+            	GRADE,
+             	AUTH,
+             	STATUS
+		FROM MEMBER 
+		<where>
+		    <if test="name != null and name != ''">
+                AND NAME LIKE CONCAT('%',#{name},'%')
+            </if>
+		</where>
+		ORDER BY NO ASC
+	</select>
+	
     <select id="select" parameterType="org.goal.rgas.member.Member" resultMap="memberResultMap">
         SELECT
             NO,
@@ -102,27 +131,25 @@
 
     <insert id="insert" parameterType="org.goal.rgas.member.Member">
         INSERT INTO member (
-            NO,
             EMAIL,
             PASSWORD,
             NAME,
             NICKNAME,
             BANK,
-            ACCOUNT,
-            GRADE,
+            ACCOUNT
+            <!-- GRADE,
             AUTH,
-            STATUS
+            STATUS -->
         ) VALUES (
-            #{no},
             #{email},
             #{password},
             #{name},
             #{nickname},
             #{bank},
-            #{account},
-            #{grade},
+            #{account}
+            <!-- #{grade},
             #{auth},
-            #{status}
+            #{status} -->
         )
     </insert>
 

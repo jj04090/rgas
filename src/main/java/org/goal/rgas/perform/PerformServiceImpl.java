@@ -49,6 +49,33 @@ public class PerformServiceImpl implements PerformService{
 			e.printStackTrace();
 		}
 	}
+	
+	@Override
+	public void performEdit(MultipartFile file, Perform perform) {
+		try {
+			String path = System.getProperty("user.home") + File.separator + "rgasPhoto";
+			//사진을 저장할 폴더 생성
+			File newfile = new File(path);
+			newfile.mkdir();
+			//물리명, 논리명 생성
+			String logical = file.getOriginalFilename();
+			String physical = UUID.randomUUID().toString().substring(0,8) + "_" +  logical;
+			
+			//경로에 사진파일 저장
+			String filePath = path + File.separator + physical;
+			file.transferTo(new File(filePath));
+			
+			//mission객체에 물리명, 논리명, 상태값부여
+			perform.setLogical(logical);
+			perform.setPhysical(physical);
+			perform.setStatus('Y');
+			
+			//미션 등록
+			performMapper.update(perform);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	@Override
 	public List<Perform> performList(Perform perform) throws Exception {

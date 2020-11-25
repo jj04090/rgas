@@ -96,4 +96,12 @@ public class Perform implements Serializable {
 	public void setItemSizePerPage(int itemSizePerPage) {
 		this.itemSizePerPage = itemSizePerPage;
 	}
+
+	@Override
+	public String toString() {
+		return "Perform [no=" + no + ", paymentNo=" + paymentNo + ", registerDate=" + registerDate + ", logical="
+				+ logical + ", physical=" + physical + ", status=" + status + "]";
+	}
+	
+	
 }

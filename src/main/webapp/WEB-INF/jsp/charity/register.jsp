@@ -21,7 +21,7 @@
 			</div>
 		</div>
 		<div>
-			<label>내용</label>
+			<label>계좌</label>
 			<div>
 				<input type="text" id="account" name="account">
 			</div>

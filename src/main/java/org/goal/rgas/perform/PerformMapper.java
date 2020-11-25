@@ -9,7 +9,6 @@ import org.apache.ibatis.annotations.Mapper;
 */
 @Mapper
 public interface PerformMapper {
-	public int count(Perform perform) throws Exception; 
     public List<Perform> list(Perform perform) throws Exception;
     public Perform select(Perform perform) throws Exception;
     public void insert(Perform perform) throws Exception;

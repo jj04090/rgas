@@ -14,32 +14,33 @@ import org.springframework.stereotype.Service;
 public class MemberServiceImpl implements MemberService{
 	@Autowired 
 	private HttpSession httpSession;
+	
 	@Autowired
 	private MemberMapper memberMapper;
+	
 	@Autowired
 	private MissionServiceImpl missionService;
 	 
 	@Override
 	public void memberRegister(Member member) throws Exception {
-		System.out.println(member);
-		memberMapper.insert(member);
+		Member memberValue = new Member();
+		memberValue.setEmail(member.getEmail());
+		
+		if (memberMapper.select(memberValue).getNo() == 0) {
+			memberMapper.insert(member);
+		}
 	}
 
 	@Override
 	public List<Member> memberList(Member member) throws Exception {
-		//회원 목록을 조회한다.
-		List<Member> list = memberMapper.selectAll(member);
-		System.out.println(list);
 		
-		return list;
+		return memberMapper.selectAll(member);
 	}
 
 	@Override
 	public Member memberInquiry(Member member) throws Exception {
-		//회원정보를 조회한다.
-		Member result = memberMapper.select(member);
 		
-		return result;  
+		return memberMapper.select(member); 
 	}
 
 	@Override
@@ -47,17 +48,10 @@ public class MemberServiceImpl implements MemberService{
 		if ("A".equals((String)(httpSession.getAttribute("auth")))) {
 			member.setStatus('S');
 			memberMapper.update(member);
-		} else {
+		} else if ("C".equals((String)(httpSession.getAttribute("auth")))) {
 			member.setStatus('D');
 			memberMapper.update(member);
 		}
-		
-		// 회원정보를 조회한다.
-//		if (memberMapper.select(member).getNo() != 0) {
-//			if (overlapCheck(member)) {
-//				memberMapper.update(member);
-//			}
-//		}
 	}
 
 	@Override
@@ -84,18 +78,5 @@ public class MemberServiceImpl implements MemberService{
 		member.setGrade(grade);
 
 		memberMapper.update(member);
-	}
-
-	private boolean overlapCheck(Member member) throws Exception {
-		Member memberValue = new Member();
-		memberValue.setNickname(member.getNickname());
-		//이미 닉네임이 존재한다.
-		if(memberMapper.select(memberValue).getNo() != 0) {
-			
-			return true;
-		} else {
-			//중복된 닉네임이 존재하지 않는다.
-			return false;
-		}
 	}
 }

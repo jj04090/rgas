@@ -9,7 +9,6 @@ import org.apache.ibatis.annotations.Mapper;
 */
 @Mapper
 public interface MissionMapper {
-//  public int count(Mission mission) throws Exception;
     public List<Mission> list(Mission mission) throws Exception;
     public Mission select(Mission mission) throws Exception;
     public void insert(Mission mission) throws Exception;

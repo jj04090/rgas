@@ -26,7 +26,7 @@
             <th>종료 날짜</th>
             <th>이미지</th>
         </tr>
-        <c:forEach var="mission" items="${list}">
+        <c:forEach var="mission" items="${missionList}">
         <tr>
         	<td><a href=/mission/${mission.no}>${mission.title}</a></td>
             <td>

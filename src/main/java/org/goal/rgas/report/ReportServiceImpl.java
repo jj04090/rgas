@@ -11,8 +11,6 @@ import org.springframework.stereotype.Service;
 public class ReportServiceImpl implements ReportService {
 	@Autowired
 	private ReportMapper reportMapper;
-	@Autowired
-	private HttpSession httpSession;
 
 	@Override
 	public void reportRegister(Report report) throws Exception {
@@ -21,18 +19,14 @@ public class ReportServiceImpl implements ReportService {
 
 	@Override
 	public List<Report> reportList(Report report) throws Exception {
-		List<Report> list = null;
 
-		list = reportMapper.list(report);
-
-		return list;
+		return reportMapper.list(report);
 	}
 
 	@Override
 	public Report reportInquiry(Report report) throws Exception {
-		Report reportValue = reportMapper.select(report);
 
-		return reportValue;
+		return reportMapper.select(report);
 	}
 
 	@Override

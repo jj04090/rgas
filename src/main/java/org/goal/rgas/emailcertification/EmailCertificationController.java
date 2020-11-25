@@ -14,15 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 public class EmailCertificationController {
 	@Autowired
 	private EmailCertificationServiceImpl emailCertificationService;
+	
 	@Autowired
 	private HttpServletResponse httpResponse;
-	
-	@GetMapping
-	public ModelAndView emailForm() {
-		ModelAndView mv = new ModelAndView("/email");
-		
-		return mv;
-	}
 	
 	@PostMapping
 	public boolean sendEmail(String email, String code) {

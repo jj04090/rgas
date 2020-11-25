@@ -22,12 +22,12 @@ import org.springframework.web.servlet.view.RedirectView;
 public class ReportController {
 	@Autowired
 	private ReportServiceImpl reportService;
+	
 	@Autowired
 	private MemberServiceImpl memberService;
+	
 	@Autowired
 	private HttpSession httpSession;
-	@Autowired
-	private PerformServiceImpl performService;
 	
 	@GetMapping("/form/{no}")
 	public ModelAndView reportRegisterForm(int no) {
@@ -37,16 +37,14 @@ public class ReportController {
 		Member memberValue = new Member();
 		memberValue.setEmail(email);
 		
-		int memberNo = 0;
-		
 		try {
-			memberNo = memberService.memberInquiry(memberValue).getNo();
+			int memberNo = memberService.memberInquiry(memberValue).getNo();
+			
+			mv.addObject("performNo", no);
+			mv.addObject("memberNo", memberNo);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		mv.addObject("performNo", no);
-		mv.addObject("memberNo", memberNo);
 		
 		return mv;
 	}
@@ -54,6 +52,7 @@ public class ReportController {
 	@PostMapping
 	public ModelAndView reportRegister(Report report) {
 		ModelAndView mv = new ModelAndView(new RedirectView("/perform"));
+		
 		try {
 			reportService.reportRegister(report);
 		} catch (Exception e) {
@@ -66,15 +65,13 @@ public class ReportController {
 	@GetMapping
 	public ModelAndView reportList(Report report) {
 		ModelAndView mv = null;
-		List<Report> reportList = null;
-		List<Member> memberList = null;
 		
 		if ("A".equals(httpSession.getAttribute("auth"))) {
 			try {
 				mv = new ModelAndView("/report/list");
-				reportList = reportService.reportList(report);
 				
-				memberList = memberService.memberList(new Member());
+				List<Report> reportList = reportService.reportList(report);
+				List<Member> memberList = memberService.memberList(new Member());
 				
 				mv.addObject("list", reportList);
 				mv.addObject("memberList", memberList);
@@ -91,14 +88,13 @@ public class ReportController {
 	@GetMapping("/{no}")
 	public ModelAndView reportInquiry(Report report) {
 		ModelAndView mv = null;
-		Report reportValue = null;
-		List<Member> memberList = null;
 		
 		if ("A".equals(httpSession.getAttribute("auth"))) {
 			mv = new ModelAndView("/report/inquiry");
+			
 			try {
-				reportValue = reportService.reportInquiry(report);
-				memberList = memberService.memberList(new Member());
+				Report reportValue = reportService.reportInquiry(report);
+				List<Member> memberList = memberService.memberList(new Member());
 				
 				mv.addObject("memberList", memberList);
 				mv.addObject("report", reportValue);
@@ -115,6 +111,7 @@ public class ReportController {
 	@PutMapping
 	public ModelAndView reportModify(Report report) {
 		ModelAndView mv = new ModelAndView(new RedirectView("/report"));
+		
 		try {
 			reportService.reportModify(report);
 		} catch (Exception e) {

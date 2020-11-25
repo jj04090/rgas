@@ -25,7 +25,6 @@ public class EmailCertificationServiceImpl implements EmailCertificationService 
 	public String certifiedCodeSend(String email, String code) {
 		String host = "smtp.gmail.com";
 		
-		// Get the session object
 		Properties props = new Properties();
 		props.put("mail.smtp.host", host);
 		props.put("mail.smtp.auth", "true");
@@ -41,21 +40,14 @@ public class EmailCertificationServiceImpl implements EmailCertificationService 
 				return new PasswordAuthentication(gmailId, gmailpassword);
 			}
 		});
-		// 6자리 랜덤인증코드 생성
 
 		try {
 			MimeMessage message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(gmailId));
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
-			System.out.println(email);
-			System.out.println(code);
-			// 메일 제목
 			message.setSubject("RGAS 회원가입 이메일 인증코드입니다.");
-			// 메일 내용
 			message.setText("\t\t이메일 인증코드 : " + code);
-			// 매일 발송
 			Transport.send(message);
-			System.out.println("message sent successfully...");
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}

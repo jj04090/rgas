@@ -31,13 +31,13 @@ public class MemberController {
 	
 	@PostMapping
 	public ModelAndView memberRegister(Member member) {
+		ModelAndView mv = new ModelAndView(new RedirectView("/login"));
+
 		try {
 			memberService.memberRegister(member);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		ModelAndView mv = new ModelAndView(new RedirectView("/login"));
 		
 		return mv;
 	}
@@ -45,13 +45,12 @@ public class MemberController {
 	@GetMapping
 	public ModelAndView memberList(Member member) {
 		ModelAndView mv = null;
-		List<Member> memberList = null;
-		// 권한이 관리자인지 확인한다.
+		
 		try {
 			if ("A".equals(httpSession.getAttribute("auth"))) {
 				mv = new ModelAndView("/member/list");
 				
-				memberList = memberService.memberList(new Member());
+				List<Member> memberList = memberService.memberList(new Member());
 				mv.addObject("list", memberList);
 				
 			} else {
@@ -65,7 +64,7 @@ public class MemberController {
 	}
 	
 	@GetMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public List<Member> getMembers(Member member) {
+	public List<Member> memberSearch(Member member) {
 		List<Member> list = null;
 		try {
 			System.out.println(member);
@@ -81,10 +80,9 @@ public class MemberController {
 	@GetMapping("/{no}")
 	public ModelAndView memberInquiry(Member member) {
 		ModelAndView mv = new ModelAndView("/member/inquiry");
-		Member memberValue = null;
 		
 		try {
-			memberValue = memberService.memberInquiry(member);
+			Member memberValue = memberService.memberInquiry(member);
 			mv.addObject("member", memberValue);
 		} catch (Exception e) {
 			e.printStackTrace();

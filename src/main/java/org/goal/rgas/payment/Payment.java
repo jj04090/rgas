@@ -16,7 +16,6 @@ public class Payment implements Serializable {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate paymentDate;
 	private int deposit;
-
 	private int itemStart;
 	private int itemSizePerPage;
 

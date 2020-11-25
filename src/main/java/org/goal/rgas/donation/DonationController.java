@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
@@ -20,10 +19,10 @@ import org.springframework.web.servlet.view.RedirectView;
 @RequestMapping("/donation")
 public class DonationController {
 	@Autowired
-	public DonationServiceImpl donationServiceImpl;
+	private DonationServiceImpl donationServiceImpl;
 	
 	@Autowired
-	public CharityServiceImpl charityServiceImpl;
+	private CharityServiceImpl charityServiceImpl;
 	
 	@Autowired
 	private HttpServletResponse response;
@@ -47,7 +46,6 @@ public class DonationController {
 		try {
 			DonationTransfer donationTransfer = new DonationTransfer();
 			donationTransfer.setCharityNo(no);
-			
 			donationTransfer.setAmount(donationServiceImpl.totalDonationSave());
 			donationServiceImpl.donationTransferRegister(donationTransfer);
 			

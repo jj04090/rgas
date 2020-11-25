@@ -14,7 +14,6 @@ public class DonationTransfer implements Serializable {
 	private int amount;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate transferDate;
-
 	private int itemStart;
 	private int itemSizePerPage;
 

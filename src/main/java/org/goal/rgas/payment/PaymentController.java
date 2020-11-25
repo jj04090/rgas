@@ -17,7 +17,7 @@ import org.springframework.web.servlet.view.RedirectView;
 @RequestMapping("/payment")
 public class PaymentController {
 	@Autowired
-	public PaymentServiceImpl paymentServiceImpl;
+	private PaymentServiceImpl paymentServiceImpl;
 	
 	@Autowired
 	private HttpServletResponse response;

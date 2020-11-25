@@ -24,69 +24,72 @@ import com.siot.IamportRestHttpClientJava.response.IamportResponse;
 @Service
 public class RefundsServiceImpl implements RefundsService {
 	@Autowired
-	public RefundsMapper refundsMapper;
-	
-	@Autowired
-	public MissionMapper missionMapper;
+	private RefundsMapper refundsMapper;
 
 	@Autowired
-	public PaymentMapper paymentMapper;
-	
+	private MissionMapper missionMapper;
+
 	@Autowired
-	public PerformMapper performMapper;
-	
+	private PaymentMapper paymentMapper;
+
 	@Autowired
-	public HttpSession httpSession;
-	
+	private PerformMapper performMapper;
+
 	@Autowired
-	public MemberServiceImpl memberServiceImpl;
+	private HttpSession httpSession;
+
+	@Autowired
+	private MemberServiceImpl memberServiceImpl;
 
 	@Override
 	public boolean refundsProcess(Mission mission) throws Exception {
-		//미션 정보 조회
+		// 미션 정보 조회
 		mission = missionMapper.select(mission);
 		System.out.println(mission.getNo());
-		//결제 내역 조회
+		// 결제 내역 조회
 		Payment payment = new Payment();
 		payment.setMissionNo(mission.getNo());
 		payment = paymentMapper.select(payment);
 		System.out.println(payment.getPaymentCode());
-		
-		//총 미션 수행 기간 계산
+
+		// 총 미션 수행 기간 계산
 		Period period = Period.between(mission.getStartDate(), mission.getEndDate());
-		
+
 		int term = period.getDays() + 1;
-		
-		//미션 성공 횟수 계산
+
+		// 미션 성공 횟수 계산
 		Perform perform = new Perform();
 		perform.setPaymentNo(payment.getNo());
 		perform.setStatus('Y');
 		int SuccessCount = performMapper.count(perform);
-		
+
 		int failCount = term - SuccessCount;
-		
+
 		if (payment != null) {
-			IamportClient iamportClient = new IamportClient("1722439638143134",
-					"tV7DKdiRXz5pX53kU9Ohg7Lb17DIiSUMN2pxfIpdhuCezFzuPnL5vwgwEUfXMaJzc97sRwF91ioBXX5N");
+			IamportClient iamportClient = new IamportClient("1722439638143134", "tV7DKdiRXz5pX53kU9Ohg7Lb17DIiSUMN2pxfIpdhuCezFzuPnL5vwgwEUfXMaJzc97sRwF91ioBXX5N");
 			IamportResponse<com.siot.IamportRestHttpClientJava.response.Payment> iamportResponse = iamportClient
-					.cancelPayment(new CancelData(payment.getPaymentCode(), false, new BigDecimal(payment.getDeposit() - (payment.getDeposit() * 0.07 * failCount))));
+					.cancelPayment(new CancelData(payment.getPaymentCode(), false,
+							new BigDecimal(payment.getDeposit() - (payment.getDeposit() * 0.07 * failCount))));
 			System.out.println("실행");
 			if (0 == iamportResponse.getCode()) {
 				System.out.println("성공");
+
 				Refunds refunds = new Refunds();
 				refunds.setAmount(iamportResponse.getResponse().getCancelAmount().intValue());
 				refunds.setPaymentNo(payment.getNo());
 				refunds.setRefundsDate(LocalDate.now());
-				
+
 				refundsMapper.insert(refunds);
-				String email = (String)httpSession.getAttribute("email");
-				//회원 등급갱신
+				String email = (String) httpSession.getAttribute("email");
+
+				// 회원 등급갱신
 				memberServiceImpl.memberGradeRenewal(email);
-				
+
 				return true;
 			} else {
-				
-				System.out.println("실패"+iamportResponse.getMessage()+"##"+iamportResponse.getCode()+"##"+iamportResponse.getResponse());
+
+				System.out.println("실패" + iamportResponse.getMessage() + "##" + iamportResponse.getCode() + "##"
+						+ iamportResponse.getResponse());
 				// 결제 실패 시
 				return false;
 			}

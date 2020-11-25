@@ -1,6 +1,5 @@
 package org.goal.rgas.charity;
 
-import java.sql.Date;
 import java.io.Serializable;
 
 /**
@@ -11,7 +10,6 @@ public class Charity implements Serializable {
     private String name;
     private String bank;
     private String account;
-
     private int itemStart;
     private int itemSizePerPage;
 

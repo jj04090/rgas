@@ -15,7 +15,6 @@ public class DonationSave implements Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate saveDate;
     private char status;
-
     private int itemStart;
     private int itemSizePerPage;
 

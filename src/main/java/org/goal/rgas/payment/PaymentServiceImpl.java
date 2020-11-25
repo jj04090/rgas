@@ -20,16 +20,16 @@ import com.siot.IamportRestHttpClientJava.response.IamportResponse;
 @Service
 public class PaymentServiceImpl implements PaymentService {
 	@Autowired
-	public PaymentMapper paymentMapper;
+	private PaymentMapper paymentMapper;
 
 	@Autowired
-	public MemberMapper memberMapper;
+	private MemberMapper memberMapper;
 	
 	@Autowired
-	public MissionMapper missionMapper;
+	private MissionMapper missionMapper;
 
 	@Autowired
-	public HttpSession httpSession;
+	private HttpSession httpSession;
 
 	//결제 창 띄워주기
 	@Override

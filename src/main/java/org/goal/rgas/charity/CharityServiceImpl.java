@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class CharityServiceImpl implements CharityService {
 	@Autowired
-	public CharityMapper charityMapper;
+	private CharityMapper charityMapper;
 
 	//기부 단체 등록
 	@Override
@@ -16,7 +16,6 @@ public class CharityServiceImpl implements CharityService {
 		if (charity != null) {
 			charityMapper.insert(charity);
 		}
-
 	}
 
 	//기부 단체 목록 조회

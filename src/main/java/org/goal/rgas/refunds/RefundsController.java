@@ -13,12 +13,10 @@ import org.springframework.web.servlet.view.RedirectView;
 @RequestMapping("/refunds")
 public class RefundsController {
 	@Autowired
-	public RefundsServiceImpl refundsServiceImpl;
+	private RefundsServiceImpl refundsServiceImpl;
 	
 	@PostMapping
 	public boolean refundsProcess(@RequestBody Mission mission) {
-		System.out.println(mission.getNo());
-		//ModelAndView mv = new ModelAndView(new RedirectView("mission"));
 		boolean flag = false;
 		try {
 			flag = refundsServiceImpl.refundsProcess(mission);

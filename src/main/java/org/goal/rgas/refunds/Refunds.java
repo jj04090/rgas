@@ -14,7 +14,6 @@ public class Refunds implements Serializable {
 	private int amount;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate refundsDate;
-
 	private int itemStart;
 	private int itemSizePerPage;
 

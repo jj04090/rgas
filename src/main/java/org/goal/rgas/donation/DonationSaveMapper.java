@@ -9,11 +9,7 @@ import org.apache.ibatis.annotations.Mapper;
 */
 @Mapper
 public interface DonationSaveMapper {
-	/* public int count(DonationSave donationSave) throws Exception; */
     public List<DonationSave> list(DonationSave donationSave) throws Exception;
-
-	/* public DonationSave select(DonationSave donationSave) throws Exception; */
     public void insert(DonationSave donationSave) throws Exception;
     public void update(DonationSave donationSave) throws Exception;
-	/* public void delete(DonationSave donationSave) throws Exception; */
 }

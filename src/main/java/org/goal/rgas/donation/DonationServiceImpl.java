@@ -79,7 +79,6 @@ public class DonationServiceImpl implements DonationService {
 	//기부금 적립 내역 수정
 	@Override
 	public void donationSaveModify(DonationSave donationSave) throws Exception {
-		
 		if (donationSave != null) {
 			donationSave.setSaveDate(LocalDate.now());
 			donationSave.setStatus('Y');
@@ -88,6 +87,7 @@ public class DonationServiceImpl implements DonationService {
 	}
 	
 	//총 기부금 찾기
+	@Override
 	public int totalDonationSave() throws Exception {
 		int totalAmount = 0;
 		DonationSave donationSave = new DonationSave();

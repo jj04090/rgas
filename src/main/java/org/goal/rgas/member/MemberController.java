@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -61,6 +62,20 @@ public class MemberController {
 		}
 		
 		return mv;
+	}
+	
+	@GetMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public List<Member> getMembers(Member member) {
+		List<Member> list = null;
+		try {
+			System.out.println(member);
+			
+			list = memberService.memberList(member);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return list;
 	}
 	
 	@GetMapping("/{no}")

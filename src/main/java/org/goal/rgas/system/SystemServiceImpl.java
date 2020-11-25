@@ -42,11 +42,9 @@ public class SystemServiceImpl implements SystemService{
 
 	@Override
 	public void logout() {
-		if("common".equals(httpSession.getAttribute("auth"))
-				|| "admin".equals(httpSession.getAttribute("auth"))) {
-			
+		if("A".equals(httpSession.getAttribute("auth"))
+				|| "C".equals(httpSession.getAttribute("auth"))) {
 			httpSession.invalidate();		
 		}
 	}
-
 }

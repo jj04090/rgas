@@ -21,22 +21,15 @@ public class MemberServiceImpl implements MemberService{
 	 
 	@Override
 	public void memberRegister(Member member) throws Exception {
-		String email = member.getEmail();
+		System.out.println(member);
 		memberMapper.insert(member);
-		/*
-		 * //입력값이 존재하는가? if (member != null) { // 회원정보를 조회한다.
-		 * memberMapper.select(member); // 이메일, 별명의 중복은 없는가? if (overlapCheck(member)) {
-		 * // 이메일 인증 코드 전송 new EmailCertificationServiceImpl().certifiedCodeSend(email);
-		 * // 이메일 인증코드 검사 // 회원정보 등록
-		 * 
-		 * } }
-		 */
 	}
 
 	@Override
 	public List<Member> memberList(Member member) throws Exception {
 		//회원 목록을 조회한다.
-		List<Member> list = memberMapper.list(member);
+		List<Member> list = memberMapper.selectAll(member);
+		System.out.println(list);
 		
 		return list;
 	}

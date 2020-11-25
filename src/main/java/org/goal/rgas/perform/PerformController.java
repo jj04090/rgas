@@ -2,6 +2,7 @@ package org.goal.rgas.perform;
 
 import java.io.File;
 import java.nio.file.Files;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -71,9 +72,22 @@ public class PerformController {
 	
 	@PostMapping
 	public ModelAndView performRegister(@RequestParam("img") MultipartFile file, Perform perform) {
-		ModelAndView mv = new ModelAndView(new RedirectView("/mission"));
-		performService.performRegister(file, perform);
-		
+		ModelAndView mv = null;
+		try {
+			mv = new ModelAndView(new RedirectView("/mission"));
+			LocalDate today = LocalDate.now();
+			perform.setRegisterDate(today);
+			
+			Perform performValue = performService.performInquiry(perform);
+			if (performValue.getNo() != 0) {
+				performService.performEdit(file, perform);
+			} else {
+				performService.performRegister(file, perform);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		return mv;
 	}
 	

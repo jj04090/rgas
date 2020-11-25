@@ -14,6 +14,7 @@ import org.springframework.web.servlet.view.RedirectView;
 public class SystemController {
 	@Autowired
 	private SystemServiceImpl systemService;
+	
 	@Autowired
 	private HttpSession httpSession;
 	

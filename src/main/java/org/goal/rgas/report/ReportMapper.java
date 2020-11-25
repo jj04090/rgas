@@ -9,7 +9,6 @@ import org.apache.ibatis.annotations.Mapper;
 */
 @Mapper
 public interface ReportMapper {
-//  public int count(Report report) throws Exception;
     public List<Report> list(Report report) throws Exception;
     public Report select(Report report) throws Exception;
     public void insert(Report report) throws Exception;

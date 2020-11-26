@@ -159,28 +159,28 @@
             <!-- <if test="memberNo != ''">
                 MEMBER_NO = #{memberNo},
             </if> -->
-            <if test="title != ''">
+            <if test="title != null">
                 TITLE = #{title},
             </if>
-            <if test="note != ''">
+            <if test="note != null">
                 NOTE = #{note},
             </if>
-            <if test="entryFee != ''">
+            <if test="entryFee != 0">
                 ENTRY_FEE = #{entryFee},
             </if>
-            <if test="startDate != ''">
+            <if test="startDate != null">
                 START_DATE = #{startDate},
             </if>
-            <if test="endDate != ''">
+            <if test="endDate != null">
                 END_DATE = #{endDate},
             </if>
-            <if test="certifiedStartTime != ''">
+            <if test="certifiedStartTime != null">
                 CERTIFIED_START_TIME = #{certifiedStartTime},
             </if>
-            <if test="certifiedEndTime != ''">
+            <if test="certifiedEndTime != null">
                 CERTIFIED_END_TIME = #{certifiedEndTime},
             </if>
-            <if test="categoryNo != ''">
+            <if test="categoryNo != 0">
                 CATEGORY_NO = #{categoryNo},
             </if>
             <!-- <if test="logical != ''">

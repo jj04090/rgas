@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,17 +8,16 @@
 <title>신고 등록</title>
 </head>
 <body>
-	<form action="/report" method="post" enctype="multipart/form-data">
+	<form action="/report" method="post">
 		<div>
-			<label>수행내역번호</label>
+			<label>수행내역번호 : ${performNo}</label>
 			<div>
-				${performNo}
+				<input type="hidden" name="performNo" id="performNo" value="${performNo}" />
 			</div>
 		</div>
 		<div>
-			<label>신고자 이메일</label>
 			<div>
-				${memberNo}
+				<input type="hidden" name="memberNo" id="memberNo" value="${memberNo}" />
 			</div>
 		</div>
 		<div>
@@ -28,9 +28,8 @@
 			</div>
 		</div>
 		<div>
-			<label></label>
 			<div>
-				<input value="등록" type="submit">
+				<input value="등록" type="submit" />
 			</div>
 		</div>
 	</form>

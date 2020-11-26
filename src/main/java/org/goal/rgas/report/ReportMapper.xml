@@ -28,7 +28,7 @@
             <if test="note != null and note != ''">
                 AND NOTE = #{note}
             </if>
-            <if test="reportDate != null and reportDate != ''">
+            <if test="reportDate != null">
                 AND REPORT_DATE = #{reportDate}
             </if>
             <if test="status != null and status != ''">
@@ -89,7 +89,7 @@
             #{memberNo},
             #{performNo},
             #{note},
-            SYSDATE,
+            NOW(),
             'W'
         )
     </insert>
@@ -97,18 +97,18 @@
     <update id="update" parameterType="org.goal.rgas.report.Report">
         UPDATE report
         <set>
-            <if test="no != ''">
+            <!-- <if test="no != 0">
                 NO = #{no},
-            </if>
-            <if test="memberNo != ''">
+            </if> -->
+            <!-- <if test="memberNo != 0">
                 MEMBER_NO = #{memberNo},
             </if>
-            <if test="performNo != ''">
+            <if test="performNo != 0">
                 PERFORM_NO = #{performNo},
             </if>
-            <if test="note != ''">
+            <if test="note != null">
                 NOTE = #{note},
-            </if>
+            </if> -->
             <!-- <if test="reportDate != ''">
                 REPORT_DATE = #{reportDate},
             </if> -->
@@ -116,6 +116,9 @@
                 STATUS = #{status},
             </if>
         </set>
+        <where>
+        	NO = #{no}
+        </where>
     </update>
 
     <delete id="delete" parameterType="org.goal.rgas.report.Report">

@@ -156,31 +156,31 @@
     <update id="update" parameterType="org.goal.rgas.member.Member">
         UPDATE member
         <set>
-            <if test="no != ''">
+            <!-- <if test="no != ''">
                 NO = #{no},
             </if>
-            <!-- <if test="email != ''">
+            <if test="email != ''">
                 EMAIL = #{email},
-            </if>
-            <if test="password != ''">
+            </if> -->
+            <!-- <if test="password != ''">
                 PASSWORD = #{password},
             </if>
             <if test="name != ''">
                 NAME = #{name},
-            </if>
-            <if test="nickname != ''">
+            </if> -->
+            <if test="nickname != null">
                 NICKNAME = #{nickname},
             </if>
-            <if test="bank != ''">
+            <if test="bank != null">
                 BANK = #{bank},
             </if>
-            <if test="account != ''">
+            <if test="account != null">
                 ACCOUNT = #{account},
             </if>
             <if test="grade != ''">
                 GRADE = #{grade},
             </if>
-            <if test="auth != ''">
+            <!-- <if test="auth != ''">
                 AUTH = #{auth},
             </if> -->
             <if test="status != ''">

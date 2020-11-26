@@ -15,6 +15,7 @@ import org.goal.rgas.payment.PaymentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -78,10 +79,9 @@ public class PerformController {
 			
 			LocalDate today = LocalDate.now();
 			perform.setRegisterDate(today);
-			
 			Perform performValue = performService.performInquiry(perform);
 			
-			if (performValue.getNo() != 0) {
+			if (performValue != null) {
 				performService.performEdit(file, perform);
 			} else {
 				performService.performRegister(file, perform);
@@ -115,7 +115,8 @@ public class PerformController {
 				mv.addObject("mission", missionValue);
 				mv.addObject("performList", performList);
 			} catch (Exception e) {
-				e.printStackTrace();
+				//e.printStackTrace();
+				System.out.println("z");
 			}
 		} else {
 			try {
@@ -125,7 +126,8 @@ public class PerformController {
 				mv = new ModelAndView("/perform/list");
 				mv.addObject("performList", performList);
 			} catch (Exception e) {
-				e.printStackTrace();
+				//e.printStackTrace();
+				System.out.println("z");
 			}
 		}
 		
@@ -133,11 +135,20 @@ public class PerformController {
 	}
 	
 	@GetMapping("/{no}")
-	public ModelAndView performInquiry(Perform perform) {
+	public ModelAndView performInquiry(@PathVariable int no) {
+		Perform perform = new Perform();
+		perform.setNo(no);
+		
 		ModelAndView mv = new ModelAndView("/perform/inquiry");
+		Payment paymentValue = new Payment();
 		
 		try {
 			Perform performValue = performService.performInquiry(perform);
+			
+			paymentValue.setNo(performValue.getPaymentNo());
+			int missionNo = paymentService.paymentInquiry(paymentValue).getMissionNo();
+		
+			mv.addObject("missionNo", missionNo);
 			mv.addObject("perform", performValue);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -205,7 +216,8 @@ public class PerformController {
 				response.getOutputStream().write(byteToFile);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			/* e.printStackTrace(); */
+			
 		}
 	}
 }

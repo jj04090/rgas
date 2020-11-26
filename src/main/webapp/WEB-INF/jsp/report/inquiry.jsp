@@ -15,7 +15,7 @@
 	<div>
 		<label>수행내역</label>
 		<div>
-			<a href=/perform/${perform.perFormNo}>확인하러 가기</a>
+			<a href="/perform/${report.performNo}">확인하러 가기</a>
 		</div>
 	</div>
 	<div>

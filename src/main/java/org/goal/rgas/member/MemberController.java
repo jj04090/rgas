@@ -79,11 +79,18 @@ public class MemberController {
 	
 	@GetMapping("/{no}")
 	public ModelAndView memberInquiry(Member member) {
-		ModelAndView mv = new ModelAndView("/member/inquiry");
+		ModelAndView mv = null;
 		
 		try {
 			Member memberValue = memberService.memberInquiry(member);
-			mv.addObject("member", memberValue);
+			if ("A".equals(httpSession.getAttribute("auth"))) {
+				mv = new ModelAndView("/member/inquiry");
+				mv.addObject("member", memberValue);
+				
+			} else {
+				mv = new ModelAndView("/member/modify");
+				mv.addObject("member", memberValue);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -108,5 +115,4 @@ public class MemberController {
 		
 		return mv;
 	}
-	
 }

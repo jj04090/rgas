@@ -33,7 +33,6 @@ public class PerformServiceImpl implements PerformService{
 			
 			perform.setLogical(logical);
 			perform.setPhysical(physical);
-			perform.setStatus('Y');
 			
 			performMapper.insert(perform);
 		}catch (Exception e) {
@@ -56,7 +55,6 @@ public class PerformServiceImpl implements PerformService{
 			
 			perform.setLogical(logical);
 			perform.setPhysical(physical);
-			perform.setStatus('Y');
 			
 			performMapper.update(perform);
 		}catch (Exception e) {

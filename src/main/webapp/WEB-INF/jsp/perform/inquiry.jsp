@@ -14,6 +14,8 @@
 			<label>인증사진 업로드</label>
 			<img src="/mission/photo/${missionNo}"/>
 		</div>
+		
+		성공 실패 유무 : ${perform.status}
 	</form>
 </body>
 </html>

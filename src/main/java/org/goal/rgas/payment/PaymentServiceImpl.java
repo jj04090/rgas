@@ -87,7 +87,6 @@ public class PaymentServiceImpl implements PaymentService {
 	@Override
 	public void paymentCancel(Payment payment) throws Exception {
 		Payment paymentValue = paymentMapper.select(payment);
-		
 		if(paymentValue != null) {
 			IamportClient iamportClient = new IamportClient("1722439638143134", "tV7DKdiRXz5pX53kU9Ohg7Lb17DIiSUMN2pxfIpdhuCezFzuPnL5vwgwEUfXMaJzc97sRwF91ioBXX5N");
 			IamportResponse<com.siot.IamportRestHttpClientJava.response.Payment> iamportResponse = iamportClient.cancelPayment(new CancelData(payment.getPaymentCode(), false));

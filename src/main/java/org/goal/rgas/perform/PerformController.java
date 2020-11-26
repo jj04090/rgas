@@ -115,8 +115,7 @@ public class PerformController {
 				mv.addObject("mission", missionValue);
 				mv.addObject("performList", performList);
 			} catch (Exception e) {
-				//e.printStackTrace();
-				System.out.println("z");
+				e.printStackTrace();
 			}
 		} else {
 			try {
@@ -126,8 +125,7 @@ public class PerformController {
 				mv = new ModelAndView("/perform/list");
 				mv.addObject("performList", performList);
 			} catch (Exception e) {
-				//e.printStackTrace();
-				System.out.println("z");
+				e.printStackTrace();
 			}
 		}
 		
@@ -144,10 +142,13 @@ public class PerformController {
 		
 		try {
 			Perform performValue = performService.performInquiry(perform);
-			
+			System.out.println("==================");
+			System.out.println(performValue);
+			System.out.println("==================");
 			paymentValue.setNo(performValue.getPaymentNo());
 			int missionNo = paymentService.paymentInquiry(paymentValue).getMissionNo();
-		
+		System.out.println(missionNo);
+		System.out.println("==================");
 			mv.addObject("missionNo", missionNo);
 			mv.addObject("perform", performValue);
 		} catch (Exception e) {

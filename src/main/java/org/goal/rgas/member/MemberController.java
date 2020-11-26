@@ -19,6 +19,7 @@ import org.springframework.web.servlet.view.RedirectView;
 public class MemberController {
 	@Autowired 
 	private HttpSession httpSession;
+	
 	@Autowired
 	private MemberServiceImpl memberService;
 	
@@ -96,12 +97,6 @@ public class MemberController {
 		}
 		
 		return mv;
-	}
-	
-	@GetMapping("/{no}/form")
-	public ModelAndView memberModifyForm(Member member) {
-		
-		return null;
 	}
 
 	@PutMapping

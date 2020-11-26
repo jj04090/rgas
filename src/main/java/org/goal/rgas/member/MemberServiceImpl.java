@@ -26,7 +26,7 @@ public class MemberServiceImpl implements MemberService{
 		Member memberValue = new Member();
 		memberValue.setEmail(member.getEmail());
 		
-		if (memberMapper.select(memberValue).getNo() == 0) {
+		if (memberMapper.select(memberValue) == null) {
 			memberMapper.insert(member);
 		}
 	}

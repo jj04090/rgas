@@ -70,14 +70,12 @@
             <!-- NO, -->
             PAYMENT_NO,
             AMOUNT,
-            SAVE_DATE,
-            STATUS
+            SAVE_DATE
         ) VALUES (
             <!-- #{no}, -->
             #{paymentNo},
             #{amount},
-            #{saveDate},
-            #{status}
+            #{saveDate}
         )
     </insert>
 

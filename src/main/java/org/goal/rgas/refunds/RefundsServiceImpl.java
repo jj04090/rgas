@@ -7,6 +7,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.goal.rgas.donation.DonationSave;
+import org.goal.rgas.donation.DonationSaveMapper;
 import org.goal.rgas.member.MemberServiceImpl;
 import org.goal.rgas.mission.Mission;
 import org.goal.rgas.mission.MissionMapper;
@@ -34,6 +36,9 @@ public class RefundsServiceImpl implements RefundsService {
 
 	@Autowired
 	private PerformMapper performMapper;
+	
+	@Autowired
+	private DonationSaveMapper donationSaveMapper;
 
 	@Autowired
 	private HttpSession httpSession;
@@ -62,27 +67,37 @@ public class RefundsServiceImpl implements RefundsService {
 		perform.setPaymentNo(payment.getNo());
 		perform.setStatus('Y');
 		int SuccessCount = performMapper.count(perform);
-
 		int failCount = term - SuccessCount;
-
+		int refundAmount = (int) (payment.getDeposit() - (payment.getDeposit() * 0.07 * failCount));
+		
 		if (payment != null) {
 			IamportClient iamportClient = new IamportClient("1722439638143134", "tV7DKdiRXz5pX53kU9Ohg7Lb17DIiSUMN2pxfIpdhuCezFzuPnL5vwgwEUfXMaJzc97sRwF91ioBXX5N");
 			IamportResponse<com.siot.IamportRestHttpClientJava.response.Payment> iamportResponse = iamportClient
 					.cancelPayment(new CancelData(payment.getPaymentCode(), false,
-							new BigDecimal(payment.getDeposit() - (payment.getDeposit() * 0.07 * failCount))));
+							new BigDecimal(refundAmount)));
 			System.out.println("실행");
 			if (0 == iamportResponse.getCode()) {
 				System.out.println("성공");
-
+				
 				Refunds refunds = new Refunds();
 				refunds.setAmount(iamportResponse.getResponse().getCancelAmount().intValue());
 				refunds.setPaymentNo(payment.getNo());
 				refunds.setRefundsDate(LocalDate.now());
 
+				//환급 내역 등록
 				refundsMapper.insert(refunds);
-				String email = (String) httpSession.getAttribute("email");
-
+				
+				//기부금 적립 내역 등록
+				if (refundAmount != payment.getDeposit()) {
+					DonationSave donationSave = new DonationSave();
+					donationSave.setAmount(refundAmount);
+					donationSave.setPaymentNo(payment.getNo());
+					donationSave.setSaveDate(LocalDate.now());
+					donationSaveMapper.insert(donationSave);
+				}
+				
 				// 회원 등급갱신
+				String email = (String) httpSession.getAttribute("email");
 				memberServiceImpl.memberGradeRenewal(email);
 
 				return true;

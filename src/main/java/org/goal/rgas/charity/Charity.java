@@ -2,13 +2,20 @@ package org.goal.rgas.charity;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotBlank;
+
+
+
 /**
  * @author plusperson@gmail.com
 */
 public class Charity implements Serializable {
     private int no;
+	@NotBlank
     private String name;
+	@NotBlank
     private String bank;
+	@NotBlank
     private String account;
     private int itemStart;
     private int itemSizePerPage;

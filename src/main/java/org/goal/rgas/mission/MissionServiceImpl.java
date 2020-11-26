@@ -58,7 +58,6 @@ public class MissionServiceImpl implements MissionService{
 			mission.setMemberNo(memberNo);
 			
 			missionMapper.insert(mission);
-			
 			return missionMapper.select(mission);
 		} catch(Exception e) {
 			e.printStackTrace();

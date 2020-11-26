@@ -1,6 +1,7 @@
 package org.goal.rgas.payment;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.goal.rgas.mission.Mission;
 import org.springframework.beans.factory.annotation.Autowired;

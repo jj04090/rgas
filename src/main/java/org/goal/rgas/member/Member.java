@@ -2,16 +2,25 @@ package org.goal.rgas.member;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+
 /**
  * @author plusperson@gmail.com
 */
 public class Member implements Serializable {
     private int no;
+	@Email
     private String email;
+	@NotBlank
     private String password;
+	@NotBlank
     private String name;
+    @NotBlank
     private String nickname;
+    @NotBlank
     private String bank;
+    @NotBlank
     private String account;
     private char grade;
     private char auth;

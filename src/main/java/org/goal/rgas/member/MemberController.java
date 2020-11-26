@@ -3,6 +3,7 @@ package org.goal.rgas.member;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -30,7 +31,7 @@ public class MemberController {
 	}
 	
 	@PostMapping
-	public ModelAndView memberRegister(Member member) {
+	public ModelAndView memberRegister( Member member) {
 		ModelAndView mv = new ModelAndView(new RedirectView("/login"));
 
 		try {
@@ -87,21 +88,17 @@ public class MemberController {
 				mv = new ModelAndView("/member/inquiry");
 				mv.addObject("member", memberValue);
 				
-			} else {
+			} else if (httpSession.getAttribute("email").equals(memberValue.getEmail())) {
 				mv = new ModelAndView("/member/modify");
 				mv.addObject("member", memberValue);
+			} else {
+				mv = new ModelAndView("/mission");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		return mv;
-	}
-	
-	@GetMapping("/{no}/form")
-	public ModelAndView memberModifyForm(Member member) {
-		
-		return null;
 	}
 
 	@PutMapping

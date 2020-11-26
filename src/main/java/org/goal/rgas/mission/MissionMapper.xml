@@ -35,10 +35,10 @@
             <if test="note != null and note != ''">
                 AND NOTE = #{note}
             </if>
-            <if test="entryFee != null and entryFee != ''">
+            <if test="entryFee != 0 and entryFee != null">
                 AND ENTRY_FEE = #{entryFee}
             </if>
-            <if test="startDate != null">
+            <!-- <if test="startDate != null">
                 AND START_DATE = #{startDate}
             </if>
             <if test="endDate != null">
@@ -49,7 +49,7 @@
             </if>
             <if test="certifiedEndTime != null">
                 AND CERTIFIED_END_TIME = #{certifiedEndTime}
-            </if>
+            </if> -->
             <if test="categoryNo != null and categoryNo != ''">
                 AND CATEGORY_NO = #{categoryNo}
             </if>

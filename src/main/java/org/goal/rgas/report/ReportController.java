@@ -3,6 +3,7 @@ package org.goal.rgas.report;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.goal.rgas.member.Member;
 import org.goal.rgas.member.MemberServiceImpl;

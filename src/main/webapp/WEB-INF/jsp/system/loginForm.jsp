@@ -31,12 +31,12 @@
 
 <body class="stretched">
 
-	Document Wrapper
-	=============================================
+	<!-- Document Wrapper
+	============================================= -->
 	<div id="wrapper" class="clearfix">
 
-		Content
-		=============================================
+		<!-- Content
+		============================================= -->
 		<section id="content">
 			<div class="content-wrap py-0">
 
@@ -46,7 +46,7 @@
 						<div class="container py-5">
 
 							<div class="text-center">
-								<a href="/login"><img src="images/logo-dark@2x.png" alt="Canvas Logo" style="height: 100px;"></a>
+								<a href="/login"><img src="images/logo-side@2x.png" alt="Canvas Logo" style="height: 100px;"></a>
 							</div>
 
 							<div class="card mx-auto rounded-0 border-0" style="max-width: 400px;">
@@ -90,21 +90,21 @@
 				</div>
 
 			</div>
-		</section>#content end
+		</section><!-- #content end -->
 
-	</div>#wrapper end
+	</div><!-- #wrapper end -->
 
-	Go To Top
-	=============================================
+	<!-- Go To Top
+	============================================= -->
 	<div id="gotoTop" class="icon-angle-up"></div>
 
-	JavaScripts
-	=============================================
+	<!-- JavaScripts
+	============================================= -->
 	<script src="/js/jquery.js"></script>
 	<script src="/js/plugins.min.js"></script>
 
-	Footer Scripts
-	=============================================
+	<!-- Footer Scripts
+	============================================= -->
 	<script src="/js/functions.js"></script>
 
 </body> 

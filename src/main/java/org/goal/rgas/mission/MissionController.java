@@ -1,13 +1,12 @@
 package org.goal.rgas.mission;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.nio.file.Files;
 import java.util.List;
 
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.goal.rgas.member.Member;
 import org.goal.rgas.member.MemberServiceImpl;
@@ -16,7 +15,6 @@ import org.goal.rgas.payment.PaymentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,7 +50,7 @@ public class MissionController {
 		ModelAndView mv = new ModelAndView(new RedirectView("/mission"));
 		
 		try {
-			missionService.missionRegister(file, mission);
+			mission = missionService.missionRegister(file, mission);
 			paymentServiceImpl.paymentRegister(mission, merchantUid);
 		} catch (Exception e) {
 			e.printStackTrace();

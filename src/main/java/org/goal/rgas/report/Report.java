@@ -3,13 +3,18 @@ package org.goal.rgas.report;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import javax.validation.constraints.NotBlank;
+
 /**
  * @author plusperson@gmail.com
 */
 public class Report implements Serializable {
     private int no;
+    @NotBlank
     private int memberNo;
+    @NotBlank
     private int performNo;
+    @NotBlank
     private String note;
     private LocalDate reportDate;	
     private char status;

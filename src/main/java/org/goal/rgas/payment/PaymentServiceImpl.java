@@ -58,7 +58,9 @@ public class PaymentServiceImpl implements PaymentService {
 	@Override
 	public void paymentRegister(Mission mission, String merchantUid) throws Exception {
 		if (mission != null && merchantUid != null) {
+			System.out.println(mission.getNo());
 			Mission missionValue = missionMapper.select(mission);
+
 			Payment payment = new Payment();
 			payment.setPaymentCode("rgas"+merchantUid);
 			payment.setDeposit(missionValue.getEntryFee());
@@ -88,14 +90,17 @@ public class PaymentServiceImpl implements PaymentService {
 	public void paymentCancel(Payment payment) throws Exception {
 		Payment paymentValue = paymentMapper.select(payment);
 		
+		//미션 정보 찾기
+		Mission mission = new Mission();
+		mission.setNo(payment.getMissionNo());
+		mission = missionMapper.select(mission);
+		
 		if(paymentValue != null) {
 			IamportClient iamportClient = new IamportClient("1722439638143134", "tV7DKdiRXz5pX53kU9Ohg7Lb17DIiSUMN2pxfIpdhuCezFzuPnL5vwgwEUfXMaJzc97sRwF91ioBXX5N");
-			IamportResponse<com.siot.IamportRestHttpClientJava.response.Payment> iamportResponse = iamportClient.cancelPayment(new CancelData(payment.getPaymentCode(), false));
-			
+			IamportResponse<com.siot.IamportRestHttpClientJava.response.Payment> iamportResponse = iamportClient.cancelPayment(new CancelData(paymentValue.getPaymentCode(), false));
+			System.out.println(iamportResponse.getCode());
 			if ( 200 == iamportResponse.getCode() ) {
 				paymentMapper.delete(payment);
-			} else {
-				//결제 실패 시
 			}
 		}
 	}

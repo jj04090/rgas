@@ -117,8 +117,13 @@
             </if>
         </set>
         <where>
-        	PAYMENT_NO = #{paymentNo} AND 
-        	REGISTER_DATE = #{registerDate}
+        	<if test="status != ''">
+        		NO = #{no}
+        	</if>
+        	<if test="status == ''">
+	        	PAYMENT_NO = #{paymentNo} AND 
+	        	REGISTER_DATE = #{registerDate}
+        	</if>
         </where>
     </update>
 

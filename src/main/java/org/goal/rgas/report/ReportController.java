@@ -57,8 +57,6 @@ public class ReportController {
 	@PostMapping
 	public ModelAndView reportRegister(Report report) {
 		ModelAndView mv = new ModelAndView(new RedirectView("/perform"));
-		System.out.println("======================");
-		System.out.println(report);
 		try {
 			reportService.reportRegister(report);
 		} catch (Exception e) {
@@ -116,7 +114,13 @@ public class ReportController {
 	@PutMapping
 	public ModelAndView reportModify(Report report) {
 		ModelAndView mv = new ModelAndView(new RedirectView("/report"));
+		Perform performValue = new Perform();
+		
+		performValue.setNo(report.getPerformNo());
+		performValue.setStatus('N');
+		System.out.println(performValue);
 		try {
+			performService.performModify(performValue);
 			reportService.reportModify(report);
 		} catch (Exception e) {
 			e.printStackTrace();

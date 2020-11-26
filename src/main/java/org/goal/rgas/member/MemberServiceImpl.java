@@ -49,8 +49,13 @@ public class MemberServiceImpl implements MemberService{
 			member.setStatus('S');
 			memberMapper.update(member);
 		} else if ("C".equals((String)(httpSession.getAttribute("auth")))) {
-			member.setStatus('D');
-			memberMapper.update(member);
+			if (member.getNickname() != null) {
+				memberMapper.update(member);
+			} else {
+				member.setStatus('D');
+				System.out.println(member);
+				memberMapper.update(member);
+			}
 		}
 	}
 

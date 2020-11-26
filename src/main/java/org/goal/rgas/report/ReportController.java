@@ -6,10 +6,12 @@ import javax.servlet.http.HttpSession;
 
 import org.goal.rgas.member.Member;
 import org.goal.rgas.member.MemberServiceImpl;
+import org.goal.rgas.perform.Perform;
 import org.goal.rgas.perform.PerformServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,10 +29,13 @@ public class ReportController {
 	private MemberServiceImpl memberService;
 	
 	@Autowired
+	private PerformServiceImpl performService;
+	
+	@Autowired
 	private HttpSession httpSession;
 	
 	@GetMapping("/form/{no}")
-	public ModelAndView reportRegisterForm(int no) {
+	public ModelAndView reportRegisterForm(@PathVariable int no) {
 		ModelAndView mv = new ModelAndView("/report/register");
 		
 		String email = (String)httpSession.getAttribute("email");
@@ -52,7 +57,8 @@ public class ReportController {
 	@PostMapping
 	public ModelAndView reportRegister(Report report) {
 		ModelAndView mv = new ModelAndView(new RedirectView("/perform"));
-		
+		System.out.println("======================");
+		System.out.println(report);
 		try {
 			reportService.reportRegister(report);
 		} catch (Exception e) {
@@ -65,7 +71,6 @@ public class ReportController {
 	@GetMapping
 	public ModelAndView reportList(Report report) {
 		ModelAndView mv = null;
-		
 		if ("A".equals(httpSession.getAttribute("auth"))) {
 			try {
 				mv = new ModelAndView("/report/list");
@@ -111,7 +116,6 @@ public class ReportController {
 	@PutMapping
 	public ModelAndView reportModify(Report report) {
 		ModelAndView mv = new ModelAndView(new RedirectView("/report"));
-		
 		try {
 			reportService.reportModify(report);
 		} catch (Exception e) {

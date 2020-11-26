@@ -16,22 +16,22 @@
 
     <sql id="whereSql">
         <where>
-            <if test="no != null and no != ''">
+            <if test="no != 0">
                 AND NO = #{no}
             </if>
-            <if test="paymentNo != null and paymentNo != ''">
+            <if test="paymentNo != 0">
                 AND PAYMENT_NO = #{paymentNo}
             </if>
             <if test="registerDate != null">
                 AND REGISTER_DATE = #{registerDate}
             </if>
-            <if test="logical != null and logical != ''">
+            <if test="logical != null">
                 AND LOGICAL = #{logical}
             </if>
-            <if test="physical != null and physical != ''">
+            <if test="physical != null">
                 AND PHYSICAL = #{physical}
             </if>
-            <if test="status != null and status != ''">
+            <if test="status != ''">
                 AND STATUS = #{status}
             </if>
         </where>
@@ -97,19 +97,19 @@
     <update id="update" parameterType="org.goal.rgas.perform.Perform">
         UPDATE perform
         <set>
-            <if test="no != ''">
+            <if test="no != 0">
                 NO = #{no},
             </if>
-            <if test="paymentNo != ''">
+            <if test="paymentNo != 0">
                 PAYMENT_NO = #{paymentNo},
             </if>
             <if test="registerDate != null">
                 REGISTER_DATE = #{registerDate},
             </if>
-            <if test="logical != ''">
+            <if test="logical != null">
                 LOGICAL = #{logical},
             </if>
-            <if test="physical != ''">
+            <if test="physical != null">
                 PHYSICAL = #{physical},
             </if>
             <if test="status != ''">

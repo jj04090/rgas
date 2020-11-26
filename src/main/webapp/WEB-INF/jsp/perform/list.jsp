@@ -23,6 +23,7 @@
             <td>${mission.title}</td>
             <td>${perform.registerDate}</td>
             <td><img src="/perform/photo/${perform.no}"/></td>
+            <td><a href="/report/form/${perform.no}">신고</button></td>
         </tr>
         </c:forEach>
     </table>

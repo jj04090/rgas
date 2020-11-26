@@ -58,9 +58,7 @@ public class PaymentServiceImpl implements PaymentService {
 	@Override
 	public void paymentRegister(Mission mission, String merchantUid) throws Exception {
 		if (mission != null && merchantUid != null) {
-			System.out.println(mission.getNo());
 			Mission missionValue = missionMapper.select(mission);
-
 			Payment payment = new Payment();
 			payment.setPaymentCode("rgas"+merchantUid);
 			payment.setDeposit(missionValue.getEntryFee());

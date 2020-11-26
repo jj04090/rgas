@@ -38,9 +38,9 @@
             	</c:forEach>
             </td>
             <td>${mission.entryFee}</td>
-            <td>${mission.startDate}</td>
+            <td><tf:formatDateTime value="${mission.startDate}" pattern="yyyy-MM-dd"/></td>
             <td><tf:formatDateTime value="${mission.endDate}" pattern="yyyy-MM-dd"/></td>
-            <td><img src="/mission/photo/${mission.no}"/></td>
+            <td><img src="/mission/photo/${mission.no}" width="400" height="400" /></td>
             <td>
             	<form method="get" action="/perform">
 					<input type="hidden" name="no" id="no" value="${mission.no}" />
@@ -48,7 +48,7 @@
 				</form>
 			</td>
             <td>
-            	<c:if test="${today <= mission.endDate}">
+            	<c:if test="${today >= mission.startDate and today <= mission.endDate}">
 	            	<form method="get" action="/perform/form/${mission.no}">
 						<input type="hidden" name="no" id="no" value="${mission.no}" />
 						<input type="submit" value="수행내역 등록"/>

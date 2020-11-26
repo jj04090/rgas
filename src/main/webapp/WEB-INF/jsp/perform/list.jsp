@@ -11,7 +11,6 @@
 </head>
 <body>
     <h3>수행내역 목록</h3>
-    <!-- <button onclick="location.href='/mission/form'">작성</button> -->
     <table border='2'>
         <tr>
             <th>제목</th>
@@ -32,7 +31,7 @@
         		</c:if>
             </td>
             <td><img src="/perform/photo/${perform.no}"/></td>
-            <td><a href="/report/form/${perform.no}">신고</button></td>
+            <td><a href="/report/form/${perform.no}">신고</a></button></td>
         </tr>
         </c:forEach>
     </table>

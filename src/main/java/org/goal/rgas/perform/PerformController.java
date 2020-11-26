@@ -115,8 +115,7 @@ public class PerformController {
 				mv.addObject("mission", missionValue);
 				mv.addObject("performList", performList);
 			} catch (Exception e) {
-				//e.printStackTrace();
-				System.out.println("z");
+				e.printStackTrace();
 			}
 		} else {
 			try {
@@ -126,8 +125,7 @@ public class PerformController {
 				mv = new ModelAndView("/perform/list");
 				mv.addObject("performList", performList);
 			} catch (Exception e) {
-				//e.printStackTrace();
-				System.out.println("z");
+				e.printStackTrace();
 			}
 		}
 		

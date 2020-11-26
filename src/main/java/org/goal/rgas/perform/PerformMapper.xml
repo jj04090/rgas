@@ -115,6 +115,9 @@
             <if test="status != ''">
                 STATUS = #{status},
             </if>
+            <if test="status == ''">
+                STATUS = 'Y',
+            </if>
         </set>
         <where>
         	<if test="status != ''">

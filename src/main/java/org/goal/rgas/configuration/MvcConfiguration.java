@@ -1,8 +1,9 @@
 package org.goal.rgas.configuration;
 
+import org.goal.rgas.interceptor.AdminInterceptor;
+import org.goal.rgas.interceptor.CommonInterceptor;
 import org.goal.rgas.interceptor.LoginInterceptor;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -16,5 +17,13 @@ public class MvcConfiguration implements WebMvcConfigurer {
 		.excludePathPatterns("/member/form", "/configuration/**", 
 				"/system/**", "/interceptor/**", "/emailcertification/**",
 				"/member");
+		
+		registry.addInterceptor(new AdminInterceptor())
+		.addPathPatterns("/member", "/donation/**", "/perform/*",
+				"/report/*");
+		
+		registry.addInterceptor(new CommonInterceptor())
+		.addPathPatterns("/mission/**","/perform/form/*", "/perform",
+				"/report/form/*");
 	}
 }

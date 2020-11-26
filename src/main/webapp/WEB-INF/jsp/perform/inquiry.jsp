@@ -11,8 +11,8 @@
 	<form action="/perform" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="paymentNo" id="paymentNo" value="${perform.paymentNo}" />
 		<div>
-			<label>인증사진 업로드</label>
-			<img src="/mission/photo/${missionNo}"/>
+			<label>인증사진</label>
+			<img src="/perform/photo/${perform.no}" width="400" height="400" />
 		</div>
 		
 		성공 실패 유무 : ${perform.status}

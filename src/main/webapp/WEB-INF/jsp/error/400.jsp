@@ -41,7 +41,7 @@
 				<h1>Page Not Found</h1>
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="/mission">Home</a></li>
-					<li class="breadcrumb-item active" aria-current="page">500</li>
+					<li class="breadcrumb-item active" aria-current="page">400</li>
 				</ol>
 			</div>
 
@@ -56,7 +56,7 @@
 					<div class="row align-items-center col-mb-80">
 
 						<div class="col-lg-6">
-							<div class="error404 center">500</div>
+							<div class="error404 center">400</div>
 						</div>
 
 						<div class="col-lg-6">

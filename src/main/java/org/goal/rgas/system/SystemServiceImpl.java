@@ -17,8 +17,6 @@ public class SystemServiceImpl implements SystemService{
 	@Override
 	public boolean login(Member member) throws Exception {
 		member = memberMapper.select(member);
-		httpSession.setAttribute("membera", member);
-		member = memberMapper.select(member);
 		httpSession.setAttribute("memberValue", member);
 		
 		if (member != null && member.getNo() != 0 

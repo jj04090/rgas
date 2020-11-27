@@ -85,6 +85,7 @@ public class PerformController {
 			
 			LocalDate today = LocalDate.now();
 			perform.setRegisterDate(today);
+			
 			Perform performValue = performService.performInquiry(perform);
 			
 			if (performValue != null) {
@@ -101,16 +102,15 @@ public class PerformController {
 	
 	@GetMapping
 	public ModelAndView performList(Mission mission) {
-		ModelAndView mv = null;
+		ModelAndView mv = new ModelAndView("/perform/list");
 		List<Perform> performList = null;
 		
+		Perform perform = new Perform();
+		Payment payment = new Payment();
+		
 		if (mission.getNo() != 0) {
-			mv = new ModelAndView("/perform/list");
-			
 			try {
 				Mission missionValue = missionService.missionInquiry(mission);
-				Perform perform = new Perform();
-				Payment payment = new Payment();
 				
 				payment.setMissionNo(missionValue.getNo());
 				payment = paymentService.paymentInquiry(payment);
@@ -125,10 +125,13 @@ public class PerformController {
 			}
 		} else {
 			try {
-				Perform perform = new Perform();
 				performList = performService.performList(perform);
 				
-				mv = new ModelAndView("/perform/list");
+				List<Mission> missionList = missionService.missionList(mission);
+				List<Payment> paymentList = paymentService.paymentList(payment);
+				
+				mv.addObject("paymentList", paymentList);
+				mv.addObject("missionList", missionList);
 				mv.addObject("performList", performList);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -220,7 +223,7 @@ public class PerformController {
 				response.getOutputStream().write(byteToFile);
 			}
 		} catch (Exception e) {
-			/* e.printStackTrace(); */
+			e.printStackTrace();
 			
 		}
 	}

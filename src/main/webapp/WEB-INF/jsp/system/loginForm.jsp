@@ -26,6 +26,7 @@
 	<!-- Document Title
 	============================================= -->
 	<title>Login - Layout 4 | RGAS</title>
+
 </head>
 
 <body class="stretched">
@@ -43,11 +44,9 @@
 				<div class="section bg-transparent min-vh-100 p-0 m-0 d-flex">
 					<div class="vertical-middle">
 						<div class="container py-5">
-
 							<div class="text-center">
-								<a href="/login"><img src="images/logo.png" alt="Canvas Logo" style="height: 200px"></a>
+								<a href="/login"><img src="images/logo-rgas.jpg" alt="Rgas Logo" style="height: 200px;"></a>
 							</div>
-
 							<div class="card mx-auto rounded-0 border-0" style="max-width: 400px;">
 								<div class="card-body" style="padding: 40px;">
 									<form id="login-form" name="login-form" class="mb-0" action="/login" method="post">
@@ -72,17 +71,10 @@
 									</form>
 
 									<div class="line line-sm"></div>
-
-									<div class="center">
-										<h4 style="margin-bottom: 15px;">or Login with:</h4>
-										<a href="https://ko-kr.facebook.com/" class="button button-rounded si-facebook si-colored">Facebook</a>
-										<span class="d-none d-md-inline-block">or</span>
-										<a href="https://twitter.com/?lang=ko" class="button button-rounded si-twitter si-colored">Twitter</a>
-									</div>
 								</div>
 							</div>
 
-							<div class="text-center text-muted mt-3"><small>Copyrights &copy; All Rights Reserved by Canvas Inc.</small></div>
+							<div class="text-center text-muted mt-3"><small>Copyrights &copy; All Rights Reserved by Rgas Inc.</small></div>
 
 						</div>
 					</div>
@@ -105,5 +97,6 @@
 	<!-- Footer Scripts
 	============================================= -->
 	<script src="/js/functions.js"></script>
+
 </body> 
 </html>

@@ -13,7 +13,6 @@
 <title>내 미션 목록</title>
 </head>
 <body>
-	<%-- <jsp:include page="/WEB-INF/jsp/layout/commonTop.jsp"> --%>
 	<jsp:useBean id="now" class="java.util.Date" />
 	<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
     <h3>내 미션 목록</h3>

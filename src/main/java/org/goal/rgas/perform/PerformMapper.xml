@@ -78,13 +78,11 @@
 
     <insert id="insert" parameterType="org.goal.rgas.perform.Perform">
         INSERT INTO perform (
-            <!-- NO, -->
             PAYMENT_NO,
             REGISTER_DATE,
             LOGICAL,
             PHYSICAL
         ) VALUES (
-            <!-- #{no}, -->
             #{paymentNo},
             NOW(),
             #{logical},
@@ -95,7 +93,7 @@
     <update id="update" parameterType="org.goal.rgas.perform.Perform">
         UPDATE perform
         <set>
-            <if test="no != 0">
+            <!-- <if test="no != 0">
                 NO = #{no},
             </if>
             <if test="paymentNo != 0">
@@ -103,7 +101,7 @@
             </if>
             <if test="registerDate != null">
                 REGISTER_DATE = #{registerDate},
-            </if>
+            </if> -->
             <if test="logical != null">
                 LOGICAL = #{logical},
             </if>

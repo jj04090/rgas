@@ -37,16 +37,13 @@
 		============================================= -->
 		<section id="content">
 			<div class="content-wrap py-0">
-
-				<div class="section p-0 m-0 h-100 position-absolute" style="background: url('/images/parallax/home/1.jpg') center center no-repeat; background-size: cover;"></div>
+				<div class="section p-0 m-0 h-100 position-absolute" style="background: url('/images/5.jpg') center center no-repeat; background-size: cover;"></div>
 				<div class="section bg-transparent min-vh-100 p-0 m-0 d-flex">
 					<div class="vertical-middle">
 						<div class="container py-5">
-
 							<div class="text-center">
-								<a href="/login"><img src="/images/logo.png" alt="Canvas Logo" style="height: 200px;"></a>
+								<a href="/login"><img src="/images/logo-rgas.jpg" alt="Rgas Logo" style="height: 200px;"></a>
 							</div>
-
 							<div class="card mx-auto rounded-0 border-0" style="max-width: 400px;">
 								<div class="card-body" style="padding: 40px;">
 									<form id="signupForm" name="login-form" class="mb-0" action="/member" method="post">
@@ -101,15 +98,15 @@
 												<label for="login-form-username">Account:</label>
 												<input type="text" id="account" name="account" value="" class="form-control not-dark" />
 											</div>
+											<div>
+												<input class="button button-3d" type="submit" id="signup" value="가입" disabled/>
+											</div>
 										</div>
 									</form>
-
 									<div class="line line-sm"></div>
 								</div>
 							</div>
-
 							<div class="text-center text-muted mt-3"><small>Copyrights &copy; All Rights Reserved by Canvas Inc.</small></div>
-
 						</div>
 					</div>
 				</div>
@@ -131,6 +128,7 @@
 	<!-- Footer Scripts
 	============================================= -->
 	<script src="/js/functions.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 
 <script>
 		document.getElementById('send').addEventListener('click', send_code);
@@ -152,18 +150,12 @@
 			if(document.getElementById("authCode").value
 					== document.getElementById("code").value){
 				alert("인증에 성공했습니다.");
-				var btn = document.createElement("BUTTON");
-				btn.addEventListener('click', singup);   // Create a <button> element
-				btn.innerHTML = "가입";   // Insert text
-				btn.id = 'signup';
-				document.body.appendChild(btn); 
+				
+				$('input[type="submit"]').removeAttr('disabled');
+				
 			}  else {
 				alert("인증코드가 잘못되었습니다.");
 			}
-		}
-		
-		function singup(){
-			document.getElementById('signupForm').submit();
 		}
 </script>
 </body>

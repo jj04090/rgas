@@ -13,7 +13,6 @@
 <title>내 미션 목록</title>
 </head>
 <body>
-	<%-- <jsp:include page="/WEB-INF/jsp/layout/commonTop.jsp"> --%>
 	<jsp:useBean id="now" class="java.util.Date" />
 	<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
     <h3>내 미션 목록</h3>
@@ -40,7 +39,7 @@
             <td>${mission.entryFee}</td>
             <td><tf:formatDateTime value="${mission.startDate}" pattern="yyyy-MM-dd"/></td>
             <td><tf:formatDateTime value="${mission.endDate}" pattern="yyyy-MM-dd"/></td>
-            <td><img src="/mission/photo/${mission.no}" width="400" height="400" /></td>
+            <td><img src="/mission/photo/${mission.no}" width="400" height="300" /></td>
             <td>
             	<form method="get" action="/perform">
 					<input type="hidden" name="no" id="no" value="${mission.no}" />

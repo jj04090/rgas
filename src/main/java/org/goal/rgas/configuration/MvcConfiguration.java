@@ -19,11 +19,9 @@ public class MvcConfiguration implements WebMvcConfigurer {
 				"/member");
 		
 		registry.addInterceptor(new AdminInterceptor())
-		.addPathPatterns("/member", "/donation/**", "/perform/*",
-				"/report/*");
+		.addPathPatterns("/donation/**", "/perform/*", "/report/*" , "/charity/**");
 		
 		registry.addInterceptor(new CommonInterceptor())
-		.addPathPatterns("/mission/**","/perform/form/*", "/perform",
-				"/report/form/*");
+		.addPathPatterns("/mission/**","/perform/form/*", "/perform", "/report/form/*");
 	}
 }

@@ -34,6 +34,7 @@ public class DonationServiceImpl implements DonationService {
 	@Override
 	public IamportRequest donationTransferProcess(Charity charity, String merchantUid) throws Exception {
 		IamportRequest iamportRequest = new IamportRequest();
+		
 		if (charity != null) {
 			Charity charityValue = charityMapper.select(charity);
 			iamportRequest.setMerchantUid("rgas_" + merchantUid);
@@ -46,10 +47,11 @@ public class DonationServiceImpl implements DonationService {
 			iamportRequest.setBuyerName(member.getName());
 			iamportRequest.setBuyerEmail(member.getEmail());
 			iamportRequest.setPaymentName(charityValue.getName());
-			
 			iamportRequest.setAmount(totalDonationSave());
+			
 			return iamportRequest;
 		}
+		
 		return null;
 	}
 
@@ -66,6 +68,7 @@ public class DonationServiceImpl implements DonationService {
 	@Override
 	public List<DonationTransfer> donationTransferList(DonationTransfer donationTransfer) throws Exception {
 		List<DonationTransfer> donationTransferList = donationTransferMapper.list(donationTransfer);
+		
 		return donationTransferList;
 	}
 
@@ -73,6 +76,7 @@ public class DonationServiceImpl implements DonationService {
 	@Override
 	public List<DonationSave> donationSaveList(DonationSave donationSave) throws Exception {
 		List<DonationSave> donationSaveList = donationSaveMapper.list(donationSave);
+		
 		return donationSaveList;
 	}
 
@@ -99,6 +103,7 @@ public class DonationServiceImpl implements DonationService {
 				totalAmount += donationSaveList.get(i).getAmount();
 			}
 		}
+		
 		return totalAmount;
 	}
 }

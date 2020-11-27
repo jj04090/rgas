@@ -30,10 +30,10 @@ import org.springframework.web.servlet.view.RedirectView;
 @RequestMapping("/mission")
 public class MissionController {
 	@Autowired
-	private MissionServiceImpl missionService;
+	private MissionServiceImpl missionServiceImpl;
 	
 	@Autowired
-	private MemberServiceImpl memberService;
+	private MemberServiceImpl memberServiceImpl;
 	
 	@Autowired
 	private PaymentServiceImpl paymentServiceImpl; 
@@ -41,17 +41,21 @@ public class MissionController {
 	@Autowired
 	private HttpSession httpSession;
 	
+	//미션 등록 폼
 	@GetMapping("/form")
 	public ModelAndView missionRegisterForm() {
 		
 		return new ModelAndView("/mission/register");
 	}
 	
+	//미션 등록 처리
 	@PostMapping
 	public ModelAndView missionRegister(@RequestParam("img") MultipartFile file, Mission mission, @RequestParam("merchantUid") String merchantUid) { 
-		ModelAndView mv = new ModelAndView(new RedirectView("/mission"));
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("redirect:/mission");
+		
 		try {
-			mission = missionService.missionRegister(file, mission);
+			mission = missionServiceImpl.missionRegister(file, mission);
 			paymentServiceImpl.paymentRegister(mission, merchantUid);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -60,22 +64,23 @@ public class MissionController {
 		return mv; 
 	 }
 	
+	//미션 목록 조회
 	@GetMapping
 	public ModelAndView missionList(Mission mission) {
-		String email = (String)httpSession.getAttribute("email");
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/mission/list");
 		
+		String email = (String)httpSession.getAttribute("email");
 		Member memberValue = new Member();
 		memberValue.setEmail(email);
 		
-		ModelAndView mv = new ModelAndView("/mission/list");
-		
 		try {
-			int memberNo = memberService.memberInquiry(memberValue).getNo();
+			int memberNo = memberServiceImpl.memberInquiry(memberValue).getNo();
 			Mission missionValue = new Mission();
 			missionValue.setMemberNo(memberNo);
 			
-			List<Mission> missionList = missionService.missionList(missionValue);
-			List<Member> memberList = memberService.memberList(new Member());
+			List<Mission> missionList = missionServiceImpl.missionList(missionValue);
+			List<Member> memberList = memberServiceImpl.memberList(new Member());
 			
 			mv.addObject("missionList", missionList);
 			mv.addObject("memberList", memberList);
@@ -86,12 +91,13 @@ public class MissionController {
 		return mv;
 	}
 	
+	//미션 상세 조회
 	@GetMapping("/{no}")
 	public ModelAndView missionInquiry(Mission mission) {
 		ModelAndView mv = new ModelAndView("/mission/inquiry");
 		
 		try {
-			Mission missionValue = missionService.missionInquiry(mission);
+			Mission missionValue = missionServiceImpl.missionInquiry(mission);
 			mv.addObject("mission", missionValue);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -100,11 +106,13 @@ public class MissionController {
 		return mv;
 	}
 	
+	//미션 정보 수정
 	@PutMapping
 	public ModelAndView missionModify(Mission mission) {
 		ModelAndView mv = new ModelAndView(new RedirectView("/mission"));
+		
 		try {
-			missionService.missionModify(mission);
+			missionServiceImpl.missionModify(mission);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -112,6 +120,7 @@ public class MissionController {
 		return mv;
 	}
 	
+	//미션 삭제
 	@DeleteMapping
 	public ModelAndView missionDelete(Mission mission) {
 		ModelAndView mv = new ModelAndView(new RedirectView("/mission"));
@@ -124,7 +133,7 @@ public class MissionController {
 			payment.setMissionNo(mission.getNo());
 			paymentServiceImpl.paymentCancel(payment);
 			
-			missionService.missionDelete(missionValue);
+			missionServiceImpl.missionDelete(missionValue);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -132,11 +141,12 @@ public class MissionController {
 		return mv;
 	}
 	
+	//이미지 출력
 	@GetMapping("/photo/{no}")
 	public void photoView(Mission mission, HttpServletResponse response) {
 		try {
 			String path = System.getProperty("user.home") + File.separator + "rgasPhoto";
-			String physical = missionService.missionInquiry(mission).getPhysical();
+			String physical = missionServiceImpl.missionInquiry(mission).getPhysical();
 			String imgPath = path + File.separator + physical;
 
 			File file = new File(imgPath);

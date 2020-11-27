@@ -105,6 +105,5 @@ public class Perform implements Serializable {
 		return "Perform [no=" + no + ", paymentNo=" + paymentNo + ", registerDate=" + registerDate + ", logical="
 				+ logical + ", physical=" + physical + ", status=" + status + "]";
 	}
-	
-	
+
 }

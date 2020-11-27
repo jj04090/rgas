@@ -49,8 +49,10 @@ public class PaymentServiceImpl implements PaymentService {
 						
 			iamportRequest.setBuyerName(member.getName());
 			iamportRequest.setBuyerEmail(member.getEmail());
+			
 			return iamportRequest;
 		}
+		
 		return null;
 	}
 
@@ -73,6 +75,7 @@ public class PaymentServiceImpl implements PaymentService {
 	@Override
 	public List<Payment> paymentList(Payment payment) throws Exception {
 		List<Payment> list = paymentMapper.list(payment);
+		
 		return list;
 	}
 
@@ -80,6 +83,7 @@ public class PaymentServiceImpl implements PaymentService {
 	@Override
 	public Payment paymentInquiry(Payment payment) throws Exception {
 		Payment result = paymentMapper.select(payment);
+		
 		return result;
 	}
 
@@ -93,10 +97,10 @@ public class PaymentServiceImpl implements PaymentService {
 		mission.setNo(payment.getMissionNo());
 		mission = missionMapper.select(mission);
 		
-		if(paymentValue != null) {
+		if (paymentValue != null) {
 			IamportClient iamportClient = new IamportClient("1722439638143134", "tV7DKdiRXz5pX53kU9Ohg7Lb17DIiSUMN2pxfIpdhuCezFzuPnL5vwgwEUfXMaJzc97sRwF91ioBXX5N");
 			IamportResponse<com.siot.IamportRestHttpClientJava.response.Payment> iamportResponse = iamportClient.cancelPayment(new CancelData(paymentValue.getPaymentCode(), false));
-			System.out.println(iamportResponse.getCode());
+			
 			if ( 200 == iamportResponse.getCode() ) {
 				paymentMapper.delete(payment);
 			}

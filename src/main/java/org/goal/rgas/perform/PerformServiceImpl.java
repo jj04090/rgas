@@ -18,6 +18,7 @@ public class PerformServiceImpl implements PerformService{
 	@Autowired
 	private PerformMapper performMapper;
 
+	//수행 내역 등록
 	@Override
 	public void performRegister(MultipartFile file, Perform perform) {
 		try {
@@ -35,11 +36,12 @@ public class PerformServiceImpl implements PerformService{
 			perform.setPhysical(physical);
 			
 			performMapper.insert(perform);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
+	//수행 내역 수정
 	@Override
 	public void performEdit(MultipartFile file, Perform perform) {
 		try {
@@ -57,28 +59,32 @@ public class PerformServiceImpl implements PerformService{
 			perform.setPhysical(physical);
 			
 			performMapper.update(perform);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
+	//수행 내역 목록 조회
 	@Override
 	public List<Perform> performList(Perform perform) throws Exception {
 		
 		return performMapper.list(perform);
 	}
 
+	//수행 내역 상세 조회
 	@Override
 	public Perform performInquiry(Perform perform) throws Exception {
 		
 		return performMapper.select(perform);
 	}
 
+	//수행 내역 수정
 	@Override
 	public void performModify(Perform perform) throws Exception {
 		performMapper.update(perform);
 	}
 
+	//수행 내역 삭제
 	@Override
 	public void performDelete(Perform perform) throws Exception {
 		performMapper.delete(perform);

@@ -20,35 +20,40 @@ import org.springframework.web.servlet.view.RedirectView;
 public class PaymentController {
 	@Autowired
 	private PaymentServiceImpl paymentServiceImpl;
-	
+
 	@Autowired
-	private HttpServletResponse response;
-	
+	private HttpServletResponse httpServletResponse;
+
+	//결제 정보 찾기
 	@PostMapping("/form/{merchantUid}")
-	public IamportRequest paymentProcess (@RequestBody @Valid Mission mission, Errors errors,  @PathVariable String merchantUid) {
+	public IamportRequest paymentProcess(@RequestBody @Valid Mission mission, Errors errors, @PathVariable String merchantUid) {
 		IamportRequest iamportRequest = null;
+		
 		try {
 			if (errors.hasErrors()) {
-				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+				httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			} else {
-				response.setStatus(HttpServletResponse.SC_CREATED);
+				httpServletResponse.setStatus(HttpServletResponse.SC_CREATED);
 			}
 			iamportRequest = paymentServiceImpl.paymentProcess(mission, merchantUid);
 		} catch (Exception e) {
-			//에러페이지 띄워주기
 			e.printStackTrace();
 		}
+		
 		return iamportRequest;
 	}
-	
+
+	//결제 취소 처리
 	@DeleteMapping
 	public ModelAndView paymentCancel(Payment payment) {
 		ModelAndView mv = new ModelAndView(new RedirectView("mission"));
+		
 		try {
 			paymentServiceImpl.paymentCancel(payment);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		return mv;
 	}
 }

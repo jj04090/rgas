@@ -15,9 +15,10 @@ public class RefundsController {
 	@Autowired
 	private RefundsServiceImpl refundsServiceImpl;
 	
+	//환급 정보 조회
 	@PostMapping
-	public boolean refundsProcess(@RequestBody Mission mission) {
-		boolean flag = false;
+	public int refundsProcess(@RequestBody Mission mission) {
+		int flag = 0;
 		try {
 			flag = refundsServiceImpl.refundsProcess(mission);
 		} catch (Exception e) {

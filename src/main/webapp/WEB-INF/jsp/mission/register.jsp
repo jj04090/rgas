@@ -73,11 +73,18 @@
 			</div>
 		</div>
 	</form>
-	<input type="button" id="btn" value="미션 개설하기" />
+	<input type="button" id="btn" value="미션 개설" disabled/>
 	
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 	<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+		<script>
+			$(function() {
+				$("#img").change(function(e){
+					$('input[type="button"]').removeAttr('disabled');
+				});
+			});
+	  	</script>
 	<script>
 		document.getElementById('btn').addEventListener('click', ajax_call);
 		function ajax_call() {

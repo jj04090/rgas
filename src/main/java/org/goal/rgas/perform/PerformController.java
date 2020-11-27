@@ -32,35 +32,35 @@ import org.springframework.web.servlet.view.RedirectView;
 @RequestMapping("/perform")
 public class PerformController {
 	@Autowired 
-	private PerformServiceImpl performService;
+	private PerformServiceImpl performServiceImpl;
 	
 	@Autowired
-	private PaymentServiceImpl paymentService;
+	private PaymentServiceImpl paymentServiceImpl;
 	
 	@Autowired
 	private HttpSession httpSession;
 	
 	@Autowired
-	private MissionServiceImpl missionService;
+	private MissionServiceImpl missionServiceImpl;
 	
+	//수행내역 등록 폼
 	@GetMapping("/form/{no}")
 	public ModelAndView performRegisterForm(Mission mission) {
-		ModelAndView mv = null;
+		ModelAndView mv =  new ModelAndView();
 		
 		Payment paymentValue = new Payment();
 		paymentValue.setMissionNo(mission.getNo());
 		Payment payment = null;
 		
 		try {
-			payment = paymentService.paymentInquiry(paymentValue);
-			mission = missionService.missionInquiry(mission);
+			payment = paymentServiceImpl.paymentInquiry(paymentValue);
+			mission = missionServiceImpl.missionInquiry(mission);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		if (payment != null) {
-			mv = new ModelAndView("/perform/register");
-
+			mv.setViewName("/perform/register");
 			String email = (String)httpSession.getAttribute("email");
 			
 			mv.addObject("paymentNo", payment.getNo());
@@ -74,32 +74,35 @@ public class PerformController {
 		}
 	}
 	
+	//수행 내역 등록
 	@PostMapping
 	public ModelAndView performRegister(@RequestParam("img") MultipartFile file, Perform perform) {
 		ModelAndView mv = new ModelAndView();
+		mv.setViewName("redirect:/mission");
+		
 		try {
 			if (file == null || file.isEmpty()) {
 				mv.setViewName("redirect:/mission");
+				
 				return mv;
 			}
-			
 			LocalDate today = LocalDate.now();
 			perform.setRegisterDate(today);
-			
-			Perform performValue = performService.performInquiry(perform);
+			Perform performValue = performServiceImpl.performInquiry(perform);
 			
 			if (performValue != null) {
-				performService.performEdit(file, perform);
+				performServiceImpl.performEdit(file, perform);
 			} else {
-				performService.performRegister(file, perform);
+				performServiceImpl.performRegister(file, perform);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		mv.setViewName("redirect:/mission");
+		
 		return mv;
 	}
 	
+	//수행 내역 목록 조회
 	@GetMapping
 	public ModelAndView performList(Mission mission) {
 		ModelAndView mv = new ModelAndView("/perform/list");
@@ -110,13 +113,13 @@ public class PerformController {
 		
 		if (mission.getNo() != 0) {
 			try {
-				Mission missionValue = missionService.missionInquiry(mission);
+				Mission missionValue = missionServiceImpl.missionInquiry(mission);
 				
 				payment.setMissionNo(missionValue.getNo());
-				payment = paymentService.paymentInquiry(payment);
+				payment = paymentServiceImpl.paymentInquiry(payment);
 				
 				perform.setPaymentNo(payment.getNo());
-				performList = performService.performList(perform);
+				performList = performServiceImpl.performList(perform);
 				
 				mv.addObject("mission", missionValue);
 				mv.addObject("performList", performList);
@@ -125,10 +128,10 @@ public class PerformController {
 			}
 		} else {
 			try {
-				performList = performService.performList(perform);
+				performList = performServiceImpl.performList(perform);
 				
-				List<Mission> missionList = missionService.missionList(mission);
-				List<Payment> paymentList = paymentService.paymentList(payment);
+				List<Mission> missionList = missionServiceImpl.missionList(mission);
+				List<Payment> paymentList = paymentServiceImpl.paymentList(payment);
 				
 				mv.addObject("paymentList", paymentList);
 				mv.addObject("missionList", missionList);
@@ -141,6 +144,7 @@ public class PerformController {
 		return mv;
 	}
 	
+	//수행 내역 상세 조회
 	@GetMapping("/{no}")
 	public ModelAndView performInquiry(@PathVariable int no) {
 		Perform perform = new Perform();
@@ -150,10 +154,10 @@ public class PerformController {
 		Payment paymentValue = new Payment();
 		
 		try {
-			Perform performValue = performService.performInquiry(perform);
+			Perform performValue = performServiceImpl.performInquiry(perform);
 			
 			paymentValue.setNo(performValue.getPaymentNo());
-			int missionNo = paymentService.paymentInquiry(paymentValue).getMissionNo();
+			int missionNo = paymentServiceImpl.paymentInquiry(paymentValue).getMissionNo();
 		
 			mv.addObject("missionNo", missionNo);
 			mv.addObject("perform", performValue);
@@ -164,28 +168,27 @@ public class PerformController {
 		return mv;
 	}
 	
+	//수행 내역 수정
 	@PutMapping
 	public ModelAndView performModify(Perform perform) {
-		ModelAndView mv = null;
+		ModelAndView mv = new ModelAndView();
 		try {
 			Payment paymentValue = new Payment();
 			paymentValue.setNo(perform.getPaymentNo());
 			Mission missionValue = new Mission();
 
-			paymentValue = paymentService.paymentInquiry(paymentValue);
+			paymentValue = paymentServiceImpl.paymentInquiry(paymentValue);
 			int missionNo = paymentValue.getMissionNo();
 
 			missionValue.setNo(missionNo);
-			missionValue = missionService.missionInquiry(missionValue);
+			missionValue = missionServiceImpl.missionInquiry(missionValue);
 
 			if (perform.getRegisterDate().isBefore(missionValue.getStartDate())) {
+				performServiceImpl.performModify(perform);
 
-				performService.performModify(perform);
-
-				mv = new ModelAndView(new RedirectView("/perform"));
+				mv.setViewName("redirect:/perform");
 			} else {
-				mv = new ModelAndView(new RedirectView("/perform/" + perform.getNo()));
-
+				mv.setViewName("redirect:/perform" + perform.getNo());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -194,12 +197,13 @@ public class PerformController {
 		return mv;
 	}
 	
+	//수행 내역 삭제
 	@DeleteMapping
 	public ModelAndView performDelete(Perform perform) {
 		ModelAndView mv = new ModelAndView("/perform");
 		
 		try {
-			performService.performDelete(perform);
+			performServiceImpl.performDelete(perform);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -207,11 +211,12 @@ public class PerformController {
 		return mv;
 	}
 	
+	//이미지 출력
 	@GetMapping("/photo/{no}")
 	public void photoView(Perform perform, HttpServletResponse response) {
 		try {
 			String path = System.getProperty("user.home") + File.separator + "rgasPhoto";
-			String physical = performService.performInquiry(perform).getPhysical();
+			String physical = performServiceImpl.performInquiry(perform).getPhysical();
 			String imgPath = path + File.separator + physical;
 
 			File file = new File(imgPath);
@@ -224,7 +229,6 @@ public class PerformController {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			
 		}
 	}
 }

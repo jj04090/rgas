@@ -30,7 +30,7 @@
 			</div>
 		</div>
 		<div>
-			<label>참가비</label>
+			<label>금액</label>
 			<div>
 				<input type="text" id="entryFee" name="entryFee"
 					placeholder="숫자만 입력해주세요">
@@ -73,11 +73,18 @@
 			</div>
 		</div>
 	</form>
-	<input type="button" id="btn" value="결제하기" />
+	<input type="button" id="btn" value="미션 개설" disabled/>
 	
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 	<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+		<script>
+			$(function() {
+				$("#img").change(function(e){
+					$('input[type="button"]').removeAttr('disabled');
+				});
+			});
+	  	</script>
 	<script>
 		document.getElementById('btn').addEventListener('click', ajax_call);
 		function ajax_call() {
@@ -95,16 +102,16 @@
 							name : msg.paymentName,
 							amount : msg.amount,
 							buyer_email : msg.buyerEmail,
-							buyer_name : msg.buyerName,
+							buyer_name : msg.buyerName
 						}, function(rsp) {
 							if (rsp.success) {
-								var msg = '결제가 완료되었습니다.\n';
+								var msg = '미션 개설이 완료되었습니다.\n';
 								msg += '결제 금액 : ' + rsp.paid_amount;
 								msg += '\n카드 승인번호 : ' + rsp.apply_num;
 								document.getElementById("register").submit();
 							} else {
-								var msg = '결제에 실패하였습니다.';
-								msg += '에러내용 : ' + rsp.error_msg;
+								var msg = '미션 개설에 실패하였습니다.\n입력값을 확인해주세요';
+								/* msg += '에러내용 : ' + rsp.error_msg; */
 							}
 							alert(msg);
 						});

@@ -13,24 +13,23 @@ public class SystemServiceImpl implements SystemService{
 	private MemberMapper memberMapper;
 	@Autowired 
 	private HttpSession httpSession;
-	
+
 	@Override
 	public boolean login(Member member) throws Exception {
 		member = memberMapper.select(member);
 		httpSession.setAttribute("membera", member);
-		if (memberMapper.select(member) != null
-				&& memberMapper.select(member).getNo() != 0
-				&& memberMapper.select(member).getAuth() == 'C'
-				&& memberMapper.select(member).getStatus() == 'A') {
+		member = memberMapper.select(member);
+		httpSession.setAttribute("memberValue", member);
+		
+		if (member != null && member.getNo() != 0 
+				&& member.getAuth() == 'C' && member.getStatus() == 'A') {
 			
 			httpSession.setAttribute("auth", "C");
 			httpSession.setAttribute("email", member.getEmail());
 			
 			return true;
-		} else if (memberMapper.select(member) != null
-				&& memberMapper.select(member).getNo() != 0
-				&& memberMapper.select(member).getAuth() == 'A'
-				&& memberMapper.select(member).getStatus() == 'A') {
+		} else if (member != null && member.getNo() != 0
+				&& member.getAuth() == 'A' && member.getStatus() == 'A') {
 			
 			httpSession.setAttribute("auth", "A");
 			httpSession.setAttribute("email", member.getEmail());

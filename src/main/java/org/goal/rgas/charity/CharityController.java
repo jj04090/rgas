@@ -3,8 +3,10 @@ package org.goal.rgas.charity;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,13 +28,20 @@ public class CharityController {
 	}
 
 	@PostMapping
-	public ModelAndView charityRegister(Charity charity) {
-		ModelAndView mv = new ModelAndView(new RedirectView("charity"));
+	public ModelAndView charityRegister(@Valid Charity charity, Errors errors) {
+		ModelAndView mv = new ModelAndView();
+		 if (errors.hasErrors()) {
+			 	mv.setViewName("redirect:/charity/form");
+	            return mv;
+	        }
+		
 		try {
 			charityServiceImpl.charityRegister(charity);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		mv.setViewName("redirect:/charity");
 		return mv;
 	}
 

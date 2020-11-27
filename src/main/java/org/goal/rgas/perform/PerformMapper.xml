@@ -82,15 +82,13 @@
             PAYMENT_NO,
             REGISTER_DATE,
             LOGICAL,
-            PHYSICAL,
-            STATUS
+            PHYSICAL
         ) VALUES (
             <!-- #{no}, -->
             #{paymentNo},
             NOW(),
             #{logical},
-            #{physical},
-            #{status}
+            #{physical}
         )
     </insert>
 

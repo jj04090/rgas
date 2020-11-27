@@ -7,12 +7,15 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
+import org.goal.rgas.charity.Charity;
 import org.goal.rgas.mission.Mission;
 import org.goal.rgas.mission.MissionServiceImpl;
 import org.goal.rgas.payment.Payment;
 import org.goal.rgas.payment.PaymentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -73,9 +76,12 @@ public class PerformController {
 	
 	@PostMapping
 	public ModelAndView performRegister(@RequestParam("img") MultipartFile file, Perform perform) {
-		ModelAndView mv = null;
+		ModelAndView mv = new ModelAndView();
 		try {
-			mv = new ModelAndView(new RedirectView("/mission"));
+			if (file == null || file.isEmpty()) {
+				mv.setViewName("redirect:/mission");
+				return mv;
+			}
 			
 			LocalDate today = LocalDate.now();
 			perform.setRegisterDate(today);
@@ -89,7 +95,7 @@ public class PerformController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		mv.setViewName("redirect:/mission");
 		return mv;
 	}
 	

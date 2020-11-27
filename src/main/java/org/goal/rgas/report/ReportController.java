@@ -10,6 +10,7 @@ import org.goal.rgas.member.MemberServiceImpl;
 import org.goal.rgas.perform.Perform;
 import org.goal.rgas.perform.PerformServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -56,14 +57,19 @@ public class ReportController {
 	}
 	
 	@PostMapping
-	public ModelAndView reportRegister(Report report) {
-		ModelAndView mv = new ModelAndView(new RedirectView("/perform"));
+	public ModelAndView reportRegister(@Valid Report report, Errors errors) {
+		ModelAndView mv = new ModelAndView();
+		 if (errors.hasErrors()) {
+			 mv.setViewName("redirect:/mission");
+			 return mv;
+		 }
 		try {
 			reportService.reportRegister(report);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+		mv.setViewName("redirect:/perform");
 		return mv;
 	}
 	

@@ -30,7 +30,7 @@
         			실패
         		</c:if>
             </td>
-            <td><img src="/perform/photo/${perform.no}"/></td>
+            <td><img src="/perform/photo/${perform.no}" width="400" height="300"/></td>
             <td><a href="/report/form/${perform.no}">신고</a></button></td>
         </tr>
         </c:forEach>

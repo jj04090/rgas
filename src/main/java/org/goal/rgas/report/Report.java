@@ -10,9 +10,7 @@ import javax.validation.constraints.NotBlank;
 */
 public class Report implements Serializable {
     private int no;
-    @NotBlank
     private int memberNo;
-    @NotBlank
     private int performNo;
     @NotBlank
     private String note;

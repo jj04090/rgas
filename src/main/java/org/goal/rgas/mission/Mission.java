@@ -3,7 +3,8 @@ package org.goal.rgas.mission;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
@@ -15,21 +16,23 @@ import org.springframework.stereotype.Component;
 public class Mission implements Serializable {
     private int no;
     private int memberNo;
-	@NotBlank
+	@NotEmpty
     private String title;
-	@NotBlank
+	@NotEmpty
     private String note;
-	@NotBlank
     private int entryFee;
+    @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
+    @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
+    @NotNull
     @DateTimeFormat(pattern = "hh:mm:ss")
     private String certifiedStartTime;
+    @NotNull
     @DateTimeFormat(pattern = "hh:mm:ss")
     private String certifiedEndTime;
-    @NotBlank
     private int categoryNo;
     private String logical;
     private String physical;

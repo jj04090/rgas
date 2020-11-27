@@ -8,11 +8,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.goal.rgas.charity.Charity;
 import org.goal.rgas.member.Member;
 import org.goal.rgas.member.MemberServiceImpl;
 import org.goal.rgas.payment.Payment;
 import org.goal.rgas.payment.PaymentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,7 +50,6 @@ public class MissionController {
 	@PostMapping
 	public ModelAndView missionRegister(@RequestParam("img") MultipartFile file, Mission mission, @RequestParam("merchantUid") String merchantUid) { 
 		ModelAndView mv = new ModelAndView(new RedirectView("/mission"));
-		
 		try {
 			mission = missionService.missionRegister(file, mission);
 			paymentServiceImpl.paymentRegister(mission, merchantUid);

@@ -11,11 +11,11 @@ import javax.validation.constraints.NotBlank;
 */
 public class Charity implements Serializable {
     private int no;
-	@NotBlank
+	@NotBlank(message = "기부단체 명을 입력해주세요.")
     private String name;
-	@NotBlank
+	@NotBlank(message = "은행을 입력해주세요.")
     private String bank;
-	@NotBlank
+	@NotBlank(message = "계좌번호를 입력해주세요.")
     private String account;
     private int itemStart;
     private int itemSizePerPage;

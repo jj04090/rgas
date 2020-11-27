@@ -5,8 +5,10 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.goal.rgas.charity.Charity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -32,15 +34,18 @@ public class MemberController {
 	}
 	
 	@PostMapping
-	public ModelAndView memberRegister( Member member) {
-		ModelAndView mv = new ModelAndView(new RedirectView("/login"));
-
+	public ModelAndView memberRegister(@Valid Member member, Errors errors) {
+		ModelAndView mv = new ModelAndView();
+		 if (errors.hasErrors()) {
+			 	mv.setViewName("redirect:/member/form");
+	            return mv;
+	        }
 		try {
 			memberService.memberRegister(member);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+		mv.setViewName("redirect:/login");
 		return mv;
 	}
 

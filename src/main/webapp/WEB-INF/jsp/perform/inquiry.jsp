@@ -12,7 +12,7 @@
 		<input type="hidden" name="paymentNo" id="paymentNo" value="${perform.paymentNo}" />
 		<div>
 			<label>인증사진</label>
-			<img src="/perform/photo/${perform.no}" width="400" height="400" />
+			<img src="/perform/photo/${perform.no}" width="400" height="300" />
 		</div>
 		
 		성공 실패 유무 : ${perform.status}

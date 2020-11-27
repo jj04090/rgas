@@ -40,7 +40,7 @@
             <td>${mission.entryFee}</td>
             <td><tf:formatDateTime value="${mission.startDate}" pattern="yyyy-MM-dd"/></td>
             <td><tf:formatDateTime value="${mission.endDate}" pattern="yyyy-MM-dd"/></td>
-            <td><img src="/mission/photo/${mission.no}" width="400" height="400" /></td>
+            <td><img src="/mission/photo/${mission.no}" width="400" height="300" /></td>
             <td>
             	<form method="get" action="/perform">
 					<input type="hidden" name="no" id="no" value="${mission.no}" />

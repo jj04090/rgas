@@ -44,7 +44,7 @@
 						<div class="container py-5">
 
 							<div class="text-center">
-								<a href="/login"><img src="/images/logo-dark@2x.png" alt="Canvas Logo" style="height: 100px;"></a>
+								<a href="/login"><img src="/images/logo.png" alt="Canvas Logo" style="height: 200px;"></a>
 							</div>
 
 							<div class="card mx-auto rounded-0 border-0" style="max-width: 400px;">
@@ -78,7 +78,24 @@
 											</div>
 											<div class="col-12 form-group">
 												<label for="login-form-username">Bank:</label>
-												<input type="text" id="bank" name="bank" value="" class="form-control not-dark" />
+												<select id="bank" name="bank">
+												    <option value="">은행 선택</option>
+												    <option value="KB국민은행">KB국민은행</option>
+												    <option value="SC제일은행">SC제일은행</option>
+												    <option value="기업은행">기업은행</option>
+												    <option value="농협">농협</option>
+												    <option value="산업은행">산업은행</option>
+												    <option value="새마을금고">새마을금고</option>
+												    <option value="수협">수협</option>
+												    <option value="신한은행">신한은행</option>
+												    <option value="신협">신협</option>
+												    <option value="외환은행">외환은행</option>
+												    <option value="우리은행">우리은행</option>
+												    <option value="우체국">우체국</option>
+												    <option value="카카오뱅크">카카오뱅크</option>
+												    <option value="케이뱅크">케이뱅크</option>
+												    <option value="하나은행">하나은행</option>
+												</select>
 											</div>
 											<div class="col-12 form-group">
 												<label for="login-form-username">Account:</label>

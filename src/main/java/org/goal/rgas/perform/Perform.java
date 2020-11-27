@@ -3,10 +3,13 @@ package org.goal.rgas.perform;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import javax.validation.constraints.NotBlank;
+
 /**
  * @author plusperson@gmail.com
  */
 public class Perform implements Serializable {
+	@NotBlank
 	private int no;
 	private int paymentNo;
 	private LocalDate registerDate;

@@ -5,6 +5,7 @@ import javax.validation.Valid;
 
 import org.goal.rgas.mission.Mission;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,10 +25,14 @@ public class PaymentController {
 	private HttpServletResponse response;
 	
 	@PostMapping("/form/{merchantUid}")
-	public IamportRequest paymentProcess (@RequestBody Mission mission, @PathVariable String merchantUid) {
+	public IamportRequest paymentProcess (@RequestBody @Valid Mission mission, Errors errors,  @PathVariable String merchantUid) {
 		IamportRequest iamportRequest = null;
 		try {
-			response.setStatus(HttpServletResponse.SC_CREATED);
+			if (errors.hasErrors()) {
+				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			} else {
+				response.setStatus(HttpServletResponse.SC_CREATED);
+			}
 			iamportRequest = paymentServiceImpl.paymentProcess(mission, merchantUid);
 		} catch (Exception e) {
 			//에러페이지 띄워주기

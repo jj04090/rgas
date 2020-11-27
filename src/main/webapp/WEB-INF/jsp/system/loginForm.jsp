@@ -26,7 +26,6 @@
 	<!-- Document Title
 	============================================= -->
 	<title>Login - Layout 4 | RGAS</title>
-
 </head>
 
 <body class="stretched">
@@ -46,7 +45,7 @@
 						<div class="container py-5">
 
 							<div class="text-center">
-								<a href="/login"><img src="images/logo-side@2x.png" alt="Canvas Logo" style="height: 100px;"></a>
+								<a href="/login"><img src="images/logo.png" alt="Canvas Logo" style="height: 200px"></a>
 							</div>
 
 							<div class="card mx-auto rounded-0 border-0" style="max-width: 400px;">
@@ -106,6 +105,5 @@
 	<!-- Footer Scripts
 	============================================= -->
 	<script src="/js/functions.js"></script>
-
 </body> 
 </html>

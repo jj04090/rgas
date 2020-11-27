@@ -16,6 +16,8 @@ public class SystemServiceImpl implements SystemService{
 	
 	@Override
 	public boolean login(Member member) throws Exception {
+		member = memberMapper.select(member);
+		httpSession.setAttribute("membera", member);
 		if (memberMapper.select(member) != null
 				&& memberMapper.select(member).getNo() != 0
 				&& memberMapper.select(member).getAuth() == 'C'
@@ -23,7 +25,7 @@ public class SystemServiceImpl implements SystemService{
 			
 			httpSession.setAttribute("auth", "C");
 			httpSession.setAttribute("email", member.getEmail());
-
+			
 			return true;
 		} else if (memberMapper.select(member) != null
 				&& memberMapper.select(member).getNo() != 0

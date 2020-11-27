@@ -17,100 +17,111 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
-public class MissionServiceImpl implements MissionService{
+public class MissionServiceImpl implements MissionService {
 	@Autowired
 	private MemberMapper memberMapper;
-	
+
 	@Autowired
 	private MissionMapper missionMapper;
-	
+
 	@Autowired
 	private PaymentMapper paymentMapper;
-	
+
 	@Autowired
 	private RefundsMapper refundsMapper;
-	
+
 	@Autowired
 	private HttpSession httpSession;
 
+	// 미션 등록
 	@Override
 	public Mission missionRegister(MultipartFile file, Mission mission) throws Exception {
 		try {
 			String path = System.getProperty("user.home") + File.separator + "rgasPhoto";
 
 			new File(path).mkdir();
-			
+
+			// 사진 논리,물리명 생성
 			String logical = file.getOriginalFilename();
-			String physical = UUID.randomUUID().toString().substring(0,8) + "_" +  logical;
-			
-			String filePath = path + File.separator + physical;
-			file.transferTo(new File(filePath));
-			
+			String physical = UUID.randomUUID().toString().substring(0, 8) + "_" + logical;
+
 			mission.setLogical(logical);
 			mission.setPhysical(physical);
 			mission.setStatus('N');
-			
-			String email = (String)httpSession.getAttribute("email");
+
+			// 사진 저장
+			String filePath = path + File.separator + physical;
+			file.transferTo(new File(filePath));
+
+			String email = (String) httpSession.getAttribute("email");
 			Member memberValue = new Member();
 			memberValue.setEmail(email);
-			
+
 			int memberNo = memberMapper.select(memberValue).getNo();
 			mission.setMemberNo(memberNo);
-			
+
 			missionMapper.insert(mission);
+
 			return missionMapper.select(mission);
-		} catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return null;
 	}
 
+	// 미션 목록 조회
 	@Override
 	public List<Mission> missionList(Mission mission) throws Exception {
-		
+
 		return missionMapper.list(mission);
 	}
 
+	// 미션 상세 조회
 	@Override
 	public Mission missionInquiry(Mission mission) throws Exception {
-		
+
 		return missionMapper.select(mission);
 	}
 
+	// 미션 정보 수정
 	@Override
 	public void missionModify(Mission mission) throws Exception {
-		
+
 		missionMapper.update(mission);
 	}
 
+	// 미션 삭제
 	@Override
 	public void missionDelete(Mission mission) throws Exception {
-		
+
 		missionMapper.delete(mission);
 	}
 
+	// 총 미션 성공 횟수 계산
 	@Override
 	public int totalSuccessCount(Member member) throws Exception {
 		int count = 0;
 		int memberNo = member.getNo();
-		
+
 		Payment paymentValue = new Payment();
 		paymentValue.setMissionNo(memberNo);
-		
+
 		List<Payment> payments = paymentMapper.list(paymentValue);
+		
 		for (int i = 0; i < payments.size(); i++) {
 			Payment payment = payments.get(i);
 			int paymentNo = payment.getNo();
-			
+
 			Refunds refundsValue = new Refunds();
 			refundsValue.setPaymentNo(paymentNo);
-			
 			Refunds refunds = refundsMapper.select(refundsValue);
-			
-			if (payment.getDeposit() == refunds.getAmount()) { count++; } 
+
+			if (payment.getDeposit() == refunds.getAmount()) {
+				count++;
+			}
 		}
-		
+
 		return count;
 	}
 }

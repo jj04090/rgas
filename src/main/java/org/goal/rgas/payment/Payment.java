@@ -104,6 +104,5 @@ public class Payment implements Serializable {
 		return "Payment [no=" + no + ", paymentCode=" + paymentCode + ", memberNo=" + memberNo + ", missionNo="
 				+ missionNo + ", paymentDate=" + paymentDate + ", deposit=" + deposit + "]";
 	}
-	
-	
+
 }

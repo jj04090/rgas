@@ -12,18 +12,15 @@ public class MvcConfiguration implements WebMvcConfigurer {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(new LoginInterceptor())
-		.addPathPatterns("/donation/**", "/member/**", "/mission/**", 
-				"/payment/**", "/perform/**", "/refunds/**", "/reports/**")
-		.excludePathPatterns("/member/form", "/configuration/**", 
-				"/system/**", "/interceptor/**", "/emailcertification/**",
-				"/member");
-		
-		registry.addInterceptor(new AdminInterceptor())
-		.addPathPatterns("/member", "/donation/**", "/perform/*",
-				"/report/*");
-		
-		registry.addInterceptor(new CommonInterceptor())
-		.addPathPatterns("/mission/**","/perform/form/*", "/perform",
+				.addPathPatterns("/donation/**", "/member/**", "/mission/**", "/payment/**", "/perform/**",
+						"/refunds/**", "/reports/**")
+				.excludePathPatterns("/member/form", "/configuration/**", "/system/**", "/interceptor/**",
+						"/emailcertification/**", "/member");
+
+		registry.addInterceptor(new AdminInterceptor()).addPathPatterns("/donation/**", "/perform/*", "/report/*",
+				"/charity/**");
+
+		registry.addInterceptor(new CommonInterceptor()).addPathPatterns("/mission/**", "/perform/form/*", "/perform",
 				"/report/form/*");
 	}
 }

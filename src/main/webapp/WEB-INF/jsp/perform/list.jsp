@@ -20,7 +20,22 @@
         </tr>
         <c:forEach var="perform" items="${performList}">
         <tr>
-            <td>${mission.title}</td>
+            <td>
+            	<c:if test="${mission.title != null}" >
+            		${mission.title}
+            	</c:if>
+            	<c:if test="${missionList != null}">
+		        	<c:forEach var="paymentList" items="${paymentList}">
+		            		<c:if test="${perform.paymentNo eq paymentList.no}">
+		            			<c:forEach var="missionList" items="${missionList}">
+		            				<c:if test="${paymentList.missionNo eq missionList.no}">
+				            			${missionList.title}
+		            				</c:if>
+		            			</c:forEach>
+		            		</c:if>
+		            </c:forEach>
+            	</c:if>
+            </td>
             <td>${perform.registerDate}</td>
             <td>
             	<c:if test="${perform.status == 'Y'}">
@@ -30,8 +45,10 @@
         			실패
         		</c:if>
             </td>
-            <td><img src="/perform/photo/${perform.no}"/></td>
-            <td><a href="/report/form/${perform.no}">신고</a></button></td>
+            <td><img src="/perform/photo/${perform.no}" width="400" height="300"/></td>
+            <c:if test="${missionList != null}">
+            	<td><a href="/report/form/${perform.no}">신고</a></button></td>
+            </c:if>
         </tr>
         </c:forEach>
     </table>

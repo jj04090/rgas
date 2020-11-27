@@ -19,8 +19,9 @@ public class MemberServiceImpl implements MemberService{
 	private MemberMapper memberMapper;
 	
 	@Autowired
-	private MissionServiceImpl missionService;
+	private MissionServiceImpl missionServiceImpl;
 	 
+	//회원 가입
 	@Override
 	public void memberRegister(Member member) throws Exception {
 		Member memberValue = new Member();
@@ -31,24 +32,27 @@ public class MemberServiceImpl implements MemberService{
 		}
 	}
 
+	//회원 목록 조회
 	@Override
 	public List<Member> memberList(Member member) throws Exception {
 		
 		return memberMapper.selectAll(member);
 	}
 
+	//회원 상세 조회
 	@Override
 	public Member memberInquiry(Member member) throws Exception {
 		
 		return memberMapper.select(member); 
 	}
 
+	//회원 정보 수정
 	@Override
 	public void memberModify(Member member) throws Exception {
 		if ("A".equals((String)(httpSession.getAttribute("auth")))) {
 			member.setStatus('S');
 			memberMapper.update(member);
-		} else if ("C".equals((String)(httpSession.getAttribute("auth")))) {
+		} else if ("C".equals( (String)(httpSession.getAttribute("auth")) )) {
 			if (member.getNickname() != null) {
 				memberMapper.update(member);
 			} else {
@@ -58,13 +62,14 @@ public class MemberServiceImpl implements MemberService{
 		}
 	}
 
+	//회원 등급 갱신
 	@Override
 	public void memberGradeRenewal(String email) throws Exception {
 		Member memberValue = new Member();
 		memberValue.setEmail(email);
 		Member member = memberMapper.select(memberValue);
 		
-		int count = missionService.totalSuccessCount(member);
+		int count = missionServiceImpl.totalSuccessCount(member);
 		char grade;
 
 		if (count < 20) {

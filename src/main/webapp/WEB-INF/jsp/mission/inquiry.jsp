@@ -185,8 +185,8 @@
 				if (xhr.readyState === xhr.DONE) {
 					if (xhr.status === 200 || xhr.status === 201) {
 						var msg = xhr.responseText;
-						if(msg == "true") {
-							alert("성공");
+						if(msg != "0") {
+							alert("환급금액 : " + msg);
 						} else {
 							alert("실패");
 						}

@@ -13,9 +13,9 @@
 		<input type="hidden" id="merchantUid" name="merchantUid" value="${merchantUid}"/>
 	<form action="${pageContext.request.contextPath}/donation" id="register" method="post">
 			<select id="charityNo" name="no">
-				<option value="">기부단체 선택</option>
 				<c:forEach items="${charityList}" var="row">
 				<option value="${row.no}">${row.name}</option>
+				
 				</c:forEach>
 			</select>
 	</form>
@@ -66,12 +66,8 @@
 							buyer_name : msg.buyerName,
 						}, function(rsp) {
 							if (rsp.success) {
-								var msg = '결제가 완료되었습니다.';
-								msg += '고유ID : ' + rsp.imp_uid;
-								msg += '상점 거래ID : ' + rsp.merchant_uid;
-								msg += '결제 금액 : ' + rsp.paid_amount;
-								msg += '카드 승인번호 : ' + rsp.apply_num;
-								msg += rsp;
+								var msg = '기부금이 이체되었습니다.\n';
+								msg += '금액 : ' + rsp.paid_amount;
 								document.getElementById("register").submit();
 							} else {
 								var msg = '결제에 실패하였습니다.';
@@ -83,7 +79,7 @@
 				}
 			}
 			var charity = {
-				no : document.getElementById("charityNo").value,
+				no : document.getElementById("charityNo").value
 			};
 			
 			xhr.open("POST", "http://localhost:8080/donation/form/"+document.getElementById("merchantUid").value, true);

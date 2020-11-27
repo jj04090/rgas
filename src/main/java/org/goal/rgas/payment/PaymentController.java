@@ -5,6 +5,7 @@ import javax.validation.Valid;
 
 import org.goal.rgas.mission.Mission;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,31 +20,40 @@ import org.springframework.web.servlet.view.RedirectView;
 public class PaymentController {
 	@Autowired
 	private PaymentServiceImpl paymentServiceImpl;
-	
+
 	@Autowired
-	private HttpServletResponse response;
-	
+	private HttpServletResponse httpServletResponse;
+
+	//결제 정보 찾기
 	@PostMapping("/form/{merchantUid}")
-	public IamportRequest paymentProcess (@RequestBody Mission mission, @PathVariable String merchantUid) {
+	public IamportRequest paymentProcess(@RequestBody @Valid Mission mission, Errors errors, @PathVariable String merchantUid) {
 		IamportRequest iamportRequest = null;
+		
 		try {
-			response.setStatus(HttpServletResponse.SC_CREATED);
+			if (errors.hasErrors()) {
+				httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			} else {
+				httpServletResponse.setStatus(HttpServletResponse.SC_CREATED);
+			}
 			iamportRequest = paymentServiceImpl.paymentProcess(mission, merchantUid);
 		} catch (Exception e) {
-			//에러페이지 띄워주기
 			e.printStackTrace();
 		}
+		
 		return iamportRequest;
 	}
-	
+
+	//결제 취소 처리
 	@DeleteMapping
 	public ModelAndView paymentCancel(Payment payment) {
 		ModelAndView mv = new ModelAndView(new RedirectView("mission"));
+		
 		try {
 			paymentServiceImpl.paymentCancel(payment);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		return mv;
 	}
 }

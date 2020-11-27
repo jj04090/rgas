@@ -22,9 +22,17 @@
 		<div>
 			<label></label>
 			<div>
-				<input value="등록" type="submit">
+				<input value="등록" type="submit" disabled />
 			</div>
 		</div>
 	</form>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<script>
+		$(function() {
+			$("#img").change(function(e){
+				$('input[type="submit"]').removeAttr('disabled');
+			});
+		});
+  	</script>
 </body>
 </html>

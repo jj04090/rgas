@@ -1,21 +1,18 @@
 package org.goal.rgas.charity;
 
 import java.io.Serializable;
-
 import javax.validation.constraints.NotBlank;
-
-
 
 /**
  * @author plusperson@gmail.com
 */
 public class Charity implements Serializable {
     private int no;
-	@NotBlank
+	@NotBlank(message = "기부단체 명을 입력해주세요.")
     private String name;
-	@NotBlank
+	@NotBlank(message = "은행명을 입력해주세요.")
     private String bank;
-	@NotBlank
+	@NotBlank(message = "계좌번호를 입력해주세요.")
     private String account;
     private int itemStart;
     private int itemSizePerPage;
@@ -28,7 +25,6 @@ public class Charity implements Serializable {
         this.name = name;
         this.bank = bank;
         this.account = account;
-
         this.itemStart = itemStart;
         this.itemSizePerPage = itemSizePerPage;
     }

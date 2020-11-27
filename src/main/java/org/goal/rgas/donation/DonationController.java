@@ -25,49 +25,57 @@ public class DonationController {
 	private CharityServiceImpl charityServiceImpl;
 	
 	@Autowired
-	private HttpServletResponse response;
+	private HttpServletResponse httpServletResponse;
 	
+	//기부금 이체 정보 찾기
 	@PostMapping("/form/{merchantUid}")
 	public IamportRequest donationTransferForm(@RequestBody Charity charity, @PathVariable String merchantUid) {
 		IamportRequest iamportRequest = null;
+		
 		try {
-			response.setStatus(HttpServletResponse.SC_CREATED);
+			httpServletResponse.setStatus(HttpServletResponse.SC_CREATED);
 			iamportRequest = donationServiceImpl.donationTransferProcess(charity, merchantUid);
 		} catch (Exception e) {
-			//에러페이지 띄워주기
 			e.printStackTrace();
 		}
+		
 		return iamportRequest;
 	}
 	
+	//기부금 이체 내역 등록
 	@PostMapping
 	public ModelAndView donationTransferRegister(int no) {
-		ModelAndView mv = new ModelAndView(new RedirectView("donation"));
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("redirect:/donation");
+		
 		try {
 			DonationTransfer donationTransfer = new DonationTransfer();
 			donationTransfer.setCharityNo(no);
 			donationTransfer.setAmount(donationServiceImpl.totalDonationSave());
-			donationServiceImpl.donationTransferRegister(donationTransfer);
 			
+			//기부금 이체 후 기부금 적립 상태 변경
+			donationServiceImpl.donationTransferRegister(donationTransfer);
 			donationServiceImpl.donationSaveModify(new DonationSave());
 		} catch (Exception e) {
-			//에러페이지 띄워주기
 			e.printStackTrace();
 		}
+		
 		return mv;
 	}
 	
+	//기부금 이체 목록 조회
 	@GetMapping
 	public ModelAndView donationTransferList(DonationTransfer donationTransfer) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("donation/list");
+		
 		try {
 			mv.addObject("donationList", donationServiceImpl.donationTransferList(donationTransfer));
 			mv.addObject("charityList", charityServiceImpl.charityList(new Charity()));
 		} catch (Exception e) {
-			//에러페이지 띄워주기
 			e.printStackTrace();
 		}
+		
 		return mv;
 	}
 }

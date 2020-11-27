@@ -46,20 +46,19 @@ public class RefundsServiceImpl implements RefundsService {
 	@Autowired
 	private MemberServiceImpl memberServiceImpl;
 
+	//환급 정보 조회
 	@Override
-	public boolean refundsProcess(Mission mission) throws Exception {
+	public int refundsProcess(Mission mission) throws Exception {
 		// 미션 정보 조회
 		mission = missionMapper.select(mission);
-		System.out.println(mission.getNo());
+		
 		// 결제 내역 조회
 		Payment payment = new Payment();
 		payment.setMissionNo(mission.getNo());
 		payment = paymentMapper.select(payment);
-		System.out.println(payment.getPaymentCode());
 
 		// 총 미션 수행 기간 계산
 		Period period = Period.between(mission.getStartDate(), mission.getEndDate());
-
 		int term = period.getDays() + 1;
 
 		// 미션 성공 횟수 계산
@@ -75,10 +74,8 @@ public class RefundsServiceImpl implements RefundsService {
 			IamportResponse<com.siot.IamportRestHttpClientJava.response.Payment> iamportResponse = iamportClient
 					.cancelPayment(new CancelData(payment.getPaymentCode(), false,
 							new BigDecimal(refundAmount)));
-			System.out.println("실행");
+			
 			if (0 == iamportResponse.getCode()) {
-				System.out.println("성공");
-				
 				Refunds refunds = new Refunds();
 				refunds.setAmount(iamportResponse.getResponse().getCancelAmount().intValue());
 				refunds.setPaymentNo(payment.getNo());
@@ -90,7 +87,7 @@ public class RefundsServiceImpl implements RefundsService {
 				//기부금 적립 내역 등록
 				if (refundAmount != payment.getDeposit()) {
 					DonationSave donationSave = new DonationSave();
-					donationSave.setAmount(refundAmount);
+					donationSave.setAmount((int) (payment.getDeposit() * 0.07 * failCount));
 					donationSave.setPaymentNo(payment.getNo());
 					donationSave.setSaveDate(LocalDate.now());
 					donationSaveMapper.insert(donationSave);
@@ -100,24 +97,25 @@ public class RefundsServiceImpl implements RefundsService {
 				String email = (String) httpSession.getAttribute("email");
 				memberServiceImpl.memberGradeRenewal(email);
 
-				return true;
+				return refundAmount;
 			} else {
 
 				System.out.println("실패" + iamportResponse.getMessage() + "##" + iamportResponse.getCode() + "##"
 						+ iamportResponse.getResponse());
-				// 결제 실패 시
-				return false;
+				return 0;
 			}
 		}
-		return false;
+		return 0;
 	}
 
+	//환급 내역 목록 조회
 	@Override
 	public List<Refunds> refundsList(Refunds refunds) throws Exception {
 		List<Refunds> refundsList = refundsMapper.list(refunds);
 		return refundsList;
 	}
 
+	//환급 내역 상세 조회
 	@Override
 	public Refunds refundsInquiry(Refunds refunds) throws Exception {
 		Refunds refundsValue = refundsMapper.select(refunds);

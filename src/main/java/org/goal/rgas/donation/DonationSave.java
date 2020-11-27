@@ -7,19 +7,19 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * @author plusperson@gmail.com
-*/
+ */
 public class DonationSave implements Serializable {
-    private int no;
-    private int paymentNo;
-    private int amount;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate saveDate;
-    private char status;
-    private int itemStart;
-    private int itemSizePerPage;
+	private int no;
+	private int paymentNo;
+	private int amount;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate saveDate;
+	private char status;
+	private int itemStart;
+	private int itemSizePerPage;
 
-    public DonationSave() {
-    }
+	public DonationSave() {
+	}
 
 	public DonationSave(int no, int paymentNo, int amount, LocalDate saveDate, char status, int itemStart,
 			int itemSizePerPage) {
@@ -86,5 +86,5 @@ public class DonationSave implements Serializable {
 
 	public void setItemSizePerPage(int itemSizePerPage) {
 		this.itemSizePerPage = itemSizePerPage;
-	}   
+	}
 }

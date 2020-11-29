@@ -12,7 +12,7 @@
 		<!-- Slider
 		============================================= -->
 		<section id="slider" class="slider-element slider-parallax dark min-vh-60 min-vh-md-100 include-header">
-			<div class="slider-inner" style="background-image: url('images/main-1.jpg'); background-size: cover; background-position: center center;">
+			<div class="slider-inner" style="background-image: url('images/main-2.jpg'); background-size: cover; background-position: center center;">
 
 				<div class="vertical-middle slider-element-fade">
 					<div class="container text-center py-5">

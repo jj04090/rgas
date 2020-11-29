@@ -1609,7 +1609,7 @@ a.h-text-dark:hover {
 
 .col-mb-80 > .col,
 .col-mb-80 > [class*="col-"] {
-	padding-bottom: 80px;
+	padding-bottom: 0px;
 }
 
 @media (min-width: 576px) {
@@ -3090,7 +3090,7 @@ html[xmlns] .slider-wrap {
 
 #header-wrap {
 	position: relative;
-	background-color: rgb(255, 0, 0);
+	background-color: #FFF;
 	width: 100%;
 }
 
@@ -3559,7 +3559,7 @@ body:not(.top-search-open) .top-search-parent #primary-menu-trigger {
 	display: block;
 	line-height: 22px;
 	padding: 14px 5px;
-	color: rgb(0, 0, 0);
+	color: #444;
 	font-weight: 700;
 	font-size: 0.8125rem;
 	letter-spacing: 1px;
@@ -6582,7 +6582,7 @@ body:not(.has-plugin-html5video) .video-wrap video {
 
 .content-wrap {
 	position: relative;
-	padding: 80px 0;
+	padding: 60px 0;
 	overflow: hidden;
 }
 

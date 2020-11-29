@@ -158,9 +158,6 @@
 									</c:if>
 									</div>
 								</form>
-									
-									
-					
 							    </div>
 							</div>
 									

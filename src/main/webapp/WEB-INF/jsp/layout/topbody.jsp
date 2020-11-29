@@ -57,8 +57,8 @@
 							<!-- Logo
 							============================================= -->
 							<div id="logo" class="order-lg-2 col-auto px-0 mr-lg-0">
-								<a href="index.html" class="standard-logo" data-dark-logo="/images/logo.png"><img src="/images/logo.png" alt="Canvas Logo" style="height: 100px;"></a>
-								<a href="index.html" class="retina-logo" data-dark-logo="/images/logo.png"><img src="/images/logo.png" alt="Canvas Logo" style="height: 100px;"></a>
+								<a href="/home" class="standard-logo" data-dark-logo="/images/logo.png"><img src="/images/logo.png" alt="Canvas Logo" style="height: 100px;"></a>
+								<a href="/home" class="retina-logo" data-dark-logo="/images/logo.png"><img src="/images/logo.png" alt="Canvas Logo" style="height: 100px;"></a>
 							</div><!-- #logo end -->
 	
 							<div id="primary-menu-trigger">
@@ -87,9 +87,9 @@
 										<a class="menu-link" href="/donation" style="font-size:19px"><div>기부 관리<i class="icon-angle-down"></i></div></a>
 									
 									<button class="sub-menu-trigger icon-chevron-right"></button></li>
-										<a class="menu-link" style="font-size:15px"><div> ${memberValue.name} 님 &nbsp; 환영합니다 <i class="icon-angle-down"></i></div></a>
+										<a class="menu-link" style="font-size:15px"><div> 관리자계정 입니다. <i class="icon-angle-down"></i></div></a>
 										<li class="menu-item mega-menu sub-menu">
-										<a class="menu-link" href="logout" style="font-size:9px"><div>로그아웃<i class="icon-angle-down"></i></div></a></li>
+										<a class="menu-link" href="/logout" style="font-size:9px"><div>로그아웃<i class="icon-angle-down"></i></div></a></li>
 							</div></nav><!-- #primary-menu end -->
 						</div>
 					</c:if>

@@ -25,7 +25,7 @@
 						<div class="container py-5">
 
 							<div class="text-center">
-								<a href="/login"><img src="images/logo-rgas.jpg" alt="Canvas Logo" style="height: 200px;"></a>
+								<a href="/login"><img src="images/logo.png" alt="Canvas Logo" style="height: 200px;"></a>
 							</div>
 
 							<div class="card mx-auto rounded-0 border-0" style="max-width: 400px;">

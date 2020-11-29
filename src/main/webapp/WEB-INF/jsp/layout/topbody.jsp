@@ -8,16 +8,16 @@
 	<div class="clearfix">
 		<!-- Header
 		============================================= -->
-		<header id="header" class="">
-			<div id="header-wrap" class="">
-				<div class="container">
+		<header id="header" class="transparent-header dark">
+			<div id="header-wrap">
+				<div class="container"  >
 					<c:if test="${auth eq 'C'}">
 						<div class="header-row justify-content-lg-between">
 							<!-- Logo
 							============================================= -->
 							<div id="logo" class="order-lg-2 col-auto px-0 mr-lg-0">
-								<a href="/home" class="standard-logo" data-dark-logo="/images/logo.png"><img src="/images/logo.png" alt="Logo" style="height: 100px;"></a>
-								<a href="/home" class="retina-logo" data-dark-logo="/images/logo.png"><img src="/images/logo.png" alt="Logo" style="height: 100px;"></a>
+								<a href="/home" class="standard-logo" data-dark-logo="/images/logo-rgas-dark.png"><img src="/images/logo-rgas.png" alt="Logo"></a>
+								<a href="/home" class="retina-logo" data-dark-logo="/images/logo-rgas-dark.png"><img src="/images/logo-rgas.png" alt="Logo"></a>
 							</div><!-- #logo end -->
 	
 							<div id="primary-menu-trigger">

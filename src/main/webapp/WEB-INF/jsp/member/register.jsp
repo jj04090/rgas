@@ -42,7 +42,7 @@
 					<div class="vertical-middle">
 						<div class="container py-5">
 							<div class="text-center">
-								<a href="/login"><img src="/images/logo.png" alt="Rgas Logo" style="height: 200px;"></a>
+								<a href="/login"><img src="/images/logo-rgas.png" alt="Rgas Logo" style="height: 200px;"></a>
 							</div>
 							<div class="card mx-auto rounded-0 border-0" style="max-width: 400px;">
 								<div class="card-body" style="padding: 40px;">

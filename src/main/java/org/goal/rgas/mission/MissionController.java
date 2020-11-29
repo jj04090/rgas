@@ -2,6 +2,7 @@ package org.goal.rgas.mission;
 
 import java.io.File;
 import java.nio.file.Files;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -81,7 +82,6 @@ public class MissionController {
 			
 			List<Mission> missionList = missionServiceImpl.missionList(missionValue);
 			List<Member> memberList = memberServiceImpl.memberList(new Member());
-			
 			mv.addObject("missionList", missionList);
 			mv.addObject("memberList", memberList);
 		} catch (Exception e) {

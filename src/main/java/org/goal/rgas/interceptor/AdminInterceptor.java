@@ -18,7 +18,7 @@ public class AdminInterceptor implements HandlerInterceptor {
 
 			return true;
 		} else {
-			response.sendRedirect("/mission");
+			response.sendRedirect("/home");
 
 			return false;
 		}

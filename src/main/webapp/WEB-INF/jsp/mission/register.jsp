@@ -1,90 +1,118 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8">
-</head>
-<body>
-	<c:set var="merchantUid" value="<%=UUID.randomUUID()%>" />
-	<form action="/mission" method="post" id="register" enctype="multipart/form-data">
-		<input type="hidden" id="merchantUid" name="merchantUid" value="${merchantUid}" />
-		<div>
-			<label>제목</label>
-			<div>
-				<input type="text" id="title" name="title">
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="tf" tagdir="/WEB-INF/tags" %>
+<jsp:include page="/WEB-INF/jsp/layout/topheader.jsp" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<title>미션 등록</title>
+<jsp:include page="/WEB-INF/jsp/layout/topbody.jsp" />
+
+<body class="stretched">
+	<div id="wrapper" class="clearfix">
+		<section id="page-title">
+			<div class="container clearfix">
+				<h1 style="font-size:40px">미션 등록</h1>
+				<span>mission register</span>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="/home">Home</a></li>
+					<li class="breadcrumb-item active" aria-current="page">Mission</li>
+				</ol>
 			</div>
-		</div>
-		<div>
-			<label>카테고리</label>
-			<div>
-				<select id="categoryNo" name="categoryNo">
-					<option value="1">건강</option>
-					<option value="2">생활패턴</option>
-					<option value="3">역량</option>
-					<option value="4">취미</option>
-					<option value="5">기타</option>
-				</select>
+		</section>
+		<section id="content">
+			<div class="content-wrap">
+				<div class="container clearfix">
+						<div class="form-result"></div>
+						<div class="row">
+							<div class="col-lg-10">
+								<c:set var="merchantUid" value="<%=UUID.randomUUID()%>" />
+								<form class="row" id="register" action="/mission" method="post" enctype="multipart/form-data">
+									<input type="hidden" id="merchantUid" name="merchantUid" value="${merchantUid}" />
+									<div class="col-12 form-group">
+										<label>미션 제목</label>
+										<input type="text" name="title" id="title" class="form-control required" />
+									</div>
+									<div class="col-6 form-group">
+										<label>카테고리</label>
+										<select class="form-control required" name="categoryNo" id="categoryNo">
+											<option value="1">건강</option>
+											<option value="2">생활패턴</option>
+											<option value="3">역량</option>
+											<option value="4">취미</option>
+											<option value="5">기타</option>
+										</select>
+									</div>
+									<div class="col-6 form-group">
+										<label>금액(원)</label>
+										<input type="text" id="entryFee" name="entryFee" class="form-control required"
+											placeholder="숫자만 입력해주세요" >
+									</div>
+									<div class="col-12">
+										<div class="form-group">
+											<label>내용</label>
+											<textarea name="note" id="note" class="form-control required" cols="30" rows="5"></textarea>
+										</div>
+									</div>
+									<div class="col-6 form-group">
+										<label>시작 일자</label>
+										<div>
+											<input type="date" name="startDate" id="startDate" class="form-control required" >
+										</div>
+									</div>
+									<div class="col-6 form-group">
+										<label>종료 일자</label>
+										<div>
+											<input type="date" name="endDate" id="endDate" class="form-control required">
+										</div>
+									</div>
+									<div class="col-6 form-group">
+										<label>인증 시작 시간</label>
+										<div>
+											<input type="time" name="certifiedStartTime" class="form-control required" 
+												id="certifiedStartTime" value="${mission.certifiedStartTime}">
+										</div>
+									</div>
+									<div class="col-6 form-group">
+										<label>인증 종료 시간</label>
+										<div>
+											<input type="time" name="certifiedEndTime" class="form-control required"
+												id="certifiedEndTime" value="${mission.certifiedEndTime}">
+										</div>
+									</div>
+									<div class="col-6 form-group">
+										<div class="form-group">
+											<label>예시사진 업로드</label>
+												<div>
+													<input type="file" name="img" id="img" class="file-loading required"
+													data-show-preview="false">
+												</div>
+										</div>
+									</div>
+									<div class="col-6 form-group">
+										<input type="button" id="btn" value="미션 개설" 
+											class="button button-border button-aqua" disabled/>
+									</div>
+								</form>
+							    </div>
+							</div>
+					</div>
+				</div>
+		</section>
 			</div>
-		</div>
-		<div>
-			<label>금액</label>
-			<div>
-				<input type="text" id="entryFee" name="entryFee"
-					placeholder="숫자만 입력해주세요">
-			</div>
-		</div>
-		<div>
-			<label>내용</label>
-			<div>
-				<textarea id="note" name="note" style="resize: none; height: 200px"></textarea>
-			</div>
-		</div>
-		<div>
-			<label>시작 일자</label>
-			<div>
-				<input type="date" name="startDate" id="startDate">
-			</div>
-		</div>
-		<div>
-			<label>종료 일자</label>
-			<div>
-				<input type="date" name="endDate" id="endDate">
-			</div>
-		</div>
-		<div>
-			<label>인증 시작 시간</label>
-			<div>
-				<input type="time" name="certifiedStartTime" id="certifiedStartTime">
-			</div>
-		</div>
-		<div>
-			<label>인증 종료 시간</label>
-			<div>
-				<input type="time" name="certifiedEndTime" id="certifiedEndTime">
-			</div>
-		</div>
-		<div>
-			<label>예시사진 업로드</label>
-			<div>
-				<input type="file" name="img" id="img">
-			</div>
-		</div>
-	</form>
-	<input type="button" id="btn" value="미션 개설" disabled/>
-	
-	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 	<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-		<script>
-			$(function() {
-				$("#img").change(function(e){
-					$('input[type="button"]').removeAttr('disabled');
-				});
+	<script>
+		$(function() {
+			$("#img").change(function(e){
+				$('input[type="button"]').removeAttr('disabled');
 			});
-	  	</script>
+		});
+	</script>
 	<script>
 		document.getElementById('btn').addEventListener('click', ajax_call);
 		function ajax_call() {
@@ -134,5 +162,6 @@
 			xhr.send(JSON.stringify(mission));
 		};
 	</script>
-</body>
-</html>
+<jsp:include page="/WEB-INF/jsp/layout/bottom.jsp" />
+
+	

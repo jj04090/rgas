@@ -5,7 +5,7 @@
 
 <title>signUp | RGAS</title>
 </head>
-<body class="stretched">
+<body class="stretched" style="background:#2E2E2E">
 
 	<!-- Document Wrapper
 	============================================= -->
@@ -13,7 +13,7 @@
 
 		<!-- Content
 		============================================= -->
-		<section id="content">
+		<section id="content" >
 			<div class="content-wrap py-0">
 				<div class="section p-0 m-0 h-100 position-absolute" style="background: url('/images/5.jpg') center center no-repeat; background-size: cover;"></div>
 				<div class="section bg-transparent min-vh-100 p-0 m-0 d-flex">

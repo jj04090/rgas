@@ -6576,6 +6576,7 @@ body:not(.has-plugin-html5video) .video-wrap video {
 #content {
 	position: relative;
 	background-color: #FFF;
+	padding-bottom: 30px;
 }
 
 #content p { line-height: 1.8; }

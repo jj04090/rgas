@@ -8,7 +8,7 @@
 <title>회원 정보</title>
 <jsp:include page="/WEB-INF/jsp/layout/topbody.jsp" />
 
-<body class="stretched">
+<body class="stretched" style="background:#2E2E2E">
 	<div id="wrapper" class="clearfix">
 		<section id="page-title">
 			<div class="container clearfix">
@@ -42,7 +42,7 @@
 									<div class="col-12 form-group">
 												<label for="">은행:</label>
 													<select id="bank" name="bank" class="select-1 form-control" style="width:100%;">
-													    <option value="${member.bank}" disabled selected>${member.bank}</option>
+													    <option value="${member.bank}" selected>${member.bank}</option>
 													    <option value="KB국민은행">KB국민은행</option>
 													    <option value="SC제일은행">SC제일은행</option>
 													    <option value="기업은행">기업은행</option>

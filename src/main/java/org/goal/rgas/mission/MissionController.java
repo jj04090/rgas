@@ -6,15 +6,12 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
-import org.goal.rgas.charity.Charity;
 import org.goal.rgas.member.Member;
 import org.goal.rgas.member.MemberServiceImpl;
 import org.goal.rgas.payment.Payment;
 import org.goal.rgas.payment.PaymentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -68,7 +65,7 @@ public class MissionController {
 	@GetMapping
 	public ModelAndView missionList(Mission mission) {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/mission/list");
+		mv.setViewName("mission/list");
 		
 		String email = (String)httpSession.getAttribute("email");
 		Member memberValue = new Member();
@@ -87,7 +84,7 @@ public class MissionController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+		System.out.println("ss");
 		return mv;
 	}
 	
@@ -110,13 +107,12 @@ public class MissionController {
 	@PutMapping
 	public ModelAndView missionModify(Mission mission) {
 		ModelAndView mv = new ModelAndView(new RedirectView("/mission"));
-		
 		try {
 			missionServiceImpl.missionModify(mission);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+		System.out.println("여기다");
 		return mv;
 	}
 	
@@ -137,7 +133,6 @@ public class MissionController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		return mv;
 	}
 	

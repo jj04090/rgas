@@ -21,6 +21,23 @@ public class SystemController {
 	private HttpSession httpSession;
 
 	//로그인 폼
+	@GetMapping("/home")
+	public ModelAndView home() {
+		ModelAndView mv = new ModelAndView();
+		
+		if ("A".equals((String) httpSession.getAttribute("auth")) || "C".equals((String) httpSession.getAttribute("auth"))) {
+			mv.setViewName("/system/home");
+
+			return mv;
+		} else {
+			mv.setViewName("/system/loginForm");
+			
+			return mv;
+		}
+		
+	}
+	
+	//로그인 폼
 	@GetMapping("/login")
 	public ModelAndView loginForm() {
 		ModelAndView mv = new ModelAndView("/system/loginForm");
@@ -35,11 +52,7 @@ public class SystemController {
 		boolean isLogin = systemServiceImpl.login(member);
 
 		if (isLogin) {
-			if ("A".equals(httpSession.getAttribute("auth"))) {
-				mv.setViewName("redirect:/member");
-			} else {
-				mv.setViewName("redirect:/mission");
-			}
+			mv.setViewName("redirect:/home");
 		} else {
 			mv.setViewName("redirect:/login");
 		}

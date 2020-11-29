@@ -18,7 +18,7 @@ public class CommonInterceptor implements HandlerInterceptor {
 
 			return true;
 		} else {
-			response.sendRedirect("/member");
+			response.sendRedirect("/home");
 
 			return false;
 		}

@@ -2,60 +2,99 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@taglib  prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="tf" tagdir="/WEB-INF/tags" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
+<jsp:include page="/WEB-INF/jsp/layout/topheader.jsp" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <title>내 미션 목록</title>
-</head>
-<body>
-	<jsp:useBean id="now" class="java.util.Date" />
-	<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
-    <h3>내 미션 목록</h3>
-    <button onclick="location.href='/mission/form'">작성</button>
-    <table border='2'>
-        <tr>
-            <th>제목</th>
-            <th>작성자</th>
-            <th>참가비</th>
-            <th>시작 날짜</th>
-            <th>종료 날짜</th>
-            <th>이미지</th>
-        </tr>
+<jsp:include page="/WEB-INF/jsp/layout/topbody.jsp" />
+
+<body class="stretched">
+	<div id="wrapper" class="clearfix">
+		<section id="page-title">
+			<div class="container clearfix">
+				<h1 style="font-size:40px">미션</h1>
+				<span>mission list</span>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="/home">Home</a></li>
+					<li class="breadcrumb-item active" aria-current="page">Mission</li>
+				</ol>
+			</div>
+		    <div class="col-12 form-group">
+				<input class="button button-3d button-black m-30" type="button" id="send" value="미션 등록" style="float:right;" onclick="location.href='/mission/form'"/> 
+			</div>
+		</section>
+		
+		<jsp:useBean id="now" class="java.util.Date" />
+		<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
+		<fmt:formatDate type="time" value="${now}" pattern="HH:mm:ss" var="nowTime"/>
+		<fmt:parseDate var="certifiedStartTime" value="${mission.certifiedStartTime}"  pattern="HH:mm:ss"/>
+	    <fmt:parseDate var="certifiedEndTime" value="${mission.certifiedEndTime}"  pattern="HH:mm:ss"/>
+	            
+	    <fmt:formatDate value="${certifiedStartTime}" pattern="HH:mm:ss" var="startTime"/>
+	    <fmt:formatDate value="${certifiedEndTime}" pattern="HH:mm:ss" var="endTime"/>
+       
         <c:forEach var="mission" items="${missionList}">
-        <tr>
-        	<td><a href=/mission/${mission.no}>${mission.title}</a></td>
-            <td>
-            	<c:forEach var="member" items="${memberList}">
-            		<c:if test="${mission.memberNo eq member.no}">
-            			${member.name}
-            		</c:if>
-            	</c:forEach>
-            </td>
-            <td>${mission.entryFee}</td>
-            <td><tf:formatDateTime value="${mission.startDate}" pattern="yyyy-MM-dd"/></td>
-            <td><tf:formatDateTime value="${mission.endDate}" pattern="yyyy-MM-dd"/></td>
-            <td><img src="/mission/photo/${mission.no}" width="400" height="300" /></td>
-            <td>
-            	<form method="get" action="/perform">
-					<input type="hidden" name="no" id="no" value="${mission.no}" />
-					<input type="submit" value="수행내역 조회"/>
-				</form>
-			</td>
-            <td>
-            	<c:if test="${today >= mission.startDate and today <= mission.endDate}">
-	            	<form method="get" action="/perform/form/${mission.no}">
-						<input type="hidden" name="no" id="no" value="${mission.no}" />
-						<input type="submit" value="수행내역 등록"/>
-					</form>
-            	</c:if>
-			</td>
-        </tr>
+        	<section id="content">
+			<div class="content-wrap" style="height: auto; width: 100%; border:1px solid black;">
+				<div class="container clearfix">
+
+					<!-- Posts
+					============================================= -->
+					<div id="posts" class="row grid-container gutter-40">
+
+						<div class="entry col-12">
+							<div class="grid-inner row no-gutters">
+								<div class="entry-image col-md-4">
+									<a data-lightbox="image"><img src="/mission/photo/${mission.no}" alt="Standard Post with Image"></a>
+								</div>
+								<div class="col-md-8 pl-md-4">
+									<div class="entry-title title-sm">
+										<h2 style="font-size:30px"><a href=/mission/${mission.no}>${mission.title}</a></h2>
+									</div>
+									<div class="entry-meta">
+										<ul>
+											<li style="font-size:17px"><i class="icon-calendar3"></i><tf:formatDateTime value="${mission.startDate}" pattern="yyyy-MM-dd"/></li>
+											<li style="font-size:17px"><i class="icon-calendar3"></i><tf:formatDateTime value="${mission.endDate}" pattern="yyyy-MM-dd"/></li>
+											<li style="font-size:17px"><i class="icon-money-bill-alt1"></i>${mission.entryFee} 원</a></li>
+											<li style="font-size:17px"><i class="icon-user"></i>
+												<c:forEach var="member" items="${memberList}">
+            										<c:if test="${mission.memberNo eq member.no}">
+            											${member.name}
+            										</c:if>
+            									</c:forEach></a>
+            								</li>
+										</ul>
+									</div>
+									<div class="entry-content">
+										<p>${mission.note}</p>
+										<fmt:parseDate var="certifiedStartTime" value="${mission.certifiedStartTime}"  pattern="HH:mm:ss"/>
+	   									<fmt:parseDate var="certifiedEndTime" value="${mission.certifiedEndTime}"  pattern="HH:mm:ss"/>
+	            
+	    								<fmt:formatDate value="${certifiedStartTime}" pattern="HH:mm:ss" var="startTime"/>
+	    								<fmt:formatDate value="${certifiedEndTime}" pattern="HH:mm:ss" var="endTime"/>
+										<form method="get" action="/perform">
+											<input type="hidden" name="no" id="no" value="${mission.no}" />
+											<input class="button button-border button-rounded button-aqua" type="submit" value="수행내역 조회" />
+										</form>
+										<c:if test="${nowTime >= startTime and nowTime <= endTime}">
+		           							 <c:if test="${today >= mission.startDate and today <= mission.endDate}">
+			            							<form method="get" action="/perform/form/${mission.no}">
+														<input type="hidden" name="no" id="no" value="${mission.no}" />
+														<input class="button button-border button-rounded button-aqua" type="submit" value="수행내역 등록" />
+													</form>
+								            </c:if>
+							            </c:if>
+									</div>
+								</div>
+							</div>
+						</div>					
+					</div>
+				</div>
+			</div>
+		</section>
         </c:forEach>
-    </table>
-</body>
-</html>
+    </div>
+
+<jsp:include page="/WEB-INF/jsp/layout/bottom.jsp" />

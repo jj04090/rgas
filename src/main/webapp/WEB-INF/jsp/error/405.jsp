@@ -38,7 +38,7 @@
 		<section id="page-title">
 
 			<div class="container clearfix">
-				<h1>Page Not Found</h1>
+				<h1>Method Not Allowed</h1>
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="/mission">Home</a></li>
 					<li class="breadcrumb-item active" aria-current="page">405</li>
@@ -62,7 +62,7 @@
 						<div class="col-lg-6">
 
 							<div class="heading-block text-center text-lg-left border-bottom-0">
-								<h1>페이지를 찾을 수 없습니다.</h1>
+								<h1>잘못된 요청입니다.</h1>
 							</div>
 						</div>
 					</div>

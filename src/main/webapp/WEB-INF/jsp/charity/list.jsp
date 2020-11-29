@@ -2,31 +2,64 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@taglib  prefix="spring" uri="http://www.springframework.org/tags" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-    <h3>기부단체 관리</h3>
-    <table border='2'>
-        <tr>
-            <th>이름</th>
-            <th>은행</th>
-            <th>계좌</th>
-        </tr>
-        <c:forEach var="rows" items="${charityList}">
-        <tr>
-        	<td><a href="/charity/${rows.no}">${rows.name}</a></td>
-            <td>${rows.bank}</td>
-            <td>${rows.account}</td>
-        </tr>
-        </c:forEach>
-    </table>
-    <form method="GET" action="/charity/form">
-    	<input value="등록" type="submit">
-    </form>
-</body>
-</html>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<jsp:include page="/WEB-INF/jsp/layout/topheader.jsp" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<title>기부단체 목록</title>
+<style>
+td:hover {
+  background-color: white;
+}
+</style>
+<jsp:include page="/WEB-INF/jsp/layout/topbody.jsp" />
+
+<body class="stretched">
+	<div id="wrapper" class="clearfix">
+		<section id="page-title">
+			<div class="container clearfix">
+				<h1 style="font-size:40px">기부단체 목록</h1>
+				<span>charity list</span>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="/home">Home</a></li>
+					<li class="breadcrumb-item active" aria-current="page">Charity</li>
+				</ol>
+			</div>
+		</section>
+		<section id="content">
+			<div class="content-wrap">
+				<div class="container clearfix">
+					<div class="row gutter-40 col-mb-80">
+						<div class="postcontent col-lg-9">
+							<table class="table table-bordered table-striped">
+							  <thead >
+								<tr>
+								  <th>기부단체 명</th>
+								  <th>은행 명</th>
+								  <th>계좌 번호</th>
+								</tr>
+							  </thead>
+							  <c:forEach var="rows" items="${charityList}">
+								  <tbody>
+									<tr onClick="location.href='/charity/${rows.no}'" style="cursor:pointer;">
+							          	<td>${rows.name}</td>
+									  	<td>${rows.bank}</td>
+									 	<td>${rows.account}</td>
+									</tr>
+								  </tbody>
+							  </c:forEach>
+							</table>
+						</div>
+								<form method="GET" action="/charity/form">
+							    	<input value="등록" type="submit" style="float:right;" class="button button-border button-aqua">
+							    </form>
+					</div>
+				</div>
+			</div>
+		</section>
+		</div>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	
+<jsp:include page="/WEB-INF/jsp/layout/bottom.jsp" />

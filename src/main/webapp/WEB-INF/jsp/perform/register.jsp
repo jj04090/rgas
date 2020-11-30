@@ -44,7 +44,7 @@
 										</div>
 									</div>
 									<div class="col-6 form-group">
-										<input type="submit" id="submit" value="등록" 
+										<input type="submit" id="submit" value="등록" style="float:right;"
 											class="button button-border button-aqua" disabled/>
 									</div>
 								</form>

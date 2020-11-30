@@ -60,7 +60,9 @@
 						        		<c:if test="${perform.status == 'N'}">실패</c:if></p></li>
 									</ul>
 									<c:if test="${missionList != null}">
-										<a href="/report/form/${perform.no}" class="btn btn-secondary d-none d-sm-inline-block"><i class="icon-warning-sign"></i><span class="sr-only">Details</span>&nbsp;신고</a>
+										<a href="/report/form/${perform.no}" style="float:right;"
+										class="btn btn-secondary d-none d-sm-inline-block">
+										<i class="icon-warning-sign"></i><span class="sr-only">Details</span>&nbsp;신고</a>
 									</c:if>
 								</div>
 							</div>

@@ -64,7 +64,7 @@
 							<input type="hidden" name="_method" value="PUT" /> 
 							<input type="hidden" name="no" id="no" value="${report.no}" />
 							<input type="hidden" name="performNo" id="performNo" value="${report.performNo}" />
-							<input value="처리완료" type="submit" style="float:right;" class="button button-border button-aqua">
+							<input value="처리" type="submit" style="float:right;" class="button button-border button-aqua">
 						</form>
 						<div>
 						<form method="post" action="/report">

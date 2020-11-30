@@ -66,14 +66,8 @@
 									</div>
 									<div class="col-6 form-group">
 										<label>금액(원)</label>
-										<c:if test="${today < mission.startDate}">
-											<input type="text" id="entryFee" name="entryFee" class="form-control required"
-												placeholder="숫자만 입력해주세요" value="${mission.entryFee}">
-										</c:if>
-										<c:if test="${today >= mission.startDate }">
-											<input type="text" id="entryFee" name="entryFee" class="form-control required"
-												placeholder="숫자만 입력해주세요" value="${mission.entryFee}" disabled>
-										</c:if>
+										<input type="text" id="entryFee" name="entryFee" class="form-control required"
+											placeholder="숫자만 입력해주세요" value="${mission.entryFee}" disabled>
 									</div>
 									<div class="col-12">
 										<div class="form-group">
@@ -153,28 +147,28 @@
 									</div>
 									<div class="col-12 form-group">
 									<c:if test="${today < mission.startDate}">
-										<input class="button button-border button-aqua"
+										<input class="button button-border button-aqua" style="float:right;"
 											type="submit" form="event-registration" value="수정" />
 									</c:if>
 									</div>
 								</form>
+								<c:if test="${today > mission.endDate}">
+									<input type="hidden" name="no" id="no" value="${mission.no}" />
+									<input type="button" value="환급" id="refunds" style="float:right;" 
+										class="button button-border button-aqua" onclick="ajax_call()"/>
+								</c:if>
+								<c:if test="${today < mission.startDate}">
+									<form id="deleteForm"method="post" action="/mission">
+										<input type="hidden" name="_method" value="DELETE" />
+										<input type="hidden" name="no" id="no" value="${mission.no}" />
+										<input class="button button-border button-aqua" style="float:right;"
+											type="submit" form="deleteForm" value="삭제"/>
+									</form>
+								</c:if>
 							    </div>
 							</div>
 									
-							<c:if test="${today > mission.endDate}">
-								<input type="hidden" name="no" id="no" value="${mission.no}" />
-								<input type="button" value="환급" id="refunds" 
-									class="button button-border button-aqua" onclick="ajax_call()"/>
-							</c:if>
 						
-							<c:if test="${today < mission.startDate}">
-								<form id="deleteForm"method="post" action="/mission">
-									<input type="hidden" name="_method" value="DELETE" />
-									<input type="hidden" name="no" id="no" value="${mission.no}" />
-									<input class="button button-border button-aqua"
-										type="submit" form="deleteForm" value="삭제"/>
-								</form>
-							</c:if>
 					</div>
 				</div>
 		</section>

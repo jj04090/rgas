@@ -40,7 +40,7 @@
 										<input type="text" name="nickname" id="nickname" class="form-control required" value="${member.nickname}"/>
 									</div>
 									<div class="col-12 form-group">
-												<label for="">은행:</label>
+												<label style="font-size:20px;">은행</label>
 													<select id="bank" name="bank" class="select-1 form-control" style="width:100%;">
 													    <option value="${member.bank}" selected>${member.bank}</option>
 													    <option value="KB국민은행">KB국민은행</option>
@@ -108,7 +108,7 @@
 								<form method="post" action="/member">
 									<input type="hidden" name="_method" value="PUT" /> 
 									<input type="hidden" name="no" id="no" value="${member.no}" /> 
-									<input value="탈퇴" type="submit" style="float:right;" class="button button-border">
+									<input value="탈퇴" type="submit" style="float:left;" class="button button-border">
 								</form>
 							</div>
 					</div>

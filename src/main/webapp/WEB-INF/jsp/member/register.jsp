@@ -15,44 +15,48 @@
 		============================================= -->
 		<section id="content" >
 			<div class="content-wrap py-0">
-				<div class="section p-0 m-0 h-100 position-absolute" style="background: url('/images/5.jpg') center center no-repeat; background-size: cover;"></div>
+				<div class="section p-0 m-0 h-100 position-absolute" style="filter: brightness(50%); background: url('/images/main-1.jpg') center center no-repeat; background-size: cover;"></div>
 				<div class="section bg-transparent min-vh-100 p-0 m-0 d-flex">
 					<div class="vertical-middle">
 						<div class="container py-5">
 							<div class="text-center">
-								<a href="/login"><img src="/images/logo-rgas.png" alt="Rgas Logo" style="height: 200px;"></a>
+								<a href="/login"><img src="/images/logo-rgas-dark.png" alt="Rgas Logo" style="height: 200px;"></a>
 							</div>
 							<div class="card mx-auto rounded-0 border-0" style="max-width: 400px;">
-								<div class="card-body" style="padding: 40px;">
+								<div class="card-body" style="padding: 40px; border:3px solid black;">
 									<form id="signupForm" name="login-form" class="mb-0" action="/member" method="post">
 										<c:set var="code" value="<%=UUID.randomUUID().toString().toUpperCase().substring(0,6)%>" />
 										<input type="hidden" id="code" name="code" value="${code}" />
-										<h2>회원가입</h2>
-										<div class="row">
+											<div class="row">
+											<div class="col-12 form-group">	
+											<center>
+												<label style="font-size:35px;font-family:'맑은 고딕';font-weight:bold;">회원가입</label>
+											</center>
+											</div>
 											<div class="col-12 form-group">
-												<label for="login-form-username">이메일:</label>
+												<label for="login-form-username" style="font-size:15px;">이메일:</label>
 												<input type="text" id="email" name="email" value="" class="form-control not-dark" />
 												<input class="button button-3d button-black m-30" type="button" id="send" value="전송" style="float:right;" />
 											</div>
 											<div class="col-12 form-group">
-												<label for="login-form-username">인증코드:</label>
+												<label for="login-form-username" style="font-size:15px;">인증코드:</label>
 												<input type="text" id="authCode" name="authCode" value="" class="form-control not-dark" />
 												<input class="button button-3d button-black m-30" type="button" id="auth" value="인증" style="float:right;"/>
 											</div>
 											<div class="col-12 form-group">
-												<label for="login-form-password">비밀번호:</label>
+												<label for="login-form-password" style="font-size:15px;">비밀번호:</label>
 												<input type="password" id="password" name="password" value="" class="form-control not-dark" />
 											</div>
 											<div class="col-12 form-group">
-												<label for="login-form-username">이름:</label>
+												<label for="login-form-username" style="font-size:15px;">이름:</label>
 												<input type="text" id="name" name="name" value="" class="form-control not-dark" />
 											</div>
 											<div class="col-12 form-group">
-												<label for="login-form-username">닉네임:</label>
+												<label for="login-form-username" style="font-size:15px;">닉네임:</label>
 												<input type="text" id="nickname" name="nickname" value="" class="form-control not-dark" />
 											</div>
 											<div class="col-12 form-group">
-												<label for="">은행:</label>
+												<label for="" style="font-size:15px;">은행:</label>
 													<select id="bank" name="bank" class="select-1 form-control" style="width:100%;">
 													    <option value="" disabled selected>은행 선택</option>
 													    <option value="KB국민은행">KB국민은행</option>
@@ -73,7 +77,7 @@
 													</select>
 											</div>
 											<div class="col-12 form-group">
-												<label for="login-form-username">계좌번호:</label>
+												<label for="login-form-username" style="font-size:15px;">계좌번호:</label>
 												<input type="text" id="account" name="account" value="" class="form-control not-dark" />
 											</div>
 											<div class="col-12 form-group">

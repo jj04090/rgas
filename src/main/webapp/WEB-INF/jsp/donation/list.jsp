@@ -30,11 +30,11 @@ td:hover {
 		<section id="content">
 			<div class="content-wrap">
 				<div class="container clearfix">
-					
-						
+				<form action="${pageContext.request.contextPath}/charity" method=get>
+								<input type="submit" value="기부단체" class="button button-xlarge button-circle button-border button-amber"/>
+							</form>
 						<c:set var="merchantUid" value="<%=UUID.randomUUID()%>"/>
 						<input type="hidden" id="merchantUid" name="merchantUid" value="${merchantUid}"/>
-						
 						<form action="${pageContext.request.contextPath}/donation" id="register" method="post">
 								<select id="charityNo" name="no" class="select-1 form-control">
 									<c:forEach items="${charityList}" var="row">
@@ -42,10 +42,7 @@ td:hover {
 									</c:forEach>
 								</select>
 						</form>
-					
 						<input type="button" id="payment" value="기부금 이체" style="float:right;" class="button button-border"/>
-					<div class="row gutter-40 col-mb-80">
-						<div class="postcontent col-lg-9">
 							<div class="line"></div>
 							<h4 style="font-size:20px;font-family:'맑은 고딕'; font-weight:bold;">기부이체 내역</h4>
 							<table class="table table-bordered table-striped">
@@ -65,16 +62,11 @@ td:hover {
 													<td>${charityrow.name}</td>
 												</c:if>
 											</c:forEach>
-										<td>${row.amount}</td>
+										<td>${row.amount} 원</td>
 									</tr>
 								  </tbody>
 							  </c:forEach>
 							</table>
-							<form action="${pageContext.request.contextPath}/charity" method=get>
-								<input type="submit" value="기부단체" class="button button-border"/>
-							</form>
-						</div>
-					</div>
 				</div>
 			</div>
 		</section>

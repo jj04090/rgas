@@ -84,7 +84,8 @@
 										<form method="post" action="/member">
 											<input type="hidden" name="_method" value="PUT" /> 
 											<input type="hidden" name="no" id="no" value="${member.no}" /> 
-											<input value="정지" type="submit" style="float:right;" class="button button-large button-circle button-border button-pink">
+											<input value="정지" type="submit" style="float:right;" 
+											class="button button-border button-rounded button-red">
 										</form>
 									</div>
 							</div>

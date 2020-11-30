@@ -94,7 +94,7 @@
 									</div>
 									<div class="col-6 form-group">
 										<input type="button" id="btn" value="미션 개설" 
-											class="button button-border button-aqua" disabled/>
+											class="button button-border button-aqua" style="float:right;" disabled/>
 									</div>
 								</form>
 							    </div>

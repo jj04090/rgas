@@ -29,8 +29,8 @@ td:hover {
 		<section id="content">
 			<div class="content-wrap">
 				<div class="container clearfix">
-					<div class="row gutter-40 col-mb-80">
-						<div class="postcontent col-lg-9">
+					<div>
+						<div>
 							<table class="table table-bordered table-striped">
 							  <thead >
 								<tr>

@@ -29,8 +29,8 @@ td:hover {
 		<section id="content">
 			<div class="content-wrap">
 				<div class="container clearfix">
-					<div class="row gutter-40 col-mb-80">
-						<div class="postcontent col-lg-9">
+					<div>
+						<div>
 							<table class="table table-bordered table-striped">
 							  <thead >
 								<tr>
@@ -50,9 +50,9 @@ td:hover {
 							  </c:forEach>
 							</table>
 						</div>
-								<form method="GET" action="/charity/form">
-							    	<input value="등록" type="submit" style="float:right;" class="button button-border button-aqua">
-							    </form>
+							<form method="GET" action="/charity/form">
+							    <input value="기부단체 등록" type="submit" style="float:right;" class="button button-border">
+							</form>
 					</div>
 				</div>
 			</div>

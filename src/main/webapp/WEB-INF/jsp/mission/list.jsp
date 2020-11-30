@@ -22,7 +22,7 @@
 				</ol>
 			</div>
 		    <div class="col-12 form-group">
-				<input class="button button-3d button-black m-30" type="button" id="send" value="미션 등록" style="float:right;" onclick="location.href='/mission/form'"/> 
+				<input class="button button-small button-circle button-border button-aqua" type="button" id="send" value="미션 등록" style="float:right;" onclick="location.href='/mission/form'"/> 
 			</div>
 		</section>
 		
@@ -37,7 +37,7 @@
        
         <c:forEach var="mission" items="${missionList}">
         	<section id="content">
-			<div class="content-wrap" style="height: auto; width: 100%; border:1px solid black;">
+			<div class="content-wrap" style="height: auto; width: 100%;">
 				<div class="container clearfix">
 
 					<!-- Posts
@@ -76,13 +76,13 @@
 	    								<fmt:formatDate value="${certifiedEndTime}" pattern="HH:mm:ss" var="endTime"/>
 										<form method="get" action="/perform">
 											<input type="hidden" name="no" id="no" value="${mission.no}" />
-											<input class="button button-border button-rounded button-aqua" type="submit" value="수행내역 조회" />
+											<input class="button button-border button-aqua" type="submit" value="수행내역 조회" />
 										</form>
 										<c:if test="${nowTime >= startTime and nowTime <= endTime}">
 		           							 <c:if test="${today >= mission.startDate and today <= mission.endDate}">
 			            							<form method="get" action="/perform/form/${mission.no}">
 														<input type="hidden" name="no" id="no" value="${mission.no}" />
-														<input class="button button-border button-rounded button-aqua" type="submit" value="수행내역 등록" />
+														<input class="button button-border button-aqua" type="submit" value="수행내역 등록" />
 													</form>
 								            </c:if>
 							            </c:if>

@@ -7,7 +7,11 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <title>회원 목록</title>
-
+<style>
+td:hover {
+  background-color: white;
+}
+</style>
 <jsp:include page="/WEB-INF/jsp/layout/topbody.jsp" />
 
 <body class="stretched" style="background:#2E2E2E">
@@ -25,8 +29,8 @@
 		<section id="content">
 			<div class="content-wrap">
 				<div class="container clearfix">
-					<div class="row gutter-40 col-mb-80">
-						<div class="postcontent col-lg-9">
+					<div>
+						<div>
 							<table style="padding-right:0;" class="table table-bordered table-striped">
 								<tr>
 									<td>
@@ -67,8 +71,8 @@
 	        	script += "<section id='content'>";
 	        	script += "<div class='content-wrap'>";
 	        	script += "<div class='container clearfix'>";
-	        	script += "<div class='row gutter-40 col-mb-80'>";
-	        	script += "<div class='postcontent col-lg-9'>";
+	        	script += "<div>";
+	        	script += "<div>";
 	        	script += "<table class='table table-bordered table-striped'>";
 	        	script += "    <tr><thread>";
 	        	script += "        <th>이름</th>";
@@ -78,8 +82,8 @@
 	        	script += "        <th>상태</th></thread>";
 	        	script += "    </tr>";
                 for (var i = 0; i < rows.length; i++) {
-		        	script += "    <tbody><tr>";
-		        	script += "        <td><a href='${pageContext.request.contextPath}/member/" + rows[i].no + "'>" + rows[i].name + "</a></td>";
+		        	script += "    <tbody><tr onClick=\"location.href='/member/" + rows[i].no + "'\" style=\"cursor:pointer;\">";
+		        	script += "        <td>" + rows[i].name 	+ "</td>";
 		        	script += "        <td>" + rows[i].email 	+ "</td>";
 		        	script += "        <td>" + rows[i].nickname + "</td>";
 		        	

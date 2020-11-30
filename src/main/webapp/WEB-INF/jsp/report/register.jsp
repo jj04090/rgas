@@ -32,7 +32,7 @@
 									<input type="hidden" name="memberNo" id="memberNo" value="${memberNo}" />
 									<div class="col-12">
 										<div class="form-group">
-											<label>내용</label>
+											<label style="font-size:20px;">내용</label>
 											<textarea name="note" id="note" class="form-control required" cols="30" rows="5"></textarea>
 										</div>
 									</div>

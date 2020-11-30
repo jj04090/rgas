@@ -9,34 +9,29 @@
 
 </head>
 <body>
-
-
-
-		<!-- Content
-		============================================= -->
 		<section id="content">
 			<div class="content-wrap py-0">
 
-				<div class="section p-0 m-0 h-100 position-absolute" style="background-color: #FFFFFF; background-size: cover;"></div>
+				<div class="section p-0 m-0 h-100 position-absolute" style="filter: brightness(50%); background: url('/images/main-1.jpg') center center no-repeat; background-size: cover;"></div>
 				<div class="section bg-transparent min-vh-100 p-0 m-0 d-flex">
 					<div class="vertical-middle">
 						<div class="container py-5">
 
 							<div class="text-center">
-								<a href="/login"><img src="images/logo-rgas.png" alt="rgas Logo" style="height: 200px;"></a>
+								<a href="/login"><img src="images/logo-rgas-dark.png" alt="rgas Logo" style="height: 200px;"></a>
 							</div>
 
-							<div class="card mx-auto rounded-0 border-0" style="max-width: 400px;">
-								<div class="card-body" style="padding: 40px;">
+							<div class="card mx-auto rounded-0 border-0" style="background-color: #FFFFFF;max-width: 400px;">
+								<div class="card-body" style="padding: 40px;border:3px solid black;">
 									<form id="login-form" name="login-form" class="mb-0" action="/login" method="post">
 										<div class="row">
 											<div class="col-12 form-group">
-												<label for="login-form-username">이메일:</label>
+												<label for="login-form-username" style="font-size:15px;">이메일:</label>
 												<input type="text" id="login-form-username" name="email" value="" class="form-control not-dark" />
 											</div>
 
 											<div class="col-12 form-group">
-												<label for="login-form-password">비밀번호:</label>
+												<label for="login-form-password" style="font-size:15px;">비밀번호:</label>
 												<input type="password" id="login-form-password" name="password" value="" class="form-control not-dark" />
 											</div>
 

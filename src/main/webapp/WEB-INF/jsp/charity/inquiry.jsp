@@ -35,7 +35,6 @@
 									<div class="col-12 form-group">
 												<label for="">은행:</label>
 													<select id="bank" name="bank" class="select-1 form-control" style="width:100%;">
-													${charity.bank}??
 													    <option value="${charity.bank}" selected>${charity.bank}</option>
 													    <option value="KB국민은행">KB국민은행</option>
 													    <option value="SC제일은행">SC제일은행</option>
@@ -66,7 +65,7 @@
 										<form method="post" action="/charity">
 											<input type="hidden" name="_method" value="DELETE" />
 											<input type="hidden" name="no" id="no" value="${charity.no}" />
-											<input type="submit" value="삭제" style="float:right;" class="button button-border"/>
+											<input type="submit" value="삭제" style="float:left;" class="button button-border"/>
 										</form>
 									</div>
 							</div>

@@ -16,12 +16,14 @@ public class EmailCertificationController {
 	@Autowired
 	private HttpServletResponse httpServletResponse;
 
-	//인증 이메일 전송
+	// 인증 이메일 전송
 	@PostMapping
 	public boolean sendEmail(String email, String code) {
-		emailCertificationServiceImpl.certifiedCodeSend(email, code);
-		httpServletResponse.setStatus(HttpServletResponse.SC_CREATED);
-
+		if (email != null && code != null) {
+			emailCertificationServiceImpl.certifiedCodeSend(email, code);
+			httpServletResponse.setStatus(HttpServletResponse.SC_CREATED);
+		}
+		
 		return true;
 	}
 }

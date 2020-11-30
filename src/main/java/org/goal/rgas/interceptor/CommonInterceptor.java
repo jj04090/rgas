@@ -15,11 +15,9 @@ public class CommonInterceptor implements HandlerInterceptor {
 		HttpSession session = request.getSession();
 		
 		if ("C".equals((String) session.getAttribute("auth"))) {
-
 			return true;
 		} else {
 			response.sendRedirect("/home");
-
 			return false;
 		}
 	}

@@ -7,11 +7,6 @@ import java.util.UUID;
 import javax.servlet.http.HttpSession;
 
 import org.goal.rgas.member.Member;
-import org.goal.rgas.member.MemberMapper;
-import org.goal.rgas.payment.Payment;
-import org.goal.rgas.payment.PaymentMapper;
-import org.goal.rgas.refunds.Refunds;
-import org.goal.rgas.refunds.RefundsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,16 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public class MissionServiceImpl implements MissionService {
 	@Autowired
-	private MemberMapper memberMapper;
-
-	@Autowired
 	private MissionMapper missionMapper;
-
-	@Autowired
-	private PaymentMapper paymentMapper;
-
-	@Autowired
-	private RefundsMapper refundsMapper;
 
 	@Autowired
 	private HttpSession httpSession;
@@ -53,13 +39,9 @@ public class MissionServiceImpl implements MissionService {
 			String filePath = path + File.separator + physical;
 			file.transferTo(new File(filePath));
 
-			String email = (String) httpSession.getAttribute("email");
-			Member memberValue = new Member();
-			memberValue.setEmail(email);
+			Member member = (Member) httpSession.getAttribute("memberValue");
 
-			int memberNo = memberMapper.select(memberValue).getNo();
-			mission.setMemberNo(memberNo);
-
+			mission.setMemberNo(member.getNo());
 			missionMapper.insert(mission);
 
 			return missionMapper.select(mission);
@@ -96,32 +78,5 @@ public class MissionServiceImpl implements MissionService {
 	public void missionDelete(Mission mission) throws Exception {
 
 		missionMapper.delete(mission);
-	}
-
-	// 총 미션 성공 횟수 계산
-	@Override
-	public int totalSuccessCount(Member member) throws Exception {
-		int count = 0;
-		int memberNo = member.getNo();
-
-		Payment paymentValue = new Payment();
-		paymentValue.setMissionNo(memberNo);
-
-		List<Payment> payments = paymentMapper.list(paymentValue);
-		
-		for (int i = 0; i < payments.size(); i++) {
-			Payment payment = payments.get(i);
-			int paymentNo = payment.getNo();
-
-			Refunds refundsValue = new Refunds();
-			refundsValue.setPaymentNo(paymentNo);
-			Refunds refunds = refundsMapper.select(refundsValue);
-
-			if (payment.getDeposit() == refunds.getAmount()) {
-				count++;
-			}
-		}
-
-		return count;
 	}
 }

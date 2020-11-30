@@ -11,5 +11,7 @@ public interface MemberService {
 
 	public void memberModify(Member member) throws Exception;
 
-	public void memberGradeRenewal(String email) throws Exception;
+	public void memberGradeRenewal() throws Exception;
+	
+	public int totalSuccessCount(Member member) throws Exception;
 }

@@ -42,18 +42,4 @@ public class PaymentController {
 		
 		return iamportRequest;
 	}
-
-	//결제 취소 처리
-	@DeleteMapping
-	public ModelAndView paymentCancel(Payment payment) {
-		ModelAndView mv = new ModelAndView(new RedirectView("mission"));
-		
-		try {
-			paymentServiceImpl.paymentCancel(payment);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return mv;
-	}
 }

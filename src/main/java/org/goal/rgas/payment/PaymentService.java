@@ -13,5 +13,5 @@ public interface PaymentService {
 
 	public Payment paymentInquiry(Payment payment) throws Exception;
 
-	public void paymentCancel(Payment payment) throws Exception;
+	public boolean paymentCancel(Payment payment) throws Exception;
 }

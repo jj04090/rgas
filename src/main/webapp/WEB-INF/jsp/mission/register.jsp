@@ -138,7 +138,7 @@
 								msg += '\n카드 승인번호 : ' + rsp.apply_num;
 								document.getElementById("register").submit();
 							} else {
-								var msg = '미션 개설에 실패하였습니다.\n입력값을 확인해주세요';
+								var msg = '미션 개설에 실패하였습니다.';
 								/* msg += '에러내용 : ' + rsp.error_msg; */
 							}
 							alert(msg);

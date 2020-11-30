@@ -15,11 +15,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class EmailCertificationServiceImpl implements EmailCertificationService {
-	//구글이메일 아이디
+	// 구글이메일 아이디
 	@Value("${gmailid}")
 	private String gmailId;
-	
-	//구글이메일 비밀번호
+
+	// 구글이메일 비밀번호
 	@Value("${gmailpassword}")
 	private String gmailpassword;
 
@@ -52,7 +52,7 @@ public class EmailCertificationServiceImpl implements EmailCertificationService 
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
 			message.setSubject("RGAS 회원가입 이메일 인증코드입니다.");
 			message.setText("\t\t이메일 인증코드 : " + code);
-			
+
 			Transport.send(message);
 		} catch (MessagingException e) {
 			e.printStackTrace();

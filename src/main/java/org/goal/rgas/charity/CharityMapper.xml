@@ -65,13 +65,12 @@
     </select>
 
     <insert id="insert" parameterType="org.goal.rgas.charity.Charity">
-        INSERT INTO charity (
-            <!-- NO,-->
+        INSERT INTO charity (   
             NAME,
             BANK,
             ACCOUNT
         ) VALUES (
-           <!-- #{no}, -->
+
             #{name},
             #{bank},
             #{account}
@@ -80,8 +79,7 @@
 
     <update id="update" parameterType="org.goal.rgas.charity.Charity">
         UPDATE charity
-        <set>
-            
+        <set>  
             <if test="name != ''">
                 NAME = #{name},
             </if>

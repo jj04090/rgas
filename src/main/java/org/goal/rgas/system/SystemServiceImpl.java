@@ -8,42 +8,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SystemServiceImpl implements SystemService{
+public class SystemServiceImpl implements SystemService {
+	@Autowired
+	private HttpSession httpSession;
+
 	@Autowired
 	private MemberMapper memberMapper;
-	@Autowired 
-	private HttpSession httpSession;
 
 	@Override
 	public boolean login(Member member) throws Exception {
 		member = memberMapper.select(member);
-		httpSession.setAttribute("memberValue", member);
-		
-		if (member != null && member.getNo() != 0 
-				&& member.getAuth() == 'C' && member.getStatus() == 'A') {
-			
-			httpSession.setAttribute("auth", "C");
-			httpSession.setAttribute("email", member.getEmail());
-			
-			return true;
-		} else if (member != null && member.getNo() != 0
-				&& member.getAuth() == 'A' && member.getStatus() == 'A') {
-			
-			httpSession.setAttribute("auth", "A");
-			httpSession.setAttribute("email", member.getEmail());
-			
+
+		if (member != null && member.getNo() != 0 && member.getStatus() == 'A') {
+			httpSession.setAttribute("auth", String.valueOf(member.getAuth()));
+			httpSession.setAttribute("memberValue", member);
+
 			return true;
 		} else {
-			
+
 			return false;
 		}
 	}
 
 	@Override
 	public void logout() {
-		if("A".equals(httpSession.getAttribute("auth"))
-				|| "C".equals(httpSession.getAttribute("auth"))) {
-			httpSession.invalidate();		
+		if (httpSession.getAttribute("auth") != null) {
+			httpSession.invalidate();
 		}
 	}
+	
 }

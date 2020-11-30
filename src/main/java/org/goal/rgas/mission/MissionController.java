@@ -2,7 +2,6 @@ package org.goal.rgas.mission;
 
 import java.io.File;
 import java.nio.file.Files;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -28,57 +27,58 @@ import org.springframework.web.servlet.view.RedirectView;
 @RequestMapping("/mission")
 public class MissionController {
 	@Autowired
-	private MissionServiceImpl missionServiceImpl;
-	
-	@Autowired
-	private MemberServiceImpl memberServiceImpl;
-	
-	@Autowired
-	private PaymentServiceImpl paymentServiceImpl; 
-	
-	@Autowired
 	private HttpSession httpSession;
 	
-	//미션 등록 폼
+	@Autowired
+	private MissionServiceImpl missionServiceImpl;
+
+	@Autowired
+	private MemberServiceImpl memberServiceImpl;
+
+	@Autowired
+	private PaymentServiceImpl paymentServiceImpl;
+
+
+	// 미션 등록 폼
 	@GetMapping("/form")
 	public ModelAndView missionRegisterForm() {
-		
 		return new ModelAndView("/mission/register");
 	}
-	
-	//미션 등록 처리
+
+	// 미션 등록 처리
 	@PostMapping
-	public ModelAndView missionRegister(@RequestParam("img") MultipartFile file, Mission mission, @RequestParam("merchantUid") String merchantUid) { 
+	public ModelAndView missionRegister(@RequestParam("img") MultipartFile file, Mission mission,
+			@RequestParam("merchantUid") String merchantUid) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("redirect:/mission");
-		
+
 		try {
-			mission = missionServiceImpl.missionRegister(file, mission);
-			paymentServiceImpl.paymentRegister(mission, merchantUid);
+			if (mission != null) {
+				mission = missionServiceImpl.missionRegister(file, mission);
+				paymentServiceImpl.paymentRegister(mission, merchantUid);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		return mv; 
-	 }
-	
-	//미션 목록 조회
+
+		return mv;
+	}
+
+	// 내 미션 목록 조회
 	@GetMapping
-	public ModelAndView missionList(Mission mission) {
+	public ModelAndView missionList() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("mission/list");
-		
-		String email = (String)httpSession.getAttribute("email");
-		Member memberValue = new Member();
-		memberValue.setEmail(email);
-		
+
+		Member member = (Member) httpSession.getAttribute("memberValue");
+
 		try {
-			int memberNo = memberServiceImpl.memberInquiry(memberValue).getNo();
-			Mission missionValue = new Mission();
-			missionValue.setMemberNo(memberNo);
-			
-			List<Mission> missionList = missionServiceImpl.missionList(missionValue);
+			Mission mission = new Mission();
+			mission.setMemberNo(member.getNo());
+
+			List<Mission> missionList = missionServiceImpl.missionList(mission);
 			List<Member> memberList = memberServiceImpl.memberList(new Member());
+
 			mv.addObject("missionList", missionList);
 			mv.addObject("memberList", memberList);
 		} catch (Exception e) {
@@ -87,56 +87,62 @@ public class MissionController {
 		System.out.println("ss");
 		return mv;
 	}
-	
-	//미션 상세 조회
+
+	// 미션 상세 조회
 	@GetMapping("/{no}")
 	public ModelAndView missionInquiry(Mission mission) {
 		ModelAndView mv = new ModelAndView("/mission/inquiry");
-		
+
 		try {
-			Mission missionValue = missionServiceImpl.missionInquiry(mission);
-			mv.addObject("mission", missionValue);
+			if (mission != null) {
+				Mission missionValue = missionServiceImpl.missionInquiry(mission);
+				mv.addObject("mission", missionValue);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return mv;
 	}
-	
-	//미션 정보 수정
+
+	// 미션 정보 수정
 	@PutMapping
 	public ModelAndView missionModify(Mission mission) {
 		ModelAndView mv = new ModelAndView(new RedirectView("/mission"));
+
 		try {
-			missionServiceImpl.missionModify(mission);
+			if (mission != null) {
+				missionServiceImpl.missionModify(mission);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("여기다");
+
 		return mv;
 	}
-	
-	//미션 삭제
+
+	// 미션 삭제
 	@DeleteMapping
 	public ModelAndView missionDelete(Mission mission) {
 		ModelAndView mv = new ModelAndView(new RedirectView("/mission"));
-		
-		Mission missionValue = new Mission();
-		missionValue.setNo(mission.getNo());
-		
+
 		try {
-			Payment payment = new Payment();
-			payment.setMissionNo(mission.getNo());
-			paymentServiceImpl.paymentCancel(payment);
-			
-			missionServiceImpl.missionDelete(missionValue);
+			if (mission != null) {
+				Payment payment = new Payment();
+				payment.setMissionNo(mission.getNo());
+				
+				if (paymentServiceImpl.paymentCancel(payment)) {
+					missionServiceImpl.missionDelete(mission);
+				}
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 		return mv;
 	}
-	
-	//이미지 출력
+
+	// 이미지 출력
 	@GetMapping("/photo/{no}")
 	public void photoView(Mission mission, HttpServletResponse response) {
 		try {

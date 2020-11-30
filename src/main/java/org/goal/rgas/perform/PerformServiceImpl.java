@@ -67,14 +67,12 @@ public class PerformServiceImpl implements PerformService{
 	//수행 내역 목록 조회
 	@Override
 	public List<Perform> performList(Perform perform) throws Exception {
-		
 		return performMapper.list(perform);
 	}
 
 	//수행 내역 상세 조회
 	@Override
 	public Perform performInquiry(Perform perform) throws Exception {
-		
 		return performMapper.select(perform);
 	}
 

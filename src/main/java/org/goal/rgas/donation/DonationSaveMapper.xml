@@ -75,7 +75,7 @@
             <!-- #{no}, -->
             #{paymentNo},
             #{amount},
-            #{saveDate}
+            NOW()
         )
     </insert>
 

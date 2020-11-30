@@ -15,6 +15,4 @@ public interface MissionService {
 	public void missionModify(Mission mission) throws Exception;
 
 	public void missionDelete(Mission mission) throws Exception;
-
-	public int totalSuccessCount(Member member) throws Exception;
 }

@@ -7,15 +7,13 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
-import org.goal.rgas.charity.Charity;
+import org.goal.rgas.member.Member;
 import org.goal.rgas.mission.Mission;
 import org.goal.rgas.mission.MissionServiceImpl;
 import org.goal.rgas.payment.Payment;
 import org.goal.rgas.payment.PaymentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,187 +29,142 @@ import org.springframework.web.servlet.view.RedirectView;
 @RestController
 @RequestMapping("/perform")
 public class PerformController {
-	@Autowired 
-	private PerformServiceImpl performServiceImpl;
-	
-	@Autowired
-	private PaymentServiceImpl paymentServiceImpl;
-	
 	@Autowired
 	private HttpSession httpSession;
-	
+
+	@Autowired
+	private PerformServiceImpl performServiceImpl;
+
+	@Autowired
+	private PaymentServiceImpl paymentServiceImpl;
+
 	@Autowired
 	private MissionServiceImpl missionServiceImpl;
-	
-	//수행내역 등록 폼
+
+	// 수행내역 등록 폼
 	@GetMapping("/form/{no}")
 	public ModelAndView performRegisterForm(Mission mission) {
-		ModelAndView mv =  new ModelAndView();
-		
-		Payment paymentValue = new Payment();
-		paymentValue.setMissionNo(mission.getNo());
-		Payment payment = null;
-		
+		ModelAndView mv = new ModelAndView();
+
 		try {
-			payment = paymentServiceImpl.paymentInquiry(paymentValue);
+			Payment payment = new Payment();
+			payment.setMissionNo(mission.getNo());
+
+			payment = paymentServiceImpl.paymentInquiry(payment);
 			mission = missionServiceImpl.missionInquiry(mission);
+
+			if (payment != null) {
+				mv.setViewName("/perform/register");
+
+				mv.addObject("paymentNo", payment.getNo());
+				mv.addObject("mission", mission);
+			} else {
+				mv.setViewName("redirect:/mission");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		if (payment != null) {
-			mv.setViewName("/perform/register");
-			String email = (String)httpSession.getAttribute("email");
-			
-			mv.addObject("paymentNo", payment.getNo());
-			mv.addObject("mission", mission);
-			mv.addObject("memberEmail", email);
-			
-			return mv;
-		} else {
-			
-			return new ModelAndView(new RedirectView("/mission"));
-		}
+
+		return mv;
 	}
-	
-	//수행 내역 등록
+
+	// 수행 내역 등록
 	@PostMapping
 	public ModelAndView performRegister(@RequestParam("img") MultipartFile file, Perform perform) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("redirect:/mission");
-		
+
 		try {
-			if (file == null || file.isEmpty()) {
-				mv.setViewName("redirect:/mission");
-				
-				return mv;
-			}
-			LocalDate today = LocalDate.now();
-			perform.setRegisterDate(today);
-			Perform performValue = performServiceImpl.performInquiry(perform);
-			
-			if (performValue != null) {
-				performServiceImpl.performEdit(file, perform);
-			} else {
-				performServiceImpl.performRegister(file, perform);
+			if (perform != null) {
+				perform.setRegisterDate(LocalDate.now());
+				Perform performValue = performServiceImpl.performInquiry(perform);
+
+				if (performValue != null) {
+					performServiceImpl.performEdit(file, perform);
+				} else {
+					performServiceImpl.performRegister(file, perform);
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return mv;
 	}
-	
-	//수행 내역 목록 조회
+
+	// 수행 내역 목록 조회
 	@GetMapping
 	public ModelAndView performList(Mission mission) {
 		ModelAndView mv = new ModelAndView("/perform/list");
 		List<Perform> performList = null;
-		
+
 		Perform perform = new Perform();
 		Payment payment = new Payment();
-		
-		if (mission.getNo() != 0) {
-			try {
-				Mission missionValue = missionServiceImpl.missionInquiry(mission);
-				
-				payment.setMissionNo(missionValue.getNo());
+
+		try {
+			if (mission != null) {
+				mission = missionServiceImpl.missionInquiry(mission);
+
+				payment.setMissionNo(mission.getNo());
 				payment = paymentServiceImpl.paymentInquiry(payment);
-				
+
 				perform.setPaymentNo(payment.getNo());
 				performList = performServiceImpl.performList(perform);
-				
-				mv.addObject("mission", missionValue);
+
+				mv.addObject("mission", mission);
 				mv.addObject("performList", performList);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else {
-			try {
+			} else {
 				performList = performServiceImpl.performList(perform);
-				
+
 				List<Mission> missionList = missionServiceImpl.missionList(mission);
 				List<Payment> paymentList = paymentServiceImpl.paymentList(payment);
-				
+
 				mv.addObject("paymentList", paymentList);
 				mv.addObject("missionList", missionList);
 				mv.addObject("performList", performList);
-			} catch (Exception e) {
-				e.printStackTrace();
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		
+
 		return mv;
 	}
-	
-	//수행 내역 상세 조회
+
+	// 수행 내역 상세 조회
 	@GetMapping("/{no}")
 	public ModelAndView performInquiry(@PathVariable int no) {
-		Perform perform = new Perform();
-		perform.setNo(no);
-		
 		ModelAndView mv = new ModelAndView("/perform/inquiry");
-		Payment paymentValue = new Payment();
-		
 		try {
-			Perform performValue = performServiceImpl.performInquiry(perform);
-			
-			paymentValue.setNo(performValue.getPaymentNo());
-			int missionNo = paymentServiceImpl.paymentInquiry(paymentValue).getMissionNo();
-		
-			mv.addObject("missionNo", missionNo);
-			mv.addObject("perform", performValue);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return mv;
-	}
-	
-	//수행 내역 수정
-	@PutMapping
-	public ModelAndView performModify(Perform perform) {
-		ModelAndView mv = new ModelAndView();
-		try {
-			Payment paymentValue = new Payment();
-			paymentValue.setNo(perform.getPaymentNo());
-			Mission missionValue = new Mission();
+			// 수행 내역 조회
+			Perform perform = new Perform();
+			perform.setNo(no);
+			perform = performServiceImpl.performInquiry(perform);
 
-			paymentValue = paymentServiceImpl.paymentInquiry(paymentValue);
-			int missionNo = paymentValue.getMissionNo();
-
-			missionValue.setNo(missionNo);
-			missionValue = missionServiceImpl.missionInquiry(missionValue);
-
-			if (perform.getRegisterDate().isBefore(missionValue.getStartDate())) {
-				performServiceImpl.performModify(perform);
-
-				mv.setViewName("redirect:/perform");
-			} else {
-				mv.setViewName("redirect:/perform" + perform.getNo());
-			}
+			mv.addObject("perform", perform);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		return mv;
 	}
-	
-	//수행 내역 삭제
+
+	// 수행 내역 삭제
 	@DeleteMapping
 	public ModelAndView performDelete(Perform perform) {
 		ModelAndView mv = new ModelAndView("/perform");
-		
+
 		try {
-			performServiceImpl.performDelete(perform);
+			if (perform != null) {
+				performServiceImpl.performDelete(perform);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return mv;
 	}
-	
-	//이미지 출력
+
+	// 이미지 출력
 	@GetMapping("/photo/{no}")
 	public void photoView(Perform perform, HttpServletResponse response) {
 		try {

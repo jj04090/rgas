@@ -25,6 +25,9 @@ import org.springframework.web.servlet.view.RedirectView;
 @RequestMapping("/report")
 public class ReportController {
 	@Autowired
+	private HttpSession httpSession;
+
+	@Autowired
 	private ReportServiceImpl reportServiceImpl;
 
 	@Autowired
@@ -33,23 +36,15 @@ public class ReportController {
 	@Autowired
 	private PerformServiceImpl performServiceImpl;
 
-	@Autowired
-	private HttpSession httpSession;
-
 	// 신고 등록 폼
 	@GetMapping("/form/{no}")
 	public ModelAndView reportRegisterForm(@PathVariable int no) {
 		ModelAndView mv = new ModelAndView("/report/register");
-
-		String email = (String) httpSession.getAttribute("email");
-		Member memberValue = new Member();
-		memberValue.setEmail(email);
+		Member member = (Member) httpSession.getAttribute("memberValue");
 
 		try {
-			int memberNo = memberServiceImpl.memberInquiry(memberValue).getNo();
-
 			mv.addObject("performNo", no);
-			mv.addObject("memberNo", memberNo);
+			mv.addObject("memberNo", member.getNo());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -79,14 +74,14 @@ public class ReportController {
 
 	// 신고 내역 목록 조회
 	@GetMapping
-	public ModelAndView reportList(Report report) {
+	public ModelAndView reportList() {
 		ModelAndView mv = new ModelAndView();
 
 		if ("A".equals(httpSession.getAttribute("auth"))) {
 			try {
 				mv.setViewName("/report/list");
 
-				List<Report> reportList = reportServiceImpl.reportList(report);
+				List<Report> reportList = reportServiceImpl.reportList(new Report());
 				List<Member> memberList = memberServiceImpl.memberList(new Member());
 
 				mv.addObject("list", reportList);
@@ -106,20 +101,20 @@ public class ReportController {
 	public ModelAndView reportInquiry(Report report) {
 		ModelAndView mv = new ModelAndView();
 
-		if ("A".equals(httpSession.getAttribute("auth"))) {
-			mv.setViewName("/report/inquiry");
+		try {
+			if ("A".equals(httpSession.getAttribute("auth")) && report != null) {
+				mv.setViewName("/report/inquiry");
 
-			try {
 				Report reportValue = reportServiceImpl.reportInquiry(report);
 				List<Member> memberList = memberServiceImpl.memberList(new Member());
 
 				mv.addObject("memberList", memberList);
 				mv.addObject("report", reportValue);
-			} catch (Exception e) {
-				e.printStackTrace();
+			} else {
+				mv.setViewName("redirect:/mission");
 			}
-		} else {
-			mv.setViewName("redirect:/mission");
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 		return mv;
@@ -129,14 +124,16 @@ public class ReportController {
 	@PutMapping
 	public ModelAndView reportModify(Report report) {
 		ModelAndView mv = new ModelAndView(new RedirectView("/report"));
-		Perform performValue = new Perform();
+		Perform perform = new Perform();
 
-		performValue.setNo(report.getPerformNo());
-		performValue.setStatus('N');
-		System.out.println(performValue);
 		try {
-			performServiceImpl.performModify(performValue);
-			reportServiceImpl.reportModify(report);
+			if (report != null) {
+				perform.setNo(report.getPerformNo());
+				perform.setStatus('N');
+
+				performServiceImpl.performModify(perform);
+				reportServiceImpl.reportModify(report);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -149,11 +146,10 @@ public class ReportController {
 	public ModelAndView reportDelete(Report report) {
 		ModelAndView mv = new ModelAndView(new RedirectView("/report"));
 
-		Report reportValue = new Report();
-		reportValue.setNo(report.getNo());
-
 		try {
-			reportServiceImpl.reportDelete(reportValue);
+			if (report != null) {
+				reportServiceImpl.reportDelete(report);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

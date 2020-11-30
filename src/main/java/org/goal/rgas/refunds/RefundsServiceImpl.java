@@ -5,8 +5,6 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.goal.rgas.donation.DonationSave;
 import org.goal.rgas.donation.DonationSaveMapper;
 import org.goal.rgas.member.MemberServiceImpl;
@@ -41,9 +39,6 @@ public class RefundsServiceImpl implements RefundsService {
 	private DonationSaveMapper donationSaveMapper;
 
 	@Autowired
-	private HttpSession httpSession;
-
-	@Autowired
 	private MemberServiceImpl memberServiceImpl;
 
 	//환급 정보 조회
@@ -65,47 +60,35 @@ public class RefundsServiceImpl implements RefundsService {
 		Perform perform = new Perform();
 		perform.setPaymentNo(payment.getNo());
 		perform.setStatus('Y');
+		
 		int SuccessCount = performMapper.count(perform);
 		int failCount = term - SuccessCount;
 		int refundAmount = (int) (payment.getDeposit() - (payment.getDeposit() * 0.07 * failCount));
 		
-		if (payment != null) {
-			IamportClient iamportClient = new IamportClient("1722439638143134", "tV7DKdiRXz5pX53kU9Ohg7Lb17DIiSUMN2pxfIpdhuCezFzuPnL5vwgwEUfXMaJzc97sRwF91ioBXX5N");
-			IamportResponse<com.siot.IamportRestHttpClientJava.response.Payment> iamportResponse = iamportClient
-					.cancelPayment(new CancelData(payment.getPaymentCode(), false,
-							new BigDecimal(refundAmount)));
-			
-			if (0 == iamportResponse.getCode()) {
-				Refunds refunds = new Refunds();
-				refunds.setAmount(iamportResponse.getResponse().getCancelAmount().intValue());
-				refunds.setPaymentNo(payment.getNo());
-				refunds.setRefundsDate(LocalDate.now());
-
-				//환급 내역 등록
-				refundsMapper.insert(refunds);
-				
-				//기부금 적립 내역 등록
-				if (refundAmount != payment.getDeposit()) {
-					DonationSave donationSave = new DonationSave();
-					donationSave.setAmount((int) (payment.getDeposit() * 0.07 * failCount));
-					donationSave.setPaymentNo(payment.getNo());
-					donationSave.setSaveDate(LocalDate.now());
-					donationSaveMapper.insert(donationSave);
-				}
-				
-				// 회원 등급갱신
-				String email = (String) httpSession.getAttribute("email");
-				memberServiceImpl.memberGradeRenewal(email);
-
-				return refundAmount;
-			} else {
-
-				System.out.println("실패" + iamportResponse.getMessage() + "##" + iamportResponse.getCode() + "##"
-						+ iamportResponse.getResponse());
-				return 0;
+		IamportClient iamportClient = new IamportClient("1722439638143134",
+				"tV7DKdiRXz5pX53kU9Ohg7Lb17DIiSUMN2pxfIpdhuCezFzuPnL5vwgwEUfXMaJzc97sRwF91ioBXX5N");
+		IamportResponse<com.siot.IamportRestHttpClientJava.response.Payment> iamportResponse = iamportClient
+				.cancelPayment(new CancelData(payment.getPaymentCode(), false, new BigDecimal(refundAmount)));
+		if (0 == iamportResponse.getCode()) {
+			Refunds refunds = new Refunds();
+			refunds.setAmount(iamportResponse.getResponse().getCancelAmount().intValue());
+			refunds.setPaymentNo(payment.getNo());
+			refunds.setRefundsDate(LocalDate.now());
+			refundsMapper.insert(refunds);
+			if (refundAmount != payment.getDeposit()) {
+				DonationSave donationSave = new DonationSave();
+				donationSave.setAmount((int) (payment.getDeposit() * 0.07 * failCount));
+				donationSave.setPaymentNo(payment.getNo());
+				donationSave.setSaveDate(LocalDate.now());
+				donationSaveMapper.insert(donationSave);
 			}
+			memberServiceImpl.memberGradeRenewal();
+			return refundAmount;
+		} else {
+			System.out.println("실패" + iamportResponse.getMessage() + "##" + iamportResponse.getCode() + "##"
+					+ iamportResponse.getResponse());
+			return 0;
 		}
-		return 0;
 	}
 
 	//환급 내역 목록 조회

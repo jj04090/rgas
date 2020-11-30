@@ -15,17 +15,17 @@ import org.springframework.web.servlet.view.RedirectView;
 @RestController
 public class SystemController {
 	@Autowired
-	private SystemServiceImpl systemServiceImpl;
-
-	@Autowired
 	private HttpSession httpSession;
+	
+	@Autowired
+	private SystemServiceImpl systemServiceImpl;
 
 	//로그인 폼
 	@GetMapping("/home")
 	public ModelAndView home() {
 		ModelAndView mv = new ModelAndView();
 		
-		if ("A".equals((String) httpSession.getAttribute("auth")) || "C".equals((String) httpSession.getAttribute("auth"))) {
+		if (httpSession.getAttribute("auth") != null) {
 			mv.setViewName("/system/home");
 
 			return mv;

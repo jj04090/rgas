@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.goal.rgas.member.Member;
+import org.goal.rgas.member.MemberServiceImpl;
 import org.goal.rgas.mission.Mission;
 import org.goal.rgas.mission.MissionServiceImpl;
 import org.goal.rgas.payment.Payment;
@@ -18,13 +19,11 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
 @RestController
 @RequestMapping("/perform")
@@ -40,6 +39,9 @@ public class PerformController {
 
 	@Autowired
 	private MissionServiceImpl missionServiceImpl;
+	
+	@Autowired
+	private MemberServiceImpl memberServiceImpl;
 
 	// 수행내역 등록 폼
 	@GetMapping("/form/{no}")
@@ -100,9 +102,8 @@ public class PerformController {
 
 		Perform perform = new Perform();
 		Payment payment = new Payment();
-
 		try {
-			if (mission != null) {
+			if (mission.getNo() != 0) {
 				mission = missionServiceImpl.missionInquiry(mission);
 
 				payment.setMissionNo(mission.getNo());
@@ -118,7 +119,9 @@ public class PerformController {
 
 				List<Mission> missionList = missionServiceImpl.missionList(mission);
 				List<Payment> paymentList = paymentServiceImpl.paymentList(payment);
-
+				List<Member> memberList = memberServiceImpl.memberList(new Member());
+				
+				mv.addObject("memberList", memberList);
 				mv.addObject("paymentList", paymentList);
 				mv.addObject("missionList", missionList);
 				mv.addObject("performList", performList);

@@ -29,18 +29,14 @@ td:hover {
 		<section id="content">
 			<div class="content-wrap">
 				<div class="container clearfix">
-					<div>
-						<div>
-							<table style="padding-right:0;" class="table table-bordered table-striped">
-								<tr>
-									<td>
-										<input type="text" name="name" />
-										<input id="button_search" type="button" value="검색" class="button button-border"/>
-									</td>
-								</tr>
-							</table>
-						</div>
-					</div>
+					<table style="padding-right:0;" class="table table-bordered table-striped">
+						<tr>
+							<td style="float:right;">
+								<input type="text" name="name" class="" />
+								<input id="button_search" type="button" value="검색" class="button button-border"/>
+							</td>
+						</tr>
+					</table>
 				</div>
 			</div>
 		</section>

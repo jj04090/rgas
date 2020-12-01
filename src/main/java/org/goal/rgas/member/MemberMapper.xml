@@ -55,7 +55,7 @@
 
     <select id="count" parameterType="org.goal.rgas.member.Member" resultType="int">
         SELECT COUNT(*)
-        FROM member
+        FROM MEMBER
         <include refid="whereSql" />
     </select>
 
@@ -74,20 +74,13 @@
                 GRADE,
                 AUTH,
                 STATUS
-            FROM member
+            FROM MEMBER
             <if test="name != null and name != ''">
            		<where>
            			AND NAME LIKE ('%' || #{name} || '%')
            		</where>
             </if>
-           <!--  <include refid="whereSql" /> -->
         ) TB
-        <!-- <where>
-            <if test="itemStart > -1">
-                RN BETWEEN (#{itemStart} + 1)
-                       AND (#{itemStart} + #{itemSizePerPage})
-            </if>
-        </where> -->
     </select>
 	
 	<select id="selectAll" parameterType="org.goal.rgas.member.Member"
@@ -125,7 +118,7 @@
             GRADE,
             AUTH,
             STATUS
-        FROM member
+        FROM MEMBER
         <include refid="whereSql" />
     </select>
 
@@ -137,9 +130,6 @@
             NICKNAME,
             BANK,
             ACCOUNT
-            <!-- GRADE,
-            AUTH,
-            STATUS -->
         ) VALUES (
             #{email},
             #{password},
@@ -147,27 +137,12 @@
             #{nickname},
             #{bank},
             #{account}
-            <!-- #{grade},
-            #{auth},
-            #{status} -->
         )
     </insert>
 
     <update id="update" parameterType="org.goal.rgas.member.Member">
-        UPDATE member
+        UPDATE MEMBER
         <set>
-            <!-- <if test="no != ''">
-                NO = #{no},
-            </if>
-            <if test="email != ''">
-                EMAIL = #{email},
-            </if> -->
-            <!-- <if test="password != ''">
-                PASSWORD = #{password},
-            </if>
-            <if test="name != ''">
-                NAME = #{name},
-            </if> -->
             <if test="nickname != null">
                 NICKNAME = #{nickname},
             </if>
@@ -180,9 +155,6 @@
             <if test="grade != ''">
                 GRADE = #{grade},
             </if>
-            <!-- <if test="auth != ''">
-                AUTH = #{auth},
-            </if> -->
             <if test="status != ''">
                 STATUS = #{status},
             </if>
@@ -193,7 +165,7 @@
     </update>
 
     <delete id="delete" parameterType="org.goal.rgas.member.Member">
-        DELETE FROM member
+        DELETE FROM MEMBER
         <include refid="whereSql" />
     </delete>
 </mapper>

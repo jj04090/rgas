@@ -6,14 +6,14 @@
 <jsp:include page="/WEB-INF/jsp/layout/topheader.jsp" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<title>수행내역</title>
+<title>피드</title>
 <jsp:include page="/WEB-INF/jsp/layout/topbody.jsp" />
 
 <body class="stretched" style="background:#2E2E2E">
 	<div id="wrapper" class="clearfix">
 		<section id="page-title">
 			<div class="container clearfix">
-				<h1 style="font-size:40px">수행내역</h1>
+				<h1 style="font-size:40px">피드</h1>
 				<span>perform list</span>
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="/home">Home</a></li>
@@ -21,56 +21,93 @@
 				</ol>
 			</div>
 		</section>	
-		<c:forEach var="perform" items="${performList}">
 		<section id="content">
-			<div class="content-wrap">
-				<div class="container clearfix">				
-					<div id="portfolio" class="portfolio row grid-container gutter-20 gutter-sm-50" data-layout="fitRows">
-						<article class="portfolio-item col-12 pf-media pf-icons">
-							<div class="grid-inner row no-gutters">
-								<div class="portfolio-image col-lg-8">
-									<div class="grid-inner">
-										<a><img src="/perform/photo/${perform.no}" alt="Image"></a>
+			<div class="content-wrap pb-0">
+				<div class="container clearfix">
+					<div id="portfolio" class="portfolio portfolio-reveal row grid-container no-gutters" data-layout="fitRows">
+					<c:forEach var="perform" items="${performList}">
+
+					<article class="portfolio-item col-lg-3 col-md-4 col-sm-6 col-12 pf-media pf-icons">
+						<div class="grid-inner">
+							<div class="portfolio-image">
+								<img src="/perform/photo/${perform.no}" onerror="this.src='/images/17.jpg'" style="width:300px;height:300px;">
+								<div class="bg-overlay">
+									<div class="bg-overlay-content dark" data-hover-animate="fadeIn" data-hover-parent=".portfolio-item">
+										<c:if test="${missionList != null}">
+											<a href="/report/form/${perform.no}"
+												class="btn btn-secondary d-none d-sm-inline-block"
+												data-hover-animate="fadeInDownSmall" data-hover-animate-out="fadeOutUpSmall" data-hover-speed="350" 
+												data-hover-parent=".portfolio-item" data-lightbox="report" title="report">
+											<i class="icon-warning-sign"></i><span class="sr-only">Details</span></a>
+										</c:if>
 									</div>
+									<div class="bg-overlay-bg dark" data-hover-animate="fadeIn" data-hover-parent=".portfolio-item"></div>
 								</div>
-								<div class="portfolio-desc col-lg-4 p-4 px-lg-5">
-									<h2 style="font-family:'맑은 고딕';text-shadow:1px 1px black;font-weight:bold;">
+							</div>
+							<div class="portfolio-desc">
+								<h3>
+								</h3>
+								<span><ul class="iconlist d-none d-md-block">
+										<li>
 										<c:if test="${mission.title != null}" >
-						            		${mission.title}
+						            		<strong style="font-size:20px;">${mission.title}</strong>
 						            	</c:if>
 										<c:if test="${missionList != null}">
 								        	<c:forEach var="paymentList" items="${paymentList}">
 								            		<c:if test="${perform.paymentNo eq paymentList.no}">
 								            			<c:forEach var="missionList" items="${missionList}">
 								            				<c:if test="${paymentList.missionNo eq missionList.no}">
-										            			${missionList.title}
+										            			<strong style="font-size:20px;">${missionList.title}</strong>
 								            				</c:if>
 								            			</c:forEach>
 								            		</c:if>
 								            </c:forEach>
 						            	</c:if>
-									</h2>
-									
-									<ul class="iconlist d-none d-md-block">
-										<li><i class="icon-calendar3"></i> 
-										<strong>수행 날짜</strong><p style="font-size:15px;">${perform.registerDate}</p></li>
-										<li><i class="icon-star-half-full"></i> 
-										<strong>성공/실패 유무</strong><p style="font-size:15px;">
-										<c:if test="${perform.status == 'Y'}">성공</c:if>
-						        		<c:if test="${perform.status == 'N'}">실패</c:if></p></li>
-									</ul>
-									<c:if test="${missionList != null}">
-										<a href="/report/form/${perform.no}" style="float:right;"
-										class="btn btn-secondary d-none d-sm-inline-block">
-										<i class="icon-warning-sign"></i><span class="sr-only">Details</span>&nbsp;신고</a>
-									</c:if>
-								</div>
+						            	</li>
+										<li>
+										<table style="text-align:center;margin:0px;padding:0px;">
+											<tr>
+												<th><i class="icon-calendar3"></i> 
+													<strong style="font-size:13px;">수행 날짜</strong></th>
+												<th>&nbsp;&nbsp;&nbsp;</th>
+												<th><li><i class="icon-star-half-full"></i> 
+													<strong style="font-size:13px;">
+														<c:if test="${perform.status == 'Y'}">성공</c:if>
+						        						<c:if test="${perform.status == 'N'}">실패</c:if>
+						        					</strong>
+						        				</th>
+						        				<th>&nbsp;&nbsp;&nbsp;</th>
+						        				<c:if test="${memberList != null}">
+						        				<th><i class="icon-user"></i> 
+													<strong style="font-size:13px;">
+														<c:forEach var="paymentList" items="${paymentList}">
+											            		<c:if test="${perform.paymentNo eq paymentList.no}">
+											            			<c:forEach var="missionList" items="${missionList}">
+											            				<c:if test="${paymentList.missionNo eq missionList.no}">
+											            					<c:forEach var="memberList" items="${memberList}">
+											            						<c:if test="${missionList.memberNo eq memberList.no}">
+															            			<strong style="font-size:13px;">${memberList.nickname}</strong>
+											            						</c:if>
+											            					</c:forEach>
+											            				</c:if>
+											            			</c:forEach>
+											            		</c:if>
+											            </c:forEach>
+													</strong></th>
+													</c:if>
+												</tr>
+											<tr>
+											<td><p style="font-size:13px;">${perform.registerDate}</p></td>
+											</tr>
+										</table>
+									</ul></span>
 							</div>
-						</article>
-					</div>
+						</div>
+					</article>
+				</c:forEach>
+				</div>
 				</div>
 			</div>
 		</section>
-		</c:forEach>
 	</div>
 <jsp:include page="/WEB-INF/jsp/layout/bottom.jsp" />

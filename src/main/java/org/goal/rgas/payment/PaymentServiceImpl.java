@@ -98,10 +98,8 @@ public class PaymentServiceImpl implements PaymentService {
 					"tV7DKdiRXz5pX53kU9Ohg7Lb17DIiSUMN2pxfIpdhuCezFzuPnL5vwgwEUfXMaJzc97sRwF91ioBXX5N");
 			IamportResponse<com.siot.IamportRestHttpClientJava.response.Payment> iamportResponse = iamportClient
 					.cancelPayment(new CancelData(payment.getPaymentCode(), false));
-
-			if (200 == iamportResponse.getCode()) {
+			if (0 == iamportResponse.getCode()) {
 				paymentMapper.delete(payment);
-
 				return true;
 			} else {
 				return false;

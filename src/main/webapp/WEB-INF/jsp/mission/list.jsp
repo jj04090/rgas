@@ -22,7 +22,7 @@
 				</ol>
 			</div>
 		    <div class="col-12 form-group">
-				<input class="button button-small button-circle button-border button-aqua" type="button" id="send" value="미션 등록" style="float:right;" onclick="location.href='/mission/form'"/> 
+		    	<a href="/mission/form" style="float:right;" class="button button-xlarge button-dark button-rounded text-right">미션등록<i class="icon-circle-arrow-right"></i></a>
 			</div>
 		</section>
 		
@@ -47,7 +47,7 @@
 						<div class="entry col-12">
 							<div class="grid-inner row no-gutters">
 								<div class="entry-image col-md-4">
-									<a data-lightbox="image"><img src="/mission/photo/${mission.no}" alt="Standard Post with Image"></a>
+									<a data-lightbox="image"><img src="/mission/photo/${mission.no}" onerror="this.src='/images/17.jpg'"></a>
 								</div>
 								<div class="col-md-8 pl-md-4">
 									<div class="entry-title title-sm">
@@ -74,15 +74,17 @@
 	            
 	    								<fmt:formatDate value="${certifiedStartTime}" pattern="HH:mm:ss" var="startTime"/>
 	    								<fmt:formatDate value="${certifiedEndTime}" pattern="HH:mm:ss" var="endTime"/>
+									</div>
+									<div class="entry-content">	
 										<form method="get" action="/perform">
 											<input type="hidden" name="no" id="no" value="${mission.no}" />
-											<input class="button button-border button-aqua" type="submit" value="수행내역 조회" />
+											<input class="button button-border button-rounded button-amber" style="float:right;font-size:17px;" type="submit" value="피드 조회" />
 										</form>
 										<c:if test="${nowTime >= startTime and nowTime <= endTime}">
 		           							 <c:if test="${today >= mission.startDate and today <= mission.endDate}">
 			            							<form method="get" action="/perform/form/${mission.no}">
 														<input type="hidden" name="no" id="no" value="${mission.no}" />
-														<input class="button button-border button-aqua" type="submit" value="수행내역 등록" />
+														<input class="button button-border button-rounded button-amber" style="float:right;font-size:17px;" type="submit" value="피드 등록" />
 													</form>
 								            </c:if>
 							            </c:if>

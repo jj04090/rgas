@@ -6577,14 +6577,14 @@ body:not(.has-plugin-html5video) .video-wrap video {
 #content {
 	position: relative;
 	background-color: #FFF;
-	padding-bottom: 30px;
+	padding-bottom: 0px;
 }
 
 #content p { line-height: 1.8; }
 
 .content-wrap {
 	position: relative;
-	padding: 60px 0;
+	padding: 10px 0;
 	overflow: hidden;
 }
 

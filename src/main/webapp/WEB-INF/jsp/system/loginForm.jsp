@@ -126,7 +126,7 @@
 													<label>이메일:</label> <input type="email" name="email"
 														id="loginEmail"
 														class="form-control form-control-lg required"
-														placeholder="user@company.com" onchange="checkEmail()">
+														placeholder="user@company.com">
 												</div>
 												<div class="col-12 form-group mb-5 dark">
 													<label>비밀번호:</label> <input type="password"

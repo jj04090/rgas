@@ -28,11 +28,11 @@
 								<form method="post" action="/charity" id="charityForm">
 									<div class="col-12 form-group">
 										<label style="font-size:20px;">기부단체 명</label>
-										<input type="text" name="name" id="name" class="form-control required"/>
+										<input type="text" name="name" id="name" class="form-control required" required/>
 									</div>
 									<div class="col-12 form-group">
 												<label for="">은행:</label>
-													<select id="bank" name="bank" class="select-1 form-control" style="width:100%;">
+													<select id="bank" name="bank" class="select-1 form-control" style="width:100%;" required>
 													    <option value="" disabled selected>은행 선택</option>
 													    <option value="KB국민은행">KB국민은행</option>
 													    <option value="SC제일은행">SC제일은행</option>
@@ -53,7 +53,7 @@
 											</div>
 									<div class="col-12 form-group">
 										<label style="font-size:20px;">계좌 번호</label>
-										<input type="text" name="account" id="account" class="form-control required" />
+										<input type="number" name="account" id="account" class="form-control required" required/>
 									</div>
 									<div class="col-12 form-group">
 										<input value="등록" type="submit" form="charityForm" style="float:right;" class="button button-border">

@@ -16,28 +16,28 @@ import org.springframework.web.servlet.view.RedirectView;
 public class SystemController {
 	@Autowired
 	private HttpSession httpSession;
-	
+
 	@Autowired
 	private SystemServiceImpl systemServiceImpl;
 
-	//로그인 폼
+	// 로그인 폼
 	@GetMapping("/home")
 	public ModelAndView home() {
 		ModelAndView mv = new ModelAndView();
-		
+
 		if (httpSession.getAttribute("auth") != null) {
 			mv.setViewName("/system/home");
 
 			return mv;
 		} else {
 			mv.setViewName("/system/loginForm");
-			
+
 			return mv;
 		}
-		
+
 	}
-	
-	//로그인 폼
+
+	// 로그인 폼
 	@GetMapping("/login")
 	public ModelAndView loginForm() {
 		ModelAndView mv = new ModelAndView("/system/loginForm");
@@ -45,10 +45,12 @@ public class SystemController {
 		return mv;
 	}
 
-	//로그인 처리
+	// 로그인 처리
 	@PostMapping("/login")
-	public ModelAndView login(@Valid Member member, Errors errors) throws Exception {
+	public ModelAndView login(Member member, Errors errors) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		System.out.println(member.getEmail());
+		System.out.println(member.getPassword());
 		boolean isLogin = systemServiceImpl.login(member);
 
 		if (isLogin) {

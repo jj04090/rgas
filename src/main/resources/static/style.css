@@ -5556,6 +5556,7 @@ body:not(.top-search-open) .top-search-parent .header-misc > *:not(#top-search) 
 
 .slider-element {
 	position: relative;
+	height:100%;
 	width: 100%;
 	overflow: hidden;
 }

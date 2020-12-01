@@ -31,6 +31,9 @@ td:hover {
 				<div class="container clearfix">
 					<div>
 						<div>
+								<div class="col-12 form-group">
+							    	<a href="/charity/form" style="float:right;" class="button button-xlarge button-dark button-rounded text-right">기부단체 등록<i class="icon-circle-arrow-right"></i></a>
+								</div>
 							<table class="table table-bordered table-striped">
 							  <thead >
 								<tr>
@@ -50,9 +53,6 @@ td:hover {
 							  </c:forEach>
 							</table>
 						</div>
-							<form method="GET" action="/charity/form">
-							    <input value="기부단체 등록" type="submit" style="float:right;" class="button button-border">
-							</form>
 					</div>
 				</div>
 			</div>

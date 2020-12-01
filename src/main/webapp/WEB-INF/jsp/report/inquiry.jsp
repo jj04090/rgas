@@ -64,13 +64,13 @@
 							<input type="hidden" name="_method" value="PUT" /> 
 							<input type="hidden" name="no" id="no" value="${report.no}" />
 							<input type="hidden" name="performNo" id="performNo" value="${report.performNo}" />
-							<input value="처리" type="submit" style="float:right;" class="button button-border button-aqua">
+							<input value="처리" type="submit" style="float:right;" class="button button-border">
 						</form>
 						<div>
 						<form method="post" action="/report">
 							<input type="hidden" name="_method" value="DELETE" /> 
 							<input type="hidden" name="no" id="no" value="${report.no}" /> 
-							<input type="submit" value="삭제" style="float:left;" class="button button-border button-aqua"/>
+							<input type="submit" value="삭제" style="float:left;" class="button button-border"/>
 						</form>
 						</div>
 						

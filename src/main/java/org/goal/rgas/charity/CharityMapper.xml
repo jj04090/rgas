@@ -31,7 +31,7 @@
 
     <select id="count" parameterType="org.goal.rgas.charity.Charity" resultType="int">
         SELECT COUNT(*)
-        FROM charity
+        FROM CHARITY
         <include refid="whereSql" />
     </select>
 
@@ -43,15 +43,9 @@
                 NAME,
                 BANK,
                 ACCOUNT
-            FROM charity
+            FROM CHARITY
             <include refid="whereSql" />
         ) TB
-        <!-- <where>
-            <if test="itemStart > -1">
-                RN BETWEEN (#{itemStart} + 1)
-                       AND (#{itemStart} + #{itemSizePerPage})
-            </if>
-        </where> -->
     </select>
 
     <select id="select" parameterType="org.goal.rgas.charity.Charity" resultMap="charityResultMap">
@@ -60,7 +54,7 @@
             NAME,
             BANK,
             ACCOUNT
-        FROM charity
+        FROM CHARITY
         <include refid="whereSql" />
     </select>
 
@@ -78,7 +72,7 @@
     </insert>
 
     <update id="update" parameterType="org.goal.rgas.charity.Charity">
-        UPDATE charity
+        UPDATE CHARITY
         <set>  
             <if test="name != ''">
                 NAME = #{name},
@@ -98,7 +92,7 @@
     </update>
 
     <delete id="delete" parameterType="org.goal.rgas.charity.Charity">
-        DELETE FROM charity
+        DELETE FROM CHARITY
         <include refid="whereSql" />
     </delete>
 </mapper>

@@ -31,7 +31,7 @@
 
     <select id="count" parameterType="org.goal.rgas.donation.DonationTransfer" resultType="int">
         SELECT COUNT(*)
-        FROM donation_transfer
+        FROM DONATION_TRANSFER
         <include refid="whereSql" />
     </select>
 
@@ -43,15 +43,9 @@
                 CHARITY_NO,
                 AMOUNT,
                 TRANSFER_DATE
-            FROM donation_transfer
+            FROM DONATION_TRANSFER
             <include refid="whereSql" />
         ) TB
-       <!--  <where>
-            <if test="itemStart > -1">
-                RN BETWEEN (#{itemStart} + 1)
-                       AND (#{itemStart} + #{itemSizePerPage})
-            </if>
-        </where> -->
     </select>
 
     <select id="select" parameterType="org.goal.rgas.donation.DonationTransfer" resultMap="donationTransferResultMap">
@@ -60,18 +54,16 @@
             CHARITY_NO,
             AMOUNT,
             TRANSFER_DATE
-        FROM donation_transfer
+        FROM DONATION_TRANSFER
         <include refid="whereSql" />
     </select>
 
     <insert id="insert" parameterType="org.goal.rgas.donation.DonationTransfer">
-        INSERT INTO donation_transfer (
-            <!-- NO, -->
+        INSERT INTO DONATION_TRANSFER (
             CHARITY_NO,
             AMOUNT,
             TRANSFER_DATE
         ) VALUES (
-           <!--  #{no}, -->
             #{charityNo},
             #{amount},
             NOW()
@@ -79,7 +71,7 @@
     </insert>
 
     <update id="update" parameterType="org.goal.rgas.donation.DonationTransfer">
-        UPDATE donation_transfer
+        UPDATE DONATION_TRANSFER
         <set>
             <if test="no != ''">
                 NO = #{no},
@@ -97,7 +89,7 @@
     </update>
 
     <delete id="delete" parameterType="org.goal.rgas.donation.DonationTransfer">
-        DELETE FROM donation_transfer
+        DELETE FROM DONATION_TRANSFER
         <include refid="whereSql" />
     </delete>
 </mapper>

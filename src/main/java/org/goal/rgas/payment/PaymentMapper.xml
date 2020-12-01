@@ -39,7 +39,7 @@
 
     <select id="count" parameterType="org.goal.rgas.payment.Payment" resultType="int">
         SELECT COUNT(*)
-        FROM payment
+        FROM PAYMENT
         <include refid="whereSql" />
     </select>
 
@@ -53,15 +53,9 @@
                 MISSION_NO,
                 PAYMENT_DATE,
                 DEPOSIT
-            FROM payment
+            FROM PAYMENT
             <include refid="whereSql" />
         ) TB
-        <!-- <where>
-            <if test="itemStart > -1">
-                RN BETWEEN (#{itemStart} + 1)
-                       AND (#{itemStart} + #{itemSizePerPage})
-            </if>
-        </where> -->
     </select>
 
     <select id="select" parameterType="org.goal.rgas.payment.Payment" resultMap="paymentResultMap">
@@ -72,20 +66,18 @@
             MISSION_NO,
             PAYMENT_DATE,
             DEPOSIT
-        FROM payment
+        FROM PAYMENT
         <include refid="whereSql" />
     </select>
 
     <insert id="insert" parameterType="org.goal.rgas.payment.Payment">
-        INSERT INTO payment (
-            <!-- NO, -->
+        INSERT INTO PAYMENT (
             PAYMENT_CODE,
             MEMBER_NO,
             MISSION_NO,
             PAYMENT_DATE,
             DEPOSIT
         ) VALUES (
-            <!-- #{no}, -->
             #{paymentCode},
             #{memberNo},
             #{missionNo},
@@ -95,7 +87,7 @@
     </insert>
 
     <update id="update" parameterType="org.goal.rgas.payment.Payment">
-        UPDATE payment
+        UPDATE PAYMENT
         <set>
             <if test="no != ''">
                 NO = #{no},
@@ -119,7 +111,7 @@
     </update>
 
     <delete id="delete" parameterType="org.goal.rgas.payment.Payment">
-        DELETE FROM payment
+        DELETE FROM PAYMENT
         <include refid="whereSql" />
     </delete>
 </mapper>

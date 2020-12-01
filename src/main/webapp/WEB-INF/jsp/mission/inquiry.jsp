@@ -35,7 +35,7 @@
 									<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
 									<div id="id" style="display:none"><tf:formatDateTime value="${mission.startDate}" pattern="yyyy-MM-dd"/></div>
 									<div class="col-12 form-group">
-										<label>미션 제목</label>
+										<label style="font-size:20px;">미션 제목</label>
 										<c:if test="${today < mission.startDate}">
 											<input type="text" name="title" id="title" class="form-control required" value="${mission.title}" />
 										</c:if>
@@ -44,7 +44,7 @@
 										</c:if>
 									</div>
 									<div class="col-6 form-group">
-										<label>카테고리</label>
+										<label style="font-size:20px;">카테고리</label>
 										<c:if test="${today < mission.startDate}">
 											<select class="form-control required" name="categoryNo" id="categoryNo">
 												<option value="1">건강</option>
@@ -65,13 +65,13 @@
 										</c:if>
 									</div>
 									<div class="col-6 form-group">
-										<label>금액(원)</label>
+										<label style="font-size:20px;">금액(원)</label>
 										<input type="text" id="entryFee" name="entryFee" class="form-control required"
 											placeholder="숫자만 입력해주세요" value="${mission.entryFee}" disabled>
 									</div>
 									<div class="col-12">
 										<div class="form-group">
-											<label>내용</label>
+											<label style="font-size:20px;">내용</label>
 											<c:if test="${today < mission.startDate }">
 												<textarea name="note" id="note" class="form-control required" cols="30" rows="5">${mission.note}</textarea>
 											</c:if>
@@ -81,7 +81,7 @@
 										</div>
 									</div>
 									<div class="col-6 form-group">
-										<label>시작 일자</label>
+										<label style="font-size:20px;">시작 일자</label>
 										<c:if test="${today < mission.startDate}">
 											<div>
 												<input type="date" name="startDate" id="startDate" class="form-control required" value="${mission.startDate}">
@@ -94,7 +94,7 @@
 										</c:if>
 									</div>
 									<div class="col-6 form-group">
-										<label>종료 일자</label>
+										<label style="font-size:20px;">종료 일자</label>
 										<c:if test="${today < mission.startDate}">
 											<div>
 												<input type="date" name="endDate" id="endDate" class="form-control required" value="${mission.endDate}">
@@ -107,7 +107,7 @@
 										</c:if>
 									</div>
 									<div class="col-6 form-group">
-										<label>인증 시작 시간</label>
+										<label style="font-size:20px;">인증 시작 시간</label>
 										<c:if test="${today < mission.startDate}">
 											<div>
 												<input type="time" name="certifiedStartTime" class="form-control required" 
@@ -122,7 +122,7 @@
 										</c:if>
 									</div>
 									<div class="col-6 form-group">
-										<label>인증 종료 시간</label>
+										<label style="font-size:20px;">인증 종료 시간</label>
 										<c:if test="${today < mission.startDate}">
 											<div>
 												<input type="time" name="certifiedEndTime" class="form-control required"
@@ -138,30 +138,30 @@
 									</div>
 									<div class="col-6 form-group">
 										<div class="form-group">
-											<label>예시사진 업로드</label>
+											<label style="font-size:20px;">예시사진 업로드</label>
 												<div>
 													<input type="file" name="img" id="img" class="file-loading required"
 													data-show-preview="false" disabled>
 												</div>
 										</div>
 									</div>
+								</form>
 									<div class="col-12 form-group">
 									<c:if test="${today < mission.startDate}">
-										<input class="button button-border button-aqua" style="float:right;"
+										<input class="button button-border" style="float:right;font-size:15px;"
 											type="submit" form="event-registration" value="수정" />
 									</c:if>
 									</div>
-								</form>
 								<c:if test="${today > mission.endDate}">
 									<input type="hidden" name="no" id="no" value="${mission.no}" />
-									<input type="button" value="환급" id="refunds" style="float:right;" 
-										class="button button-border button-aqua" onclick="ajax_call()"/>
+									<input type="button" value="환급" id="refunds" style="float:right;font-size:15px;" 
+										class="button button-border" onclick="ajax_call()"/>
 								</c:if>
 								<c:if test="${today < mission.startDate}">
 									<form id="deleteForm"method="post" action="/mission">
 										<input type="hidden" name="_method" value="DELETE" />
 										<input type="hidden" name="no" id="no" value="${mission.no}" />
-										<input class="button button-border button-aqua" style="float:right;"
+										<input class="button button-border" style="float:left;font-size:15px;"
 											type="submit" form="deleteForm" value="삭제"/>
 									</form>
 								</c:if>

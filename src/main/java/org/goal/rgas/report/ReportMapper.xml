@@ -39,7 +39,7 @@
 
     <select id="count" parameterType="org.goal.rgas.report.Report" resultType="int">
         SELECT COUNT(*)
-        FROM report
+        FROM REPORT
         <include refid="whereSql" />
     </select>
 
@@ -53,15 +53,9 @@
                 NOTE,
                 REPORT_DATE,
                 STATUS
-            FROM report
+            FROM REPORT
             <include refid="whereSql" />
         ) TB
-        <!-- <where>
-            <if test="itemStart > -1">
-                RN BETWEEN (#{itemStart} + 1)
-                       AND (#{itemStart} + #{itemSizePerPage})
-            </if>
-        </where> -->
     </select>
 
     <select id="select" parameterType="org.goal.rgas.report.Report" resultMap="reportResultMap">
@@ -72,20 +66,18 @@
             NOTE,
             REPORT_DATE,
             STATUS
-        FROM report
+        FROM REPORT
         <include refid="whereSql" />
     </select>
 
     <insert id="insert" parameterType="org.goal.rgas.report.Report">
-        INSERT INTO report (
-            <!-- NO, -->
+        INSERT INTO REPORT (
             MEMBER_NO,
             PERFORM_NO,
             NOTE,
             REPORT_DATE,
             STATUS
         ) VALUES (
-            <!-- #{no}, -->
             #{memberNo},
             #{performNo},
             #{note},
@@ -95,23 +87,8 @@
     </insert>
 
     <update id="update" parameterType="org.goal.rgas.report.Report">
-        UPDATE report
+        UPDATE REPORT
         <set>
-            <!-- <if test="no != 0">
-                NO = #{no},
-            </if> -->
-            <!-- <if test="memberNo != 0">
-                MEMBER_NO = #{memberNo},
-            </if>
-            <if test="performNo != 0">
-                PERFORM_NO = #{performNo},
-            </if>
-            <if test="note != null">
-                NOTE = #{note},
-            </if> -->
-            <!-- <if test="reportDate != ''">
-                REPORT_DATE = #{reportDate},
-            </if> -->
             <if test="status != ''">
                 STATUS = #{status},
             </if>
@@ -122,7 +99,7 @@
     </update>
 
     <delete id="delete" parameterType="org.goal.rgas.report.Report">
-        DELETE FROM report
+        DELETE FROM REPORT
         <include refid="whereSql" />
     </delete>
 </mapper>

@@ -23,7 +23,7 @@
 
     <select id="count" parameterType="org.goal.rgas.mission.Category" resultType="int">
         SELECT COUNT(*)
-        FROM category
+        FROM CATEGORY
         <include refid="whereSql" />
     </select>
 
@@ -33,7 +33,7 @@
             SELECT
                 NO,
                 TITLE
-            FROM category
+            FROM CATEGORY
             <include refid="whereSql" />
         ) TB
         <where>
@@ -48,12 +48,12 @@
         SELECT
             NO,
             TITLE
-        FROM category
+        FROM CATEGORY
         <include refid="whereSql" />
     </select>
 
     <insert id="insert" parameterType="org.goal.rgas.mission.Category">
-        INSERT INTO category (
+        INSERT INTO CATEGORY (
             NO,
             TITLE
         ) VALUES (
@@ -63,7 +63,7 @@
     </insert>
 
     <update id="update" parameterType="org.goal.rgas.mission.Category">
-        UPDATE category
+        UPDATE CATEGORY
         <set>
             <if test="no != ''">
                 NO = #{no},
@@ -75,7 +75,7 @@
     </update>
 
     <delete id="delete" parameterType="org.goal.rgas.mission.Category">
-        DELETE FROM category
+        DELETE FROM CATEGORY
         <include refid="whereSql" />
     </delete>
 </mapper>

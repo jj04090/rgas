@@ -6,14 +6,14 @@
 <jsp:include page="/WEB-INF/jsp/layout/topheader.jsp" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<title>수행내역 정보</title>
+<title>피드 정보</title>
 <jsp:include page="/WEB-INF/jsp/layout/topbody.jsp" />
 
 <body class="stretched" style="background:#2E2E2E">
 	<div id="wrapper" class="clearfix">
 		<section id="page-title">
 			<div class="container clearfix">
-				<h1 style="font-size:40px">수행내역 정보</h1>
+				<h1 style="font-size:40px">피드 정보</h1>
 				<span>perform info</span>
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="/home">Home</a></li>

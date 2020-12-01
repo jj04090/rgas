@@ -42,7 +42,7 @@ td:hover {
 									</c:forEach>
 								</select>
 						</form>
-						<input type="button" id="payment" value="기부금 이체" style="float:right;" class="button button-border"/>
+						<input type="button" id="payment" value="기부금 이체" style="float:right;font-size:15px;" class="button button-border button-green"/>
 							<div class="line"></div>
 							<h4 style="font-size:20px;font-family:'맑은 고딕'; font-weight:bold;">기부이체 내역</h4>
 							<table class="table table-bordered table-striped">

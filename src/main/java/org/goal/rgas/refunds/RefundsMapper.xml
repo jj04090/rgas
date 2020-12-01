@@ -31,7 +31,7 @@
 
     <select id="count" parameterType="org.goal.rgas.refunds.Refunds" resultType="int">
         SELECT COUNT(*)
-        FROM refunds
+        FROM REFUNDS
         <include refid="whereSql" />
     </select>
 
@@ -43,15 +43,9 @@
                 PAYMENT_NO,
                 AMOUNT,
                 REFUNDS_DATE
-            FROM refunds
+            FROM REFUNDS
             <include refid="whereSql" />
         ) TB
-        <!-- <where>
-            <if test="itemStart > -1">
-                RN BETWEEN (#{itemStart} + 1)
-                       AND (#{itemStart} + #{itemSizePerPage})
-            </if>
-        </where> -->
     </select>
 
     <select id="select" parameterType="org.goal.rgas.refunds.Refunds" resultMap="refundsResultMap">
@@ -60,18 +54,16 @@
             PAYMENT_NO,
             AMOUNT,
             REFUNDS_DATE
-        FROM refunds
+        FROM REFUNDS
         <include refid="whereSql" />
     </select>
 
     <insert id="insert" parameterType="org.goal.rgas.refunds.Refunds">
-        INSERT INTO refunds (
-            <!-- NO, -->
+        INSERT INTO REFUNDS (
             PAYMENT_NO,
             AMOUNT,
             REFUNDS_DATE
         ) VALUES (
-            <!-- #{no}, -->
             #{paymentNo},
             #{amount},
             #{refundsDate}
@@ -79,7 +71,7 @@
     </insert>
 
     <update id="update" parameterType="org.goal.rgas.refunds.Refunds">
-        UPDATE refunds
+        UPDATE REFUNDS
         <set>
             <if test="no != ''">
                 NO = #{no},
@@ -97,7 +89,7 @@
     </update>
 
     <delete id="delete" parameterType="org.goal.rgas.refunds.Refunds">
-        DELETE FROM refunds
+        DELETE FROM REFUNDS
         <include refid="whereSql" />
     </delete>
 </mapper>

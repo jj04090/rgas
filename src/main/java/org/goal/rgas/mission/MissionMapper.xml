@@ -38,18 +38,6 @@
             <if test="entryFee != 0 and entryFee != null">
                 AND ENTRY_FEE = #{entryFee}
             </if>
-            <!-- <if test="startDate != null">
-                AND START_DATE = #{startDate}
-            </if>
-            <if test="endDate != null">
-                AND END_DATE = #{endDate}
-            </if>
-            <if test="certifiedStartTime != null">
-                AND CERTIFIED_START_TIME = #{certifiedStartTime}
-            </if>
-            <if test="certifiedEndTime != null">
-                AND CERTIFIED_END_TIME = #{certifiedEndTime}
-            </if> -->
             <if test="categoryNo != null and categoryNo != ''">
                 AND CATEGORY_NO = #{categoryNo}
             </if>
@@ -67,7 +55,7 @@
 
     <select id="count" parameterType="org.goal.rgas.mission.Mission" resultType="int">
         SELECT COUNT(*)
-        FROM mission
+        FROM MISSION
         <include refid="whereSql" />
     </select>
 
@@ -88,15 +76,9 @@
                 LOGICAL,
                 PHYSICAL,
                 STATUS
-            FROM mission
+            FROM MISSION
             <include refid="whereSql" />
         ) TB
-        <!-- <where>
-            <if test="itemStart > -1">
-                RN BETWEEN (#{itemStart} + 1)
-                       AND (#{itemStart} + #{itemSizePerPage})
-            </if>
-        </where> -->
     </select>
 
     <select id="select" parameterType="org.goal.rgas.mission.Mission" resultMap="missionResultMap">
@@ -114,13 +96,12 @@
             LOGICAL,
             PHYSICAL,
             STATUS
-        FROM mission
+        FROM MISSION
         <include refid="whereSql" />
     </select>
 
     <insert id="insert" parameterType="org.goal.rgas.mission.Mission">
-        INSERT INTO mission (
-          <!--   NO, -->
+        INSERT INTO MISSION (
             MEMBER_NO,
             TITLE,
             NOTE,
@@ -134,7 +115,6 @@
             PHYSICAL,
             STATUS
         ) VALUES (
-            <!-- #{no}, -->
             #{memberNo},
             #{title},
             #{note},
@@ -151,14 +131,8 @@
     </insert>
 
     <update id="update" parameterType="org.goal.rgas.mission.Mission">
-        UPDATE mission
+        UPDATE MISSION
         <set>
-            <!-- <if test="no != ''">
-                NO = #{no},
-            </if> -->
-            <!-- <if test="memberNo != ''">
-                MEMBER_NO = #{memberNo},
-            </if> -->
             <if test="title != null">
                 TITLE = #{title},
             </if>
@@ -183,12 +157,6 @@
             <if test="categoryNo != 0">
                 CATEGORY_NO = #{categoryNo},
             </if>
-            <!-- <if test="logical != ''">
-                LOGICAL = #{logical},
-            </if>
-            <if test="physical != ''">
-                PHYSICAL = #{physical},
-            </if> -->
             <if test="status != ''">
                 STATUS = #{status},
             </if>
@@ -199,7 +167,7 @@
     </update>
 
     <delete id="delete" parameterType="org.goal.rgas.mission.Mission">
-        DELETE FROM mission
+        DELETE FROM MISSION
         <include refid="whereSql" />
     </delete>
 </mapper>

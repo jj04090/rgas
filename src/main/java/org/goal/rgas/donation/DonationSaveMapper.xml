@@ -35,23 +35,14 @@
 
     <select id="count" parameterType="org.goal.rgas.donation.DonationSave" resultType="int">
         SELECT COUNT(*)
-        FROM donation_save
+        FROM DONATION_SAVE
         <include refid="whereSql" />
     </select>
 
     <select id="list" parameterType="org.goal.rgas.donation.DonationSave" resultMap="donationSaveResultMap">
-       <!--  SELECT *
-        FROM ( -->
-            SELECT *
-            FROM donation_save
-            <include refid="whereSql" />
-        <!-- ) TB
-        <where>
-            <if test="itemStart > -1">
-                RN BETWEEN (#{itemStart} + 1)
-                       AND (#{itemStart} + #{itemSizePerPage})
-            </if>
-        </where> -->
+        SELECT *
+        FROM DONATION_SAVE
+        <include refid="whereSql" />
     </select>
 
     <select id="select" parameterType="org.goal.rgas.donation.DonationSave" resultMap="donationSaveResultMap">
@@ -59,20 +50,17 @@
             NO,
             PAYMENT_NO,
             AMOUNT,
-           <!--  SAVE_DATE, -->
             STATUS
-        FROM donation_save
+        FROM DONATION_SAVE
         <include refid="whereSql" />
     </select>
 
     <insert id="insert" parameterType="org.goal.rgas.donation.DonationSave">
-        INSERT INTO donation_save (
-            <!-- NO, -->
+        INSERT INTO DONATION_SAVE (
             PAYMENT_NO,
             AMOUNT,
             SAVE_DATE
         ) VALUES (
-            <!-- #{no}, -->
             #{paymentNo},
             #{amount},
             NOW()
@@ -80,7 +68,7 @@
     </insert>
 
     <update id="update" parameterType="org.goal.rgas.donation.DonationSave">
-        UPDATE donation_save
+        UPDATE DONATION_SAVE
         <set>
             <if test="status != ''">
                 STATUS = #{status},
@@ -94,7 +82,7 @@
     </update>
 
     <delete id="delete" parameterType="org.goal.rgas.donation.DonationSave">
-        DELETE FROM donation_save
+        DELETE FROM DONATION_SAVE
         <include refid="whereSql" />
     </delete>
 </mapper>

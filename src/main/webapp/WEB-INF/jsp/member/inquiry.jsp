@@ -8,7 +8,7 @@
 <title>회원 정보</title>
 <jsp:include page="/WEB-INF/jsp/layout/topbody.jsp" />
 
-<body class="stretched" style="background:#2E2E2E">
+<body class="stretched" style="background:#FFFFFF">
 	<div id="wrapper" class="clearfix">
 		<section id="page-title">
 			<div class="container clearfix">
@@ -39,7 +39,7 @@
 									</div>
 									<div class="col-12 form-group">
 										<label style="font-size:20px;">은행 명</label>
-										<input type="text" name="bank" id="bank" class="form-control required" value="${member.bank}" disabled/>
+										<input type="text" name="bank" id="bank" class="form-control required" value="${bankName}" disabled/>
 									</div>
 									<div class="col-12 form-group">
 										<label style="font-size:20px;">계좌 번호</label>

@@ -15,7 +15,7 @@ td:hover {
 </style>
 <jsp:include page="/WEB-INF/jsp/layout/topbody.jsp" />
 
-<body class="stretched" style="background:#2E2E2E">
+<body class="stretched" style="background:#FFFFFF;">
 	<div id="wrapper" class="clearfix">
 		<section id="page-title">
 			<div class="container clearfix">
@@ -38,7 +38,7 @@ td:hover {
 						<form action="${pageContext.request.contextPath}/donation" id="register" method="post">
 								<select id="charityNo" name="no" class="select-1 form-control">
 									<c:forEach items="${charityList}" var="row">
-									<option value="${row.no}">${row.name}</option>
+									 ${row.no}">${row.name}</option>
 									</c:forEach>
 								</select>
 						</form>

@@ -1,6 +1,7 @@
 package org.goal.rgas.perform;
 
 import java.io.File;
+import java.nio.file.Files;
 import java.util.List;
 import java.util.UUID;
 
@@ -86,5 +87,23 @@ public class PerformServiceImpl implements PerformService{
 	@Override
 	public void performDelete(Perform perform) throws Exception {
 		performMapper.delete(perform);
+	}
+	
+	//이미지 출력
+	@Override
+	public byte[] photoView(Perform perform) throws Exception{
+		String path = System.getProperty("user.home") + File.separator + "rgasPhoto";
+		String physical = performMapper.select(perform).getPhysical();
+		String imgPath = path + File.separator + physical;
+
+		File file = new File(imgPath);
+
+		if (file != null) {
+			byte[] byteToFile = Files.readAllBytes(file.toPath());
+			
+			return byteToFile;
+		}
+		
+		return null;
 	}
 }

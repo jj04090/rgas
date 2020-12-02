@@ -14,7 +14,7 @@ td:hover {
 </style>
 <jsp:include page="/WEB-INF/jsp/layout/topbody.jsp" />
 
-<body class="stretched" style="background:#2E2E2E">
+<body class="stretched" style="background:#FFFFFF">
 	<div id="wrapper" class="clearfix">
 		<section id="page-title">
 			<div class="container clearfix">
@@ -46,7 +46,7 @@ td:hover {
 								  <tbody>
 									<tr onClick="location.href='/charity/${rows.no}'" style="cursor:pointer;">
 							          	<td>${rows.name}</td>
-									  	<td>${rows.bank}</td>
+									  	<td><c:out value="${bankList[rows.bank]}"/></td>
 									 	<td>${rows.account}</td>
 									</tr>
 								  </tbody>

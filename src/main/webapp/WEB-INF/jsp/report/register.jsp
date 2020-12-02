@@ -9,7 +9,7 @@
 <title>수행내역 등록</title>
 <jsp:include page="/WEB-INF/jsp/layout/topbody.jsp" />
 
-<body class="stretched" style="background:#2E2E2E">
+<body class="stretched" style="background:#FFFFFF">
 	<div id="wrapper" class="clearfix">
 		<section id="page-title">
 			<div class="container clearfix">

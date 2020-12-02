@@ -16,4 +16,6 @@ public interface PerformService {
 	public void performDelete(Perform perform) throws Exception;
 
 	public void performEdit(MultipartFile file, Perform perform);
+
+	byte[] photoView(Perform perform) throws Exception;
 }

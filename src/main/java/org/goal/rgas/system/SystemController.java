@@ -49,8 +49,7 @@ public class SystemController {
 	@PostMapping("/login")
 	public ModelAndView login(Member member, Errors errors) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		System.out.println(member.getEmail());
-		System.out.println(member.getPassword());
+		System.out.println(member);
 		boolean isLogin = systemServiceImpl.login(member);
 
 		if (isLogin) {

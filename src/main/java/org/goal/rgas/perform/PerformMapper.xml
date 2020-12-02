@@ -55,6 +55,7 @@
                 STATUS
             FROM PERFORM
             <include refid="whereSql" />
+            ORDER BY NO DESC
         ) TB
     </select>
 

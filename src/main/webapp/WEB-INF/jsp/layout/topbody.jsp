@@ -8,8 +8,16 @@
 	<div class="clearfix">
 		<!-- Header
 		============================================= -->
-		<header id="header" class="transparent-header dark">
-			<div id="header-wrap">
+		<c:choose>
+			<c:when test="${urlName eq 'home'}">
+				<header id="header" class="transparent-header dark" data-sticky-class="not-dark">
+			</c:when>
+			<c:otherwise>
+				<header id="header">
+			</c:otherwise>
+		</c:choose>
+		
+		<div id="header-wrap">
 				<div class="container"  >
 					<c:if test="${auth eq 'C'}">
 						<div class="header-row justify-content-lg-between">

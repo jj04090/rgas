@@ -17,9 +17,9 @@
 				<div class="vertical-middle slider-element-fade">
 					<div class="container text-center py-5">
 						<div class="emphasis-title">
-							<h1 style="font-size:150px">
+							<h1 style="font-size:80px">
 								<span class="text-rotater nocolor" data-separator="|" data-rotate="fadeIn" data-speed="3000">
-									<span class="t-rotate font-weight-bold font-body opm-large-word">|Challenge.|Success.|Achievement.|Willingness.|Goal.</span>
+									<span class="t-rotate font-weight-bold font-body opm-large-word">|작은습관으로 인생을 바꾸세요.|결심보다 행동.|전국민 목표달성 프로젝트.|CHEER UP.</span>
 								</span>
 							</h1>
 						</div>

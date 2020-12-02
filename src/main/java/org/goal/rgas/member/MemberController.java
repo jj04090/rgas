@@ -1,11 +1,13 @@
 package org.goal.rgas.member;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
-import org.goal.rgas.charity.Charity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.validation.Errors;
@@ -15,7 +17,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
 @RestController
 @RequestMapping("/member")
@@ -26,14 +27,8 @@ public class MemberController {
 	@Autowired
 	private MemberServiceImpl memberServiceImpl;
 
-	// 회원 가입 폼
-	@GetMapping("/form")
-	public ModelAndView memberRegisterForm() {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/member/register");
-
-		return mv;
-	}
+	@Autowired
+	private HttpServletResponse httpServletResponse;
 
 	// 회원가입 처리
 	@PostMapping
@@ -42,16 +37,29 @@ public class MemberController {
 		mv.setViewName("redirect:/login");
 
 		if (errors.hasErrors()) {
-			mv.setViewName("redirect:/member/form");
-
 			return mv;
 		}
 		try {
 			memberServiceImpl.memberRegister(member);
+
+			httpServletResponse.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = httpServletResponse.getWriter();
+			out.println("<script>alert('계정이 등록 되었습니다'); location.replace('/login');</script>");
+			out.flush();
+
 		} catch (Exception e) {
+			try {
+				httpServletResponse.setContentType("text/html; charset=UTF-8");
+				PrintWriter out;
+				out = httpServletResponse.getWriter();
+				out.println("<script>alert('회원가입에 실패했습니다.'); location.replace('/login');</script>");
+				out.flush();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+
 			e.printStackTrace();
 		}
-
 		return mv;
 	}
 
@@ -103,11 +111,11 @@ public class MemberController {
 				if ("A".equals(httpSession.getAttribute("auth"))) {
 					mv.addObject("member", member);
 					mv.setViewName("/member/inquiry");
-					
+
 				} else if (memberValue.getEmail().equals(member.getEmail())) {
 					mv.addObject("member", member);
 					mv.setViewName("/member/modify");
-					
+
 				} else {
 					mv.setViewName("/mission");
 				}

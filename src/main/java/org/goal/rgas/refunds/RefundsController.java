@@ -13,7 +13,7 @@ public class RefundsController {
 	@Autowired
 	private RefundsServiceImpl refundsServiceImpl;
 
-	// 환급 정보 조회
+	// 환급 처리
 	@PostMapping
 	public int refundsProcess(@RequestBody Mission mission) {
 		int flag = 0;

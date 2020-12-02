@@ -95,7 +95,7 @@
 		<!-- Slider
 		============================================= -->
 		<section id="slider" class="slider-element min-vh-100 "
-			style="background: linear-gradient(to top, rgba(38, 38, 38, 0.922), rgba(38, 38, 38, 0.922)), url('https://source.unsplash.com/V3loi4DI4LM') no-repeat center center/cover;">
+			style="background: linear-gradient(to top, rgba(38, 38, 38, 0.922), rgba(38, 38, 38, 0.922)), url('images/main-5.jpg') no-repeat center center/cover;">
 			<div class="slider-inner" style="overflow-y: auto;">
 
 				<div class="row justify-content-center align-items-center h-100">
@@ -103,137 +103,109 @@
 					<div class="col-lg-4 col-sm-7 col-10 mt-sm-5">
 
 						<div class="list-group d-none" id="tab-hidden" role="tablist">
-							<a class="active" data-toggle="list"
-								href="#get-started-form-select-dates">1.</a> <a
-								data-toggle="list" href="#get-started-form-select-details">2.</a>
+							<a class="active" data-toggle="list" href="#get-started-form-select-dates">1.</a> 
+							<a data-toggle="list" href="#get-started-form-select-details">2.</a>
 							<a data-toggle="list" href="#get-started-form-result">3.</a>
 						</div>
 						<div class="tab-content" id="nav-tabContent">
 
-							<div class="tab-pane show active"
-								id="get-started-form-select-dates" role="tabpanel"
-								aria-labelledby="get-started-form-select-dates">
+							<div class="tab-pane show active" id="get-started-form-select-dates" role="tabpanel" aria-labelledby="get-started-form-select-dates">
 								<div class="row align-items-center">
 									<div class="col-12">
 										<div class="mb-4 center dark">
-											<h1 class="font-weight-semibold display-4 mb-4">로그인</h1>
-											<p class="font-weight-normal text-white-50">이메일과 비밀번호를
-												입력해주세요.</p>
+											<h1 class="font-weight-semibold display-4 mb-4">환영합니다</h1>
+											<p class="font-weight-normal text-white-50">로그인 후 서비스 이용가능합니다.</p>
 										</div>
 										<form id="login" action="/login" method="post">
 											<div class="row align-items-center forms-section">
 												<div class="col-12 form-group mb-5 dark">
-													<label>이메일:</label> <input type="email" name="email"
-														id="loginEmail"
-														class="form-control form-control-lg required"
-														placeholder="user@company.com">
+													<label>이메일:</label> 
+													<input type="email" name="email" id="loginEmail" class="form-control form-control-lg required" placeholder="user@company.com" required>
 												</div>
 												<div class="col-12 form-group mb-5 dark">
-													<label>비밀번호:</label> <input type="password"
-														name="password"
-														class="form-control form-control-lg required"
-														placeholder="password">
+													<label>비밀번호:</label> 
+													<input type="password" name="password" class="form-control form-control-lg required" placeholder="password" required>
 												</div>
 												<div class="col-12 d-flex">
-													<button type="button"
-														class="button button-rounded tab-action-btn-next bg-danger mt-1  py-0 button-large">
-														</i> 회원가입
+													<button type="button" class="button button-rounded tab-action-btn-next bg-danger mt-1  py-0 button-large">
+														회원가입
 													</button>
-													<input type="submit" form="login"
-														name="get-started-form-submit"
-														class="button button-rounded bg-danger  col button-large"
-														value="로그인">
+													<input type="submit" form="login" name="get-started-form-submit" class="button button-rounded bg-danger  col button-large" value="로그인">
 												</div>
+											</div>
 										</form>
-
-
 									</div>
 								</div>
 							</div>
-						</div>
 
 
-						<div class="tab-pane dark" id="get-started-form-select-details"
-							role="tabpanel" aria-labelledby="get-started-form-select-details">
-							<div class="center mb-4">
-								<h1 class="font-weight-semibold display-4 mb-4">회원가입</h1>
-								<p class="font-weight-normal text-white-50">이메일로 회원가입 가능합니다.
-									회원 정보를 입력하세요.</p>
-							</div>
-							<form id="login" action="/member" method="post">
-								<div class="row align-items-center forms-section">
-									<c:set var="code" value="<%=UUID.randomUUID().toString().toUpperCase().substring(0, 6)%>" />
-									<input type="hidden" id="code" name="code" value="${code}" />
-									<div class="col-12 form-group mb-4">
-										<label>이메일:</label> <input type="email" name="email" id="email" class="form-control form-control-lg required" placeholder="user@company.com" onchange="checkEmail()" required> 
-										<input type="button" class="button button-rounded bg-danger" id="send" value="전송" style="float: right;" />
-									</div>
-									<div class="col-12 form-group">
-										<label>인증코드:</label> <input type="text" name="authCode"
-											id="authCode" class="form-control form-control-lg required"
-											value=""> <input
-											class="button button-rounded bg-danger" type="button"
-											id="auth" value="인증" style="float: right;" />
-									</div>
-									<div class="col-12 form-group mb-4">
-										<label>비밀번호:</label> <input type="password"
-											name="password" id="password"
-											class="form-control form-control-lg required" value=""
-											maxlength="20" required>
-									</div>
-									<div class="col-12 form-group mb-4">
-										<label>이름:</label> <input type="text" name="name" id="name"
-											class="form-control form-control-lg required" value=""
-											maxlength="40" required>
-									</div>
-									<div class="col-12 form-group mb-4">
-										<label>닉네임:</label> <input type="text" name="nickname"
-											id="nickname" class="form-control form-control-lg required"
-											value="" required>
-									</div>
-									<div class="col-12 form-group mb-4">
-										<label for="" style="font-size: 15px;">은행:</label> <select
-											id="bank" name="bank" class="select-1 form-control"
-											style="width: 100%;" required>
-											<option value="" disabled selected>은행 선택</option>
-											<option value="KB국민은행">KB국민은행</option>
-											<option value="기업은행">기업은행</option>
-											<option value="농협">농협</option>
-											<option value="새마을금고">새마을금고</option>
-											<option value="수협">수협</option>
-											<option value="신한은행">신한은행</option>
-											<option value="신협">신협</option>
-											<option value="외환은행">외환은행</option>
-											<option value="우리은행">우리은행</option>
-											<option value="카카오뱅크">카카오뱅크</option>
-											<option value="하나은행">하나은행</option>
-										</select>
-									</div>
-									<div class="col-12 form-group mb-4">
-										<label>계좌번호:</label> <input type="number" name="account"
-											id="account" class="form-control form-control-lg required"
-											maxlength="14" required>
-									</div>
-									<div class="col-12 d-flex">
-										<button type="button"
-											class="button button-border button-rounded border-light button-white button-light col tab-action-btn-prev button-large">
-											<i class="icon-arrow-left"></i>뒤로가기
-										</button>
-										<button type="submit" name="get-started-form-submit"
-											class="button button-rounded bg-danger tab-action-btn-next-submit col button-large">
-											가입 <i class="icon-arrow-right"></i>
-										</button>
-									</div>
+							<div class="tab-pane dark" id="get-started-form-select-details" role="tabpanel" aria-labelledby="get-started-form-select-details">
+								<div class="center mb-4">
+									<h1 class="font-weight-semibold display-4 mb-4">회원가입</h1>
+									<p class="font-weight-normal text-white-50">이메일로 회원가입 가능합니다. 회원 정보를 입력하세요.</p>
 								</div>
-							</form>
+								<form id="login" action="/member" method="post">
+									<div class="row align-items-center forms-section">
+										<c:set var="code" value="<%=UUID.randomUUID().toString().toUpperCase().substring(0, 6)%>" />
+										<input type="hidden" id="code" name="code" value="${code}" />
+										<div class="col-12 form-group mb-4">
+											<label>이메일:</label>
+											<input type="email" name="email" id="email" class="form-control form-control-lg required" placeholder="user@company.com" onchange="checkEmail()" required>
+											<input type="button" class="button button-rounded bg-danger" id="send" value="전송" style="float: right;" />
+										</div>
+										<div class="col-12 form-group">
+											<label>인증코드:</label> 
+											<input type="text" name="authCode" id="authCode" class="form-control form-control-lg required" value="">
+											<input class="button button-rounded bg-danger" type="button" id="auth" value="인증" style="float: right;" />
+										</div>
+										<div class="col-12 form-group mb-4">
+											<label>비밀번호:</label>
+											<input type="password" name="password" id="password" class="form-control form-control-lg required" value="" maxlength="20" required>
+										</div>
+										<div class="col-12 form-group mb-4">
+											<label>이름:</label>
+											<input type="text" name="name" id="name" class="form-control form-control-lg required" value="" maxlength="40" required>
+										</div>
+										<div class="col-12 form-group mb-4">
+											<label>닉네임:</label>
+											<input type="text" name="nickname" id="nickname" class="form-control form-control-lg required" value="" required>
+										</div>
+										<div class="col-12 form-group mb-4">
+											<label for="" style="font-size: 15px;">은행:</label>
+											 <select id="bank" name="bank" class="select-1 form-control" style="width: 100%;" required>
+												<option value="" disabled selected>은행 선택</option>
+												<option value="KB국민은행">KB국민은행</option>
+												<option value="기업은행">기업은행</option>
+												<option value="농협">농협</option>
+												<option value="새마을금고">새마을금고</option>
+												<option value="수협">수협</option>
+												<option value="신한은행">신한은행</option>
+												<option value="신협">신협</option>
+												<option value="외환은행">외환은행</option>
+												<option value="우리은행">우리은행</option>
+												<option value="카카오뱅크">카카오뱅크</option>
+												<option value="하나은행">하나은행</option>
+											</select>
+										</div>
+										<div class="col-12 form-group mb-4">
+											<label>계좌번호:</label> <input type="number" name="account" id="account" class="form-control form-control-lg required" maxlength="14" required>
+										</div>
+										<div class="col-12 d-flex">
+											<button type="button" class="button button-border button-rounded border-light button-white button-light col tab-action-btn-prev button-large">
+												<i class="icon-arrow-left"></i>뒤로가기
+											</button>
+											<button type="submit" name="get-started-form-submit" class="button button-rounded bg-danger tab-action-btn-next-submit col button-large" disabled>
+												가입 <i class="icon-arrow-right"></i>
+											</button>
+										</div>
+									</div>
+								</form>
+							</div>
 						</div>
-
 					</div>
 				</div>
 			</div>
-	</div>
-	</div>
-	</section>
+		</section>
 
 
 	</div><!-- #wrapper end -->
@@ -291,7 +263,7 @@
 					== document.getElementById("code").value){
 				alert("인증에 성공했습니다.");
 				
-				$('input[type="submit"]').removeAttr('disabled');
+				$('button[type="submit"]').removeAttr('disabled');
 				
 			}  else {
 				alert("인증코드가 잘못되었습니다.");

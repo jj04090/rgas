@@ -24,7 +24,7 @@ public class PaymentController {
 	@Autowired
 	private HttpServletResponse httpServletResponse;
 
-	//결제 정보 찾기
+	//결제 처리
 	@PostMapping("/form/{merchantUid}")
 	public IamportRequest paymentProcess(@RequestBody @Valid Mission mission, Errors errors, @PathVariable String merchantUid) {
 		IamportRequest iamportRequest = null;

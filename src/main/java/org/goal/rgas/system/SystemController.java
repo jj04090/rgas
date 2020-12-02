@@ -1,7 +1,9 @@
 package org.goal.rgas.system;
 
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 import org.goal.rgas.member.Member;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +22,16 @@ public class SystemController {
 	@Autowired
 	private SystemServiceImpl systemServiceImpl;
 
+	@Autowired
+	private HttpServletResponse httpServletResponse;
+
 	// 로그인 폼
 	@GetMapping("/home")
 	public ModelAndView home() {
 		ModelAndView mv = new ModelAndView();
 
 		if (httpSession.getAttribute("auth") != null) {
+			mv.addObject("urlName", "home");
 			mv.setViewName("/system/home");
 
 			return mv;
@@ -49,11 +55,10 @@ public class SystemController {
 	@PostMapping("/login")
 	public ModelAndView login(Member member, Errors errors) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		System.out.println(member.getEmail());
-		System.out.println(member.getPassword());
+		
 		boolean isLogin = systemServiceImpl.login(member);
-
 		if (isLogin) {
+			mv.addObject("urlName", "home");
 			mv.setViewName("redirect:/home");
 		} else {
 			mv.setViewName("redirect:/login");

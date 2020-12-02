@@ -2,6 +2,8 @@ package org.goal.rgas.member;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -30,6 +32,9 @@ public class MemberController {
 	@Autowired
 	private HttpServletResponse httpServletResponse;
 
+	@Autowired
+	private Properties properties;
+	
 	// 회원가입 처리
 	@PostMapping
 	public ModelAndView memberRegister(@Valid Member member, Errors errors) {
@@ -102,20 +107,22 @@ public class MemberController {
 	@GetMapping("/{no}")
 	public ModelAndView memberInquiry(Member member) {
 		ModelAndView mv = new ModelAndView();
-
+		
 		try {
 			if (member != null) {
 				member = memberServiceImpl.memberInquiry(member);
 				Member memberValue = (Member) httpSession.getAttribute("memberValue");
 
+				properties.load(new FileInputStream(new File("src/main/resources/bankcode.properties").getAbsolutePath()));
+				mv.addObject("bankName", new String(properties.getProperty(member.getBank()).getBytes("ISO-8859-1"), "utf-8"));
 				if ("A".equals(httpSession.getAttribute("auth"))) {
 					mv.addObject("member", member);
 					mv.setViewName("/member/inquiry");
-
+					
 				} else if (memberValue.getEmail().equals(member.getEmail())) {
 					mv.addObject("member", member);
 					mv.setViewName("/member/modify");
-
+					
 				} else {
 					mv.setViewName("/mission");
 				}

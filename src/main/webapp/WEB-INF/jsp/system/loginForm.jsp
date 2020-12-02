@@ -95,7 +95,7 @@
 		<!-- Slider
 		============================================= -->
 		<section id="slider" class="slider-element min-vh-100 "
-			style="background: linear-gradient(to top, rgba(38, 38, 38, 0.922), rgba(38, 38, 38, 0.922)), url('images/main-5.jpg') no-repeat center center/cover;">
+			style="background: linear-gradient(to top, rgba(38, 38, 38, 0.922), rgba(38, 38, 38, 0.922)), url('/images/main-5.jpg') no-repeat center center/cover;">
 			<div class="slider-inner" style="overflow-y: auto;">
 
 				<div class="row justify-content-center align-items-center h-100">

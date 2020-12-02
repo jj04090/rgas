@@ -15,4 +15,8 @@ public interface MissionService {
 	public void missionModify(Mission mission) throws Exception;
 
 	public void missionDelete(Mission mission) throws Exception;
+
+	public byte[] photoView(Mission mission) throws Exception;
+
+	public List<Category> categoryList() throws Exception;
 }

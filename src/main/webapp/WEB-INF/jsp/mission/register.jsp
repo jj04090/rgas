@@ -11,7 +11,7 @@
 <title>미션 등록</title>
 <jsp:include page="/WEB-INF/jsp/layout/topbody.jsp" />
 
-<body class="stretched" style="background:#2E2E2E">
+<body class="stretched" style="background:#FFFFFF">
 	<div id="wrapper" class="clearfix">
 		<section id="page-title">
 			<div class="container clearfix">
@@ -33,18 +33,16 @@
 								<form class="row" id="register" action="/mission" method="post" enctype="multipart/form-data">
 									<input type="hidden" id="merchantUid" name="merchantUid" value="${merchantUid}" />
 									<div class="col-12 form-group">
-										<label style="font-size:20px;">미션 제목</label>
-										<input type="text" name="title" id="title" class="form-control required" />
-									</div>
-									<div class="col-6 form-group">
 										<label style="font-size:20px;">카테고리</label>
 										<select class="form-control required" name="categoryNo" id="categoryNo">
-											<option value="1">건강</option>
-											<option value="2">생활패턴</option>
-											<option value="3">역량</option>
-											<option value="4">취미</option>
-											<option value="5">기타</option>
+											<c:forEach var="category" items="${categoryList}">
+												 ${category.no}">${category.title}</option>
+											</c:forEach>
 										</select>
+									</div>
+									<div class="col-6 form-group">
+										<label style="font-size:20px;">미션 제목</label>
+										<input type="text" name="title" id="title" class="form-control required" />
 									</div>
 									<div class="col-6 form-group">
 										<label style="font-size:20px;">금액(원)</label>

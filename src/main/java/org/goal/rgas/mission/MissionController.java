@@ -38,11 +38,21 @@ public class MissionController {
 	@Autowired
 	private PaymentServiceImpl paymentServiceImpl;
 
-
 	// 미션 등록 폼
 	@GetMapping("/form")
 	public ModelAndView missionRegisterForm() {
-		return new ModelAndView("/mission/register");
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/mission/register");
+		
+		try {
+			List<Category> categoryList = missionServiceImpl.categoryList();
+			mv.addObject("categoryList", categoryList);
+			System.out.println(categoryList);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return mv;
 	}
 
 	// 미션 등록 처리
@@ -96,7 +106,10 @@ public class MissionController {
 		try {
 			if (mission != null) {
 				Mission missionValue = missionServiceImpl.missionInquiry(mission);
+				List<Category> categoryList = missionServiceImpl.categoryList();
+				
 				mv.addObject("mission", missionValue);
+				mv.addObject("categoryList", categoryList);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -146,18 +159,10 @@ public class MissionController {
 	@GetMapping("/photo/{no}")
 	public void photoView(Mission mission, HttpServletResponse response) {
 		try {
-			String path = System.getProperty("user.home") + File.separator + "rgasPhoto";
-			String physical = missionServiceImpl.missionInquiry(mission).getPhysical();
-			String imgPath = path + File.separator + physical;
+			byte[] byteToFile = missionServiceImpl.photoView(mission);
 
-			File file = new File(imgPath);
-
-			if (file != null) {
-				byte[] byteToFile = Files.readAllBytes(file.toPath());
-
-				response.setContentType("image/jpg");
-				response.getOutputStream().write(byteToFile);
-			}
+			response.setContentType("image/jpg");
+			response.getOutputStream().write(byteToFile);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

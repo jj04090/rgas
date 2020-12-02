@@ -78,6 +78,7 @@
                 STATUS
             FROM MISSION
             <include refid="whereSql" />
+	        ORDER BY NO DESC
         ) TB
     </select>
 

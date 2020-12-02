@@ -19,7 +19,13 @@
 						<div class="emphasis-title">
 							<h1 style="font-size:80px">
 								<span class="text-rotater nocolor" data-separator="|" data-rotate="fadeIn" data-speed="3000">
-									<span class="t-rotate font-weight-bold font-body opm-large-word">|작은습관으로 인생을 바꾸세요.|결심보다 행동.|전국민 목표달성 프로젝트.|CHEER UP.</span>
+									<span class="t-rotate font-weight-bold font-body opm-large-word">
+									|작은 습관들로 인생을 바꾸세요.
+									|돈을 걸면 의지가 달라집니다.
+									|인생을 바꾸는 습관!
+									|습관이 사람을 만든다
+									|전 국민 목표 달성 프로젝트
+									</span>
 								</span>
 							</h1>
 						</div>

@@ -45,6 +45,7 @@
                 TRANSFER_DATE
             FROM DONATION_TRANSFER
             <include refid="whereSql" />
+            ORDER BY NO DESC
         ) TB
     </select>
 

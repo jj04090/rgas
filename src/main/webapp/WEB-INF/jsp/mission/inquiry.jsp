@@ -10,7 +10,7 @@
 <title>내 미션 목록</title>
 <jsp:include page="/WEB-INF/jsp/layout/topbody.jsp" />
 
-<body class="stretched" style="background:#2E2E2E">
+<body class="stretched" style="background:#FFFFFF">
 	<div id="wrapper" class="clearfix">
 		<section id="page-title">
 			<div class="container clearfix">
@@ -47,20 +47,22 @@
 										<label style="font-size:20px;">카테고리</label>
 										<c:if test="${today < mission.startDate}">
 											<select class="form-control required" name="categoryNo" id="categoryNo">
-												<option value="1">건강</option>
-												<option value="2">생활패턴</option>
-												<option value="3">역량</option>
-												<option value="4">취미</option>
-												<option value="5">기타</option>
+												<c:forEach var="category" items="${categoryList}">
+													 ${category.no}" 
+														<c:if test="${mission.categoryNo eq category.no}"> selected</c:if>>
+														${category.title}
+													</option>
+												</c:forEach>
 											</select>
 										</c:if>
 										<c:if test="${today >= mission.startDate }">
 											<select class="form-control required" name="categoryNo" id="categoryNo" disabled>
-												<option value="1">건강</option>
-												<option value="2">생활패턴</option>
-												<option value="3">역량</option>
-												<option value="4">취미</option>
-												<option value="5">기타</option>
+												<c:forEach var="category" items="${categoryList}">
+													 ${category.no}" 
+														<c:if test="${mission.categoryNo eq category.no}"> selected</c:if>>
+														${category.title}
+													</option>
+												</c:forEach>
 											</select>
 										</c:if>
 									</div>

@@ -171,18 +171,10 @@ public class PerformController {
 	@GetMapping("/photo/{no}")
 	public void photoView(Perform perform, HttpServletResponse response) {
 		try {
-			String path = System.getProperty("user.home") + File.separator + "rgasPhoto";
-			String physical = performServiceImpl.performInquiry(perform).getPhysical();
-			String imgPath = path + File.separator + physical;
+			byte[] byteToFile = performServiceImpl.photoView(perform);
 
-			File file = new File(imgPath);
-
-			if (file != null) {
-				byte[] byteToFile = Files.readAllBytes(file.toPath());
-
-				response.setContentType("image/jpg");
-				response.getOutputStream().write(byteToFile);
-			}
+			response.setContentType("image/jpg");
+			response.getOutputStream().write(byteToFile);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -36,7 +36,7 @@
 										<label style="font-size:20px;">카테고리</label>
 										<select class="form-control required" name="categoryNo" id="categoryNo">
 											<c:forEach var="category" items="${categoryList}">
-												 ${category.no}">${category.title}</option>
+												 <option value="${category.no}">${category.title}</option>
 											</c:forEach>
 										</select>
 									</div>
@@ -133,11 +133,9 @@
 							if (rsp.success) {
 								var msg = '미션 개설이 완료되었습니다.\n';
 								msg += '결제 금액 : ' + rsp.paid_amount;
-								msg += '\n카드 승인번호 : ' + rsp.apply_num;
 								document.getElementById("register").submit();
 							} else {
 								var msg = '미션 개설에 실패하였습니다.';
-								/* msg += '에러내용 : ' + rsp.error_msg; */
 							}
 							alert(msg);
 						});

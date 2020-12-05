@@ -48,7 +48,7 @@
 										<c:if test="${today < mission.startDate}">
 											<select class="form-control required" name="categoryNo" id="categoryNo">
 												<c:forEach var="category" items="${categoryList}">
-													 ${category.no}" 
+													<option value="${category.no}" 
 														<c:if test="${mission.categoryNo eq category.no}"> selected</c:if>>
 														${category.title}
 													</option>
@@ -58,7 +58,7 @@
 										<c:if test="${today >= mission.startDate }">
 											<select class="form-control required" name="categoryNo" id="categoryNo" disabled>
 												<c:forEach var="category" items="${categoryList}">
-													 ${category.no}" 
+												<option value="${category.no}" 
 														<c:if test="${mission.categoryNo eq category.no}"> selected</c:if>>
 														${category.title}
 													</option>

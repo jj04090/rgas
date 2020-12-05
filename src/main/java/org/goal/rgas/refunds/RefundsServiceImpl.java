@@ -67,8 +67,10 @@ public class RefundsServiceImpl implements RefundsService {
 		
 		IamportClient iamportClient = new IamportClient("1722439638143134",
 				"tV7DKdiRXz5pX53kU9Ohg7Lb17DIiSUMN2pxfIpdhuCezFzuPnL5vwgwEUfXMaJzc97sRwF91ioBXX5N");
+		
 		IamportResponse<com.siot.IamportRestHttpClientJava.response.Payment> iamportResponse = iamportClient
 				.cancelPayment(new CancelData(payment.getPaymentCode(), false, new BigDecimal(refundAmount)));
+		
 		if (0 == iamportResponse.getCode()) {
 			Refunds refunds = new Refunds();
 			refunds.setAmount(iamportResponse.getResponse().getCancelAmount().intValue());
@@ -83,6 +85,8 @@ public class RefundsServiceImpl implements RefundsService {
 				donationSaveMapper.insert(donationSave);
 			}
 			memberServiceImpl.memberGradeRenewal();
+			mission.setStatus('Y');
+			missionMapper.update(mission);
 			return refundAmount;
 		} else {
 			System.out.println("실패" + iamportResponse.getMessage() + "##" + iamportResponse.getCode() + "##"

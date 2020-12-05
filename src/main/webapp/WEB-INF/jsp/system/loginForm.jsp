@@ -174,17 +174,21 @@
 											<label for="" style="font-size: 15px;">은행:</label>
 											 <select id="bank" name="bank" class="select-1 form-control" style="width: 100%;" required>
 												<option value="" disabled selected>은행 선택</option>
-												<option value="KB국민은행">KB국민은행</option>
-												<option value="기업은행">기업은행</option>
-												<option value="농협">농협</option>
-												<option value="새마을금고">새마을금고</option>
-												<option value="수협">수협</option>
-												<option value="신한은행">신한은행</option>
-												<option value="신협">신협</option>
-												<option value="외환은행">외환은행</option>
-												<option value="우리은행">우리은행</option>
-												<option value="카카오뱅크">카카오뱅크</option>
-												<option value="하나은행">하나은행</option>
+												<option value="004">KB국민은행</option>
+												<option value="023">SC제일은행</option>
+												<option value="003">기업은행</option>
+												<option value="011">농협</option>
+												<option value="002">산업은행</option>
+												<option value="045">새마을금고</option>
+												<option value="007">수협</option>
+												<option value="088">신한은행</option>
+												<option value="048">신협</option>
+												<option value="005">외환은행</option>
+												<option value="020">우리은행</option>
+												<option value="071">우체국</option>
+												<option value="090">카카오뱅크</option>
+												<option value="089">케이뱅크</option>
+												<option value="081">하나은행</option>
 											</select>
 										</div>
 										<div class="col-12 form-group mb-4">

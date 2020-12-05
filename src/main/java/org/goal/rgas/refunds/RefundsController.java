@@ -16,14 +16,14 @@ public class RefundsController {
 	// 환급 처리
 	@PostMapping
 	public int refundsProcess(@RequestBody Mission mission) {
-		int flag = 0;
+		int amount = 0;
 		try {
 			if (mission != null) {
-				flag = refundsServiceImpl.refundsProcess(mission);
+				amount = refundsServiceImpl.refundsProcess(mission);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return flag;
+		return amount;
 	}
 }

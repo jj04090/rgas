@@ -24,8 +24,8 @@
 							<!-- Logo
 							============================================= -->
 							<div id="logo" class="order-lg-2 col-auto px-0 mr-lg-0">
-								<a href="/home" class="standard-logo" data-dark-logo="/images/logo-rgas-dark.png"><img src="/images/logo-rgas.png" alt="Logo"></a>
-								<a href="/home" class="retina-logo" data-dark-logo="/images/logo-rgas-dark.png"><img src="/images/logo-rgas.png" alt="Logo"></a>
+								<a href="/home" class="standard-logo" data-dark-logo="/images/logo-rgas-dark.png" style="height: 55px; width:180px;"><img src="/images/logo-rgas.png" alt="Logo" style="height: 60px; width:180px;"></a>
+								<a href="/home" class="retina-logo" data-dark-logo="/images/logo-rgas-dark.png" style="height: 55px; width:180px;"><img src="/images/logo-rgas.png" alt="Logo"style="height: 60px; width:180px;"></a>
 							</div><!-- #logo end -->
 	
 							<div id="primary-menu-trigger">

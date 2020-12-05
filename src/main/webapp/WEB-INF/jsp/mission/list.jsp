@@ -45,6 +45,7 @@
 					<div id="posts" class="row grid-container gutter-40">
 
 						<div class="entry col-12">
+							<c:if test="${mission.status eq 'N'}">
 							<div class="grid-inner row no-gutters">
 								<div class="entry-image col-md-4">
 									<a data-lightbox="image"><img src="/mission/photo/${mission.no}" onerror="this.src='/images/17.jpg'"></a>
@@ -91,6 +92,7 @@
 									</div>
 								</div>
 							</div>
+							</c:if>
 						</div>					
 					</div>
 				</div>

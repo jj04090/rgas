@@ -42,12 +42,12 @@ td:hover {
 								  <th>계좌 번호</th>
 								</tr>
 							  </thead>
-							  <c:forEach var="rows" items="${charityList}">
+							  <c:forEach var="charity" items="${charityList}">
 								  <tbody>
-									<tr onClick="location.href='/charity/${rows.no}'" style="cursor:pointer;">
-							          	<td>${rows.name}</td>
-									  	<td><c:out value="${bankList[rows.bank]}"/></td>
-									 	<td>${rows.account}</td>
+									<tr onClick="location.href='/charity/${charity.no}'" style="cursor:pointer;">
+							          	<td>${charity.name}</td>
+									  	<td><c:out value="${bankList[charity.bank]}"/></td>
+									 	<td>${charity.account}</td>
 									</tr>
 								  </tbody>
 							  </c:forEach>

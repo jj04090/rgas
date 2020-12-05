@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="tf" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="tf" tagdir="/WEB-INF/tags/" %>
 <jsp:include page="/WEB-INF/jsp/layout/topheader.jsp" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
@@ -45,6 +45,7 @@
 					<div id="posts" class="row grid-container gutter-40">
 
 						<div class="entry col-12">
+							<c:if test="${mission.status eq 'N'}">
 							<div class="grid-inner row no-gutters">
 								<div class="entry-image col-md-4">
 									<a data-lightbox="image"><img src="/mission/photo/${mission.no}" onerror="this.src='/images/17.jpg'"></a>
@@ -91,6 +92,7 @@
 									</div>
 								</div>
 							</div>
+						</c:if>
 						</div>					
 					</div>
 				</div>

@@ -35,35 +35,35 @@
 									<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
 									<div id="id" style="display:none"><tf:formatDateTime value="${mission.startDate}" pattern="yyyy-MM-dd"/></div>
 									<div class="col-12 form-group">
-										<label style="font-size:20px;">미션 제목</label>
-										<c:if test="${today < mission.startDate}">
-											<input type="text" name="title" id="title" class="form-control required" value="${mission.title}" />
-										</c:if>
-										<c:if test="${today >= mission.startDate }">
-											<input type="text" name="title" id="title" class="form-control required" value="${mission.title}" disabled/>
-										</c:if>
-									</div>
-									<div class="col-6 form-group">
 										<label style="font-size:20px;">카테고리</label>
 										<c:if test="${today < mission.startDate}">
 											<select class="form-control required" name="categoryNo" id="categoryNo">
 												<c:forEach var="category" items="${categoryList}">
-													 ${category.no}" 
+													 <option value="${category.no}" 
 														<c:if test="${mission.categoryNo eq category.no}"> selected</c:if>>
 														${category.title}
-													</option>
+													 </option>
 												</c:forEach>
 											</select>
 										</c:if>
 										<c:if test="${today >= mission.startDate }">
 											<select class="form-control required" name="categoryNo" id="categoryNo" disabled>
 												<c:forEach var="category" items="${categoryList}">
-													 ${category.no}" 
+													 <option value="${category.no}" 
 														<c:if test="${mission.categoryNo eq category.no}"> selected</c:if>>
 														${category.title}
 													</option>
 												</c:forEach>
 											</select>
+										</c:if>
+									</div>
+									<div class="col-6 form-group">
+										<label style="font-size:20px;">미션 제목</label>
+										<c:if test="${today < mission.startDate}">
+											<input type="text" name="title" id="title" class="form-control required" value="${mission.title}" />
+										</c:if>
+										<c:if test="${today >= mission.startDate }">
+											<input type="text" name="title" id="title" class="form-control required" value="${mission.title}" disabled/>
 										</c:if>
 									</div>
 									<div class="col-6 form-group">

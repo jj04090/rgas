@@ -38,7 +38,7 @@ td:hover {
 						<form action="${pageContext.request.contextPath}/donation" id="register" method="post">
 								<select id="charityNo" name="no" class="select-1 form-control">
 									<c:forEach items="${charityList}" var="row">
-									 ${row.no}">${row.name}</option>
+									<option value="${row.no}">${row.name}</option>
 									</c:forEach>
 								</select>
 						</form>

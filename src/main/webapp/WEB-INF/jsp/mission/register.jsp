@@ -36,7 +36,7 @@
 										<label style="font-size:20px;">카테고리</label>
 										<select class="form-control required" name="categoryNo" id="categoryNo">
 											<c:forEach var="category" items="${categoryList}">
-												 ${category.no}">${category.title}</option>
+												 <option value="${category.no}">${category.title}</option>
 											</c:forEach>
 										</select>
 									</div>

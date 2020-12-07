@@ -12,21 +12,21 @@
 
 <body class="stretched" style="background:#FFFFFF">
 	<div id="wrapper" class="clearfix">
-		<section id="page-title">
+		<section id="page-title" class="page-title-mini" style="background:#2E2E2E;">
 			<div class="container clearfix">
-				<h1 style="font-size:40px">미션 정보</h1>
+				<h1 style="font-size:25px;color:white;">MISSION INFO</h1>
 				<span>mission info</span>
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="/home">Home</a></li>
-					<li class="breadcrumb-item active" aria-current="page">Mission</li>
+					<li class="breadcrumb-item"><a href="/home" style="color:white;">Home</a></li>
+					<li class="breadcrumb-item active" aria-current="page" style="color:white;">Mission</li>
 				</ol>
 			</div>
 		</section>
-		<section id="content">
-			<div class="content-wrap">
+		<section id="content" style="background:#FBF8EF">
+			<div class="content-wrap" style="padding-bottom:100px;">
 				<div class="container clearfix">
 						<div class="row">
-							<div class="col-lg-10">
+							<div class="col-lg-9" style="background:#FFFFFF;margin:0 auto;padding-top:20px;box-shadow: 5px 5px 5px 5px gray;">
 								<form class="row" id="event-registration" action="/mission" method="post" enctype="multipart/form-data">
 									<input type="hidden" name="_method" value="PUT" />
 									<input type="hidden" name="no" id="no" value="${mission.no}" />
@@ -150,20 +150,20 @@
 								</form>
 									<div class="col-12 form-group">
 									<c:if test="${today < mission.startDate}">
-										<input class="button button-border" style="float:right;font-size:15px;"
+										<input class="button button-large button-circle button-3d button-brown" style="float:right;font-size:12px;"
 											type="submit" form="event-registration" value="수정" />
 									</c:if>
 									</div>
 								<c:if test="${today > mission.endDate}">
 									<input type="hidden" name="no" id="no" value="${mission.no}" />
-									<input type="button" value="환급" id="refunds" style="float:right;font-size:15px;" 
-										class="button button-border" onclick="ajax_call()"/>
+									<input type="button" value="환급" id="refunds" style="float:right;font-size:12px;" 
+										class="button button-large button-circle button-3d button-brown" onclick="ajax_call()"/>
 								</c:if>
 								<c:if test="${today < mission.startDate}">
 									<form id="deleteForm"method="post" action="/mission">
 										<input type="hidden" name="_method" value="DELETE" />
 										<input type="hidden" name="no" id="no" value="${mission.no}" />
-										<input class="button button-border" style="float:left;font-size:15px;"
+										<input class="button button-large button-circle button-3d button-red" style="float:left;font-size:12px;"
 											type="submit" form="deleteForm" value="삭제"/>
 									</form>
 								</c:if>

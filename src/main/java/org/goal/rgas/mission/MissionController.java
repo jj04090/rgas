@@ -94,22 +94,26 @@ public class MissionController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("ss");
 		return mv;
 	}
 
 	// 미션 상세 조회
 	@GetMapping("/{no}")
 	public ModelAndView missionInquiry(Mission mission) {
-		ModelAndView mv = new ModelAndView("/mission/inquiry");
+		ModelAndView mv = new ModelAndView();
 
+		mv.setViewName("redirect:/mission");
 		try {
 			if (mission != null) {
 				Mission missionValue = missionServiceImpl.missionInquiry(mission);
-				List<Category> categoryList = missionServiceImpl.categoryList();
-				
-				mv.addObject("mission", missionValue);
-				mv.addObject("categoryList", categoryList);
+				if (missionValue.getMemberNo() == ((Member)httpSession.getAttribute("memberValue")).getNo()) {
+					List<Category> categoryList = missionServiceImpl.categoryList();
+					
+					mv.setViewName("mission/inquiry");
+					
+					mv.addObject("mission", missionValue);
+					mv.addObject("categoryList", categoryList);
+				} 
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -13,22 +13,22 @@
 
 <body class="stretched" style="background:#FFFFFF">
 	<div id="wrapper" class="clearfix">
-		<section id="page-title">
+		<section id="page-title" class="page-title-mini" style="background:#2E2E2E;">
 			<div class="container clearfix">
-				<h1 style="font-size:40px">미션 등록</h1>
+				<h1 style="font-size:25px;color:white;">MISSION REGISTER</h1>
 				<span>mission register</span>
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="/home">Home</a></li>
-					<li class="breadcrumb-item active" aria-current="page">Mission</li>
+					<li class="breadcrumb-item"><a href="/home" style="color:white;">Home</a></li>
+					<li class="breadcrumb-item active" aria-current="page" style="color:white;">Mission</li>
 				</ol>
 			</div>
 		</section>
-		<section id="content">
-			<div class="content-wrap">
+		<section id="content" style="background:#FBF8EF">
+			<div class="content-wrap" style="padding-bottom:100px;">
 				<div class="container clearfix">
 						<div class="form-result"></div>
 						<div class="row">
-							<div class="col-lg-10">
+							<div class="col-lg-10" style="background:#FFFFFF;margin:0 auto;padding-top:20px;box-shadow: 5px 5px 5px 5px gray;">
 								<c:set var="merchantUid" value="<%=UUID.randomUUID()%>" />
 								<form class="row" id="register" action="/mission" method="post" enctype="multipart/form-data">
 									<input type="hidden" id="merchantUid" name="merchantUid" value="${merchantUid}" />
@@ -92,7 +92,7 @@
 									</div>
 									<div class="col-6 form-group">
 										<input type="button" id="btn" value="미션 개설" 
-											class="button button-border" style="float:right;font-size:15px;" disabled/>
+											class="button button-small button-circle button-3d button-brown" style="float:right;font-size:15px;" disabled/>
 									</div>
 								</form>
 							    </div>

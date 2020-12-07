@@ -16,29 +16,28 @@ td:hover {
 
 <body class="stretched" style="background:#FFFFFF">
 	<div id="wrapper" class="clearfix">
-		<section id="page-title">
+		<section id="page-title" class="page-title-mini" style="background:#2E2E2E;">
 			<div class="container clearfix">
-				<h1 style="font-size:40px">신고 목록</h1>
-				<span>report list</span>
+				<h1 style="font-size:25px;color:white;">REPORT</h1>
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="/home">Home</a></li>
-					<li class="breadcrumb-item active" aria-current="page">Report</li>
+					<li class="breadcrumb-item"><a href="/home" style="color:white;">Home</a></li>
+					<li class="breadcrumb-item active" aria-current="page" style="color:white;">Report</li>
 				</ol>
 			</div>
 		</section>
-		<section id="content">
-			<div class="content-wrap">
-				<div class="container clearfix">
+		<section id="content" style="background:#FBF8EF">
+			<div class="content-wrap" style="padding-bottom:700px;padding-top:100px;">
+				<div class="container clearfix" style="width:60%;background:#FFFFFF;margin:0 auto;padding-top:20px;box-shadow: 5px 5px 5px 5px gray;">
 					<div>
 						<div>
 							<table class="table table-bordered table-striped">
-							  <thead >
-								<tr>
+							  <tr>
+							  <thread>
 								  <th>신고자 이메일</th>
 								  <th>신고일자</th>
 								  <th>처리상태</th>
-								</tr>
-							  </thead>
+							  </thread>
+							  </tr>
 							  <c:forEach var="report" items="${list}">
 								  <tbody>
 									<tr onClick="location.href='/report/${report.no}'" style="cursor:pointer;">

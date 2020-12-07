@@ -17,21 +17,20 @@ td:hover {
 
 <body class="stretched" style="background:#FFFFFF;">
 	<div id="wrapper" class="clearfix">
-		<section id="page-title">
+		<section id="page-title" class="page-title-mini" style="background:#2E2E2E;">
 			<div class="container clearfix">
-				<h1 style="font-size:40px">기부 관리</h1>
-				<span>donation</span>
+				<h1 style="font-size:25px;color:white;">DONATION</h1>
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="/home">Home</a></li>
-					<li class="breadcrumb-item active" aria-current="page">Donation</li>
+					<li class="breadcrumb-item"><a href="/home" style="color:white;">Home</a></li>
+					<li class="breadcrumb-item active" aria-current="page" style="color:white;">Donation</li>
 				</ol>
 			</div>
 		</section>
-		<section id="content">
-			<div class="content-wrap">
-				<div class="container clearfix">
+		<section id="content" style="background:#FBF8EF">
+			<div class="content-wrap" style="padding-bottom:200px;">
+				<div class="container clearfix" style="width:60%;background:#FFFFFF;margin:0 auto;padding-top:20px;box-shadow: 5px 5px 5px 5px gray;">
 				<form action="${pageContext.request.contextPath}/charity" method=get>
-								<input type="submit" value="기부단체" class="button button-xlarge button-circle button-border button-amber"/>
+								<input type="submit" value="기부단체" class="button button-xlarge button-circle button-3d button-brown"/>
 							</form>
 						<c:set var="merchantUid" value="<%=UUID.randomUUID()%>"/>
 						<input type="hidden" id="merchantUid" name="merchantUid" value="${merchantUid}"/>
@@ -42,17 +41,17 @@ td:hover {
 									</c:forEach>
 								</select>
 						</form>
-						<input type="button" id="payment" value="기부금 이체" style="float:right;font-size:15px;" class="button button-border button-green"/>
+						<input type="button" id="payment" value="기부금 이체" style="float:right;font-size:12px;" class="button button-large button-circle button-3d button-leaf"/>
 							<div class="line"></div>
 							<h4 style="font-size:20px;font-family:'맑은 고딕'; font-weight:bold;">기부이체 내역</h4>
 							<table class="table table-bordered table-striped">
-							  <thead >
-								<tr>
+							  <tr>
+							  <thread>
 								  <th>이체 일자</th>
 								  <th>기부 단체</th>
 								  <th>기부 금액</th>
-								</tr>
-							  </thead>
+							  </thread>
+							  </tr>
 							  <c:forEach items="${donationList}" var="row">
 								  <tbody>
 									<tr>

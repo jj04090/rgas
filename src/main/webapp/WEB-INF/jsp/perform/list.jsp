@@ -11,18 +11,17 @@
 
 <body class="stretched" style="background:#FFFFFF">
 	<div id="wrapper" class="clearfix">
-		<section id="page-title">
+		<section id="page-title" class="page-title-mini" style="background:#2E2E2E;">
 			<div class="container clearfix">
-				<h1 style="font-size:40px">피드</h1>
-				<span>perform list</span>
+				<h1 style="color:white;font-size:25px;">FEED</h1>
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="/home">Home</a></li>
-					<li class="breadcrumb-item active" aria-current="page">Perform</li>
+					<li class="breadcrumb-item"><a href="/home" style="color:white;">Home</a></li>
+					<li class="breadcrumb-item active" aria-current="page" style="color:white;">Perform</li>
 				</ol>
 			</div>
 		</section>	
-		<section id="content">
-			<div class="content-wrap pb-0">
+		<section id="content" style="background:#FBF8EF">
+			<div class="content-wrap pb-0" style="padding-bottom:100px;">
 				<div class="container clearfix">
 					<div id="portfolio" class="portfolio portfolio-reveal row grid-container no-gutters" data-layout="fitRows">
 					<c:forEach var="perform" items="${performList}">

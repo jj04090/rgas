@@ -11,25 +11,24 @@
 
 <body class="stretched" style="background:#FFFFFF">
 	<div id="wrapper" class="clearfix">
-		<section id="page-title">
+		<section id="page-title" class="page-title-mini" style="background:#2E2E2E;">
 			<div class="container clearfix">
-				<h1 style="font-size:40px">수행내역 등록</h1>
-				<span>perform register</span>
+				<h1 style="color:white;font-size:25px;">FEED REGISTER</h1>
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="/home">Home</a></li>
-					<li class="breadcrumb-item active" aria-current="page">Perform</li>
+					<li class="breadcrumb-item"><a href="/home" style="color:white;">Home</a></li>
+					<li class="breadcrumb-item active" aria-current="page" style="color:white;">Perform</li>
 				</ol>
 			</div>
 		</section>
-		<section id="content">
-			<div class="content-wrap">
+		<section id="content" style="background:#FBF8EF">
+			<div class="content-wrap" style="padding-bottom:100px;">
 				<div class="container clearfix">
 						<div class="form-result"></div>
-						<div class="row">
-							<div class="col-lg-10">
-								<form class="row" id="register" action="/perform" method="post" enctype="multipart/form-data">
+						<div class="row" style="padding-top:150px;padding-bottom:200px;">
+							<div class="col-lg-8" style="background:#FFFFFF;margin:0 auto;padding-top:40px;box-shadow: 5px 5px 5px 5px gray;">
+							 	<form class="row" id="register" action="/perform" method="post" enctype="multipart/form-data">
 									<input type="hidden" name="paymentNo" id="paymentNo" value="${paymentNo}" />
-									<div class="col-12 form-group">
+									<div class="col-12 form-group" style="padding-bottom:50px;">
 										<label style="font-size:20px;">미션 제목</label>
 										<input type="text" name="title" id="title" class="form-control required" 
 										value="${mission.title}" disabled/>
@@ -45,7 +44,7 @@
 									</div>
 									<div class="col-6 form-group">
 										<input type="submit" id="submit" value="등록" style="float:right;font-size:15px;"
-											class="button button-border button-aqua" disabled/>
+											class="button button-small button-circle button-3d button-brown" disabled/>
 									</div>
 								</form>
 							    </div>

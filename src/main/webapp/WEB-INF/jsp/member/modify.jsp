@@ -10,23 +10,22 @@
 
 <body class="stretched" style="background:#FFFFFF">
 	<div id="wrapper" class="clearfix">
-		<section id="page-title">
+		<section id="page-title" class="page-title-mini" style="background:#2E2E2E;">
 			<div class="container clearfix">
-				<h1 style="font-size:40px">회원 정보</h1>
-				<span>member info</span>
+				<h1 style="font-size:25px;color:white;">MEMBER INFO</h1>
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="/home">Home</a></li>
-					<li class="breadcrumb-item active" aria-current="page">Member</li>
+					<li class="breadcrumb-item"><a href="/home" style="color:white;">Home</a></li>
+					<li class="breadcrumb-item active" aria-current="page" style="color:white;">Member</li>
 				</ol>
 			</div>
 		</section>
-		<section id="content">
-			<div class="content-wrap">
-				<div class="container clearfix">
+		<section id="content" style="background:#FBF8EF">
+			<div class="content-wrap" style="padding-bottom:100px;">
+				<div class="container clearfix" style="width:60%;background:#FFFFFF;margin:0 auto;padding-top:20px;box-shadow: 5px 5px 5px 5px gray;">
 						<form method="post" action="/member" id="memberModify">
 							<input type="hidden" name="_method" value="PUT" />
 							<input type="hidden" name="no" id="no" value="${member.no}" /> 
-							<div class="col-lg-12">
+							<div class="col-lg-12" >
 									<div class="col-12 form-group">
 										<label style="font-size:20px;">이메일</label>
 										<input type="text" name="email" id="email" class="form-control required" value="${member.email}" disabled/>
@@ -102,13 +101,13 @@
 							</div>
 							</form>
 							<div>
-								<input value="수정" form="memberModify" type="submit" style="float:right;" class="button button-border">
+								<input value="수정" form="memberModify" type="submit" style="float:right;" class="button button-large button-circle button-3d button-brown">
 							</div>
 							<div>
 								<form method="post" action="/member">
 									<input type="hidden" name="_method" value="PUT" /> 
 									<input type="hidden" name="no" id="no" value="${member.no}" /> 
-									<input value="탈퇴" type="submit" style="float:left;" class="button button-border">
+									<input value="탈퇴" type="submit" style="float:left;" class="button button-large button-circle button-3d button-red">
 								</form>
 							</div>
 					</div>

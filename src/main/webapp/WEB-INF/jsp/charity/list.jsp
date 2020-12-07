@@ -16,32 +16,31 @@ td:hover {
 
 <body class="stretched" style="background:#FFFFFF">
 	<div id="wrapper" class="clearfix">
-		<section id="page-title">
+		<section id="page-title" class="page-title-mini" style="background:#2E2E2E;">
 			<div class="container clearfix">
-				<h1 style="font-size:40px">기부단체 목록</h1>
-				<span>charity list</span>
+				<h1 style="font-size:25px;color:white;">CHARITY</h1>
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="/home">Home</a></li>
-					<li class="breadcrumb-item active" aria-current="page">Charity</li>
+					<li class="breadcrumb-item"><a href="/home" style="color:white;">Home</a></li>
+					<li class="breadcrumb-item active" aria-current="page" style="color:white;">Charity</li>
 				</ol>
 			</div>
 		</section>
-		<section id="content">
-			<div class="content-wrap">
-				<div class="container clearfix">
+		<section id="content" style="background:#FBF8EF">
+			<div class="content-wrap" style="padding-bottom:400px;">
+				<div class="container clearfix" style="width:60%;background:#FFFFFF;margin:0 auto;padding-top:20px;box-shadow: 5px 5px 5px 5px gray;">
 					<div>
 						<div>
 								<div class="col-12 form-group">
-							    	<a href="/charity/form" style="float:right;" class="button button-xlarge button-dark button-rounded text-right">기부단체 등록<i class="icon-circle-arrow-right"></i></a>
+							    	<a href="/charity/form" style="float:right;font-size:14px;" class="button button-large button-circle button-3d button-brown">기부단체 등록<i class="icon-circle-arrow-right"></i></a>
 								</div>
 							<table class="table table-bordered table-striped">
-							  <thead >
 								<tr>
+								<thread>
 								  <th>기부단체 명</th>
 								  <th>은행 명</th>
 								  <th>계좌 번호</th>
+								</thread>
 								</tr>
-							  </thead>
 							  <c:forEach var="charity" items="${charityList}">
 								  <tbody>
 									<tr onClick="location.href='/charity/${charity.no}'" style="cursor:pointer;">

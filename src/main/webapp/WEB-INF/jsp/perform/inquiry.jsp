@@ -11,22 +11,21 @@
 
 <body class="stretched" style="background:#FFFFFF">
 	<div id="wrapper" class="clearfix">
-		<section id="page-title">
+		<section id="page-title" class="page-title-mini" style="background:#2E2E2E;">
 			<div class="container clearfix">
-				<h1 style="font-size:40px">피드 정보</h1>
-				<span>perform info</span>
+				<h1 style="color:white;font-size:25px;">FEED INFO</h1>
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="/home">Home</a></li>
-					<li class="breadcrumb-item active" aria-current="page">Perform</li>
+					<li class="breadcrumb-item"><a href="/home" style="color:white;">Home</a></li>
+					<li class="breadcrumb-item active" aria-current="page" style="color:white;">Perform</li>
 				</ol>
 			</div>
-		</section>	
-		<section id="content">
-			<div class="content-wrap">
+		</section>
+		<section id="content" style="background:#FBF8EF">
+			<div class="content-wrap" style="padding-bottom:100px;">
 				<div class="container clearfix">				
 					<div id="portfolio" class="portfolio row grid-container gutter-20 gutter-sm-50" data-layout="fitRows">
 						<article class="portfolio-item col-12 pf-media pf-icons">
-							<div class="grid-inner row no-gutters">
+							<div class="grid-inner row no-gutters" style="background:#FFFFFF;margin:0 auto;padding-top:20px;box-shadow: 5px 5px 5px 5px gray;">
 								<div class="portfolio-image col-lg-8">
 									<div class="grid-inner">
 										<a><img src="/perform/photo/${perform.no}" alt="Image"></a>

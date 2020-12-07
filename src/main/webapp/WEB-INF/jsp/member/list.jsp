@@ -16,19 +16,18 @@ td:hover {
 
 <body class="stretched" style="background:#FFFFFF">
 	<div id="wrapper" class="clearfix">
-		<section id="page-title">
+		<section id="page-title" class="page-title-mini" style="background:#2E2E2E;">
 			<div class="container clearfix">
-				<h1 style="font-size:40px">회원 목록</h1>
-				<span>member list</span>
+				<h1 style="font-size:25px;color:white;">MEMBER</h1>
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="/home">Home</a></li>
-					<li class="breadcrumb-item active" aria-current="page">Member</li>
+					<li class="breadcrumb-item"><a href="/home" style="color:white;">Home</a></li>
+					<li class="breadcrumb-item active" aria-current="page" style="color:white;">Member</li>
 				</ol>
 			</div>
 		</section>
-		<section id="content">
+		<section id="content" style="background:#FBF8EF">
 			<div class="content-wrap">
-				<div class="container clearfix">
+				<div class="container clearfix" style="width:60%;background:#FFFFFF;margin:0 auto;padding-top:20px;box-shadow: 5px 5px gray;">
 					<table style="padding-right:0;" class="table table-bordered table-striped">
 						<tr>
 							<td style="float:right;">
@@ -64,9 +63,9 @@ td:hover {
 	        success: function(rows) {
 	        	var script = "";
 
-	        	script += "<section id='content'>";
-	        	script += "<div class='content-wrap'>";
-	        	script += "<div class='container clearfix'>";
+	        	script += "<section id='content'style='background:#FBF8EF'>";
+	        	script += "<div class='content-wrap' style='padding-bottom:300px;'>";
+	        	script += "<div class='container clearfix' style='width:60%;background:#FFFFFF;margin:0 auto;padding-top:20px;box-shadow: 5px 5px gray;'>";
 	        	script += "<div>";
 	        	script += "<div>";
 	        	script += "<table class='table table-bordered table-striped'>";

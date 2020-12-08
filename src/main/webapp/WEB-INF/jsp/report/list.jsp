@@ -26,7 +26,7 @@ td:hover {
 			</div>
 		</section>
 		<section id="content" style="background:#FBF8EF">
-			<div class="content-wrap" style="padding-bottom:700px;padding-top:100px;">
+			<div class="content-wrap" style="padding-bottom:400px;padding-top:100px;">
 				<div class="container clearfix" style="width:60%;background:#FFFFFF;margin:0 auto;padding-top:20px;box-shadow: 5px 5px 5px 5px gray;">
 					<div>
 						<div>
@@ -65,7 +65,6 @@ td:hover {
 					</div>
 				</div>
 			</div>
-			<div class="line"></div>
 		</section>
 		</div>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>

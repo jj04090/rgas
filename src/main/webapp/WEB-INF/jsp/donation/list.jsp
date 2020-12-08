@@ -27,7 +27,7 @@ td:hover {
 			</div>
 		</section>
 		<section id="content" style="background:#FBF8EF">
-			<div class="content-wrap" style="padding-bottom:200px;">
+			<div class="content-wrap" style="padding-bottom:200px;padding-top:100px;">
 				<div class="container clearfix" style="width:60%;background:#FFFFFF;margin:0 auto;padding-top:20px;box-shadow: 5px 5px 5px 5px gray;">
 				<form action="${pageContext.request.contextPath}/charity" method=get>
 								<input type="submit" value="기부단체" class="button button-xlarge button-circle button-3d button-brown"/>

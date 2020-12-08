@@ -2,11 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="tf" tagdir="/WEB-INF/tags" %>
 <jsp:include page="/WEB-INF/jsp/layout/topheader.jsp" />
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css"> -->
 <title>내 미션 목록</title>
 <jsp:include page="/WEB-INF/jsp/layout/topbody.jsp" />
 
@@ -15,7 +11,6 @@
 		<section id="page-title" class="page-title-mini" style="background:#2E2E2E;">
 			<div class="container clearfix">
 				<h1 style="font-size:25px;color:white;">MISSION INFO</h1>
-				<span>mission info</span>
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="/home" style="color:white;">Home</a></li>
 					<li class="breadcrumb-item active" aria-current="page" style="color:white;">Mission</li>

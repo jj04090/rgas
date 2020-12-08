@@ -113,7 +113,7 @@
 								<div class="row align-items-center">
 									<div class="col-12">
 										<div class="mb-4 center dark">
-											<h1 class="font-weight-semibold display-4 mb-4">환영합니다</h1>
+											<h1 class="font-weight-semibold display-4 mb-4">CHEERUP</h1>
 											<p class="font-weight-normal text-white-50">로그인 후 서비스 이용가능합니다.</p>
 										</div>
 										<form id="login" action="/login" method="post">

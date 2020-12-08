@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <jsp:include page="/WEB-INF/jsp/layout/topheader.jsp" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
@@ -21,7 +19,7 @@
 			</div>
 		</section>	
 		<section id="content" style="background:#FBF8EF">
-			<div class="content-wrap pb-0" style="padding-bottom:100px;">
+			<div class="content-wrap pb-0" style="padding-bottom:200px;padding-top:30px;">
 				<div class="container clearfix">
 					<div id="portfolio" class="portfolio portfolio-reveal row grid-container no-gutters" data-layout="fitRows">
 					<c:forEach var="perform" items="${performList}">

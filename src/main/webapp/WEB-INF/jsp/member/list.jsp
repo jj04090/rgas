@@ -1,16 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <jsp:include page="/WEB-INF/jsp/layout/topheader.jsp" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <title>회원 목록</title>
 <style>
-td:hover {
-  background-color: white;
-}
+	td:hover {
+	  background-color: white;
+	}
 </style>
 <jsp:include page="/WEB-INF/jsp/layout/topbody.jsp" />
 
@@ -25,7 +23,7 @@ td:hover {
 				</ol>
 			</div>
 		</section>
-		<section id="content" style="background:#FBF8EF">
+		<section id="content" style="padding-top:150px;background:#FBF8EF">
 			<div class="content-wrap">
 				<div class="container clearfix" style="width:60%;background:#FFFFFF;margin:0 auto;padding-top:20px;box-shadow: 5px 5px gray;">
 					<table style="padding-right:0;" class="table table-bordered table-striped">
@@ -38,10 +36,10 @@ td:hover {
 					</table>
 				</div>
 			</div>
+		<div id="table"></div>
 		</section>
-		
-		</div>
-	<div id="table"></div>
+	</div>
+	
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 	<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
@@ -63,7 +61,6 @@ td:hover {
 	        success: function(rows) {
 	        	var script = "";
 
-	        	script += "<section id='content'style='background:#FBF8EF'>";
 	        	script += "<div class='content-wrap' style='padding-bottom:300px;'>";
 	        	script += "<div class='container clearfix' style='width:60%;background:#FFFFFF;margin:0 auto;padding-top:20px;box-shadow: 5px 5px gray;'>";
 	        	script += "<div>";
@@ -106,7 +103,7 @@ td:hover {
 	        	} 
 
                 script += "</table>";
-                script += "</div></div></div></div></section>";
+                script += "</div></div></div></div>";
 	            
 	           $("#table").html(script);
 	        }

@@ -1,9 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="tf" tagdir="/WEB-INF/tags" %>
 <jsp:include page="/WEB-INF/jsp/layout/topheader.jsp" />
 <title>기부단체 등록</title>
 <jsp:include page="/WEB-INF/jsp/layout/topbody.jsp" />
@@ -30,7 +26,7 @@
 										<input type="text" name="name" id="name" class="form-control required" required/>
 									</div>
 									<div class="col-12 form-group">
-										<label style="font-size:20px;">은행:</label>
+										<label style="font-size:20px;">은행</label>
 										<select id="bank" name="bank" class="select-1 form-control" style="width:100%;" required>
 											<option value="" disabled selected>은행 선택</option>
 											<option value="004">KB국민은행</option>

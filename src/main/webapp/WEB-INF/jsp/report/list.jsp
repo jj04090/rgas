@@ -1,16 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <jsp:include page="/WEB-INF/jsp/layout/topheader.jsp" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <title>신고 목록</title>
 <style>
-td:hover {
-  background-color: white;
-}
+	td:hover {
+	  background-color: white;
+	}
 </style>
 <jsp:include page="/WEB-INF/jsp/layout/topbody.jsp" />
 
@@ -26,7 +24,7 @@ td:hover {
 			</div>
 		</section>
 		<section id="content" style="background:#FBF8EF">
-			<div class="content-wrap" style="padding-bottom:700px;padding-top:100px;">
+			<div class="content-wrap" style="padding-bottom:400px;padding-top:100px;">
 				<div class="container clearfix" style="width:60%;background:#FFFFFF;margin:0 auto;padding-top:20px;box-shadow: 5px 5px 5px 5px gray;">
 					<div>
 						<div>
@@ -65,7 +63,6 @@ td:hover {
 					</div>
 				</div>
 			</div>
-			<div class="line"></div>
 		</section>
 		</div>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>

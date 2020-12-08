@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="tf" tagdir="/WEB-INF/tags/" %>
 <jsp:include page="/WEB-INF/jsp/layout/topheader.jsp" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -37,7 +36,7 @@
 		    	<a href="/mission/form" style="float:right;font-size:12px;" class="button button-3d button-rounded button-brown">미션 등록 <i class="icon-circle-arrow-right"></i></a>
 			</div>
 			<div class="content-wrap" style="width:100%;">
-				<div class="container clearfix">
+				<div class="container clearfix" style="padding-bottom:200px;">
 					<div class="row gutter-40 col-mb-80">					
 						<div class="postcontent col-lg-9" style="margin:0 auto;">
 							<div id="posts" class="row grid-container gutter-30">

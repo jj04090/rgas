@@ -97,8 +97,8 @@
                                             <div class="row">
                                                 <div class="row">
                                                     <div class="input-field col s12">
-														<button type="submit" style="padding-left:20px;padding-right:20px;" form="memberForm"
-															class="btn cyan waves-effect waves-light right">회원 정지</button>
+														<button type="submit" form="memberForm"
+															class="btn red waves-effect waves-light right">정지<i class="material-icons right">do_not_disturb_alt</i></button>
                                                     </div>
                                                 </div>
                                             </div>

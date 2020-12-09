@@ -23,6 +23,8 @@
     <link rel="stylesheet" type="text/css" href="/fonts/fontawesome/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="/vendors/flag-icon/css/flag-icon.min.css">
     <link rel="stylesheet" type="text/css" href="/vendors/dropify/css/dropify.min.css">
+    <link rel="stylesheet" type="text/css" href="/vendors/data-tables/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="/vendors/data-tables/extensions/responsive/css/responsive.dataTables.min.css">
     <!-- END: VENDOR CSS-->
     <!-- BEGIN: Page Level CSS-->
     <link rel="stylesheet" type="text/css" href="/css/themes/horizontal-menu-template/materialize.css">
@@ -30,6 +32,7 @@
     <link rel="stylesheet" type="text/css" href="/css/layouts/style-horizontal.css">
     <link rel="stylesheet" type="text/css" href="/css/pages/component-navbar.css">
     <link rel="stylesheet" type="text/css" href="/css/pages/cards-basic.css">
+    <link rel="stylesheet" type="text/css" href="/css/pages/page-users.css">
     <!-- END: Page Level CSS-->
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="/css/custom/custom.css">

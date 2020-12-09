@@ -25,7 +25,7 @@
                                             <div class="row">
                                                 <div class="input-field col s12">
                                                    <input type="text" name="name" id="name" value="${charity.name}" required/>
-                                                    <label for="name">기부단체 명</label>
+                                                    <label for="name" style="font-weight:bold;font-size:20px;">기부단체 명</label>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -48,12 +48,13 @@
 													<option value="089">케이뱅크</option>
 													<option value="081">하나은행</option>
 												</select>
+												<label for="bank" style="font-weight:bold;font-size:20px;">은행 명</label>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                  <div class="input-field col s12">
                                                     <input type="text" name="account" id="account" value="${charity.account}" required/>
-                                                    <label for="account">계좌번호</label>
+                                                    <label for="account" style="font-weight:bold;font-size:20px;">계좌 번호</label>
                                                 </div>
                                                   
                                             </div>
@@ -63,7 +64,7 @@
 													<form method="post" action="/charity" id="charityDelete">
 														<input type="hidden" name="_method" value="DELETE" />
 														<input type="hidden" name="no" id="no" value="${charity.no}" />
-														<button class="btn cyan waves-effect waves-light left" type="submit">삭제
+														<button class="btn red waves-effect waves-light left" type="submit">삭제
 	                                                         <i class="material-icons right">delete</i>
 	                                                    </button>
 													</form>

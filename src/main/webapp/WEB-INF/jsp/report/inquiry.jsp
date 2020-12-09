@@ -41,22 +41,22 @@
 													<c:forEach var="member" items="${memberList}">
 														<c:if test="${report.memberNo eq member.no}">
 															<input type="text" value="${member.email}" name="email"
-																id="email"  disabled />
+																id="email" style="color:black;" disabled />
 														</c:if>
 													</c:forEach>
-													<label for="email">신고자 이메일</label>
+													<label for="email" style="font-weight:bold;font-size:20px;">신고자 이메일</label>
                                                 </div>
                                             </div>
                                              <div class="row">
                                                  <div class="input-field col s12">
-													<input type="text" value="${report.reportDate}" name="date" id="date" disabled />
-													<label for="date">신고자 이메일</label>
+													<input type="text" value="${report.reportDate}" style="color:black;"" name="date" id="date" disabled />
+													<label for="date" style="font-weight:bold;font-size:20px;">신고 일자</label>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                  <div class="input-field col s12">
-													<textarea class="materialize-textarea" name="note" id="note" class="form-control required" cols="30" rows="5" disabled>${report.note}</textarea>
-													
+													<textarea class="materialize-textarea" style="color:black;" name="note" id="note" class="form-control required" cols="30" rows="5" disabled>${report.note}</textarea>
+													<label for="note" style="font-weight:bold;font-size:20px;">내용</label>
                                                 </div>
                                             </div>
                                             <div class="row">

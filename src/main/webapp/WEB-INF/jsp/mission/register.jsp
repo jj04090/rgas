@@ -48,7 +48,7 @@
                                     <div class="card-content">
                                         <h4 class="card-title">미션 등록</h4>
                                         <c:set var="merchantUid" value="<%=UUID.randomUUID()%>" />
-                                       <form class="row" id="register" action="/mission" method="post" enctype="multipart/form-data">
+                                        <form class="row" id="register" action="/mission" method="post" enctype="multipart/form-data">
                                            <input type="hidden" id="merchantUid" name="merchantUid" value="${merchantUid}" />
                                             <div class="row">
                                                 <div class="input-field col s12">
@@ -108,8 +108,9 @@
                                                      
                                                 </div>
                                                 <div class="input-field col s12">
-                                                        <input class="btn cyan waves-effect waves-light right" id="btn" type="button" name="btn" value="Submit"style="color: #FFFFFF;"disabled>
-                                                            
+                                                    <button class="btn cyan waves-effect waves-light right" id="btn" type="button" name="btn" name="action" disabled>Submit
+                                                            <i class="material-icons right">send</i>
+                                                    </button>
                                                 </div>
                                             </div>
                                             
@@ -134,7 +135,7 @@
 	<script>
 		$(function() {
 			$("#img").change(function(e){
-				$('input[type="button"]').removeAttr('disabled');
+				$('button[type="button"]').removeAttr('disabled');
 			});
 		});
 	</script>

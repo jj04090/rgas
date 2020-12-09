@@ -11,6 +11,7 @@
     <script src="/js/vendors.min.js"></script>
     <!-- BEGIN VENDOR JS-->
     <!-- BEGIN PAGE VENDOR JS-->
+    <script src="/vendors/dropify/js/dropify.min.js"></script>
     <script src="/vendors/chartist-js/chartist.min.js"></script>
     <script src="/vendors/chartjs/chart.min.js"></script>
     <script src="/fonts/fontawesome/js/all.min.js"></script>
@@ -26,6 +27,7 @@
     <script src="/js/scripts/cards-extended.js"></script>
     <script src="/js/custom/custom-script.js"></script>
     <script src="/js/scripts/page-users.js"></script>
+    <script src="/js/scripts/form-file-uploads.js"></script>
     <!-- END PAGE LEVEL JS-->
 </body>
 

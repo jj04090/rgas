@@ -1,35 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html class="loading" lang="en" data-textdirection="ltr">
-<!-- BEGIN: Head-->
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <meta name="description" content="Materialize is a Material Design Admin Template,It's modern, responsive and based on Material Design by Google.">
-    <meta name="keywords" content="materialize, admin template, dashboard template, flat admin template, responsive admin template, eCommerce dashboard, analytic dashboard">
-    <meta name="author" content="ThemeSelect">
-    <title>Form Layouts | Materialize - Material Design Admin Template</title>
-    <link rel="apple-touch-icon" href="/images/favicon/apple-touch-icon-152x152.png">
-    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon/favicon-32x32.png">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- BEGIN: VENDOR CSS-->
-    <link rel="stylesheet" type="text/css" href="/vendors/vendors.min.css">
-    <link rel="stylesheet" type="text/css" href="/vendors/flag-icon/css/flag-icon.min.css">
-    <!-- END: VENDOR CSS-->
-    <!-- BEGIN: Page Level CSS-->
-    <link rel="stylesheet" type="text/css" href="/css/themes/horizontal-menu-template/materialize.css">
-    <link rel="stylesheet" type="text/css" href="/css/themes/horizontal-menu-template/style.css">
-    <link rel="stylesheet" type="text/css" href="/css/layouts/style-horizontal.css">
-    <!-- END: Page Level CSS-->
-    <!-- BEGIN: Custom CSS-->
-    <link rel="stylesheet" type="text/css" href="/css/custom/custom.css">
-    <!-- END: Custom CSS-->
-</head>
-<!-- END: Head-->
-
+<jsp:include page="/WEB-INF/jsp/layout/top.jsp" />
 <body class="horizontal-layout page-header-light horizontal-menu preload-transitions 2-columns   " data-open="click" data-menu="horizontal-menu" data-col="2-columns">
   <!-- BEGIN: Page Main-->
     <div id="main">
@@ -88,18 +60,18 @@
                                             <div class="row">
                                                  <div class="input-field col m6 s12">
                                                    <input type="time" name="certifiedStartTime" id="certifiedStartTime">
-                                                    <label for="certifiedStartTime">시작일자</label>
+                                                    <label for="certifiedStartTime">시작시간</label>
                                                 </div>
                                                   <div class="input-field col m6 s12">
                                                    <input type="time" name="certifiedEndTime" id="certifiedEndTime">
-                                                    <label for="certifiedEndTime">종료일자</label>
+                                                    <label for="certifiedEndTime">종료시간</label>
                                                 </div>
                                             </div>
                                            
                                             <div class="row">
                                                 <div class="col m6 s12 file-field input-field">
                                                     <div class="btn float-right">
-                                                        <span>File</span>
+                                                        <span>예시사진 파일</span>
                                                         <input type="file"  name="img" id="img" data-show-preview="false">
                                                     </div>
                                                     <div class="file-path-wrapper">
@@ -108,8 +80,9 @@
                                                      
                                                 </div>
                                                 <div class="input-field col s12">
-                                                        <input class="btn cyan waves-effect waves-light right" id="btn" type="button" name="btn" value="Submit"style="color: #FFFFFF;"disabled>
-                                                            
+                                                        <button class="btn cyan waves-effect waves-light right" id="btn" type="button" name="btn" disabled>등록
+                                                            <i class="material-icons right">send</i>
+                                                        </button>
                                                 </div>
                                             </div>
                                             
@@ -134,7 +107,7 @@
 	<script>
 		$(function() {
 			$("#img").change(function(e){
-				$('input[type="button"]').removeAttr('disabled');
+				$('button[type="button"]').removeAttr('disabled');
 			});
 		});
 	</script>
@@ -185,20 +158,4 @@
 			xhr.send(JSON.stringify(mission));
 		};
 	</script>
-    
-    <!-- END: Page Main-->
-    <!-- BEGIN VENDOR JS-->
-    <script src="/js/vendors.min.js"></script>
-    <!-- BEGIN VENDOR JS-->
-    <!-- BEGIN PAGE VENDOR JS-->
-    <!-- END PAGE VENDOR JS-->
-    <!-- BEGIN THEME  JS-->
-    <script src="/js/plugins.js"></script>
-    <script src="/js/search.js"></script>
-    <script src="/js/custom/custom-script.js"></script>
-    <!-- END THEME  JS-->
-    <!-- BEGIN PAGE LEVEL JS-->
-    <!-- END PAGE LEVEL JS-->
-</body>
-
-</html>
+<jsp:include page="/WEB-INF/jsp/layout/footer.jsp" />

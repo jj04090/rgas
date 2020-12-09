@@ -1,177 +1,207 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<jsp:include page="/WEB-INF/jsp/layout/topheader.jsp" />
-<title>내 미션 목록</title>
-<jsp:include page="/WEB-INF/jsp/layout/topbody.jsp" />
-
-<body class="stretched" style="background:#FFFFFF">
-	<div id="wrapper" class="clearfix">
-		<section id="page-title" class="page-title-mini" style="background:#2E2E2E;">
-			<div class="container clearfix">
-				<h1 style="font-size:25px;color:white;">MISSION INFO</h1>
-				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="/home" style="color:white;">Home</a></li>
-					<li class="breadcrumb-item active" aria-current="page" style="color:white;">Mission</li>
-				</ol>
-			</div>
-		</section>
-		<section id="content" style="background:#FBF8EF">
-			<div class="content-wrap" style="padding-bottom:100px;">
-				<div class="container clearfix">
-						<div class="row">
-							<div class="col-lg-9" style="background:#FFFFFF;margin:0 auto;padding-top:20px;box-shadow: 5px 5px 5px 5px gray;">
-								<form class="row" id="event-registration" action="/mission" method="post" enctype="multipart/form-data">
-									<input type="hidden" name="_method" value="PUT" />
-									<input type="hidden" name="no" id="no" value="${mission.no}" />
-									<input type="hidden" name="memberNo" id="memberNo" value="${mission.memberNo}" />
-									<jsp:useBean id="now" class="java.util.Date" />
-									<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
-									<div id="id" style="display:none"><tf:formatDateTime value="${mission.startDate}" pattern="yyyy-MM-dd"/></div>
-									<div class="col-12 form-group">
-										<label style="font-size:20px;">카테고리</label>
-										<c:if test="${today < mission.startDate}">
-											<select class="form-control required" name="categoryNo" id="categoryNo">
-												<c:forEach var="category" items="${categoryList}">
-													 <option value="${category.no}" 
-														<c:if test="${mission.categoryNo eq category.no}"> selected</c:if>>
-														${category.title}
-													 </option>
-												</c:forEach>
-											</select>
-										</c:if>
-										<c:if test="${today >= mission.startDate }">
-											<select class="form-control required" name="categoryNo" id="categoryNo" disabled>
-												<c:forEach var="category" items="${categoryList}">
-													 <option value="${category.no}" 
-														<c:if test="${mission.categoryNo eq category.no}"> selected</c:if>>
-														${category.title}
-													</option>
-												</c:forEach>
-											</select>
-										</c:if>
-									</div>
-									<div class="col-6 form-group">
-										<label style="font-size:20px;">미션 제목</label>
-										<c:if test="${today < mission.startDate}">
-											<input type="text" name="title" id="title" class="form-control required" value="${mission.title}" />
-										</c:if>
-										<c:if test="${today >= mission.startDate }">
-											<input type="text" name="title" id="title" class="form-control required" value="${mission.title}" disabled/>
-										</c:if>
-									</div>
-									<div class="col-6 form-group">
-										<label style="font-size:20px;">금액(원)</label>
-										<input type="text" id="entryFee" name="entryFee" class="form-control required"
-											placeholder="숫자만 입력해주세요" value="${mission.entryFee}" disabled>
-									</div>
-									<div class="col-12">
-										<div class="form-group">
-											<label style="font-size:20px;">내용</label>
-											<c:if test="${today < mission.startDate }">
-												<textarea name="note" id="note" class="form-control required" cols="30" rows="5">${mission.note}</textarea>
-											</c:if>
-											<c:if test="${today >= mission.startDate }">
-												<textarea name="note" id="note" class="form-control required" cols="30" rows="5" disabled>${mission.note}</textarea>
-											</c:if>
-										</div>
-									</div>
-									<div class="col-6 form-group">
-										<label style="font-size:20px;">시작 일자</label>
-										<c:if test="${today < mission.startDate}">
-											<div>
-												<input type="date" name="startDate" id="startDate" class="form-control required" value="${mission.startDate}">
-											</div>
-										</c:if>
-										<c:if test="${today >= mission.startDate}">
-											<div>
-												<input type="date" name="startDate" id="startDate" class="form-control required" value="${mission.startDate}" disabled>
-											</div>
-										</c:if>
-									</div>
-									<div class="col-6 form-group">
-										<label style="font-size:20px;">종료 일자</label>
-										<c:if test="${today < mission.startDate}">
-											<div>
-												<input type="date" name="endDate" id="endDate" class="form-control required" value="${mission.endDate}">
-											</div>
-										</c:if>
-										<c:if test="${today >= mission.startDate}">
-											<div>
-												<input type="date" name="endDate" id="endDate" class="form-control required" value="${mission.endDate}" disabled>
-											</div>
-										</c:if>
-									</div>
-									<div class="col-6 form-group">
-										<label style="font-size:20px;">인증 시작 시간</label>
-										<c:if test="${today < mission.startDate}">
-											<div>
-												<input type="time" name="certifiedStartTime" class="form-control required" 
-												id="certifiedStartTime" value="${mission.certifiedStartTime}">
-											</div>
-										</c:if>
-										<c:if test="${today >= mission.startDate}">
-											<div>
-												<input type="time" name="certifiedStartTime" class="form-control required" 
-												id="certifiedStartTime" value="${mission.certifiedStartTime}" disabled>
-											</div>
-										</c:if>
-									</div>
-									<div class="col-6 form-group">
-										<label style="font-size:20px;">인증 종료 시간</label>
-										<c:if test="${today < mission.startDate}">
-											<div>
-												<input type="time" name="certifiedEndTime" class="form-control required"
-												id="certifiedEndTime" value="${mission.certifiedEndTime}">
-											</div>
-										</c:if>
-										<c:if test="${today >= mission.startDate}">
-											<div>
-												<input type="time" name="certifiedEndTime" class="form-control required" 
-												id="certifiedEndTime" value="${mission.certifiedEndTime}" disabled>
-											</div>
-										</c:if>
-									</div>
-									<div class="col-6 form-group">
-										<div class="form-group">
-											<label style="font-size:20px;">예시사진 업로드</label>
-												<div>
-													<input type="file" name="img" id="img" class="file-loading required"
-													data-show-preview="false" disabled>
+<jsp:include page="/WEB-INF/jsp/layout/top.jsp" />
+<body class="horizontal-layout page-header-light horizontal-menu preload-transitions 2-columns   " data-open="click" data-menu="horizontal-menu" data-col="2-columns">
+  <!-- BEGIN: Page Main-->
+    <div id="main">
+        <div class="row">
+            <div class="col s12">
+                <div class="container">
+                    <div class="seaction">
+                        <div class="card">
+                            <div class="card-content">
+                                <p class="caption mb-0">미션 정보</p>
+                            </div>
+                        </div>
+                           <!-- Form Advance -->
+                            <div class="col s12 m12 l12">
+                                <div id="Form-advance" class="card card card-default scrollspy">
+                                    <div class="card-content">
+                                        <h4 class="card-title">미션 상세 보기</h4>                       
+                                      <form class="row" id="event-registration" action="/mission" method="post" enctype="multipart/form-data">
+                                            <input type="hidden" name="_method" value="PUT" />
+											<input type="hidden" name="no" id="no" value="${mission.no}" />
+											<input type="hidden" name="memberNo" id="memberNo" value="${mission.memberNo}" />
+											<jsp:useBean id="now" class="java.util.Date" />
+											<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
+											<div id="id" style="display:none"><tf:formatDateTime value="${mission.startDate}" pattern="yyyy-MM-dd"/></div>
+											<div class="col-12 form-group">
+											
+                                            <div class="row">
+                                                <div class="input-field col s12">
+													<c:if test="${today < mission.startDate}">
+														<select name="categoryNo" id="categoryNo">
+															<c:forEach var="category" items="${categoryList}">
+																<option value="${category.no}"
+																	<c:if test="${mission.categoryNo eq category.no}"> selected</c:if>>
+																	${category.title}</option>
+															</c:forEach>
+														</select>
+													</c:if>
+													<c:if test="${today >= mission.startDate }">
+														<select name="categoryNo" id="categoryNo" disabled>
+															<c:forEach var="category" items="${categoryList}">
+																<option value="${category.no}"
+																	<c:if test="${mission.categoryNo eq category.no}"> selected</c:if>>
+																	${category.title}</option>
+															</c:forEach>
+														</select>
+													</c:if>
 												</div>
-										</div>
-									</div>
-								</form>
-									<div class="col-12 form-group">
-									<c:if test="${today < mission.startDate}">
-										<input class="button button-large button-circle button-3d button-brown" style="float:right;font-size:12px;"
-											type="submit" form="event-registration" value="수정" />
-									</c:if>
-									</div>
-								<c:if test="${today > mission.endDate}">
-									<input type="hidden" name="no" id="no" value="${mission.no}" />
-									<input type="button" value="환급" id="refunds" style="float:right;font-size:12px;" 
-										class="button button-large button-circle button-3d button-brown" onclick="ajax_call()"/>
-								</c:if>
-								<c:if test="${today < mission.startDate}">
-									<form id="deleteForm"method="post" action="/mission">
-										<input type="hidden" name="_method" value="DELETE" />
-										<input type="hidden" name="no" id="no" value="${mission.no}" />
-										<input class="button button-large button-circle button-3d button-red" style="float:left;font-size:12px;"
-											type="submit" form="deleteForm" value="삭제"/>
-									</form>
-								</c:if>
-							    </div>
-							</div>
-									
-						
-					</div>
-				</div>
-		</section>
-		</div>
-	
-      <script>
+                                            </div>
+                                            <div class="row">
+                                                <div class="input-field col m6 s12">
+													<c:if test="${today < mission.startDate}">
+														<input type="text" name="title" id="title" value="${mission.title}" />
+													</c:if>
+													<c:if test="${today >= mission.startDate }">
+														<input type="text" name="title" id="title" value="${mission.title}" disabled />
+													</c:if>
+													 <label for="entryFee">미션 제목</label>
+												</div>
+                                                <div class="input-field col m6 s12">
+                                                    <input type="text" id="entryFee" name="entryFee" value="${mission.entryFee}" disabled>
+                                                    <label for="entryFee">참가비</label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="input-field col s12">
+													<c:if test="${today < mission.startDate }">
+														<textarea class="materialize-textarea" name="note" id="note" cols="30" rows="5">${mission.note}</textarea>
+													</c:if>
+													<c:if test="${today >= mission.startDate }">
+														<textarea class="materialize-textarea" name="note" id="note" cols="30" rows="5" disabled>${mission.note}</textarea>
+													</c:if>
+													<label for="note">내용</label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                 <div class="input-field col m6 s12">
+													<c:if test="${today < mission.startDate}">
+														<div>
+															<input type="date" name="startDate" id="startDate" class="form-control required" value="${mission.startDate}">
+														</div>
+													</c:if>
+													<c:if test="${today >= mission.startDate}">
+														<div>
+															<input type="date" name="startDate" id="startDate" class="form-control required" value="${mission.startDate}" disabled>
+														</div>
+													</c:if>
+													<!-- <label for="startDate">시작일자</label> -->
+                                                </div>
+                                                <div class="input-field col m6 s12">
+													<c:if test="${today < mission.startDate}">
+														<div>
+															<input type="date" name="endDate" id="endDate"
+																class="form-control required" value="${mission.endDate}">
+														</div>
+													</c:if>
+													<c:if test="${today >= mission.startDate}">
+														<div>
+															<input type="date" name="endDate" id="endDate"
+																class="form-control required" value="${mission.endDate}"
+																disabled>
+														</div>
+													</c:if>
+													<!-- <label for="endDate">종료일자</label> -->
+                                            </div>
+                                            </div>
+                                            <div class="row">
+                                                 <div class="input-field col m6 s12">
+													<c:if test="${today < mission.startDate}">
+														<div>
+															<input type="time" name="certifiedStartTime"
+																class="form-control required" id="certifiedStartTime"
+																value="${mission.certifiedStartTime}">
+														</div>
+													</c:if>
+													<c:if test="${today >= mission.startDate}">
+														<div>
+															<input type="time" name="certifiedStartTime"
+																class="form-control required" id="certifiedStartTime"
+																value="${mission.certifiedStartTime}" disabled>
+														</div>
+													</c:if>
+													<!-- <label>시작시간</label> -->
+                                                </div>
+                                                <div class="input-field col m6 s12">
+													<c:if test="${today < mission.startDate}">
+														<div>
+															<input type="time" name="certifiedEndTime"
+																class="form-control required" id="certifiedEndTime"
+																value="${mission.certifiedEndTime}">
+														</div>
+													</c:if>
+													<c:if test="${today >= mission.startDate}">
+														<div>
+															<input type="time" name="certifiedEndTime"
+																class="form-control required" id="certifiedEndTime"
+																value="${mission.certifiedEndTime}" disabled>
+														</div>
+													</c:if>
+													<!-- <label for="certifiedEndTime">종료시간</label> -->
+                                                </div>
+                                            </div>
+                                           
+                                            <div class="row">
+                                                <div class="col m6 s12 file-field input-field">
+                                                    <div class="btn float-right">
+                                                        <span>예시사진 파일</span>
+                                                        <input type="file"  name="img" id="img" data-show-preview="false">
+                                                    </div>
+                                                    <div class="file-path-wrapper">
+                                                        <input class="file-path validate" type="text">
+                                                    </div>
+                                                     
+                                                </div>
+                                            </div>
+												</form>
+                                            <div class="row">
+												<div class="input-field col m6 s12">
+													<c:if test="${today > mission.endDate}">
+														<input type="hidden" name="no" id="no"
+															value="${mission.no}" />
+														
+															<button class="btn green waves-effect waves-light left" form="deleteForm" type="button" style="font-weight: bold;" onclick="ajax_call();">
+																 환급<i class="material-icons right">attach_money</i> 
+															</button> 
+													</c:if>
+													<c:if test="${today < mission.startDate}">
+														<form id="deleteForm" method="post" action="/mission">
+															<input type="hidden" name="_method" value="DELETE" />
+															<input type="hidden" name="no" id="no" value="${mission.no}" />
+															<button class="btn red waves-effect waves-light left" form="deleteForm" type="submit" style="font-weight: bold;">
+																<i class="material-icons right">delete</i>삭제 
+															</button> 
+														</form>
+													</c:if>
+												</div>
+												<div class="input-field col m6 s12">
+													<c:if test="${today < mission.startDate}">
+														<button class="btn cyan waves-effect waves-light right"
+															form="event-registration" type="submit" style="font-weight: bold;">
+															수정 <i class="material-icons right">edit</i>
+														</button>
+													</c:if>
+												</div>
+											</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- START RIGHT SIDEBAR NAV -->
+                   
+                        
+                    </div>
+                </div>
+                <div class="content-overlay"></div>
+            </div>
+        </div>
+    </div>
+    
+   <script>
 		function ajax_call() {
 			var xhr = new XMLHttpRequest();
 			xhr.onreadystatechange = function() {
@@ -179,9 +209,10 @@
 					if (xhr.status === 200 || xhr.status === 201) {
 						var msg = xhr.responseText;
 						if(msg != "0") {
-							alert("환급금액 : " + msg);
+							alert("환급처리 되었습니다. (환급까지 기간은 카드사별로 상이할 수 있습니다.)\n환급금액 : " + msg);
+							location.replace('/mission');
 						} else {
-							alert("실패");
+							alert("환급처리에 실패했습니다.");
 						}
 					}
 				}
@@ -195,4 +226,4 @@
 			xhr.send(JSON.stringify(mission));
 		};
 	</script>
-<jsp:include page="/WEB-INF/jsp/layout/bottom.jsp" />
+<jsp:include page="/WEB-INF/jsp/layout/footer.jsp" />

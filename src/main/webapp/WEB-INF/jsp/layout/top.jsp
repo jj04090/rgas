@@ -19,6 +19,8 @@
     <!-- BEGIN: VENDOR CSS-->
     <link rel="stylesheet" type="text/css" href="/vendors/vendors.min.css">
     <link rel="stylesheet" type="text/css" href="/fonts/fontawesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/vendors/flag-icon/css/flag-icon.min.css">
+    <link rel="stylesheet" type="text/css" href="/vendors/dropify/css/dropify.min.css">
     <!-- END: VENDOR CSS-->
     <!-- BEGIN: Page Level CSS-->
     <link rel="stylesheet" type="text/css" href="/css/themes/horizontal-menu-template/materialize.css">

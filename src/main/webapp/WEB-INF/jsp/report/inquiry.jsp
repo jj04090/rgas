@@ -1,79 +1,95 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<jsp:include page="/WEB-INF/jsp/layout/topheader.jsp" />
-<title>신고 정보</title>
-<jsp:include page="/WEB-INF/jsp/layout/topbody.jsp" />
-
-<body class="stretched" style="background:#FFFFFF">
-	<div id="wrapper" class="clearfix">
-		<section id="page-title" class="page-title-mini" style="background:#2E2E2E;">
-			<div class="container clearfix">
-				<h1 style="font-size:25px;color:white;">REPORT INFO</h1>
-				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="/home" style="color:white;">Home</a></li>
-					<li class="breadcrumb-item active" aria-current="page" style="color:white;">Report</li>
-				</ol>
-			</div>
-		</section>
-		<section id="content" style="background:#FBF8EF">
-			<div class="content-wrap" style="padding-bottom:200px;">
-				<div class="container clearfix">
-						<div class="row">
-							<div class="col-lg-10" style="width:60%;background:#FFFFFF;margin:0 auto;padding-top:20px;box-shadow: 5px 5px 5px 5px gray;">
-								<input type="hidden" name="no" id="no" value="${report.no}" />
-								<div class="col-12 form-group">
-										<c:if test="${report.status == 'P'}">
-											<label style="font-size:20px;color:red;float:right;"><i class="i-rounded icon-check" style="background-color:red"></i></label>
-										</c:if>
-								</div>
-								<div class="col-12 form-group">
-									<div>
-										<a href="/perform/${report.performNo}" class="button button-large button-circle button-border button-pink">확인하러 가기</a>
-									</div>
-								</div>
-								<div class="col-12 form-group">
-									<label style="font-size:20px;">신고자 이메일&nbsp;<label>
-										<c:forEach var="member" items="${memberList}">
-							        		<c:if test="${report.memberNo eq member.no}">
-							        			<input type="text" value="${member.email}" name="email" id="email" 
-							        			class="form-control required" disabled />
-							        		</c:if>
-							        	</c:forEach>
-								</div>
-								<div class="col-12 form-group">
-									<label style="font-size:20px;">신고 일자&nbsp;<label>
-							        <input type="text" value="${report.reportDate}" name="email" id="email" 
-							        	class="form-control required" disabled />
-								</div>
-								<div class="col-12">
-									<div class="form-group">
-										<label style="font-size:20px;">내용&nbsp;</label>
-										<textarea name="note" id="note" class="form-control required" cols="30" rows="5" disabled>${report.note}</textarea>
-									</div>
-								</div>
-								
-									
-						<form method="post" action="/report">
-							<input type="hidden" name="_method" value="PUT" /> 
-							<input type="hidden" name="no" id="no" value="${report.no}" />
-							<input type="hidden" name="performNo" id="performNo" value="${report.performNo}" />
-							<input value="처리" type="submit" style="float:right;" class="button button-large button-circle button-3d button-brown">
-						</form>
-						<div>
-						<form method="post" action="/report">
-							<input type="hidden" name="_method" value="DELETE" /> 
-							<input type="hidden" name="no" id="no" value="${report.no}" /> 
-							<input type="submit" value="삭제" style="float:left;" class="button button-large button-circle button-3d button-red"/>
-						</form>
-						</div>
-						
-						</div>
-					</div>
-				</div>
-				<div>
-		</div>
-	</div>
-		</section>
-		</div>
-<jsp:include page="/WEB-INF/jsp/layout/bottom.jsp" />
+<jsp:include page="/WEB-INF/jsp/layout/top.jsp" />
+<body class="horizontal-layout page-header-light horizontal-menu preload-transitions 2-columns   " data-open="click" data-menu="horizontal-menu" data-col="2-columns">
+  <!-- BEGIN: Page Main-->
+    <div id="main">
+        <div class="row">
+            <div class="col s12">
+                <div class="container">
+                    <div class="seaction">
+                        <div class="card">
+                            <div class="card-content">
+                                <p class="caption mb-0">신고 정보_신고당한 수행내역을 확인 후 실패처리 가능합니다.</p>
+                            </div>
+                        </div>
+                           <!-- Form Advance -->
+                            <div class="col s12 m12 l12">
+                                <div id="Form-advance" class="card card card-default scrollspy">
+                                    <div class="card-content">
+                                      <h4 class="card-title">신고 상세 정보</h4>
+                                      <input type="hidden" name="no" id="no" value="${report.no}" />
+                                      
+                                            <div class="row">
+												<c:if test="${report.status == 'W'}">
+													<form action="/perform/${report.performNo}" method="get">
+														<button class="btn cyan waves-effect waves-light right" type="submit" >
+	                                                         확인<i class="material-icons right" style="font-size: 20px; ">error_outline</i>
+	                                                     </button>
+													</form>
+												</c:if>
+												<c:if test="${report.status == 'P'}">
+													<label style="font-size:20px; font-weight:bold; color:green;float:right;">
+														완료<i class="material-icons right" >check_circle</i>
+													</label>
+												</c:if>
+											</div>
+                                           
+                                            <div class="row">
+                                                 <div class="input-field col s12">
+													<c:forEach var="member" items="${memberList}">
+														<c:if test="${report.memberNo eq member.no}">
+															<input type="text" value="${member.email}" name="email"
+																id="email"  disabled />
+														</c:if>
+													</c:forEach>
+													<label for="email">신고자 이메일</label>
+                                                </div>
+                                            </div>
+                                             <div class="row">
+                                                 <div class="input-field col s12">
+													<input type="text" value="${report.reportDate}" name="date" id="date" disabled />
+													<label for="date">신고자 이메일</label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                 <div class="input-field col s12">
+													<textarea class="materialize-textarea" name="note" id="note" class="form-control required" cols="30" rows="5" disabled>${report.note}</textarea>
+													
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="input-field col m6 s12">
+                                                     <form method="post" action="/report">
+														<input type="hidden" name="_method" value="DELETE" /> 
+														<input type="hidden" name="no" id="no" value="${report.no}" /> 
+														<button class="btn red waves-effect waves-light left" type="submit">삭제
+	                                                        	 <i class="material-icons right">delete</i>
+	                                                  	</button>
+													</form>
+                                                </div>
+                                                <c:if test="${report.status == 'W'}">
+	                                                <div class="input-field col m6 s12">
+														<form method="post" action="/report">
+															<input type="hidden" name="_method" value="PUT" />
+															<input type="hidden" name="no" id="no" value="${report.no}" />
+															<input type="hidden" name="performNo" id="performNo" value="${report.performNo}" />
+															<button class="btn cyan waves-effect waves-light right" type="submit">처리완료
+		                                                       <i class="material-icons right">done</i>
+		                                                  	</button>
+														</form>
+													</div>
+												</c:if>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<jsp:include page="/WEB-INF/jsp/layout/footer.jsp" />

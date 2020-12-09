@@ -148,7 +148,7 @@
                                             <div class="row">
                                                 <div class="col m6 s12 file-field input-field">
                                                     <div class="btn float-right">
-                                                        <span>예시사진 파일</span>
+                                                        <span>예시사진</span>
                                                         <input type="file"  name="img" id="img" data-show-preview="false">
                                                     </div>
                                                     <div class="file-path-wrapper">
@@ -160,14 +160,7 @@
 												</form>
                                             <div class="row">
 												<div class="input-field col m6 s12">
-													<c:if test="${today > mission.endDate}">
-														<input type="hidden" name="no" id="no"
-															value="${mission.no}" />
-														
-															<button class="btn green waves-effect waves-light left" form="deleteForm" type="button" style="font-weight: bold;" onclick="ajax_call();">
-																 환급<i class="material-icons right">attach_money</i> 
-															</button> 
-													</c:if>
+													
 													<c:if test="${today < mission.startDate}">
 														<form id="deleteForm" method="post" action="/mission">
 															<input type="hidden" name="_method" value="DELETE" />
@@ -184,6 +177,14 @@
 															form="event-registration" type="submit" style="font-weight: bold;">
 															수정 <i class="material-icons right">edit</i>
 														</button>
+													</c:if>
+													<c:if test="${today > mission.endDate}">
+														<input type="hidden" name="no" id="no"
+															value="${mission.no}" />
+														
+															<button class="btn green waves-effect waves-light right" form="deleteForm" type="button" style="font-weight: bold;" onclick="ajax_call();">
+																 환급<i class="material-icons right">attach_money</i> 
+															</button> 
 													</c:if>
 												</div>
 											</div>

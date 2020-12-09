@@ -114,16 +114,18 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="row">
-                                                    <div class="input-field col s12">
-                                                    	<button form="memberModify" type="submit" style="float:right;" 
-                                                    	class="btn cyan waves-effect waves-light right">수정</button>
-														<div class="col s1">
-														<button type="submit" style="padding-left:29px;padding-right:29px;" form="memberForm"
-															class="btn cyan waves-effect waves-light right">탈퇴</button></div>
-                                                    </div>
+                                                <div class="input-field col m6 s12">
+                                                     <button type="submit"  form="memberForm" class="btn red waves-effect waves-light left">
+                                                    	 탈퇴 <i class="material-icons right">cancel</i>
+                                                     </button>
+                                                </div>
+                                                <div class="input-field col m6 s12">
+													<button form="memberModify" type="submit" style="float:right;" class="btn cyan waves-effect waves-light right">
+														수정  <i class="material-icons right">edit</i>
+													</button>
                                                 </div>
                                             </div>
+                                            
                                         </form>
 										<form method="post" action="/member" id="memberForm">
 											<input type="hidden" name="_method" value="PUT" /> 

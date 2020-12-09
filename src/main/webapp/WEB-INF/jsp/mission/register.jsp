@@ -81,7 +81,7 @@
                                                 </div>
                                                 <div class="input-field col s12">
                                                         <button class="btn cyan waves-effect waves-light right" id="btn" type="button" name="btn" disabled>등록
-                                                            <i class="material-icons right">send</i>
+                                                            <i class="material-icons right">payment</i>
                                                         </button>
                                                 </div>
                                             </div>

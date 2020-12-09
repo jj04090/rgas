@@ -18,6 +18,8 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- BEGIN: VENDOR CSS-->
     <link rel="stylesheet" type="text/css" href="/vendors/vendors.min.css">
+    <link rel="stylesheet" type="text/css" href="/vendors/flag-icon/css/flag-icon.min.css">
+    <link rel="stylesheet" type="text/css" href="/vendors/dropify/css/dropify.min.css">
     <link rel="stylesheet" type="text/css" href="/fonts/fontawesome/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="/vendors/flag-icon/css/flag-icon.min.css">
     <link rel="stylesheet" type="text/css" href="/vendors/dropify/css/dropify.min.css">
@@ -43,7 +45,7 @@
         	 <c:if test="${auth eq 'C'}">
 	        	 <nav>
 				    <div class="nav-wrapper">
-				      <a href="#" class="brand-logo" style="font-weight:bold;">CHEERUP</a>
+				      <a href="/home" class="brand-logo" style="font-weight:bold;">CHEERUP</a>
 				      <ul id="nav-mobile" class="right hide-on-med-and-down">
 				        <li><a href="/mission" style="font-weight:bold;">미션</a></li>
 				        <li><a href="/perform" style="font-weight:bold;">전체 피드</a></li>
@@ -61,7 +63,7 @@
 			  <c:if test="${auth eq 'A'}">
 			  <nav>
 			    <div class="nav-wrapper">
-			      <a href="#" class="brand-logo" style="font-weight:bold;">CHEERUP</a>
+			      <a href="/home" class="brand-logo" style="font-weight:bold;">CHEERUP</a>
 			      <ul id="nav-mobile" class="right hide-on-med-and-down">
 			        <li><a href="/member" style="font-weight:bold;">회원 관리</a></li>
 			        <li><a href="/report" style="font-weight:bold;">신고 관리</a></li>

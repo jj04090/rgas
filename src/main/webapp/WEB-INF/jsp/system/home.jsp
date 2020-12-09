@@ -3,100 +3,56 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <jsp:include page="/WEB-INF/jsp/layout/top.jsp"/>
-
-					<div id="pagetitle" class="clearfix"><h1 class="left">미션 등록</h1></div>
-				</div>
-			</header>
-
-			<div class="container_16 clearfix" id="actualbody">
-				<div class="grid_16 widget first">
-					<div class="widget_title clearfix" style="padding-top: 3px;"></div>
-					<div class="widget_body" style="padding-bottom: 1px;">
-						<form id="form_add" action="${pageContext.request.contextPath}/base/colleges" method="post">
-							<table>
-								<tbody>
-									<tr>
-										<td style="width: 5px;"></td>
-										<td class="align-left" style="width: 200px;"><label for="id">아이디</label></td>
-										<td class="align-left">
-											<input type="hidden" name="_method" />
-											<input type="text" name="id" maxlength="5" class="medium">
-										</td>
-									</tr>
-									<tr>
-										<td></td>
-										<td class="align-left"><label for="name">카테고리</label></td>
-										<td class="align-left"><input type="text" name="category" class="medium"></td>
-									</tr>
-									<tr>
-										<td></td>
-										<td class="align-left"><label for="name">미션 제목</label></td>
-										<td class="align-left"><input type="text" name="title" class="medium"></td>
-									</tr>
-									<tr>
-										<td></td>
-										<td class="align-left"><label for="name">금액</label></td>
-										<td class="align-left"><input type="text" name="entryFee" class="medium"></td>
-									</tr>
-									<tr>
-										<td></td>
-										<td class="align-left"><label for="name">내용</label></td>
-										<td class="align-left"><textarea name="note" cols="30" rows="5"></textarea></td>
-									</tr>
-									<tr>
-										<td></td>
-										<td class="align-left"><label for="name">시작 일자</label></td>
-										<td class="align-left"><input type="date" name="startDate" class="medium"></td>
-									</tr>
-									<tr>
-										<td></td>
-										<td class="align-left"><label for="name">종료 일자</label></td>
-										<td class="align-left"><input type="date" name="endDate" class="medium"></td>
-									</tr>
-									<tr>
-										<td></td>
-										<td class="align-left"><label for="name">인증 시작 시간</label></td>
-										<td class="align-left"><input type="time" name="certifiedStartTime" class="medium"></td>
-									</tr>
-									<tr>
-										<td></td>
-										<td class="align-left"><label for="name">인증 종료 시간</label></td>
-										<td class="align-left"><input type="time" name="certifiedEndTime" class="medium"></td>
-									</tr>
-									<tr>
-										<td></td>
-										<td class="align-left"><label for="name">예시사진 업로드</label></td>
-										<td class="align-left"><input type="file" name="img" id="img" 
-													data-show-preview="false"></td>
-									</tr>
-								</tbody>
-							</table>
-						</form>
-						<div class="clear"></div>
+<body
+	class="horizontal-layout page-header-light horizontal-menu preload-transitions 1-column  bg-full-screen-image  blank-page blank-page"
+	data-open="click" data-menu="horizontal-menu" data-col="1-column">
+	<!--media slider-->
+	<div class="row">
+		<div class="col s12">
+			<div id="media-slider" class="card card-tabs">
+				<div class="card-content">
+					<div class="card-title">
+						<div id="view-media-slider">
+							<div class="row">
+								<div class="col s12">
+									<div class="slider">
+										<ul class="slides mt-2">
+											<li><img src="/images/gallery/30.png" alt="img-1">
+												<!-- random image -->
+												<div class="caption center-align">
+													<h3 class="white-text">This is our big Tagline!</h3>
+													<h5 class="light grey-text text-lighten-3">Here's our
+														small slogan.</h5>
+												</div></li>
+											<li><img src="/images/gallery/11.png" alt="img-2">
+												<!-- random image -->
+												<div class="caption left-align">
+													<h3 class="white-text">Left Aligned Caption</h3>
+													<h5 class="light grey-text text-lighten-3">Here's our
+														small slogan.</h5>
+												</div></li>
+											<li><img src="/images/gallery/33.png" alt="img-3">
+												<!-- random image -->
+												<div class="caption right-align">
+													<h3 class="white-text">Right Aligned Caption</h3>
+													<h5 class="light grey-text text-lighten-3">Here's our
+														small slogan.</h5>
+												</div></li>
+											<li><img src="/images/gallery/28.png" alt="img-4">
+												<!-- random image -->
+												<div class="caption center-align">
+													<h3 class="white-text">This is our big Tagline!</h3>
+													<h5 class="light grey-text text-lighten-3">Here's our
+														small slogan.</h5>
+												</div></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
-
-				<div class="grid_16">
-					<c:if test="${msg ne null}"><span style="color: red;">※ <c:out value="${msg}" /></span></c:if>
-					<a id="function_list" class="btn right medium"><span>목록</span></a>
-					<a id="function_add" class="btn right medium"><span>등록</span></a>
-				</div>
 			</div>
-    		<div class="clear"></div>
-    	</div>
+		</div>
 	</div>
-
-<script>
-	$(document).ready(function() {
-		$("#function_list").click(function() {
-			$(location).attr("href", "${pageContext.request.contextPath}/base/colleges");
-		});
-
-		$("#function_add").click(function() {
-			$("input[name=_method]").val('post');
-			$('#form_add').submit();
-		});
-	});
-</script>
-
-<jsp:include page="/WEB-INF/jsp/layout/footer.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/jsp/layout/footer.jsp" />

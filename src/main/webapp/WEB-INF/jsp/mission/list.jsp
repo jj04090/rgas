@@ -33,10 +33,10 @@
 								<c:if test="${mission.status eq 'N'}">
                                 <div class="col s12 m6 l6 card-width">
                                     <div class="card-panel border-radius-6 mt-10 card-animation-1">
-                                        <a href="/mission/${mission.no}"><img class="responsive-img border-radius-8 z-depth-4 image-n-margin" src="mission/photo/${mission.no}" 
+                                        <a href="/mission/${mission.no}"><img class="responsive-img border-radius-8 z-depth-4 image-n-margin " src="mission/photo/${mission.no}" 
                                         onerror="this.src='/images/gallery/1.png'" style="width:700px;height:400px;"
                                         ></a>
-                                        <h6><a href="/mission/${mission.no}" class="mt-5">${mission.title}</a></h6>
+                                        <h6><a href="/mission/${mission.no}" class="mt-5" style="font-weight:bold;">${mission.title}</a></h6>
                                         <p>${mission.note}</p>
                                         <div class="row mt-4">
                                             <a>
@@ -67,15 +67,15 @@
 	                                   		<div class="row mt-4">
 		                                   		<form method="get" action="/perform">
 														<input type="hidden" name="no" id="no" value="${mission.no}" />
-														<input class="waves-effect waves-light btn gradient-45deg-light-blue-cyan mr-1 mb-2" 
-															style="float:right;font-size:12px;" type="submit" value="피드보기" />
+														<button class="waves-effect waves-light btn gradient-45deg-light-blue-cyan mr-1 mb-2" 
+															style="float:right;font-size:12px;margin-top:20px;" type="submit">피드 보기</button>
 												</form>
 												<c:if test="${nowTime >= startTime and nowTime <= endTime}">
 					           				        <c:if test="${today >= mission.startDate and today <= mission.endDate}">
 						            					<form method="get" action="/perform/form/${mission.no}">
 															<input type="hidden" name="no" id="no" value="${mission.no}" />
-															<input class="waves-effect waves-light btn gradient-45deg-light-blue-cyan mr-1 mb-2" 
-															style="float:left;font-size:12px;" type="submit" value="피드 등록" />
+															<button class="waves-effect waves-light btn gradient-45deg-light-blue-cyan mr-1 mb-2" 
+															style="float:left;font-size:12px;margin-left:10px;margin-top:20px;" type="submit" >피드 등록</button>
 														</form>
 											        </c:if>
 										        </c:if>

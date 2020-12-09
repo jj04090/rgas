@@ -36,6 +36,13 @@ public class MemberController {
 	@Autowired
 	private Properties properties;
 	
+	@GetMapping("/form")
+	public ModelAndView memberRegisterForm() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("member/register");
+		return mv;
+	}
+	
 	// 회원가입 처리
 	@PostMapping
 	public ModelAndView memberRegister(@Valid Member member, Errors errors) {

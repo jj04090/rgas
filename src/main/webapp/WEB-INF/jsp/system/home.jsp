@@ -17,32 +17,28 @@
 								<div class="col s12">
 									<div class="slider">
 										<ul class="slides mt-2">
-											<li><img src="/images/gallery/30.png" alt="img-1">
-												<!-- random image -->
+											<li><img src="/images/test2.jpg" alt="img-1">
 												<div class="caption center-align">
-													<h3 class="white-text">This is our big Tagline!</h3>
-													<h5 class="light grey-text text-lighten-3">Here's our
+													<h3 class="black-text">This is our big Tagline!</h3>
+													<h5 class="light black-text text-lighten-3">Here's our
 														small slogan.</h5>
 												</div></li>
-											<li><img src="/images/gallery/11.png" alt="img-2">
-												<!-- random image -->
+											<li><img src="/images/test7.jpg" alt="img-2">
 												<div class="caption left-align">
-													<h3 class="white-text">Left Aligned Caption</h3>
-													<h5 class="light grey-text text-lighten-3">Here's our
+													<h3 class="black-text">Left Aligned Caption</h3>
+													<h5 class="light black-text text-lighten-3">Here's our
 														small slogan.</h5>
 												</div></li>
-											<li><img src="/images/gallery/33.png" alt="img-3">
-												<!-- random image -->
+											<li><img src="/images/test6.jpg" alt="img-3">
 												<div class="caption right-align">
-													<h3 class="white-text">Right Aligned Caption</h3>
-													<h5 class="light grey-text text-lighten-3">Here's our
+													<h3 class="black-text">Right Aligned Caption</h3>
+													<h5 class="light black-text text-lighten-3">Here's our
 														small slogan.</h5>
 												</div></li>
-											<li><img src="/images/gallery/28.png" alt="img-4">
-												<!-- random image -->
-												<div class="caption center-align">
-													<h3 class="white-text">This is our big Tagline!</h3>
-													<h5 class="light grey-text text-lighten-3">Here's our
+											<li><img src="/images/test4.jpg" alt="img-4">
+												<div class="caption right-align">
+													<h3 class="black-text">This is our big Tagline!</h3>
+													<h5 class="light black-text text-lighten-3">Here's our
 														small slogan.</h5>
 												</div></li>
 										</ul>

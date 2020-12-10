@@ -10,7 +10,7 @@
                     <div class="seaction">
                         <div class="card">
                             <div class="card-content">
-                                <p class="caption mb-0">피드 등록</p>
+                                <p class="caption mb-0" style="font-size:20px;font-weight:bold;">피드 등록</p>
                             </div>
                         </div>
                             <!-- Form Advance -->
@@ -32,7 +32,7 @@
 							                            <!--Default version-->
 							                            <div class="row section">
 							                                <div class="col s12 m4 l3">
-							                                    <p>인증사진 업로드</p>
+							                                    <p style="font-weight:bold;">인증사진 업로드</p>
 							                                </div>
 							                                <div class="col s12 m8 l9">
 							                                    <input type="file" id="img" name="img" class="dropify" data-default-file="" />

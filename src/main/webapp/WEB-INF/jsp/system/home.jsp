@@ -19,7 +19,7 @@
 										<ul class="slides mt-2">
 											<li><img src="/images/test2.jpg" alt="img-1">
 												<div class="caption center-align">
-													<h3 class="black-text">This is our big Tagline!</h3>
+													<h3 class="black-text">환영합니다!</h3>
 													<h5 class="light black-text text-lighten-3">Here's our
 														small slogan.</h5>
 												</div></li>

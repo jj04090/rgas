@@ -11,7 +11,7 @@
                     <div class="seaction">
                         <div class="card">
                             <div class="card-content">
-                                <p class="caption mb-0">미션 등록_ 도전할 미션을 등록해주세요.</p>
+                                <p class="caption mb-0" style="font-size:20px;font-weight:bold;">미션 등록</p>
                             </div>
                         </div>
                            <!-- Form Advance -->
@@ -19,13 +19,12 @@
 	                            <div class="col s12 m12 l12">
 	                                <div id="Form-advance" class="card card card-default scrollspy">
 	                                    <div class="card-content">
-	                                        <h4 class="card-title">미션 등록</h4>
 	                                        <c:set var="merchantUid" value="<%=UUID.randomUUID()%>" />
 	                                       <form class="row" id="register" action="/mission" method="post" enctype="multipart/form-data">
 	                                           <input type="hidden" id="merchantUid" name="merchantUid" value="${merchantUid}" />
 	                                            <div class="row">
 	                                                <div class="input-field col s12">
-	                                                    <select class="form-control required" name="categoryNo" id="categoryNo">
+	                                                    <select name="categoryNo" id="categoryNo">
 															<c:forEach var="category" items="${categoryList}">
 																 <option value="${category.no}">${category.title}</option>
 															</c:forEach>
@@ -34,7 +33,7 @@
 	                                            </div>
 	                                            <div class="row">
 	                                                <div class="input-field col m6 s12">
-	                                                   <input type="text" name="title" id="title" />
+	                                                   <input type="text" name="title" id="title"/>
 	                                                    <label for="title">미션 제목</label>
 	                                                </div>
 	                                                <div class="input-field col m6 s12">
@@ -51,34 +50,32 @@
 	                                            <div class="row">
 	                                                 <div class="input-field col m6 s12">
 	                                                    <input type="date" name="startDate" id="startDate" class="form-control required" >
-	                                                    <label for="startDate">시작일자</label>
+	                                                    <label for="startDate">시작 일자</label>
 	                                                </div>
 	                                                  <div class="input-field col m6 s12">
 	                                                    <input type="date" name="endDate" id="endDate" class="form-control required">
-	                                                    <label for="endDate">종료일자</label>
+	                                                    <label for="endDate">종료 일자</label>
 	                                                </div>
 	                                            </div>
 	                                            <div class="row">
 	                                                 <div class="input-field col m6 s12">
 	                                                   <input type="time" name="certifiedStartTime" id="certifiedStartTime">
-	                                                    <label for="certifiedStartTime">시작시간</label>
+	                                                    <label for="certifiedStartTime">시작 시간</label>
 	                                                </div>
 	                                                  <div class="input-field col m6 s12">
 	                                                   <input type="time" name="certifiedEndTime" id="certifiedEndTime">
-	                                                    <label for="certifiedEndTime">종료시간</label>
+	                                                    <label for="certifiedEndTime">종료 시간</label>
 	                                                </div>
 	                                            </div>
 	                                           
 	                                            <div class="row">
 	                                                <div class="col m6 s12 file-field input-field">
-	                                                    <div class="btn float-right">
-	                                                        <span>예시사진 파일</span>
-	                                                        <input type="file"  name="img" id="img" data-show-preview="false">
-	                                                    </div>
-	                                                    <div class="file-path-wrapper">
-	                                                        <input class="file-path validate" type="text">
-	                                                    </div>
-	                                                     
+	                                                        <div class="">
+							                                    <p>예시사진 업로드</p>
+							                                </div>
+							                                <div class="">
+							                                    <input type="file" id="img" name="img" class="dropify" data-default-file="" />
+							                                </div>
 	                                                </div>
 	                                                <div class="input-field col s12">
 	                                                        <button class="btn cyan waves-effect waves-light right" id="btn" type="button" name="btn" disabled>등록

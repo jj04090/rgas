@@ -19,12 +19,12 @@
                 <div class="container">
                 	<div class="card">
                     	<div class="card-content">
-                            <p class="caption mb-0">미션 목록</p>
+                            <p class="caption mb-0" style="font-size:20px;font-weight:bold;">미션 목록</p>
                         </div>
                         <form method="get" action="/mission/form">
 									
-										<button class="btn cyan waves-effect waves-light right"
-											type="submit">
+										<button class="btn gradient-45deg-blue-indigo darken-4 waves-effect waves-light right"
+											type="submit" style="font-weight:bold;">
 											미션등록 <i class="material-icons right">add_circle</i>
 										</button>
 									
@@ -76,8 +76,9 @@
 						           				        <c:if test="${today >= mission.startDate and today <= mission.endDate}">
 							            					<form method="get" action="/perform/form/${mission.no}">
 																<input type="hidden" name="no" id="no" value="${mission.no}" />
-																	<button class="btn cyan waves-effect waves-light left" type="submit">
-																		피드 등록 <i class="material-icons right">add_to_photos</i>
+																	<button class="btn waves-effect waves-light left" 
+																	style="background:#2196f3;font-weight:bold;" type="submit">
+																		등록 <i class="material-icons right">add_a_photo</i>
 																	</button>
 															</form>
 												        </c:if>
@@ -86,8 +87,9 @@
 										        <form method="get" action="/perform">
 													<div class="input-field col m6 s12">
 													<input type="hidden" name="no" id="no" value="${mission.no}" />
-														<button class="btn cyan waves-effect waves-light right" type="submit">
-															피드 보기 <i class="material-icons right">search</i>
+														<button class="btn waves-effect waves-light right" 
+														style="background:#2196f3;font-weight:bold;" type="submit">
+															피드<i class="material-icons right">camera_alt</i>
 														</button>
 													</div>
 												</form>

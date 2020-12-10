@@ -2,6 +2,7 @@
 <%@ page import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="tf" tagdir="/WEB-INF/tags/" %>
 <jsp:include page="/WEB-INF/jsp/layout/top.jsp" />
 <body class="horizontal-layout page-header-light horizontal-menu preload-transitions 2-columns   " data-open="click" data-menu="horizontal-menu" data-col="2-columns">
   <!-- BEGIN: Page Main-->
@@ -12,14 +13,14 @@
                     <div class="seaction">
                         <div class="card">
                             <div class="card-content">
-                                <p class="caption mb-0">미션 정보</p>
+                                <p class="caption mb-0" style="font-size:20px;font-weight:bold;">미션 정보</p>
                             </div>
                         </div>
                            <!-- Form Advance -->
+                           <div class="row">
                             <div class="col s12 m12 l12">
                                 <div id="Form-advance" class="card card card-default scrollspy">
                                     <div class="card-content">
-                                        <h4 class="card-title">미션 상세 보기</h4>                       
                                       <form class="row" id="event-registration" action="/mission" method="post" enctype="multipart/form-data">
                                             <input type="hidden" name="_method" value="PUT" />
 											<input type="hidden" name="no" id="no" value="${mission.no}" />
@@ -27,10 +28,9 @@
 											<jsp:useBean id="now" class="java.util.Date" />
 											<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
 											<div id="id" style="display:none"><tf:formatDateTime value="${mission.startDate}" pattern="yyyy-MM-dd"/></div>
-											<div class="col-12 form-group">
 											
                                             <div class="row">
-                                                <div class="input-field col s12">
+                                                <div class="input-field col m6 s12">
 													<c:if test="${today < mission.startDate}">
 														<select name="categoryNo" id="categoryNo">
 															<c:forEach var="category" items="${categoryList}">
@@ -57,13 +57,13 @@
 														<input type="text" name="title" id="title" value="${mission.title}" />
 													</c:if>
 													<c:if test="${today >= mission.startDate }">
-														<input type="text" name="title" id="title" value="${mission.title}" disabled />
+														<input type="text" name="title" id="title" value="${mission.title}" class="validate" disabled />
 													</c:if>
-													 <label for="entryFee">미션 제목</label>
+													 <label for="entryFee" style="font-weight:bold;font-size:20px;">미션 제목</label>
 												</div>
                                                 <div class="input-field col m6 s12">
-                                                    <input type="text" id="entryFee" name="entryFee" value="${mission.entryFee}" disabled>
-                                                    <label for="entryFee">참가비</label>
+                                                    <input type="text" id="entryFee" name="entryFee" value="${mission.entryFee} 원" disabled>
+                                                    <label for="entryFee" style="font-weight:bold;font-size:20px;">참가비</label>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -74,74 +74,57 @@
 													<c:if test="${today >= mission.startDate }">
 														<textarea class="materialize-textarea" name="note" id="note" cols="30" rows="5" disabled>${mission.note}</textarea>
 													</c:if>
-													<label for="note">내용</label>
+													<label for="note" style="font-weight:bold;font-size:20px;">내용</label>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                  <div class="input-field col m6 s12">
 													<c:if test="${today < mission.startDate}">
-														<div>
-															<input type="date" name="startDate" id="startDate" class="form-control required" value="${mission.startDate}">
-														</div>
+														<input type="date" name="startDate" id="startDate" value="${mission.startDate}">
 													</c:if>
 													<c:if test="${today >= mission.startDate}">
-														<div>
-															<input type="date" name="startDate" id="startDate" class="form-control required" value="${mission.startDate}" disabled>
-														</div>
+														<input type="date" name="startDate" id="startDate" value="${mission.startDate}" disabled>
 													</c:if>
-													<!-- <label for="startDate">시작일자</label> -->
+													<label for="startDate">시작 일자</label>
                                                 </div>
                                                 <div class="input-field col m6 s12">
 													<c:if test="${today < mission.startDate}">
-														<div>
-															<input type="date" name="endDate" id="endDate"
-																class="form-control required" value="${mission.endDate}">
-														</div>
+														<input type="date" name="endDate" id="endDate"
+																value="${mission.endDate}">
 													</c:if>
 													<c:if test="${today >= mission.startDate}">
-														<div>
-															<input type="date" name="endDate" id="endDate"
-																class="form-control required" value="${mission.endDate}"
-																disabled>
-														</div>
+														<input type="date" name="endDate" id="endDate"
+																value="${mission.endDate}" disabled>
 													</c:if>
-													<!-- <label for="endDate">종료일자</label> -->
-                                            </div>
+													<label for="endDate">종료 일자</label>
+                                            	</div>
                                             </div>
                                             <div class="row">
                                                  <div class="input-field col m6 s12">
 													<c:if test="${today < mission.startDate}">
-														<div>
-															<input type="time" name="certifiedStartTime"
-																class="form-control required" id="certifiedStartTime"
-																value="${mission.certifiedStartTime}">
-														</div>
+														<input type="time" name="certifiedStartTime"
+															class="form-control required" id="certifiedStartTime"
+															value="${mission.certifiedStartTime}">
 													</c:if>
 													<c:if test="${today >= mission.startDate}">
-														<div>
-															<input type="time" name="certifiedStartTime"
-																class="form-control required" id="certifiedStartTime"
-																value="${mission.certifiedStartTime}" disabled>
-														</div>
+														<input type="time" name="certifiedStartTime"
+															class="form-control required" id="certifiedStartTime"
+															value="${mission.certifiedStartTime}" disabled>
 													</c:if>
-													<!-- <label>시작시간</label> -->
+													<label>시작 시간</label>
                                                 </div>
                                                 <div class="input-field col m6 s12">
 													<c:if test="${today < mission.startDate}">
-														<div>
-															<input type="time" name="certifiedEndTime"
-																class="form-control required" id="certifiedEndTime"
-																value="${mission.certifiedEndTime}">
-														</div>
+														<input type="time" name="certifiedEndTime"
+															class="form-control required" id="certifiedEndTime"
+															value="${mission.certifiedEndTime}">
 													</c:if>
 													<c:if test="${today >= mission.startDate}">
-														<div>
-															<input type="time" name="certifiedEndTime"
-																class="form-control required" id="certifiedEndTime"
-																value="${mission.certifiedEndTime}" disabled>
-														</div>
+														<input type="time" name="certifiedEndTime"
+															class="form-control required" id="certifiedEndTime"
+															value="${mission.certifiedEndTime}" disabled>
 													</c:if>
-													<!-- <label for="certifiedEndTime">종료시간</label> -->
+													<label for="certifiedEndTime">종료 시간</label>
                                                 </div>
                                             </div>
                                            
@@ -188,8 +171,10 @@
 													</c:if>
 												</div>
 											</div>
-                                    </div>
+										</div>
+									</div>
                                 </div>
+                            </div>
                             </div>
                         </div>
                     </div><!-- START RIGHT SIDEBAR NAV -->

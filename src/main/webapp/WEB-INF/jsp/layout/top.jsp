@@ -25,6 +25,7 @@
     <link rel="stylesheet" type="text/css" href="/vendors/dropify/css/dropify.min.css">
     <link rel="stylesheet" type="text/css" href="/vendors/data-tables/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="/vendors/data-tables/extensions/responsive/css/responsive.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/pages/page-contact.css">
     <!-- END: VENDOR CSS-->
     <!-- BEGIN: Page Level CSS-->
     <link rel="stylesheet" type="text/css" href="/css/themes/horizontal-menu-template/materialize.css">
@@ -37,6 +38,11 @@
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="/css/custom/custom.css">
     <!-- END: Custom CSS-->
+    <style>
+			tr:hover {
+			  background-color: #CEF6F5;
+			}
+		</style>
 </head>
 <!-- END: Head-->
 
@@ -46,7 +52,7 @@
     <header class="page-topbar" id="header">
         
         	 <c:if test="${auth eq 'C'}">
-	        	 <nav class="navbar-main navbar-color nav-collapsible sideNav-lock navbar-dark gradient-45deg-light-blue-cyan gradient-shadow">
+	        	 <nav class="navbar-main navbar-color nav-collapsible sideNav-lock navbar-dark gradient-45deg-purple-light-blue gradient-shadow">
 				    <div class="nav-wrapper">
 				      <a href="/home" class="brand-logo" style="font-weight:bold;"><img src="/images/logo-4.png" style="width:170px;padding-top:8px;padding-left:10px;height:auto;"/></a>
 				      <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -64,7 +70,7 @@
 				  </nav>
 			  </c:if>
 			  <c:if test="${auth eq 'A'}">
-				  <nav class="navbar-main navbar-color nav-collapsible sideNav-lock navbar-dark gradient-45deg-light-blue-cyan gradient-shadow">
+				  <nav class="navbar-main navbar-color nav-collapsible sideNav-lock navbar-dark gradient-45deg-purple-light-blue gradient-shadow">
 				    <div class="nav-wrapper">
 				      <a href="/home" class="brand-logo" style="font-weight:bold;"><img src="/images/logo-4.png" style="width:170px;padding-top:8px;padding-left:10px;height:auto;"/></a>
 				      <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -81,12 +87,7 @@
 	                    </ul>
 				    </div>
 				  </nav>
->>>>>>> refs/remotes/origin/sh2
 			  </c:if>
-		<style>
-			tr:hover {
-			  background-color: #CEF6F5;
-			}
-		</style>	  
+			  
     </header>
     <!-- END: Header-->

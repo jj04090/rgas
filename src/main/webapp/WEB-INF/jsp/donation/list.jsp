@@ -11,7 +11,7 @@
                     <div class="section section-data-tables">
                         <div class="card">
                             <div class="card-content">
-                                <p class="caption mb-0">기부 관리</p>
+                                <p class="caption mb-0" style="font-size:20px;font-weight:bold;">기부 관리</p>
                             </div>
                         </div>	
                     <div class="card">   

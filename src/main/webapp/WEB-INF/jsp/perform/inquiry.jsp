@@ -9,7 +9,7 @@
                 <div class="container">
                 	<div class="card">
                             <div class="card-content">
-                                <p class="caption mb-0">피드 정보</p>
+                                <p class="caption mb-0" style="font-size:20px;font-weight:bold;">피드 정보</p>
                             </div>
                         </div>
                     <div id="image-card" class="section">

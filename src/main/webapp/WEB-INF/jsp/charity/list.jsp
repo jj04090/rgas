@@ -10,7 +10,7 @@
                     <div class="section section-data-tables">
                         <div class="card">
                             <div class="card-content">
-	                            <p class="caption mb-0">기부단체 목록</p>
+	                            <p class="caption mb-0" style="font-size:20px;font-weight:bold;">기부단체 목록</p>
                             </div>
                             <form action="${pageContext.request.contextPath}/charity/form" method=get>
 								<button class="btn cyan waves-effect waves-light right" type="submit">

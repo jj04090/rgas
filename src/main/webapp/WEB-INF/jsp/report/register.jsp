@@ -11,7 +11,7 @@
                     <div class="seaction">
                         <div class="card">
                             <div class="card-content">
-                                <p class="caption mb-0">신고_ 타당한 신고 사유를 입력해주세요.</p>
+                                <p class="caption mb-0" style="font-size:20px;font-weight:bold;">신고 등록</p>
                             </div>
                         </div>
                            <!-- Form Advance -->

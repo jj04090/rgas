@@ -16,14 +16,8 @@
 							<div class="row">
 								<div class="col s12">
 									<div class="slider">
-<<<<<<< HEAD
-										<ul class="slides mt-2" >
-											<li><img src="/images/gallery/test1.jpg" alt="img-1">
-												<!-- random image -->
-=======
 										<ul class="slides mt-2">
 											<li><img src="/images/test2.jpg" alt="img-1">
->>>>>>> refs/remotes/origin/sh2
 												<div class="caption center-align">
 													<h3 class="black-text">This is our big Tagline!</h3>
 													<h5 class="light black-text text-lighten-3">Here's our

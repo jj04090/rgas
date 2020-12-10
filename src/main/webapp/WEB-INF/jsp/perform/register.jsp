@@ -49,8 +49,9 @@
 	                                            </div>
 	                                        </div>
                                             <div class="row">
-                                            	<button type="submit" id="submit" style="float:right;font-size:15px;"
-											class="btn cyan waves-effect waves-light right" disabled>등록</button>
+												  <button class="btn cyan waves-effect waves-light right" id="submit" type="submit" disabled>등록
+	                                                   <i class="material-icons right">send</i>
+	                                              </button>
                                             </div>
                                         </form>
                                     </div>

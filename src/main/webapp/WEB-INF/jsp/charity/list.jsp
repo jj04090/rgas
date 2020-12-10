@@ -10,13 +10,15 @@
                     <div class="section section-data-tables">
                         <div class="card">
                             <div class="card-content">
-                                <p class="caption mb-0">기부단체 목록</p>
+	                            <p class="caption mb-0">기부단체 목록</p>
                             </div>
+                            <form action="${pageContext.request.contextPath}/charity/form" method=get>
+								<button class="btn cyan waves-effect waves-light right" type="submit">
+										등록 <i class="material-icons right">add_circle</i>
+								</button>
+							</form>
                         </div>
-                        <div class="row mt-1">
-		    					<a href="/charity/form" style="float:right;font-size:12px;"
-		    					class="waves-effect waves-light  btn gradient-45deg-light-blue-cyan box-shadow-2 border-round mr-1 mb-1">기부단체 등록</a>
-							</div>
+                        
                         <div class="row">
                             <div class="col s12 m12 l12">
                                 <div id="button-trigger" class="card card card-default scrollspy">

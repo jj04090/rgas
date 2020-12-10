@@ -1,6 +1,6 @@
     <!-- BEGIN: Footer-->
 
-    <footer class="page-footer footer footer-static footer-dark gradient-45deg-light-blue-cyan gradient-shadow navbar-border navbar-shadow">
+    <footer class="page-footer footer footer-static footer-dark gradient-45deg-light-blue-cyan gradient-45deg-purple-deep-orange navbar-shadow">
         <div class="footer-copyright">
             <div class="container"><span>&copy; 2020 <a target="_blank">RGAS</a> All rights reserved.</span><span class="right hide-on-small-only">Design and Developed by <a>RGAS</a></span></div>
         </div>

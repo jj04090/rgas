@@ -46,7 +46,7 @@
     <header class="page-topbar" id="header">
         
         	 <c:if test="${auth eq 'C'}">
-	        	 <nav>
+	        	 <nav class="navbar-main navbar-color nav-collapsible sideNav-lock navbar-dark gradient-45deg-light-blue-cyan gradient-shadow">
 				    <div class="nav-wrapper">
 				      <a href="/home" class="brand-logo" style="font-weight:bold;">CHEERUP</a>
 				      <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -64,7 +64,7 @@
 				  </nav>
 			  </c:if>
 			  <c:if test="${auth eq 'A'}">
-			  <nav>
+			  <nav class="navbar-main navbar-color nav-collapsible sideNav-lock navbar-dark gradient-45deg-light-blue-cyan gradient-shadow">
 			    <div class="nav-wrapper">
 			      <a href="/home" class="brand-logo" style="font-weight:bold;">CHEERUP</a>
 			      <ul id="nav-mobile" class="right hide-on-med-and-down">

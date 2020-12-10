@@ -16,8 +16,8 @@
 							<div class="row">
 								<div class="col s12">
 									<div class="slider">
-										<ul class="slides mt-2">
-											<li><img src="/images/gallery/30.png" alt="img-1">
+										<ul class="slides mt-2" >
+											<li><img src="/images/gallery/test1.jpg" alt="img-1">
 												<!-- random image -->
 												<div class="caption center-align">
 													<h3 class="white-text">This is our big Tagline!</h3>

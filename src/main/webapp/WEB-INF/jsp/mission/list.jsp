@@ -21,13 +21,18 @@
                     	<div class="card-content">
                             <p class="caption mb-0">미션 목록</p>
                         </div>
+                        <form method="get" action="/mission/form">
+									
+										<button class="btn cyan waves-effect waves-light right"
+											type="submit">
+											미션등록 <i class="material-icons right">add_circle</i>
+										</button>
+									
+								</form>
                     </div>
                     <div id="cards-extended">                       
                         <div id="card-panel-type" class="section">
-                            <div class="row mt-1">
-		    					<a href="/mission/form" style="float:right;font-size:12px;"
-		    					class="waves-effect waves-light  btn gradient-45deg-light-blue-cyan box-shadow-2 border-round mr-1 mb-1">미션 등록</a>
-							</div>
+							
                             <div class="row mt-1">
                             	<c:forEach var="mission" items="${missionList}">
 								<c:if test="${mission.status eq 'N'}">
@@ -64,21 +69,28 @@
 			            
 			    							<fmt:formatDate value="${certifiedStartTime}" pattern="HH:mm:ss" var="startTime"/>
 			    							<fmt:formatDate value="${certifiedEndTime}" pattern="HH:mm:ss" var="endTime"/>
+	                                   		
 	                                   		<div class="row mt-4">
-		                                   		<form method="get" action="/perform">
-														<input type="hidden" name="no" id="no" value="${mission.no}" />
-														<button class="waves-effect waves-light btn gradient-45deg-light-blue-cyan mr-1 mb-2" 
-															style="float:right;font-size:12px;margin-top:20px;" type="submit">피드 보기</button>
-												</form>
-												<c:if test="${nowTime >= startTime and nowTime <= endTime}">
-					           				        <c:if test="${today >= mission.startDate and today <= mission.endDate}">
-						            					<form method="get" action="/perform/form/${mission.no}">
-															<input type="hidden" name="no" id="no" value="${mission.no}" />
-															<button class="waves-effect waves-light btn gradient-45deg-light-blue-cyan mr-1 mb-2" 
-															style="float:left;font-size:12px;margin-left:10px;margin-top:20px;" type="submit" >피드 등록</button>
-														</form>
+	                                   			<div class="input-field col m6 s12">
+													<c:if test="${nowTime >= startTime and nowTime <= endTime}">
+						           				        <c:if test="${today >= mission.startDate and today <= mission.endDate}">
+							            					<form method="get" action="/perform/form/${mission.no}">
+																<input type="hidden" name="no" id="no" value="${mission.no}" />
+																	<button class="btn cyan waves-effect waves-light left" type="submit">
+																		피드 등록 <i class="material-icons right">add_to_photos</i>
+																	</button>
+															</form>
+												        </c:if>
 											        </c:if>
-										        </c:if>
+										        </div>
+										        <form method="get" action="/perform">
+													<div class="input-field col m6 s12">
+													<input type="hidden" name="no" id="no" value="${mission.no}" />
+														<button class="btn cyan waves-effect waves-light right" type="submit">
+															피드 보기 <i class="material-icons right">search</i>
+														</button>
+													</div>
+												</form>
 										    </div>
                                         </div>
                                     </div>

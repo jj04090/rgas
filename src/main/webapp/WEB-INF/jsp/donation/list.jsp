@@ -16,27 +16,36 @@
                         </div>	
                     <div class="card">   
 	                    <div class="card-content" style="padding-bottom:50px;">
-	                    	<form action="${pageContext.request.contextPath}/charity"
-								method=get>
-								<button type="submit" style="margin:0px;" 
-								class=" btn waves-effect waves-light gradient-45deg-light-blue-cyan">기부단체</button>
-							</form>
-							<c:set var="merchantUid" value="<%=UUID.randomUUID()%>" />
-							<input type="hidden" id="merchantUid" name="merchantUid"
-								value="${merchantUid}" />
-							<form action="${pageContext.request.contextPath}/donation"
-								id="register" method="post" style="padding-bottom:5px;">
-								<select id="charityNo" name="no" class="select2 browser-default">
-									<c:forEach items="${charityList}" var="charity">
-										<option value="${charity.no}">${charity.name}</option>
-									</c:forEach>
-								</select>
-							</form>
-							
-							<button type="button" id="payment" value="기부금 이체"
-									style="float:right; font-size: 12px;" class="waves-effect waves-light  btn gradient-45deg-light-blue-cyan box-shadow-none border-round mr-1 mb-1" >
-									기부금 이체</button>
-							
+	                    	<div class="row">
+								<c:set var="merchantUid" value="<%=UUID.randomUUID()%>" />
+								<input type="hidden" id="merchantUid" name="merchantUid"
+									value="${merchantUid}" />
+								<form action="${pageContext.request.contextPath}/donation"
+									id="register" method="post" style="padding-bottom:5px;">
+									<select id="charityNo" name="no" class="select2 browser-default">
+										<c:forEach items="${charityList}" var="charity">
+											<option value="${charity.no}">${charity.name}</option>
+										</c:forEach>
+									</select>
+								</form>
+							</div>
+							<div class="row">
+								<div class="input-field col m6 s12">
+									<form action="${pageContext.request.contextPath}/charity"
+										method=get>
+										
+										<button class="btn cyan waves-effect waves-light left" type="submit">
+												기부단체 <i class="material-icons right">search</i>
+										</button>
+									</form>
+								</div>
+								<div class="input-field col m6 s12">
+									<button class="btn cyan waves-effect waves-light right"
+										type="button" id="payment">
+										기부<i class="material-icons right">payment</i>
+									</button>
+								</div>
+							</div>
 	                    </div>
                     </div>
 					<div class="row">
@@ -109,7 +118,7 @@
 								msg += '금액 : ' + rsp.paid_amount;
 								document.getElementById("register").submit();
 							} else {
-								var msg = '결제에 실패하였습니다.';
+								var msg = '결제에 실패하였습니다.\n';
 								msg += '에러내용 : ' + rsp.error_msg;
 							}
 							alert(msg);

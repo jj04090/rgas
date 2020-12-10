@@ -30,7 +30,7 @@
                                                     <th>등급</th>
                                                     <th>권한</th>
                                                     <th>상태</th>
-                                                    <th></th>
+                                                    <th>dma</th>
                                                     <th></th>
                                                     <th></th>
                                                 </tr>
@@ -38,7 +38,7 @@
                                             <tbody>
                                             <c:forEach var="member" items="${list}">
                                                 <tr>
-                                                    <td></td>
+                                                    <td> </td>
                                                     <td>${member.name}</td>
                                                     <td><a href="/member/${member.no}">${member.email}</a></td>
                                                     <td>${member.nickname}</td>

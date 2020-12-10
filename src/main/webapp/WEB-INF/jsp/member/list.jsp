@@ -12,7 +12,7 @@
                     <section class="users-list-wrapper section">
                     	<div class="card">
                             <div class="card-content">
-                                <p class="caption mb-0">회원 목록</p>
+                                <p class="caption mb-0" style="font-size:20px;font-weight:bold;">회원 목록</p>
                             </div>
                         </div>
                         <div class="users-list-table">
@@ -30,7 +30,7 @@
                                                     <th>등급</th>
                                                     <th>권한</th>
                                                     <th>상태</th>
-                                                    <th>dma</th>
+                                                    <th></th>
                                                     <th></th>
                                                     <th></th>
                                                 </tr>

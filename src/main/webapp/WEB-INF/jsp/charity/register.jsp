@@ -12,7 +12,7 @@
 						<div class="app-wrapper">
 							<div class="card">
 								<div class="card-content">
-									<p class="caption mb-0">기부 단체 등록_ 새로 등록할 기부단체 정보를 입력해주세요.</p>
+									<p class="caption mb-0" style="font-size:20px;font-weight:bold;">기부 단체 등록</p>
 								</div>
 							</div>
 							<div id="sidebar-list" class="row contact-sidenav">

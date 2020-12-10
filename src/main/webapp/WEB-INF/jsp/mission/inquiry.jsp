@@ -25,7 +25,6 @@
 											<div id="Form-advance"
 												class="card card card-default scrollspy">
 												<div class="card-content">
-													<h4 class="card-title">미션 상세 보기</h4>
 													<form class="row" id="event-registration" action="/mission"
 														method="post" enctype="multipart/form-data">
 														<input type="hidden" name="_method" value="PUT" /> <input

@@ -26,6 +26,7 @@
     <link rel="stylesheet" type="text/css" href="/vendors/data-tables/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="/vendors/data-tables/extensions/responsive/css/responsive.dataTables.min.css">
      <link rel="stylesheet" type="text/css" href="/fonts/fontawesome/css/all.min.css">
+     <link rel="stylesheet" type="text/css" href="/css/pages/page-contact.css">
     <!-- END: VENDOR CSS-->
     <!-- BEGIN: Page Level CSS-->
     <link rel="stylesheet" type="text/css" href="/css/themes/horizontal-menu-template/materialize.css">
@@ -68,7 +69,7 @@
 	                        <li><a class="grey-text text-darken-1" href="/logout"><i class="material-icons">keyboard_tab</i> 로그아웃</a></li>
 	                    </ul>
 				    </div>
-				  </nav>
+				  </nav> 
 			  </c:if>
 			  <c:if test="${auth eq 'A'}">
 				  <nav class="navbar-main navbar-color nav-collapsible sideNav-lock navbar-dark gradient-45deg-purple-light-blue gradient-shadow">

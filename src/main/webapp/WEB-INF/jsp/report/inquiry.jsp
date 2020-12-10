@@ -12,7 +12,7 @@
 						<div class="app-wrapper">
 							<div class="card">
 								<div class="card-content">
-									<p class="caption mb-0">신고 정보_신고당한 수행내역을 확인 후 실패처리 가능합니다.</p>
+									<p class="caption mb-0" style="font-size:20px;font-weight:bold;">신고 정보</p>
 								</div>
 							</div>
 							<!-- Form Advance -->
@@ -23,7 +23,6 @@
 											<div id="Form-advance"
 												class="card card card-default scrollspy">
 												<div class="card-content">
-													<h4 class="card-title">신고 상세 정보</h4>
 													<input type="hidden" name="no" id="no" value="${report.no}" />
 
 													<div class="row">

@@ -11,7 +11,7 @@
                 <div class="container">
                 	<div class="card">
                     	<div class="card-content">
-                            <p class="caption mb-0">피드 목록</p>
+                            <p class="caption mb-0" style="font-size:20px;font-weight:bold;">피드 목록</p>
                         </div>
                     </div>
                     <!--Card Reveal-->

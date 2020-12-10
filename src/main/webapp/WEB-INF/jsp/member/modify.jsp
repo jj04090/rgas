@@ -11,7 +11,7 @@
 						<div class="app-wrapper">
 							<div class="card">
 								<div class="card-content">
-									<p class="caption mb-0">회원 정보</p>
+									<p class="caption mb-0" style="font-size:20px;font-weight:bold;">회원 정보</p>
 								</div>
 							</div>
 							<div id="sidebar-list" class="row contact-sidenav">

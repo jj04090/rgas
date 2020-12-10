@@ -19,27 +19,23 @@
 										<ul class="slides mt-2">
 											<li><img src="/images/test2.jpg" alt="img-1">
 												<div class="caption center-align">
-													<h3 class="black-text">This is our big Tagline!</h3>
-													<h5 class="light black-text text-lighten-3">Here's our
-														small slogan.</h5>
+													<h3 class="black-text"></h3>
+													<h5 class="light black-text text-lighten-3" style="font-weight: bold;">작은 습관이 인생을 바꿉니다.</h5>
 												</div></li>
 											<li><img src="/images/test7.jpg" alt="img-2">
 												<div class="caption left-align">
-													<h3 class="black-text">Left Aligned Caption</h3>
-													<h5 class="light black-text text-lighten-3">Here's our
-														small slogan.</h5>
+													<h3 class="black-text" style="font-weight: bold;">의지가 부족하다면</h3>
+													<h5 class="light black-text text-lighten-3" style="font-weight: bold;">돈을 쓰면 의지가 달라집니다.</h5>
 												</div></li>
 											<li><img src="/images/test6.jpg" alt="img-3">
 												<div class="caption right-align">
-													<h3 class="black-text">Right Aligned Caption</h3>
-													<h5 class="light black-text text-lighten-3">Here's our
-														small slogan.</h5>
+													<h3 class="black-text" style="font-weight: bold;">인생을 바꾸는 습관</h3>
+													<h5 class="light black-text text-lighten-3" style="font-weight: bold;">습관이 사람을 만든다</h5>
 												</div></li>
 											<li><img src="/images/test4.jpg" alt="img-4">
-												<div class="caption right-align">
-													<h3 class="black-text">This is our big Tagline!</h3>
-													<h5 class="light black-text text-lighten-3">Here's our
-														small slogan.</h5>
+												<div class="caption center-align">
+													<h3 class="black-text" style="font-weight: bold;">전 국민 목표 달성 프로젝트</h3>
+													<h5 class="light black-text text-lighten-3" style="font-weight: bold;">CHEER UP!</h5>
 												</div></li>
 										</ul>
 									</div>

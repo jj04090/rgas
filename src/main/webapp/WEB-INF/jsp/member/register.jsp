@@ -56,37 +56,37 @@
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix pt-2">mail_outline</i>
                                     <input type="email" name="email" id="email" onchange="checkEmail()" required>
-                                    <label for="email">Email</label>
-                                    <button type="button" id="send" style="float: right; font-size: 12px;" class="btn waves-effect waves-light border-round gradient-45deg-purple-deep-orange">전송</button>
+                                    <label for="email">이메일</label>
+                                    <button type="button" id="send" style="float: right; font-size: 12px;" class="btn waves-effect waves-light border-round gradient-45deg-purple-light-blue">전송</button>
                                 </div>
                             </div>
                             <div class="row margin">
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix pt-2">lock_outline</i>
                                     <input type="text" name="authCode" id="authCode" value="">
-                                    <label for="authCode">auth_code</label>
-                                  <button type="button" id="auth" style="float: right; font-size: 12px;" class="btn waves-effect waves-light border-round gradient-45deg-purple-deep-orange">인증</button>
+                                    <label for="authCode">인증코드</label>
+                                  <button type="button" id="auth" style="float: right; font-size: 12px;" class="btn waves-effect waves-light border-round gradient-45deg-purple-light-blue">인증</button>
                                 </div>
                             </div>
                             <div class="row margin">
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix pt-2">lock_outline</i>
                                     <input type="password" name="password" id="password" value="" maxlength="20" required>
-                                    <label for="password">Password</label>
+                                    <label for="password">비밀번호</label>
                                 </div>
                             </div>
                             <div class="row margin">
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix pt-2">person_outline</i>
                                    <input type="text" name="name" id="name"value="" maxlength="40" required>
-                                    <label for="name" class="center-align">Username</label>
+                                    <label for="name" class="center-align">사용자 이름</label>
                                 </div>
                             </div>
                             <div class="row margin">
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix pt-2">person_outline</i>
                                    <input type="text" name="nickname" id="nickname" value="" required>
-                                    <label for="nickname" class="center-align">Nickname</label>
+                                    <label for="nickname" class="center-align">닉네임</label>
                                 </div>
                             </div>
                             <div class="row margin">
@@ -117,17 +117,17 @@
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix pt-2">lock_outline</i>
                                    <input type="number" name="account" id="account" class="form-control form-control-lg required" maxlength="14" required>
-                                    <label for="account">Account_Number</label>
+                                    <label for="account">계좌번호</label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
-                               		<button type="submit" class="btn waves-effect waves-light border-round gradient-45deg-purple-deep-orange col s12">Register</button>
+                               		<button type="submit" class="btn waves-effect waves-light border-round gradient-45deg-purple-light-blue col s12">회원가입</button>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <p class="margin medium-small"><a href="user-login.html">Already have an account? Login</a></p>
+                                    <p class="margin medium-small"><a href="/login">계정이 있으신가요? 로그인</a></p>
                                 </div>
                             </div>
                         </form>

@@ -1,6 +1,6 @@
     <!-- BEGIN: Footer-->
 
-    <footer class="page-footer footer footer-static footer-dark gradient-45deg-light-blue-cyan gradient-45deg-purple-deep-orange navbar-shadow">
+    <footer class="page-footer footer footer-static footer-dark gradient-45deg-purple-light-blue navbar-shadow">
         <div class="footer-copyright">
             <div class="container"><span>&copy; 2020 <a target="_blank">RGAS</a> All rights reserved.</span><span class="right hide-on-small-only">Design and Developed by <a>RGAS</a></span></div>
         </div>
@@ -29,7 +29,7 @@
     <script src="/js/scripts/page-users.js"></script>
     <script src="/js/scripts/form-file-uploads.js"></script>
     <script src="/js/scripts/fullscreen-slider.js"></script>
-    
+    <script src="/js/scripts/page-contact.js"></script>
     <!-- END PAGE LEVEL JS-->
 </body>
 

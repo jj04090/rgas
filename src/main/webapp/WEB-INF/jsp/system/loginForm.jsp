@@ -45,19 +45,19 @@
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix pt-2">person_outline</i>
                                     <input type="email" name="email" id="email" required>
-                                    <label for="email" class="center-align">User Email</label>
+                                    <label for="email" class="center-align">사용자 이메일</label>
                                 </div>
                             </div>
                             <div class="row margin">
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix pt-2">lock_outline</i>
                                     <input type="password" name="password" id="password" >
-                                    <label for="password">Password</label>
+                                    <label for="password">비밀번호</label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <button type="submit" class="btn waves-effect waves-light border-round gradient-45deg-purple-deep-orange col s12">Login</button>
+                                    <button type="submit" class="btn waves-effect waves-light border-round gradient-45deg-purple-light-blue col s12" style="font-weight: bold;">로그인</button>
                                 </div>
                             </div>
                             <div class="row">

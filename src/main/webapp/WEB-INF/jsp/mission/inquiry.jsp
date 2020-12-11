@@ -41,19 +41,14 @@
 																	<c:if test="${today < mission.startDate}">
 																		<select name="categoryNo" id="categoryNo">
 																			<c:forEach var="category" items="${categoryList}">
-																			<option value="${category.no}"
-																	<c:if test="${mission.categoryNo eq category.no}"> selected</c:if>>
-																	${category.title}</option>
-
-																		</c:forEach>
+																				<option value="${category.no}" <c:if test="${mission.categoryNo eq category.no}"> selected</c:if>>${category.title}</option>
+																			</c:forEach>
 																		</select>
 																	</c:if>
-																	<c:if test="${today >= mission.startDate }">
+																	<c:if test="${today >= mission.startDate}">
 																		<select name="categoryNo" id="categoryNo" disabled>
 																			<c:forEach var="category" items="${categoryList}">
-																				<option value="${category.no}"
-																	<c:if test="${mission.categoryNo eq category.no}"> selected</c:if>>
-																	${category.title}</option>
+																				<option value="${category.no}" <c:if test="${mission.categoryNo eq category.no}"> selected</c:if>>${category.title}</option>
 																			</c:forEach>
 																		</select>
 																	</c:if>
@@ -93,15 +88,13 @@
 															<div class="row">
 																<div class="input-field col m6 s12">
 																	<c:if test="${today < mission.startDate}">
-																		<div>
-																			<input type="date" name="startDate" id="startDate"
-																				value="${mission.startDate}">
-																		</div>
+																		<input type="date" name="startDate" id="startDate"
+																			value="${mission.startDate}">
 																	</c:if>
 																	<c:if test="${today >= mission.startDate}">
-																			<input type="date" name="startDate" id="startDate"
-																				class="form-control required"
-																				value="${mission.startDate}" disabled>
+																		<input type="date" name="startDate" id="startDate"
+																			class="form-control required"
+																			value="${mission.startDate}" disabled>
 																	</c:if>
 																	<label for="startDate">시작일자</label>
 																</div>
@@ -148,19 +141,20 @@
 																	<label for="certifiedEndTime">종료시간</label>
 																</div>
 															</div>
-
-															<div class="row">
-																<div class="col m6 s12 file-field input-field">
-																	<div class="btn float-right">
-																		<span>예시사진</span> <input type="file" name="img"
-																			id="img" data-show-preview="false">
+															<c:if test="${today < mission.startDate}">
+																<div class="row">
+																	<div class="col m6 s12 file-field input-field">
+																		<div class="btn float-right">
+																			<span>예시사진</span> <input type="file" name="img"
+																				id="img" data-show-preview="false">
+																		</div>
+																		<div class="file-path-wrapper">
+																			<input class="file-path validate" type="text">
+																		</div>
+	
 																	</div>
-																	<div class="file-path-wrapper">
-																		<input class="file-path validate" type="text">
-																	</div>
-
 																</div>
-															</div>
+															</c:if>
 													</form>
 													<div class="row">
 														<div class="input-field col m6 s12">

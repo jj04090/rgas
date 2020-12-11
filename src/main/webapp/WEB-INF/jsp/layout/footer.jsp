@@ -30,6 +30,7 @@
     <script src="/js/scripts/form-file-uploads.js"></script>
     <script src="/js/scripts/fullscreen-slider.js"></script>
     <script src="/js/scripts/page-contact.js"></script>
+    <script src="/js/scripts/cards-extended.js"></script>
     <!-- END PAGE LEVEL JS-->
 </body>
  

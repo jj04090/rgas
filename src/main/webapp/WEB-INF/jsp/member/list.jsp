@@ -17,7 +17,7 @@
                         </div>
                         <div class="users-list-table">
                             <div class="card">
-                                <div class="card-content">
+                                <div class="card-content" style="padding-bottom:60px;">
                                     <!-- datatable start -->
                                     <div class="responsive-table">
                                         <table id="users-list-datatable" class="table">

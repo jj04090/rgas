@@ -66,8 +66,8 @@
 														</div>
 														<div class="row">
 															<div class="input-field col s12">
-																<button class="btn cyan waves-effect waves-light right"
-																	id="btn" type="submit" name="btn">
+																<button class="btn blue waves-effect waves-light right"
+																	id="btn" type="submit" name="btn" style="font-weight:bold;">
 																	등록 <i class="material-icons right">send</i>
 																</button>
 															</div>
@@ -80,10 +80,12 @@
 								</div>
 							</div>
 						</div>
-						<!-- START RIGHT SIDEBAR NAV -->
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<script>
+    	document.title = "기부 단체 등록 | CHEERUP" ;
+	</script>
 	<jsp:include page="/WEB-INF/jsp/layout/footer.jsp" />

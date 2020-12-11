@@ -47,4 +47,7 @@
 			</div>
 		</div>
 	</div>
+	<script>
+    	document.title = "홈 | CHEERUP" ;
+	</script>
 	<jsp:include page="/WEB-INF/jsp/layout/footer.jsp" />

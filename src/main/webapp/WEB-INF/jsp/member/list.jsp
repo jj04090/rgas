@@ -84,4 +84,7 @@
                 </div>
             </div>
         </div>
+        <script>
+    	document.title = "회원 목록 | CHEERUP" ;
+	</script>
 <jsp:include page="/WEB-INF/jsp/layout/footer.jsp" />

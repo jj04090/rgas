@@ -10,7 +10,7 @@
     <meta name="description" content="Materialize is a Material Design Admin Template,It's modern, responsive and based on Material Design by Google.">
     <meta name="keywords" content="materialize, admin template, dashboard template, flat admin template, responsive admin template, eCommerce dashboard, analytic dashboard">
     <meta name="author" content="ThemeSelect">
-    <title>User Login | Rgas</title>
+    <title>로그인 | CHEERUP</title>
     <link rel="apple-touch-icon" href="/images/favicon/apple-touch-icon-152x152.png">
     <link rel="shortcut icon" type="image/x-icon" href="/images/favicon/favicon-32x32.png">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -34,11 +34,12 @@
         <div class="col s12">
             <div class="container">
                 <div id="login-page" class="row">
+                
                     <div class="col s12 m6 l4 z-depth-4 card-panel border-radius-6 login-card bg-opacity-8">
                         <form id="login" action="/login" method="post">
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <h5 class="ml-4">로그인</h5>
+                                   <img class="responsive-img" width="200" src="/images/logo-4.png" alt>
                                 </div>
                             </div>
                             <div class="row margin">

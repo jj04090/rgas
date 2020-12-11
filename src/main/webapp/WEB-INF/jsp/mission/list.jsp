@@ -22,13 +22,11 @@
                             <p class="caption mb-0" style="font-size:20px;font-weight:bold;">미션 목록</p>
                         </div>
                         <form method="get" action="/mission/form">
-									
-										<button class="btn gradient-45deg-blue-indigo darken-4 waves-effect waves-light right"
-											type="submit" style="font-weight:bold;">
-											미션등록 <i class="material-icons right">add_circle</i>
-										</button>
-									
-								</form>
+								<button class="btn gradient-45deg-blue-indigo darken-4 waves-effect waves-light right"
+									type="submit" style="font-weight:bold;">
+									미션등록 <i class="material-icons right">add_circle</i>
+								</button>
+						</form>
                     </div>
                     <div id="cards-extended">                       
                         <div id="card-panel-type" class="section">
@@ -39,7 +37,7 @@
                                 <div class="col s12 m6 l6 card-width">
                                     <div class="card-panel border-radius-6 mt-10 card-animation-1">
                                         <a href="/mission/${mission.no}"><img class="responsive-img border-radius-8 z-depth-4 image-n-margin " src="mission/photo/${mission.no}" 
-                                        onerror="this.src='/images/gallery/1.png'" style="width:700px;height:400px;"
+                                        onerror="this.src='/images/gallery/1.png'" style="width:100%;height:500px;"
                                         ></a>
                                         <h6><a href="/mission/${mission.no}" class="mt-5" style="font-weight:bold;">${mission.title}</a></h6>
                                         <p>${mission.note}</p>
@@ -76,8 +74,8 @@
 						           				        <c:if test="${today >= mission.startDate and today <= mission.endDate}">
 							            					<form method="get" action="/perform/form/${mission.no}">
 																<input type="hidden" name="no" id="no" value="${mission.no}" />
-																	<button class="btn waves-effect waves-light left" 
-																	style="background:#2196f3;font-weight:bold;" type="submit">
+																	<button class="btn blue waves-effect waves-light left" 
+																	style="font-weight:bold;" type="submit">
 																		등록 <i class="material-icons right">add_a_photo</i>
 																	</button>
 															</form>
@@ -87,8 +85,8 @@
 										        <form method="get" action="/perform">
 													<div class="input-field col m6 s12">
 													<input type="hidden" name="no" id="no" value="${mission.no}" />
-														<button class="btn waves-effect waves-light right" 
-														style="background:#2196f3;font-weight:bold;" type="submit">
+														<button class="btn blue waves-effect waves-light right" 
+														style="font-weight:bold;" type="submit">
 															피드<i class="material-icons right">camera_alt</i>
 														</button>
 													</div>
@@ -109,4 +107,7 @@
         </div>
     </div>
  </div>
+ <script>
+    	document.title = "미션 목록 | CHEERUP" ;
+	</script>
 <jsp:include page="/WEB-INF/jsp/layout/footer.jsp" />

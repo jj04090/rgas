@@ -31,7 +31,6 @@ public class SystemController {
 		ModelAndView mv = new ModelAndView();
 
 		if (httpSession.getAttribute("auth") != null) {
-			mv.addObject("urlName", "home");
 			mv.setViewName("/system/home");
 
 			return mv;
@@ -58,7 +57,6 @@ public class SystemController {
 		
 		boolean isLogin = systemServiceImpl.login(member);
 		if (isLogin) {
-			mv.addObject("urlName", "home");
 			mv.setViewName("redirect:/home");
 		} else {
 			mv.setViewName("redirect:/login");

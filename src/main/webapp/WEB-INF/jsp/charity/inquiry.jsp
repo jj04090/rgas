@@ -73,18 +73,25 @@
 													</form>
 													<div class="row">
 														<div class="input-field col m6 s12">
-															<form method="post" action="/charity" id="charityDelete">
-																<input type="hidden" name="_method" value="DELETE" /> <input
-																	type="hidden" name="no" id="no" value="${charity.no}" />
-																<button class="btn red waves-effect waves-light left"
-																	type="submit">
-																	삭제 <i class="material-icons right">delete</i>
-																</button>
-															</form>
+															<c:forEach var="donationTransfer" items="${donationTransferList}">
+		            											<c:if test="${charity.no eq donationTransfer.charityNo}">
+		            												 <c:set var="flag" value="fail" />
+																</c:if>
+															</c:forEach>
+															<c:if test="${flag ne 'fail'}">
+																<form method="post" action="/charity" id="charityDelete">
+																	<input type="hidden" name="_method" value="DELETE" /> <input
+																		type="hidden" name="no" id="no" value="${charity.no}" />
+																	<button class="btn red waves-effect waves-light left"
+																		type="submit" style="font-weight:bold;">
+																		삭제 <i class="material-icons right">delete</i>
+																	</button>
+																</form>
+															</c:if>
 														</div>
 														<div class="input-field col m6 s12">
-															<button class="btn cyan waves-effect waves-light right"
-																id="btn" type="submit" name="btn" form="charityForm">
+															<button class="btn blue waves-effect waves-light right"
+																style="font-weight:bold;" id="btn" type="submit" name="btn" form="charityForm">
 																수정 <i class="material-icons right">edit</i>
 															</button>
 														</div>
@@ -101,4 +108,7 @@
 			</div>
 		</div>
 	</div>
+	<script>
+    	document.title = "기부 단체 | CHEERUP" ;
+	</script>
 	<jsp:include page="/WEB-INF/jsp/layout/footer.jsp" />

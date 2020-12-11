@@ -49,4 +49,7 @@
 			</div>
 		</div>
 	</div>
+	<script>
+    	document.title = "피드 정보 | CHEERUP" ;
+	</script>
 	<jsp:include page="/WEB-INF/jsp/layout/footer.jsp" />

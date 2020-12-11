@@ -140,14 +140,14 @@
 														<div class="row">
 															<div class="input-field col m6 s12">
 																<button type="submit" form="memberForm"
-																	class="btn red waves-effect waves-light left">
+																	class="btn red waves-effect waves-light left" style="font-weight:bold;">
 																	탈퇴 <i class="material-icons right">cancel</i>
 																</button>
 															</div>
 															<div class="input-field col m6 s12">
 																<button form="memberModify" type="submit"
 																	style="float: right;"
-																	class="btn cyan waves-effect waves-light right">
+																	class="btn blue waves-effect waves-light right" style="font-weight:bold;">
 																	수정 <i class="material-icons right">edit</i>
 																</button>
 															</div>
@@ -170,4 +170,7 @@
 			</div>
 		</div>
 	</div>
+	<script>
+    	document.title = "회원 정보 | CHEERUP" ;
+	</script>
 	<jsp:include page="/WEB-INF/jsp/layout/footer.jsp" />

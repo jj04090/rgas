@@ -92,7 +92,7 @@
 							                                	</div>
 															</div>
 															<div class="input-field col s12">
-																<button class="btn cyan waves-effect waves-light right"
+																<button class="btn blue waves-effect waves-light right" style="font-weight:bold;"
 																	id="btn" type="button" name="btn" disabled>
 																	등록 <i class="material-icons right">payment</i>
 																</button>
@@ -115,6 +115,9 @@
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 	<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<script>
+    	document.title = "미션 등록 | CHEERUP" ;
+	</script>
 	<script>
 		$(function() {
 			$("#img").change(function(e){

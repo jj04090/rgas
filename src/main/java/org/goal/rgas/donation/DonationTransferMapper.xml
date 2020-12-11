@@ -30,14 +30,12 @@
     </sql>
 
     <select id="count" parameterType="org.goal.rgas.donation.DonationTransfer" resultType="int">
-        SELECT COUNT(*)
+        SELECT distinct CHARITY_NO
         FROM DONATION_TRANSFER
         <include refid="whereSql" />
     </select>
 
     <select id="list" parameterType="org.goal.rgas.donation.DonationTransfer" resultMap="donationTransferResultMap">
-        SELECT *
-        FROM (
             SELECT
                 NO,
                 CHARITY_NO,
@@ -45,8 +43,6 @@
                 TRANSFER_DATE
             FROM DONATION_TRANSFER
             <include refid="whereSql" />
-            ORDER BY NO DESC
-        ) TB
     </select>
 
     <select id="select" parameterType="org.goal.rgas.donation.DonationTransfer" resultMap="donationTransferResultMap">

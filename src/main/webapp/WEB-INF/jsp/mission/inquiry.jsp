@@ -180,7 +180,7 @@
 														</div>
 														<div class="input-field col m6 s12">
 															<c:if test="${today < mission.startDate}">
-																<button class="btn cyan waves-effect waves-light right"
+																<button class="btn blue waves-effect waves-light right"
 																	form="event-registration" type="submit"
 																	style="font-weight: bold;">
 																	수정 <i class="material-icons right">edit</i>
@@ -203,8 +203,6 @@
 										</div>
 									</div>
 								</div>
-
-
 							</div>
 						</div>
 					</div>
@@ -212,8 +210,11 @@
 			</div>
 		</div>
 	</div>
-
-
+	
+	<script>
+    	document.title = "미션 정보 | CHEERUP" ;
+	</script>
+	
 	<script>
 		function ajax_call() {
 			var xhr = new XMLHttpRequest();

@@ -8,6 +8,8 @@ import java.util.Properties;
 
 import javax.validation.Valid;
 
+import org.goal.rgas.donation.DonationServiceImpl;
+import org.goal.rgas.donation.DonationTransfer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,6 +25,9 @@ import org.springframework.web.servlet.ModelAndView;
 public class CharityController {
 	@Autowired
 	private CharityServiceImpl charityServiceImpl;
+	
+	@Autowired
+	private DonationServiceImpl donationServiceImpl;
 	
 	@Autowired
 	private Properties properties;
@@ -90,6 +95,8 @@ public class CharityController {
 			if (charity != null) {
 				mv.addObject("charity", charity);
 				mv.addObject("bankName", new String(properties.getProperty(charity.getBank()).getBytes("ISO-8859-1"), "utf-8"));
+				mv.addObject("donationTransferList", donationServiceImpl.donationTransferList(new DonationTransfer()));
+				System.out.println(donationServiceImpl.donationTransferList(new DonationTransfer()));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

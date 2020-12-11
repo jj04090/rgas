@@ -28,8 +28,8 @@
 													<div class="row">
 														<c:if test="${report.status == 'W'}">
 															<form action="/perform/${report.performNo}" method="get">
-																<button class="btn cyan waves-effect waves-light right"
-																	type="submit">
+																<button class="btn blue waves-effect waves-light right"
+																	type="submit" style="font-weight:bold;">
 																	확인<i class="material-icons right"
 																		style="">error_outline</i>
 																</button>
@@ -81,7 +81,7 @@
 																<input type="hidden" name="_method" value="DELETE" /> <input
 																	type="hidden" name="no" id="no" value="${report.no}" />
 																<button class="btn red waves-effect waves-light left"
-																	type="submit">
+																	type="submit" style="font-weight:bold;">
 																	삭제 <i class="material-icons right">delete</i>
 																</button>
 															</form>
@@ -93,8 +93,8 @@
 																		type="hidden" name="no" id="no" value="${report.no}" />
 																	<input type="hidden" name="performNo" id="performNo"
 																		value="${report.performNo}" />
-																	<button class="btn cyan waves-effect waves-light right"
-																		type="submit">
+																	<button class="btn blue waves-effect waves-light right"
+																		type="submit" style="font-weight:bold;">
 																		처리완료 <i class="material-icons right">done</i>
 																	</button>
 																</form>
@@ -113,4 +113,7 @@
 			</div>
 		</div>
 	</div>
+	<script>
+    	document.title = "신고 정보 | CHEERUP" ;
+	</script>
 	<jsp:include page="/WEB-INF/jsp/layout/footer.jsp" />

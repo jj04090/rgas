@@ -34,13 +34,13 @@
 									<form action="${pageContext.request.contextPath}/charity"
 										method=get>
 										
-										<button class="btn cyan waves-effect waves-light left" type="submit">
+										<button class="btn blue waves-effect waves-light left" style="font-weight:bold;" type="submit">
 												기부단체 <i class="material-icons right">search</i>
 										</button>
 									</form>
 								</div>
 								<div class="input-field col m6 s12">
-									<button class="btn cyan waves-effect waves-light right"
+									<button class="btn blue waves-effect waves-light right" style="font-weight:bold;"
 										type="button" id="payment">
 										기부<i class="material-icons right">payment</i>
 									</button>
@@ -48,6 +48,7 @@
 							</div>
 	                    </div>
                     </div>
+                    
 					<div class="row">
 						<div class="col s12 m12 l12">
 							<div id="button-trigger" class="card card card-default scrollspy">
@@ -94,6 +95,9 @@
 	<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 	
+	<script>
+    	document.title = "기부 관리 페이지 | CHEERUP" ;
+	</script>
 	<script>
 		document.getElementById('payment').addEventListener('click', ajax_call);
 		function ajax_call() {

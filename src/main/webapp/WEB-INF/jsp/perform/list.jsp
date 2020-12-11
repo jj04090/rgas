@@ -22,7 +22,7 @@
                                 <div class="card">
                                     <div class="card-image waves-effect waves-block waves-light">
                                         <img class="activator" src="/perform/photo/${perform.no}" 
-											onerror="this.src='/images/gallery/1.png'" style="width:100%;height:300px;"/>
+											onerror="this.src='/images/gallery/1.png'" style="width:100%;height:400px;"/>
                                     </div>
                                     <div class="card-content">
                                         <span class="card-title activator grey-text text-darken-4">
@@ -86,4 +86,7 @@
             </div>
         </div>
     </div>
+    <script>
+    	document.title = "피드 목록 | CHEERUP" ;
+	</script>
 <jsp:include page="/WEB-INF/jsp/layout/footer.jsp" />

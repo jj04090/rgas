@@ -126,7 +126,7 @@
 															<div class="row">
 																<div class="input-field col s12">
 																	<button type="submit" form="memberForm"
-																		class="btn red waves-effect waves-light right">
+																		class="btn red waves-effect waves-light right" style="font-weight:bold;">
 																		정지<i class="material-icons right">do_not_disturb_alt</i>
 																	</button>
 																</div>
@@ -149,4 +149,7 @@
 			</div>
 		</div>
 	</div>
+	<script>
+    	document.title = "회원 정보 관리 | CHEERUP" ;
+	</script>
 	<jsp:include page="/WEB-INF/jsp/layout/footer.jsp" />

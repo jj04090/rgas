@@ -65,7 +65,7 @@
                     </div>
                 </div>
         	</div>
-        </div>
+        </div> 
     </div>
     <script>
     	document.title = "신고 목록 | CHEERUP" ;

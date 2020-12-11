@@ -13,8 +13,8 @@
     <meta name="keywords" content="materialize, admin template, dashboard template, flat admin template, responsive admin template, eCommerce dashboard, analytic dashboard">
     <meta name="author" content="ThemeSelect">
     <title>회원 가입 | CHEERUP</title>
-    <link rel="apple-touch-icon" href="/images/favicon/apple-touch-icon-152x152.png">
-    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon/favicon-32x32.png">
+    <link rel="apple-touch-icon" href="/images/favicon/favicon_1.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon/favicon_1.ico">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- BEGIN: VENDOR CSS-->
     <link rel="stylesheet" type="text/css" href="/vendors/vendors.min.css">

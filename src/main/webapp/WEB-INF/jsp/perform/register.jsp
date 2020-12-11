@@ -85,6 +85,9 @@
 	<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 	<script>
+    	document.title = "피드 등록" ;
+	</script>
+	<script>
 		$(function() {
 			$("#img").change(function(e){
 				$('button[type="submit"]').removeAttr('disabled');

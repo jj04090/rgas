@@ -13,8 +13,8 @@
     <meta name="keywords" content="materialize, admin template, dashboard template, flat admin template, responsive admin template, eCommerce dashboard, analytic dashboard">
     <meta name="author" content="ThemeSelect">
     <title>환급형 목표달성 서비스 | CHEERUP</title>
-    <link rel="apple-touch-icon" href="/images/favicon/apple-touch-icon-152x152.png">
-    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon/favicon-32x32.png">
+    <link rel="apple-touch-icon" href="/images/favicon/favicon_1.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon/favicon_1.ico">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- BEGIN: VENDOR CSS-->
     <link rel="stylesheet" type="text/css" href="/vendors/vendors.min.css">
@@ -60,8 +60,8 @@
 				      <ul id="nav-mobile" class="right hide-on-med-and-down">
 				        <li><a href="/mission" style="font-weight:bold;">미션</a></li>
 				        <li><a href="/perform" style="font-weight:bold;">전체 피드</a></li>
-	                    <li><a class="waves-effect waves-block waves-light profile-button" href="javascript:void(0);" data-target="profile-dropdown">
-	                    <span class="avatar-status avatar-online"><img src="/images/profile.png" alt="avatar"><i></i></span></a></li>
+	                    <li><a class="waves-effect waves-block waves-light profile-button" href="javascript:void(0);" style="height:64px;" data-target="profile-dropdown">
+	                    <i class="material-icons">dehaze</i></a></li>
 				      </ul>
 	                    <ul class="dropdown-content" id="profile-dropdown">
 	                        <li><a class="grey-text text-darken-1" href="/member/${memberValue.no}"><i class="material-icons">person_outline</i> 내 정보</a></li>
@@ -79,11 +79,10 @@
 				        <li><a href="/member" style="font-weight:bold;">회원 관리</a></li>
 				        <li><a href="/report" style="font-weight:bold;">신고 관리</a></li>
 				        <li><a href="/donation" style="font-weight:bold;">기부 관리</a></li>
-	                    <li><a class="waves-effect waves-block waves-light profile-button" href="javascript:void(0);" data-target="profile-dropdown">
-	                    <span class="avatar-status avatar-online"><img src="/images/profile.png" alt="avatar"><i></i></span></a></li>
+	                    <li><a class="waves-effect waves-block waves-light profile-button" href="javascript:void(0);" style="height:64px;" data-target="profile-dropdown">
+	                    <i class="material-icons">dehaze</i></a></li>
 				      </ul>
 	                    <ul class="dropdown-content" id="profile-dropdown">
-	                        <li><a class="grey-text text-darken-1" href="/member/${memberValue.no}"><i class="material-icons">person_outline</i> 내 정보</a></li>
 	                        <li class="divider"></li>
 	                        <li><a class="grey-text text-darken-1" href="/logout"><i class="material-icons">keyboard_tab</i> 로그아웃</a></li>
 	                    </ul>

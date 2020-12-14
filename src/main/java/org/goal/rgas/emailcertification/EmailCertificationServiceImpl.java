@@ -11,8 +11,10 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
+@PropertySource("classpath:email.properties")
 @Service
 public class EmailCertificationServiceImpl implements EmailCertificationService {
 	// 구글이메일 아이디

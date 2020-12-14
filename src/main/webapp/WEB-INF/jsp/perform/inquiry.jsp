@@ -10,7 +10,7 @@
 					<div id="image-card" class="section">
 						<div class="card">
 							<div class="card-content">
-								<p class="caption mb-0">피드 정보</p>
+								<p class="caption mb-0" style="font-weight: bold">피드 정보</p>
 							</div>
 						</div>
 						<div class="row">

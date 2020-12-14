@@ -13,7 +13,7 @@
 	                            <p class="caption mb-0" style="font-size:20px;font-weight:bold;">기부단체 목록</p>
                             </div>
                             <form action="${pageContext.request.contextPath}/charity/form" method=get>
-								<button class="btn blue waves-effect waves-light right" type="submit" style="font-weight:bold;">
+								<button class="btn gradient-45deg-blue-indigo waves-effect waves-light right" type="submit" style="font-weight:bold;">
 										등록 <i class="material-icons right">add_circle</i>
 								</button>
 							</form>

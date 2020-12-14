@@ -22,7 +22,7 @@
 									value="${merchantUid}" />
 								<form action="${pageContext.request.contextPath}/donation"
 									id="register" method="post" style="padding-bottom:5px;">
-									<select id="charityNo" name="no" class="select2 browser-default">
+									<select id="charityNo" name="no">
 										<c:forEach items="${charityList}" var="charity">
 											<option value="${charity.no}">${charity.name}</option>
 										</c:forEach>

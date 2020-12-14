@@ -71,8 +71,9 @@
 									<img src="/images/home_card_2.png" alt="images"
 									class="responsive-img" style="width:200px;height:auto;"/>
 								<p class="black-text lighten-4" style="font-weight:bold;">
-									돈을 걸면 의지가 달라집니다.<br/>
-									예치금은 반드시 해야만 하는 환경을 만들어 줍니다.
+									<br/>돈을 걸면 의지가 달라집니다.<br/>
+									예치금은 반드시 해야만 하는 환경을 만들어 줍니다.<br/>
+									 
 								</p>
 							</div>
 						</div>

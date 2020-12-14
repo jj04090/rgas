@@ -25,32 +25,25 @@
 															type="hidden" name="no" id="no" value="${member.no}" />
 														<div class="row">
 															<div class="input-field col s12">
-																<i class="material-icons prefix">account_circle</i> <input
-																	type="text" id="name" name="name"
-																	value="${member.name}" style="color: black;" disabled>
+																<input type="text" id="name" name="name" value="${member.name}" style="color: black;" disabled>
 																<label style=" font-weight: bold;">이름</label>
 															</div>
 														</div>
 														<div class="row">
 															<div class="input-field col s12">
-																<i class="material-icons prefix">email</i> <input
-																	type="text" id="email" name="email"
-																	value="${member.email}" style="color: black;" disabled>
+																<input type="text" id="email" name="email" value="${member.email}" style="color: black;" disabled>
 																<label style=" font-weight: bold;">이메일</label>
 															</div>
 														</div>
 														<div class="row">
 															<div class="input-field col s12">
-																<i class="material-icons prefix">account_circle</i> <input
-																	type="text" id="nickname" name="nickname"
-																	value="${member.nickname}" style="color: black;">
+																<input type="text" id="nickname" name="nickname" value="${member.nickname}" style="color: black;">
 																<label style=" font-weight: bold;">닉네임</label>
 															</div>
 														</div>
 														<div class="row">
 															<div class="input-field col s12">
-																<i class="material-icons prefix">local_atm</i> <select
-																	id="bank" name="bank">
+																<select id="bank" name="bank">
 																	<option value="${member.bank}" selected>${bankName}</option>
 																	<option value="004">KB국민은행</option>
 																	<option value="023">SC제일은행</option>
@@ -67,21 +60,18 @@
 																	<option value="090">카카오뱅크</option>
 																	<option value="089">케이뱅크</option>
 																	<option value="081">하나은행</option>
-																</select> <label style="font-size: 17px; font-weight: bold;">은행</label>
+																</select> <label style="font-weight: bold;">은행</label>
 															</div>
 														</div>
 														<div class="row">
 															<div class="input-field col s12">
-																<i class="material-icons prefix">local_atm</i> <input
-																	type="text" id="account" name="account"
-																	value="${member.account}" style="color: black;">
+																<input type="text" id="account" name="account" value="${member.account}" style="color: black;">
 																<label style=" font-weight: bold;">계좌
 																	번호</label>
 															</div>
 														</div>
 														<div class="row">
 															<div class="input-field col s12">
-																<i class="material-icons prefix">stars</i>
 																<c:if test="${member.grade == 'C'}">
 																	<input type="text" value="일반" style="color: black;"
 																		disabled>
@@ -107,7 +97,6 @@
 														</div>
 														<div class="row">
 															<div class="input-field col s12">
-																<i class="material-icons prefix">offline_pin</i>
 																<c:if test="${member.auth == 'A'}">
 																	<input type="text" value="관리자" style="color: black;"
 																		disabled>
@@ -121,7 +110,6 @@
 														</div>
 														<div class="row">
 															<div class="input-field col s12">
-																<i class="material-icons prefix">verified_user</i>
 																<c:if test="${member.status == 'A'}">
 																	<input type="text" value="활성" style="color: black;"
 																		disabled>

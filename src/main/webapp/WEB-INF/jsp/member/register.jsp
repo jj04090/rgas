@@ -45,7 +45,7 @@
                        		<c:set var="code" value="<%=UUID.randomUUID().toString().toUpperCase().substring(0, 6)%>" />
 							<input type="hidden" id="code" name="code" value="${code}" />
                             <div class="row">
-                                <div class="input-field col s12">
+                                <div class="input-field col s12 center">
                                     <h5 class="ml-4">회원가입</h5>
                                     <p class="ml-4">이메일 인증 후 회원가입 해주세요.</p>
                                 </div>

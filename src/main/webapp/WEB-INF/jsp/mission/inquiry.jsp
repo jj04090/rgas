@@ -14,7 +14,7 @@
 						<div class="app-wrapper">
 							<div class="card">
 								<div class="card-content">
-									<p class="caption mb-0">미션 정보</p>
+									<p class="caption mb-0" style="font-weight: bold">미션 정보</p>
 								</div>
 							</div>
 							<!-- Form Advance -->

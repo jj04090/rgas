@@ -12,7 +12,7 @@
 						<div class="app-wrapper">
 							<div class="card">
 								<div class="card-content">
-									<p class="caption mb-0">기부 단체 정보</p>
+									<p class="caption mb-0" style="font-weight: bold">기부 단체 정보</p>
 								</div>
 							</div>
 							<!-- Form Advance -->
@@ -23,7 +23,6 @@
 											<div id="Form-advance"
 												class="card card card-default scrollspy">
 												<div class="card-content">
-													<h4 class="card-title">기부 단체 정보</h4>
 													<form method="post" action="/charity" id="charityForm">
 														<input type="hidden" name="_method" value="PUT" /> <input
 															type="hidden" name="no" id="no" value="${charity.no}" />

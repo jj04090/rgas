@@ -38,7 +38,7 @@
                     <div class="col s12 m6 l4 z-depth-4 card-panel border-radius-6 login-card bg-opacity-8">
                         <form id="login" action="/login" method="post">
                             <div class="row">
-                                <div class="input-field col s12">
+                                <div class="input-field col s12 center">
                                    <img class="responsive-img" width="200" src="/images/logo-4.png" alt>
                                 </div>
                             </div>

@@ -25,7 +25,6 @@
     <link rel="stylesheet" type="text/css" href="/vendors/dropify/css/dropify.min.css">
     <link rel="stylesheet" type="text/css" href="/vendors/data-tables/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="/vendors/data-tables/extensions/responsive/css/responsive.dataTables.min.css">
-     <link rel="stylesheet" type="text/css" href="/fonts/fontawesome/css/all.min.css">
      <link rel="stylesheet" type="text/css" href="/css/pages/page-contact.css">
     <!-- END: VENDOR CSS-->
     <!-- BEGIN: Page Level CSS-->
@@ -54,7 +53,7 @@
     <header class="page-topbar" id="header">
         
         	 <c:if test="${auth eq 'C'}">
-	        	 <nav class="navbar-main navbar-color nav-collapsible sideNav-lock navbar-dark gradient-45deg-purple-light-blue gradient-shadow">
+	        	 <nav class="navbar-main navbar-color nav-collapsible sideNav-lock navbar-dark gradient-45deg-blue-grey-blue gradient-shadow">
 				    <div class="nav-wrapper">
 				      <a href="/home" class="brand-logo" style="font-weight:bold;"><img src="/images/logo-4.png" style="width:170px;padding-top:8px;padding-left:10px;height:auto;"/></a>
 				      <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -72,7 +71,7 @@
 				  </nav> 
 			  </c:if>
 			  <c:if test="${auth eq 'A'}">
-				  <nav class="navbar-main navbar-color nav-collapsible sideNav-lock navbar-dark gradient-45deg-purple-light-blue gradient-shadow">
+				  <nav class="navbar-main navbar-color nav-collapsible sideNav-lock navbar-dark gradient-45deg-blue-grey-blue gradient-shadow">
 				    <div class="nav-wrapper">
 				      <a href="/home" class="brand-logo" style="font-weight:bold;"><img src="/images/logo-4.png" style="width:170px;padding-top:8px;padding-left:10px;height:auto;"/></a>
 				      <ul id="nav-mobile" class="right hide-on-med-and-down">
